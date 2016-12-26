@@ -1,0 +1,34 @@
+<md-dialog aria-label="addvideo">
+  <form ng-cloak>
+    <!--<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="LoginHd">Member Signup Form</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+
+    <md-dialog-content>
+      <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+        <h2 class="LoginHd">Add Video</h2>
+      <div class="md-dialog-content">
+          <div class="loginFrmTop" >
+              <input type="text" name="name" ng-model="user.title" placeholder="Title*" class="loginInp">
+              
+              <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp"></textarea>
+              <input type="text" ng-model="user.url" name="url" placeholder="Provide the Youtube URL*" class="loginInp">
+              <div class="addvid-BtnBx clearfix">
+                <md-button class="md-raised md-primary logpopup-Btn">Add Video</md-button>
+                <a href="">Back</a>
+              </div>
+           </div>
+      </div>
+    </md-dialog-content>
+
+    
+  </form>
+</md-dialog>

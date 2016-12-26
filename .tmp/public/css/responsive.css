@@ -1,0 +1,271 @@
+@media(max-width:1099px){
+.profpaidBx a{ font-size: 12px; line-height: 18px; padding:2px 12px }
+.listingBot-L a{ font-size: 13px;}
+.viewBtn {font-size: 12px; min-height: 0; padding: 3px 15px !important; line-height: 25px;}
+.listingBot-L{ padding: 5px 0 3px 0; }
+.advertiseHd {font-size: 36px; line-height: 50px; padding: 130px 0;}
+.moreclintHd {font-size: 28px; padding-bottom:20px;}
+.signuplisting ul li {font-size: 15px; padding-right: 50px; }
+/*--------------28/11/2016---------------*/
+.revDet {padding: 10px 10px 10px 15px;}
+.revDet p{ line-height: 20px; padding-bottom: 10px;}
+.revDet strong {font-size: 18px;}
+.videotrans img{ width: 60px;}
+
+}
+
+@media(max-width: 1023px){
+.massageexchange > span{ font-size: 36px;}
+.massageexchange small {font-size: 20px;}
+.welcontent p{ padding: 0 0 20px;}
+.howitDir-Bx {padding: 0 10px;}
+.dirarrow2{ top: 65px;}
+.slideBx{ padding: 10px;}
+.foot-Cont{ padding-right: 15px;}
+.foot-List a {line-height: 20px; padding: 5px 0;}
+.listingHd{ font-size: 16px;}
+.listingTop {padding: 26px 10px 10px 10px; position: relative;}
+.listingImg{ width: 80px;}
+.listingImgBx{ padding-left: 90px; font-size: 13px;}
+.updateHd{ font-size: 16px;}
+.advertiseHd{ font-size: 30px; padding: 100px 0;}
+.moreclintHd{ font-size: 24px;}
+.signuplisting ul li {font-size: 13px; padding-right: 20px;}
+.moreclientsBg{ padding: 35px 0;}
+.adverplanBx table tr td.basicPric {font-size: 30px;}
+.adverplanBx table tr td.subsTxt{ padding: 25px 15px; font-size: 16px;}
+.adverplanBx table tr td.basicHD{ font-size: 25px; padding: 25px 10px !important;}
+.adverplanBx table tr td.GoldHd{ font-size: 25px;}
+.adverplanBx table tr td{padding: 20px 10px; font-size: 15px;}
+.adverplanBx table tr td.basicPric sup{ margin-top: 0;}
+
+/*--------------25/11/2016---------------*/
+.nav > li > a{ padding: 3px 11px 3px 0 !important; font-size: 12px; }
+.nav > li:last-child a {padding: 3px 0 4px 4px !important;}
+.userBx{ margin: 5px 0 0 0;}
+nav{ margin: 10px 0 0 0 !important;}
+.professMsg a{ font-size: 13px; padding:7px 10px;}
+.container {width: 100% !important;}
+.gallImgBx .addelIcon img{ width: 25px;}
+.reviewList ul li {border: 1px solid #dedede; padding: 10px; text-align: center;}
+.review-img {border: 1px solid #dedede; height: 156px; margin:0 auto; position: relative; width: 137px;}
+.revDet strong{ line-height: 24px;}
+.revDet strong small {display: block; float: none;}
+
+/*------------------01/12/2016----------------*/
+.blogList li i{ width: 180px;}
+.blogList li{ padding: 0 0 25px 195px;}
+.blogList li strong{ font-size: 16px;}
+.blogList li p{ font-size: 14px;}
+.pollsHd{ font-size: 24px;}
+.aboutBanTxt > span{ font-size: 40px; line-height:normal;}
+.aboutTrans{ padding: 100px 0;}
+.aboutBotHd strong{ font-size: 24px;}
+.aboutBotHd{ font-size: 15px;}
+.videotrans img{ width: 50px;}
+}
+
+@media(max-width: 767px){
+nav {position: absolute !important; right: 10px; top: -10px;width: 45px; min-height: 0 !important;}
+.loginBtnBx {margin: 5px 50px 0 0;}
+.navbar-toggle{ border: #000 solid 1px; margin: 0;}
+.navbar-toggle .icon-bar{ background: #000;}
+.navbar-collapse {background: #f5f5f5 none repeat scroll 0 0; border: 1px solid #eee; border-radius: 5px; display: block; position: absolute;
+  right: 0; width: 200px; z-index: 99; height: auto !important;}
+.navbar-collapse.in{ display: none;}
+.nav > li:last-child a {padding: 7px 15px !important;}
+.nav > li > a{ text-align: left;}
+.logoBx img {height: 45px;}
+header{ padding:5px 0;}
+.massageexchange > span {font-size: 30px; line-height: 36px;}
+.massageexchange{ margin-top: -50px;}
+.locationBx{ height: 45px;}
+.locationBx i{ top: 5px;}
+.searchwithin{ padding-top: 3px;}
+.selectmrgn{ margin: 7px 0 !important;}
+.srchfrmBx button{ height: 45px;}
+.welhd{ font-size: 26px; font-weight: 700;}
+.welcomeBx{ padding: 30px 0;}
+.welcontent p {font-size: 16px; line-height: 24px;}
+.howitBg{ padding: 30px 0;}
+.howitTitle{ font-size: 15px;}
+.howitDir{padding: 15px 0 0px;}
+.dirarrow1{ display: none;}
+.dirarrow2{ display: none;}
+.testimonial-bg{ padding: 30px 0;}
+.howitDir-Bx {padding: 0 0 30px;}
+.slideBx p {font-size: 15px; line-height: 22px;  padding-bottom:10px;}
+.footLinkhd{ padding-top: 20px;}
+.foot-List a{ padding:3px 0; }
+.listingBot-L {display: block; padding: 5px 0 3px;}
+.listingBot-R {display: block; float: none; padding-top: 5px;}
+.listingTop-Right {position: relative; right: 0;text-align: center; top: 10px;}
+.listingTop-Left {padding-right: 0; position: relative; text-align: center;}
+.listingImgBx { padding-left: 0;}
+.listingImg {left: 0; margin: 5px auto; position: relative; top: 0;}
+.profpaidBx {position: relative; right: 0px; text-align: center; top: 0px; margin-bottom: 10px;}
+.listingTop{ padding:10px; }
+.profpaidBx a{ padding:5px 15px; }
+.listingTop-Right > i{ padding:10px 0; }
+.listingBot{ text-align: center;}
+.listingHd{font-size: 16px;padding-top: 20px; text-align: center;}
+.adverplanBx table tr td.basicPric {font-size: 25px;}
+.adverplanBx table tr td.basicHD {font-size: 23px; padding: 25px 10px !important;}
+.advertiseHd {font-size: 24px; line-height: 40px; padding: 60px 0;}
+.advertiseHd strong{ display: block;}
+.moreclintHd {font-size: 20px; text-align: left;}
+.signuplisting ul li {font-size: 14px; padding-right: 24px; width: 100%;}
+/*-------------25/11/2016--------------*/
+.userBx {margin: 0px 50px 0 0;}
+.nav{ top: -6px;}
+.nav > li > a {border-bottom: 1px solid #e5e5e5; font-size: 12px; padding: 5px 10px !important;}
+.navbar-nav{ margin: 0px; padding: 0;}
+.navbar-collapse{ padding: 0;}
+.nav > li > ul { left: 0; margin-left: 0; position: relative; width: 100%;}
+.nav > li > ul > li > a{ padding: 7px 10px;}
+.referfrdHd{ font-size: 30px;} 
+.referList li{ font-size: 16px;}
+/*------------------28/11/2016---------------*/
+.profile-Img {height: auto; left: 0; margin: 0 auto 10px auto; position: relative; top: 0; width: 220px;}
+.profile-Img > img{ height: auto;}
+.profileTopBx{ padding-left: 0;}
+.profileNav{ display: none;}
+.profHd > span{ display: inline-block; padding-top: 5px; cursor: pointer;}
+.publicHd{ margin-top: 20px;}
+.gallImgBx{ margin-bottom: 15px;}
+/*-----------------29/11/2016-------------*/
+.noteTxt p { font-size: 16px;}
+.srchtrans{ padding: 40px 0;}
+/*------------01/12/2016------------*/
+.pollrangeMain {display: block; width: 100%;}
+.blogList li {padding: 0 0 25px; text-align: center;}
+.blogList li i {display: block; margin: 0 auto 10px; position: relative; width: 250px;}
+.blogList li i img{width: 100%;}
+.pagerBx {text-align: center;}
+.pagerBx .pager {margin: 0 auto;}
+.pollsHd > span {display: block; float: none; margin-top: 5px;}
+.aboutList li {background-position:left 11px; display: block; font-size: 15px; padding: 4px 20px; width: 100%;}
+/*-------------12/12/2016---------------*/
+.contFrm .sechInp{ margin-bottom: 10px;}
+.padTop{ padding-top: 0;}
+.contFrm{ padding-bottom: 20px;}
+.contDetTxt {min-height: 0;}
+.suggpollFrm {padding-right: 45px; width: 100%;}
+.videoBx li{ width: 100%; margin-right: 0;}
+.videoBx li > img{ width: 100%;}
+
+}
+
+@media(max-width: 639px){
+.massageexchange > span {font-size: 20px; line-height: 24px;}
+.massageexchange small {font-size: 15px;}
+.locationBx{ width: 50%;}
+.msglistBx {width: 35%;}
+.srchfrmBx{ width: 15%;}
+.welhd{ font-size: 20px;}
+.welcontent p {font-size: 14px; line-height: 20px;}
+form.frmBx{ width: 100%;}
+.profpaidBx a{ margin-bottom: 5px;}
+.listingtrans{ padding:40px 0; }
+.adverplanBx table tr td.subsTxt {font-size: 14px; padding: 15px 10px;}
+.purchaseBtn{ padding: 10px 20px;}
+.adverplanBx table tr td{ padding: 15px 10px;}
+.adverplanBx table tr td img {width: 17px;}
+.composeBtn .logpopup-Btn{ float: none; margin: 0 !important;}
+/*---------------25/11/2016---------------*/
+.referfrdHd{ font-size: 26px; padding-bottom: 12px;}
+.referList li {font-size: 15px; line-height: 20px;}
+/*------------28/11/2016----------------*/
+.professMsg {padding: 10px 0; position: relative; right: 0; text-align: center; top: 0;}
+.prof-right-top { margin-bottom: 10px; padding-bottom: 10px; position: relative; text-align: center;}
+.prof-right-top strong{ padding-bottom: 0;}
+.prof-right-bot{ text-align: center;}
+.profHd{ padding: 10px; font-size: 17px;}
+
+/*-----------------01/12/2016------------------*/
+.contributedHd > span{ font-size: 20px;}
+.choosingOpt li label{ font-size:14px; }
+.pollsHd{ font-size: 20px;}
+.usercommitBx li strong{ font-size: 16px;}
+.usercommitBx li p{ font-size: 13px;}
+.aboutBanTxt > span {font-size: 32px;}
+.aboutTrans {padding: 80px 0;}
+.aboutBotHd strong {font-size: 20px;}
+.aboutBotHd {font-size: 14px; line-height: 22px;}
+.aboutList li {font-size: 14px; padding: 4px 15px;}
+
+/*---------------------12/12/2016--------------------*/
+.ContactMap img {width: 100%; height: 150px;}
+.sendmailHd strong{ font-size: 20px;}
+.fileButton{width:80px;}
+.InpFile{ width: 80px;}
+
+}
+
+
+
+@media(max-width: 479px){
+.bannerBg > img {min-height: 180px;}
+.massageexchange{ display: none;}
+.bannersrchBx{ background: none;}
+.locationBx {background: #fff none repeat scroll 0 0; border-radius: 3px; border-right: 0 none; margin-bottom: 5px; width: 100%;}
+.msglistBx {background: #fff none repeat scroll 0 0; border-radius: 3px 0 0 3px; width: 80%;}
+.srchfrmBx {width: 20%;}
+.bannerBot{ padding:7px 0; }
+.loginBtnBx a {font-size: 13px; padding: 7px 10px;}
+.slideBx {padding: 10px 0;}
+.fbCont{ padding-left: 50px;}
+.fbCont i{ width:40px;}
+.LoginHd {font-size: 16px !important; font-weight: 600 !important;}
+.advertiseHd {font-size: 18px; line-height: 25px; padding: 50px 0;}
+.moreclintHd {font-size: 16px; text-align: left;}
+.advertble{ overflow: auto;}
+.advertble table{ width:500px;}
+.composeBtn .mail-closeBtn{ width: 100px !important; font-size: 14px; min-height: 30px; line-height: 30px;}
+.composeBtn .logpopup-Btn{ width: 100px !important; font-size: 14px; min-height: 30px; line-height: 30px;}
+.attachfile > span {display: block; padding-bottom: 10px;}
+.attachfile > span > md-checkbox{ margin-bottom: 5px;}
+
+/*--------------25/11/2016--------------*/
+.referfrdHd {font-size: 20px; padding-bottom: 12px;}
+.referfrdBx{ padding: 15px;}
+
+/*------------28/11/2016---------------*/
+.profdesc strong{ font-size: 15px;}
+.prof-right-top strong{ font-size: 20px;}
+.professMsg a {display: block; font-size: 13px; padding: 4px 0; margin-bottom: 5px;}
+.prof-right-bot{ font-size: 14px;}
+.userBx {margin: 3px 46px 0 0;}
+.userBx i img {height: 32px; width: 32px;}
+.userBx a {font-size: 12px; margin-top: 7px; padding-left: 3px;}
+.userBx a i{ font-size: 26px;}
+.blocklistBx > span{ padding:10px; }
+.blocklistBx > a{ padding: 7px 0; font-size: 16px;}
+/*--------------29/11/2016-----------*/
+.msgNowHd{ font-size: 18px;}
+.msgBg{ padding: 12px;}
+.sechInp{ height: 40px;}
+ .mylocationTabs ul li a{ font-size: 13px; padding: 0 10px;}
+ .mylocationTabs{ margin-bottom: 10px;}
+/*----------------01/12/2016----------------*/
+.pollsHd {font-size: 16px; padding-bottom: 5px;}
+.pollsHd span a{ margin-left: 0; margin-right: 5px;}
+.contributedHd > span {font-size: 18px;}
+.pollrangeMain li{ font-size: 12px;}
+.pollrangeMain li span{ padding-bottom: 5px;}
+.pollrangeMain li span i{ padding-left: 20px;}
+.pollBx{ padding: 15px;}
+.usercommitBx li {padding: 10px 0 10px 60px;}
+.usercommitBx li i {height: 50px; width: 50px;}
+.usercommitBx li strong{ padding: 0;}
+.usercommitBx li p {font-size: 13px; line-height: 20px;}
+.pagerBx .pager li > a, .pagerBx .pager li > span{ padding: 5px 10px;}
+.blogList li strong {font-size: 14px;}
+.aboutBotHd strong {font-size: 17px;}
+.aboutBanTxt > span {font-size: 26px;}
+/*------------12/12/2016--------------*/
+.postBlogBx{ padding: 15px;}
+.suggpoll{ padding: 15px;}
+.addvid-BtnBx a {font-size: 14px; line-height: 22px; margin-left: 3px; padding: 8px 0; width: 90px;}
+.addvid-BtnBx .logpopup-Btn {display: inline-block; font-size: 14px; width: 110px !important;}
+}

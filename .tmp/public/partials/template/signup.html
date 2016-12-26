@@ -1,0 +1,47 @@
+<md-dialog aria-label="login">
+  <form ng-cloak>
+    <!--<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="LoginHd">Member Signup Form</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+
+    <md-dialog-content>
+      <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+        <h2 class="LoginHd">Member Signup Form</h2>
+      <div class="md-dialog-content">
+          <div class="loginFrmTop" >
+              <md-select ng-model="drink" placeholder="I am a" class="md-no-underline SignupSelect">
+                  <md-option value="Male">Male</md-option>
+                  <md-option value="Female">Female</md-option>
+                  <md-option value="Gay">Gay</md-option>
+                  <md-option value="Other">Both</md-option>
+                </md-select>
+              <input type="text" name="name" ng-model="user.email" placeholder="Email" class="loginInp">
+              <input type="password" ng-model="user.password" name="password" placeholder="Password" class="loginInp">
+              <input type="password" ng-model="user.password" name="password" placeholder="Confirm Password" class="loginInp">
+              <div class="rembBx">
+                <md-checkbox  aria-label="Checkbox 1">I agree to <a>Terms of Services</a> & <a>Privacy Policy</a> </md-checkbox>
+                
+              </div>
+              <md-button class="md-raised md-primary logpopup-Btn">Sign Up</md-button>
+           </div>
+           <div class="ordevider">
+              <span>OR</span>
+           </div>
+           <a class="facebookBtn fbCont"><i><img src="images/fb-icon.png" alt=""></i> Sign up with Facebook</a>
+           <a class="linkedBtn fbCont"><i><img src="images/linkedin-icon.png" alt=""></i> Sign up with Linkedin</a>
+           <a class="twitterBtn fbCont"><i><img src="images/twitter-icon.png" alt=""></i> Sign up with Twitter</a>
+           <div class="notregCont">Already a Zenbrisa member? <a>Login</a></div>
+      </div>
+    </md-dialog-content>
+
+    
+  </form>
+</md-dialog>

@@ -1,0 +1,47 @@
+    <header>  <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-xs-4"><div class="logoBx">
+          <a ng-href="{{navabar.home.url}}"><img src="images/logo.png" alt=""></a>
+          </div></div>
+          <div class="col-sm-8 col-xs-8 text-right">
+              <nav class="navbar" role="navigation">
+                                <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+                  <ul class="nav navbar-nav">
+                    <li><a  ng-href="{{navabar.home.url}}">Home</a></li>
+                    <li><a  ng-href="{{navabar.aboutUs.url}}">About Us</a></li>
+                    <li><a  ng-href="{{navabar.faqs.url}}">Faq</a></li>
+                  </ul>
+                </div>
+              </nav>
+        <div class="loginBtnBx">
+          <a class="loginBtn transition"  ng-href="{{navabar.login.url}}">Login</a>
+          <a class="signupBtn transition active" ng-href="{{navabar.signup.url}}"> Sign up</a>
+          <md-button  class="md-icon-button nav-btn" ng-click="openNav()">
+            <md-icon>menu</md-icon></md-button>
+        </div>
+
+          </div>
+        </div>
+      </div>
+
+<!--mobile navbar-->
+<md-sidenav
+    class="md-sidenav-right md-whiteframe-4dp"
+     md-swipe-right="openNav()"
+    md-component-id="navbar">
+      <md-toolbar md-scroll-shrink layout="row"    layout-align="space-between center">
+      <div class="md-toolbar-tools" >Menu </div>
+      <md-button class="md-icon-button pull-right" ng-click="openNav()"><md-icon>close</md-icon></md-button>
+      </md-toolbar>
+     <md-content >
+        <md-list>
+             <md-list-item ng-repeat="item in navabar" ng-href="{{item.url}}">
+               <md-icon >{{item.icon}}</md-icon>
+               <p>
+               {{item.title}}</p>
+              <md-divider></md-divider>
+             </md-list-item>
+
+        </md-list>
+     </md-content>
+   </md-sidenav>

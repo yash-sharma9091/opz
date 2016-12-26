@@ -1,0 +1,37 @@
+<md-dialog aria-label="camposemail">
+  <form ng-cloak>
+    <!--<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="LoginHd">Member Signup Form</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+
+    <md-dialog-content>
+      <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+        <h2 class="LoginHd">Compose E-mail</h2>
+      <div class="md-dialog-content">
+          <div class="loginFrmTop" >
+              <input type="text" name="name" ng-model="user.email" placeholder="To" class="loginInp">
+              <input type="password" ng-model="user.password" name="password" placeholder="Subject" class="loginInp">
+              <textarea name="password" ng-model="user.message" placeholder="Type your message here" class="textareaInp"></textarea>
+              <div class="composeBtn clearfix">
+                <div class="attachfile">
+                  <span><i class="material-icons">attachment</i> Attach Files
+                    <input type="file" name="file" class="attachfileInp" value="Browse">
+                  </span>
+                  <span><md-checkbox  aria-label="Checkbox 1">Send Photo Key</md-checkbox></span>
+                </div>
+                <md-button class="md-raised md-primary logpopup-Btn">Send</md-button></div>
+           </div>
+      </div>
+    </md-dialog-content>
+
+    
+  </form>
+</md-dialog>
