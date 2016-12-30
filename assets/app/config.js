@@ -9,10 +9,12 @@ angular.module('zenbrisa',
 'ui.bootstrap',
 'zenbrisa.app',
 'zenbrisa.controllers',
+'zenbrisa.public.Controller',
 'angular-loading-bar',
 'app.direcrives',
 'service'
 ]);
 
 angular.module('zenbrisa.controllers',[]);
+angular.module('zenbrisa.public.Controller',[]);
 angular.module('zenbrisa.app',[]);

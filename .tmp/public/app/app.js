@@ -8,24 +8,24 @@ angular.module('zenbrisa.app')
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('light-blue')
-    .accentPalette('deep-orange');
+    .accentPalette('blue');
 })
 
-//modal
+//open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();
 	//login modal
 	$rootScope.login=function(ev){
-			appServices.modal('template/login.html', loginCtrl, ev)
+			appServices.modal('partials/template/login.html', loginCtrl, ev)
 	}
 	$rootScope.signup=function(ev){
-			appServices.modal('template/signup.html', loginCtrl, ev)
+			appServices.modal('partials/template/signup.html', loginCtrl, ev)
 	}
 	$rootScope.camposemail=function(ev){
-			appServices.modal('template/campose-mail.html', loginCtrl, ev)
+			appServices.modal('partials/template/campose-mail.html', loginCtrl, ev)
 	}
 	$rootScope.addvideo=function(ev){
-			appServices.modal('template/add-video.html', loginCtrl, ev)
+			appServices.modal('partials/template/add-video.html', loginCtrl, ev)
 	}
 }])
 
@@ -52,9 +52,10 @@ angular.module('zenbrisa.app')
 }])
 //navbar links
 .run(['$rootScope','$location','$mdSidenav', function($rootScope,$location,$mdSidenav){
-	$rootScope.navabar={
+	$rootScope.navabar=
+	{
 	"home": {
-		"url": "/#",
+		"url": "/",
 		"title": "Home",
 		"icon": "home"
 	},
@@ -142,10 +143,5 @@ angular.module('zenbrisa.app')
 			});
 }
 
-}])
+}]);
 
-function loginCtrl($scope, $mdDialog){
-	$scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-}

@@ -105,8 +105,12 @@ md-progress-circular { margin: auto;}
   bottom: 10px;
   background-color: rgba(0, 173, 255, 0.94) !important;
   color: white !important;
+   display: none;
 }
 .scroll-top md-icon { color: white !important;}
+
+md-input-container { margin: 5px auto; }
+md-input-container .md-char-counter, md-input-container .md-input-message-animation { text-align: right; }
 
 @media(min-width:768px){
   .nav-btn{ display:none }

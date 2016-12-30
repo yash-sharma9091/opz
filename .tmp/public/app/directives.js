@@ -21,26 +21,38 @@ angular.module('app.direcrives',[])
 	}
 }}]).directive('scrollOffset', ['$window',function($window){
   return{
-    link:function(scope, element, attrs){
-
-		if(attrs.scroll=="true"){
-				element.hide();
-			$(window).scroll(function(){
-			if($(window).scrollTop()>200)
+    link:function(scope, element, attrs)
+		{
+		if(attrs.scroll=="true")
 			{
-				element.fadeIn(500);
-			}
-			else {
-				element.fadeOut(500);
-			}
-			});
-		}
-
-    element.on('click', function(){
-      $('body, html').animate({
-        scrollTop:   $('.'+attrs.scrollOffset).offset().top -30
+			$(window).scroll(function(){
+				if($(window).scrollTop()>200)
+				{	
+				
+					if(window.getComputedStyle(element[0], null).display=='none')
+					{
+					 element.fadeIn(500);
+					 return ;
+					}
+				}
+				else
+					{
+					 if(window.getComputedStyle(element[0], null).display=='block')
+					{
+					 element.fadeOut(500);
+					 return;
+					}
+					}
+				});
+			 }
+	//-----------
+    	element.on('click', function()
+		{
+			$('body, html').animate({
+        scrollTop:$('.'+attrs.scrollOffset).offset().top -30
       },900);
-    })
+    	});
+
     }
   }
 }]);
