@@ -4,8 +4,10 @@
           <a ng-href="{{navabar.home.url}}"><img src="images/logo.png" alt=""></a>
           </div></div>
           <div class="col-sm-8 col-xs-8 text-right">
-              <nav class="navbar" role="navigation">
-                                <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+              
+          <!--navbar if user not login-->
+              <nav class="navbar" role="navigation" ng-if="!isUserLogin">
+                <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                   <ul class="nav navbar-nav">
                     <li><a  ng-href="{{navabar.home.url}}">Home</a></li>
                     <li><a  ng-href="{{navabar.aboutUs.url}}">About Us</a></li>
@@ -14,7 +16,58 @@
                 </div>
               </nav>
 
-        <div class="loginBtnBx">
+              <!--navbar if login-->
+               <nav class="navbar" role="navigation" ng-if="isUserLogin">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+                <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+                  <ul class="nav navbar-nav">
+                    <li><a>Search</a></li>
+                    <li><a>MAILBOX</a></li>
+                    <li><a>PROFILE <i class="material-icons">expand_more</i></a>
+                      <ul>
+                          <li><a>Profile 1</a></li>
+                          <li><a>Profile 2</a></li>
+                          <li><a>Profile 3</a></li>
+                      </ul>
+                    </li>
+                    <li><a>COMMUNITY <i class="material-icons">expand_more</i></a>
+                      <ul>
+                          <li><a>community 1</a></li>
+                          <li><a>community 2</a></li>
+                          <li><a>community 3</a></li>
+                      </ul>
+                    </li>
+                    <li><a>ADVERTISE <i class="material-icons">expand_more</i></a>
+                      <ul>
+                          <li><a>Advertise 1</a></li>
+                          <li><a>Advertise 2</a></li>
+                          <li><a>Advertise 3</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+
+         
+         <!--user dropdown menu-->
+         <div class="userBx" on-toggle="toggled(open)" ng-if="isUserLogin" ng-click="logout()">
+                <i><img src="images/user-img.jpg" alt=""></i>
+                <a href id="simple-dropdown">Peter Smith <i class="material-icons">arrow_drop_down</i></a>  
+                <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
+                  <li role="menuitem"><a href="#">My Account</a></li>
+                  <li role="menuitem"><a href="#">Setting</a></li>
+                  <li role="menuitem"><a href="#">Logout</a></li>
+                </ul>
+          </div>
+
+        <div class="loginBtnBx" ng-if="!isUserLogin">
           <a class="loginBtn transition" ng-click="login($event)">Login</a>
           <a class="signupBtn transition active" ng-click="signup($event)"> Sign up</a>
           <md-button  class="md-icon-button nav-btn" ng-click="openNav()">

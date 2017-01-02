@@ -1,7 +1,9 @@
 angular.module('service',['ngMaterial'])
-.factory('appServices', function($mdDialog){
+.factory('appServices', function($mdDialog,$http,localStorageService){
 	var service={};
-	service.modal=function(template, controller,ev){
+
+	service.modal=function(template, controller,ev)
+	{
 		$mdDialog.show({
 			controller: controller,
 			templateUrl:template ,
@@ -16,7 +18,7 @@ angular.module('service',['ngMaterial'])
      });
 	};
 
-	service.post= function(url,data, callback)
+	service.post=function(url,data, callback)
 	{
 		var $request={
 			method:'POST',
@@ -35,6 +37,36 @@ angular.module('service',['ngMaterial'])
 		};
 
 
+	};
+	service.checkStorage= function(key){
+		if (localStorageService.get(key,"sessionStorage")){
+			return localStorageService.get(key,"sessionStorage");
+		}
+		else if (localStorageService.get(key,"localStorage")){
+			return localStorageService.get(key,"localStorage");
+		}
+		else
+			return false;
+	};
+	service.sessionStorage=function(key,data){
+		
+		localStorageService.set(key, data, "localStorage");
+	};
+	service.getSessionStorage=function(key){
+		
+		localStorageService.get(key,"localStorage");
+	};
+	service.logout=function(key)
+	{
+		
+		Object.keys(sessionStorage).filter(function(key){
+				sessionStorage.removeItem(key)
+		});
+		Object.keys(localStorage).filter(function(key){
+			localStorage.removeItem(key)
+		});
+		return true;
 	}
+
 	return service;
 });

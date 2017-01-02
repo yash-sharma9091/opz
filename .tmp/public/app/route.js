@@ -77,7 +77,15 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false
     }
   })
-  .when('/404',{
+  .when('/home',
+    {
+    templateUrl:"/partials/dashboard/user-home.html",
+    access:
+    {
+          login:true
+    }
+  })
+    .when('/404',{
     templateUrl: function(){
       location.assign('/404');
     }

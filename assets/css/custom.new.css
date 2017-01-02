@@ -112,6 +112,15 @@ md-progress-circular { margin: auto;}
 md-input-container { margin: 5px auto; }
 md-input-container .md-char-counter, md-input-container .md-input-message-animation { text-align: right; }
 
+.alert{ padding: 8px 15px;}
+.alert p{ margin-bottom: 0; padding-bottom: 0; font-size: 13px; }
+
+.alert.alert-danger p{color: #d21d1a;}
+.alert.alert-danger md-icon{color: #d21d1a;}
+
+.alert.alert-success p{color: #008000;;}
+.alert.alert-success md-icon{color: #008000;}
+
 @media(min-width:768px){
   .nav-btn{ display:none }
 }

@@ -10,7 +10,10 @@ angular.module('zenbrisa.app')
     .primaryPalette('light-blue')
     .accentPalette('blue');
 })
-
+// .config(function (localStorageServiceProvider) {
+//   localStorageServiceProvider
+//     .setStorageType('sessionStorage');
+// })
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();
@@ -29,6 +32,52 @@ angular.module('zenbrisa.app')
 	}
 }])
 
+//check login session 
+.run(['$rootScope','appServices','$location','localStorageService', function($rootScope,appServices,$location,localStorageService){
+		
+
+
+	if(appServices.checkStorage('user'))
+	{
+		$rootScope.isUserLogin=true;
+	}
+
+	else
+	{
+		$rootScope.isUserLogin=false;
+	}
+
+	$rootScope.$on("$routeChangeSuccess", function(event,current ,prev){
+		
+		if(current.access.login==true)
+		{
+				
+				appServices.sessionStorage("redirectUrl",$location.path());
+
+				if($rootScope.isUserLogin==false)
+				{
+					$rootScope.login();
+					$location.path('/');
+				}
+		}
+
+		$('body, html').animate({
+				scrollTop:0
+			},900);
+
+	});
+
+	$rootScope.logout= function()
+	{
+		
+		appServices.logout();
+		$rootScope.isUserLogin=false;
+		$location.path('/');
+
+	}
+
+}])
+
 //define template
 .run(['$rootScope', function($rootScope){
 		$rootScope.template={
@@ -41,15 +90,6 @@ angular.module('zenbrisa.app')
 		}
 }])
 
-.run(['$rootScope','$timeout', function($rootScope,$timeout){
-		$rootScope.$on("$locationChangeSuccess", function(event,next,current){
-			//scroll to top
-
-			$('body, html').animate({
-				scrollTop:0
-			},900);
-		})
-}])
 //navbar links
 .run(['$rootScope','$location','$mdSidenav', function($rootScope,$location,$mdSidenav){
 	$rootScope.navabar=
@@ -104,7 +144,7 @@ angular.module('zenbrisa.app')
 		"title": "Free Massage Exchange",
 		"icon": "accessibility"
 	},
-	"PaidProfessional Massage": {
+	"PaidProfessionalMassage": {
 		"url": "/#paid-professional-massage",
 		"title": "Paid Professional Massage",
 		"icon": "accessible"

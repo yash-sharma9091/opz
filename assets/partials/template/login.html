@@ -1,25 +1,35 @@
-<md-dialog aria-label="login" >
-  <form  class="frmBx" name="login" novalidate>
+<md-dialog aria-label="login"  >
+  <form  class="frmBx" name="login" novalidate ng-init="user.remember=false">
 
      <md-dialog-content>
      <md-button class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
       <h2 class="LoginHd">Already A Member ?</h2>
-      <div class="md-dialog-content">
-           <div class="loginFrmTop">
 
+      <div class="md-dialog-content">
+
+        <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+              <md-icon ng-if="alert.type=='alert-success'">check</md-icon>
+
+               {{alert.message}}
+               </p>
+        </div>
+
+           <div class="loginFrmTop">
             <md-input-container class="md-block">
             <label>Email</label>
             <input  name="email" 
                     required 
+                    type="text"
                     ng-model="user.email" 
                     ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/" 
                     >
             <!--error template-->
 
             <div ng-messages="login.email.$error">
-
             <div ng-message="required">Email is required.</div>
             <div ng-message="pattern">Enter valid email address</div>
             </div>
@@ -27,24 +37,23 @@
 
             <md-input-container class="md-block">
             <label>Password</label>
-            <input  name="password" 
+            <input  
+                    name="password" 
                     required 
+                    type="password"
                     ng-model="user.password" 
-                    >
+            >
             <!--error template-->
-         
             <div ng-messages="login.password.$error">
             <div ng-message="required">Password is required.</div>
             </div>
             </md-input-container>
 
-
               <div class="rembBx">
-              <md-checkbox  aria-label="remember" ng-model="user.remember">Remember Me    </md-checkbox>
-
-                <i><a>Forget Password ?</a></i>
+              <md-checkbox  aria-label="remember" ng-model="user.remember"> Remember Me </md-checkbox>
+                <i><a> Forget Password ?</a></i>
               </div>
-              <md-button type="submit" class="md-raised md-primary logpopup-Btn">Login</md-button>
+              <md-button type="submit" ng-click="userLogin(login,user)" class="md-raised md-primary logpopup-Btn">Login</md-button>
            </div>
            <div class="ordevider">
               <span>OR</span>
