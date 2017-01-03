@@ -1,23 +1,23 @@
 <div class="container clearfix">
     <div class="bannersrchBx clearfix">
+      <form method="get" ng-submit="get_searched_results(searchData)">
         <div class="locationBx">
           <i class="material-icons">location_on</i>
           <div class="searchwithin">Search within
-            <span><input type="text" name="name" placeholder="Newyork" class="countryInp"></span>
-          </div>
+            <span><input type="text" places-auto-complete name="name" placeholder="Newyork" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()"></span>
+          </div>      
         </div>
-        <div class="msglistBx">
-          <md-select ng-model="drink" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
-            <md-option value="Massage1">Massage 1</md-option>
-            <md-option value="Massage2">Massage 2</md-option>
-            <md-option value="Massage3">Massage 3</md-option>
-            <md-option value="Massa">Massage 4</md-option>
+        <div class="msglistBx" ng-init="searchData.service='therapists'">
+          <md-select ng-model="searchData.service" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
+            <md-option value="therapists">Massage Therapists</md-option>
+            <md-option value="enthusiast">Massage Enthusiast</md-option>
           </md-select>
         </div>
         <div class="srchfrmBx">
-          <md-button class="md-raised md-primary search-btn" aria-label="search">
+          <md-button class="md-raised md-primary search-btn" aria-label="search" type="submit">
             <md-icon>search</md-icon>
           </md-button>
         </div>
+      </form>
     </div>
 </div>

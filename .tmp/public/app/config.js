@@ -15,7 +15,8 @@ angular.module('zenbrisa',
 'zenbrisa.public.Controller',
 'angular-loading-bar',
 'app.direcrives',
-'service'
+'service',
+'ngMap'
 ]);
 
 angular.module('zenbrisa.controllers',[]);
