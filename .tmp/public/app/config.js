@@ -27,5 +27,6 @@ angular.module('zenbrisa.app',[]);
 var API_URL=
 {
 	
-	"login":api_base_url+"users/userLogin"
+	"login":api_base_url+"users/userLogin",
+	"signup":api_base_url+"users/signup1"
 }

@@ -10,33 +10,33 @@ angular.module('zenbrisa.app')
     .primaryPalette('light-blue')
     .accentPalette('blue');
 })
-// .config(function (localStorageServiceProvider) {
-//   localStorageServiceProvider
-//     .setStorageType('sessionStorage');
-// })
+
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();
+	
 	//login modal
-	$rootScope.login=function(ev){
+	$rootScope.login=function(ev)
+	{
 			appServices.modal('partials/template/login.html', loginCtrl, ev)
 	}
-	$rootScope.signup=function(ev){
+	$rootScope.signup=function(ev)
+	{
 			appServices.modal('partials/template/signup.html', loginCtrl, ev)
 	}
-	$rootScope.camposemail=function(ev){
+	$rootScope.camposemail=function(ev)
+	{
 			appServices.modal('partials/template/campose-mail.html', loginCtrl, ev)
 	}
-	$rootScope.addvideo=function(ev){
+	$rootScope.addvideo=function(ev)
+	{
 			appServices.modal('partials/template/add-video.html', loginCtrl, ev)
 	}
 }])
 
 //check login session 
 .run(['$rootScope','appServices','$location','localStorageService', function($rootScope,appServices,$location,localStorageService){
-		
-
-
+	
 	if(appServices.checkStorage('user'))
 	{
 		$rootScope.isUserLogin=true;
