@@ -21,3 +21,10 @@
       </form>
     </div>
 </div>
+
+ <div ng-show="place">
+            Address = {{place.formatted_address}} <br/>
+            Location: {{place.geometry.location}}<br/>
+            {{place.geometry.location.lat}}
+          </div>
+<pre>{{searchData | json}}</pre>

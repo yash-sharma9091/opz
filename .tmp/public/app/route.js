@@ -94,6 +94,14 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+  .when('/search',
+    {
+    templateUrl:"/partials/global-search/search.html",
+    access:
+    {
+          login:false
+    }
+  })
     .when('/404',{
     templateUrl: function(){
       location.assign('/404');
