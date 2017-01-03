@@ -1,24 +1,53 @@
 <md-dialog aria-label="login"  >
-  <form  class="frmBx" name="login" novalidate ng-init="user.remember=false">
 
      <md-dialog-content>
      <md-button class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
-      <h2 class="LoginHd">Already A Member ?</h2>
+      <h2 ng-if="!forgetpassword" class="LoginHd">Already A Member ?</h2>
+      <h2 ng-if="forgetpassword" class="LoginHd">Forgot Your Password?</h2>
+
 
       <div class="md-dialog-content">
 
         <div class="alert {{alert.type}}" ng-if="alert">
               <p>
               <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
-              <md-icon ng-if="alert.type=='alert-success'">check</md-icon>
-
                {{alert.message}}
                </p>
         </div>
 
            <div class="loginFrmTop">
+              <!--forget password form-->
+              <form  class="frmBx" name="forget" novalidate ng-if="forgetpassword" ng-hide="isforgetPassword">
+
+            <md-input-container class="md-block">
+            <label>Email</label>
+            <input  name="email" 
+                    required 
+                    type="text"
+                    ng-model="user.email" 
+                    ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/" 
+                    >
+            <!--error template-->
+            <div ng-messages="forget.email.$error">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Enter valid email address</div>
+            </div>
+            </md-input-container>
+
+            <md-button type="submit" ng-click="forgetPassword(forget,user)" class="md-raised md-primary logpopup-Btn">Submit </md-button>
+
+            <div class="clearfix"></div>
+              <div class="md-block text-center">
+              
+                <i><a ng-click="$parent.forgetpassword=false">Already have account (Login)</a></i>
+              </div>
+
+              </form>
+           <!--login form-->
+
+            <form  class="frmBx" name="login" novalidate ng-init="user.remember=false" ng-if="!forgetpassword">
             <md-input-container class="md-block">
             <label>Email</label>
             <input  name="email" 
@@ -51,10 +80,12 @@
 
               <div class="rembBx">
               <md-checkbox  aria-label="remember" ng-model="user.remember"> Remember Me </md-checkbox>
-                <i><a> Forget Password ?</a></i>
+                <i><a ng-click="$parent.forgetpassword=true"> Forget Password ?</a></i>
               </div>
               <md-button type="submit" ng-click="userLogin(login,user)" class="md-raised md-primary logpopup-Btn">Login</md-button>
            </div>
+            </form>
+
            <div class="ordevider">
               <span>OR</span>
            </div>
@@ -64,5 +95,5 @@
            <div class="notregCont">Not a Zenbrisa member? <a>Get Started</a></div>
       </div>
     </md-dialog-content>
-  </form>
+
 </md-dialog>

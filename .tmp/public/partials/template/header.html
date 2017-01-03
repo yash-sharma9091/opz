@@ -28,11 +28,13 @@
                 </div>
                 <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                   <ul class="nav navbar-nav">
-                    <li><a>Search</a></li>
+                    
+                    <li ng-repeat="menu in userNavbar"><a ng-href="{{menu.href}}">{{menu.title}}</a></li>
+                    
                     <li><a>MAILBOX</a></li>
                     <li><a>PROFILE <i class="material-icons">expand_more</i></a>
                       <ul>
-                          <li><a>Profile 1</a></li>
+                          <li><a>My Profile</a></li>
                           <li><a>Profile 2</a></li>
                           <li><a>Profile 3</a></li>
                       </ul>
@@ -57,15 +59,24 @@
 
          
          <!--user dropdown menu-->
-         <div class="userBx" on-toggle="toggled(open)" ng-if="isUserLogin" ng-click="logout()">
-                <i><img src="images/user-img.jpg" alt=""></i>
-                <a href id="simple-dropdown">Peter Smith <i class="material-icons">arrow_drop_down</i></a>  
-                <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
-                  <li role="menuitem"><a href="#">My Account</a></li>
-                  <li role="menuitem"><a href="#">Setting</a></li>
-                  <li role="menuitem"><a href="#">Logout</a></li>
-                </ul>
-          </div>
+          <div class="userBx">
+
+            <md-menu md-offset="0 45" ng-if="isUserLogin" >
+              <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                <i><img src="images/user-img.jpg" alt=""></i> 
+                  <!-- <span>Peter Smith </span> -->
+                <md-icon>arrow_drop_down</md-icon>
+              </md-button>
+              <md-menu-content width="2">
+                <ul class="userList">
+                      <li role="menuitem"><a href="#">My Account</a></li>
+                      <li role="menuitem"><a href="#">Setting</a></li>
+                      <li role="menuitem" ng-click="logout()"><a >Logout</a></li>
+                    </ul>
+              </md-menu-content>
+            </md-menu>
+                
+         </div>
 
         <div class="loginBtnBx" ng-if="!isUserLogin">
           <a class="loginBtn transition" ng-click="login($event)">Login</a>

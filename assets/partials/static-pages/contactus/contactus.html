@@ -1,0 +1,152 @@
+<section class="ContactMap">
+<img src="/images/contact-map.jpg" alt="">
+</section>
+
+<section class="welcomeBx">
+  <div class="container"> 
+    <div class="col-sm-8 contFrm">
+    <!--contcat form-->
+    <form name="contactus" novalidate>
+      <div class="sendmailHd"><strong>Send us an email</strong>Drop us a line by using the form below</div>
+        
+        <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                {{alert.message}}
+               </p>
+        </div>
+
+      <div class="row padTop">
+        <div class="col-sm-4">
+        <md-input-container class="md-block">
+        <input 
+          type="text" 
+          name="name" 
+          ng-model="user.name" 
+          placeholder="User Name" 
+          >
+        </md-input-container>
+        </div>
+
+
+        <div class="col-sm-4">
+           <md-input-container class="md-block">
+        <input 
+              type="text" name="email" 
+              ng-model="user.email" 
+              required 
+              placeholder="Email" 
+              ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/" 
+             >
+
+        <div ng-messages="contactus.email.$error">
+        <div ng-message="required">Email is required.</div>
+        <div ng-message="pattern">Enter valid email address</div>
+        </div>
+           </md-input-container>
+        </div>
+
+        <div class="col-sm-4">
+         <md-input-container class="md-block">
+        <input type="text" name="name" 
+              ng-model="user.phone" placeholder="TelePhone" 
+        >
+         </md-input-container>
+        </div>
+      </div>
+
+      <div class="row padTop">
+        <div class="col-sm-4">
+         <md-input-container class="md-block">
+        <input 
+        type="text" 
+        name="fullname" 
+        required 
+        name=""
+        ng-model="user.fullname" 
+        placeholder="Full Name" 
+        >
+        <div ng-messages="contactus.fullname.$error">
+          <div ng-message="required">Full name is  required.</div>
+        </div>
+        </div>
+
+        <div class="col-sm-4">
+
+         <md-input-container  class="md-block">
+          <label>Country</label>
+          <md-select name="type" ng-model="user.country" required name="subject">
+            <md-option ng-repeat="x in country" value="{{x}}">{{x}}</md-option >
+                  
+          </md-select>
+          <div ng-messages="contactus.country.$error">
+          <div ng-message="required">Country is  required.</div>
+          </div>
+
+        </md-input-container>
+        </div>
+        <div class="col-sm-4">
+
+         <md-input-container  class="md-block">
+          <label>Subject</label>
+          <md-select name="type" ng-model="user.subject" required name="subject">
+                  <md-option  value="Customer Care">Customer Care</md-option >
+                  <md-option  value="Admin">Admin</md-option >
+                  <md-option  value="Feedback">Feedback</md-option >
+                  <md-option  value="Cancel/Change Membership">Cancel/Change Membership</md-option >
+                  <md-option  value="Blogs and Polls">Blogs and Polls</md-option >
+                  <md-option  value="Report abusive member">Report abusive member</md-option >
+                  <md-option  value="Compliments">Compliments</md-option >
+                  <md-option  value="Complaints">Complaints</md-option >
+                  <md-option  value="Other">Other</md-option >
+          </md-select>
+          <div ng-messages="contactus.subject.$error">
+          <div ng-message="required">Subject is  required.</div>
+          </div>
+
+        </md-input-container>
+        </div>
+      </div>
+      <div class="row padTop">
+        <div class="col-sm-12">
+         <md-input-container class="md-block">
+          <label>Message</label>
+          <textarea 
+              name="message"
+              required 
+              ng-model="user.message" 
+              md-maxlength="300" rows="5" md-select-on-focus>
+           </textarea>
+           <div ng-messages="contactus.message.$error">
+          <div ng-message="required">Message is  required.</div>
+          </div>
+          </md-input-container>
+        </div>
+      </div>
+      <md-button type="submit" ng-click="contacts(contactus,user)" class="md-raised md-primary logpopup-Btn" style="margin-left:0 !important;">Send</md-button>
+      </form>
+      <!--end form-->
+    </div>
+    <div class="col-sm-4">
+      <div class="contDetBg">
+        <div class="contDetTxt">
+          <strong>GET IN TOUCH</strong>
+          <p>Would like to partner up or just say hi!- we would love to hear from you. </p>
+          <span><i class="material-icons">room</i> Zenbrisa.com 8 The Green, Suite #4731 <br> Dover, DE 19901 USA </span>
+          <span><i class="material-icons">email</i> info@zenbrisa.com</span>
+          <!-- <span class="social-Cont"><i class="material-icons">share</i>  -->
+
+              <a href="https://twitter.com/zenbrisa" target="_blank">
+                  <img src="images/tweet-icon1.png"></a>
+              <a  
+                  href="https://www.facebook.com/Zenbrisa-1026643404089803/?fref=ts">
+              <img src="images/fb-icon1.png">
+              </a>
+              <a href="https://in.pinterest.com/zenbrisa/"><img src="images/pintrest-icon1.png"></a>
+              <a href="https://www.instagram.com/zenbrisa/"><img src="images/instagram-icon1.png"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

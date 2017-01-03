@@ -304,7 +304,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 
 /*----------------------25/11/2016-----------------*/
 .referBg{ background: #f5f6f8; padding: 50px 0; }
-.userBx{display: inline-block; vertical-align: top; margin: 12px 0 0 10px;}
+.userBx{display: inline-block; vertical-align: top; margin: 12px 0 0 10px; position: relative;}
 .userBx i{ display: inline-block; vertical-align: top;}
 .userBx i img{width: 42px; height: 39px; border:#d1d1d1 solid 1px;}
 .userBx a{display: inline-block;font-size: 14px; margin-top: 10px; padding-left: 5px; vertical-align: top;}
@@ -312,7 +312,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .nav > li > a i{ display: inline-block; line-height: 20px; font-size: 20px; vertical-align: top;}
 .nav > li:hover{ color: #00aeff !important;}
 .nav > li:hover ul{display: block;}
-.nav > li > ul {background: #fff none repeat scroll 0 0; box-shadow: 0 0 2px 0 #eee; left: 50%; margin-left: -75px; position: absolute; text-align: left; width: 150px; display: none;}
+.nav > li > ul {background: #fff none repeat scroll 0 0; z-index: 99; box-shadow: 0 0 2px 0 #eee; left: 50%; margin-left: -75px; position: absolute; text-align: left; width: 150px; display: none;}
 .nav > li > ul::after { border-bottom: 10px solid #eee;border-left: 10px solid transparent; border-right: 10px solid transparent; content: ""; left: 50%; margin-left: -10px; position: absolute; top: -10px;}
 .nav > li > ul > li{ display: block;}
 .nav > li > ul > li a{ display: block; border-bottom: #e5e5e5 solid 1px; padding: 10px; font-size: 14px;}
@@ -350,7 +350,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .profHd{ background: #e6e6e6; padding: 15px 10px; font-size: 19px; color: #000; line-height: 25px; font-family: 'uniformmedium';}
 .profileNav {background: #f5f5f5 none repeat scroll 0 0;}
 .profileNav li {display: block;}
-.profileNav li a {border-bottom: 1px solid #e5e5e5; color: #666; display: block; font-size: 14px; line-height: 25px; padding: 10px;}
+.profileNav li a {border-bottom: 1px solid #e5e5e5; color: #666; display: block; font-size: 14px; line-height: 24px; padding: 8px 10px;}
 .profileNav li a i {padding-right: 5px; vertical-align: top;}
 .profileNav li a span{ display: inline-block; padding-left: 5px;}
 .profileNav li a:hover, .profileNav li a.active{ color: #00aeff;}
@@ -511,3 +511,179 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .addvid-BtnBx a {background: #7f7f7f;color: #fff; display: inline-block; font-size: 16px; margin-left: 5px; padding: 8px 0; vertical-align: top; text-align: center; width: 160px;}
 .addvid-BtnBx a:hover{background: #333;}
 .addvid-BtnBx .logpopup-Btn {display: inline-block;}
+
+/*-------------------21/12/2016---------------------*/
+.profInfoHd {border-bottom: 1px solid #d5d5d5; color: #000; font-size: 18px; font-weight: 600; padding-bottom: 7px;}
+.profInfoHd span{ color: #a5a5a5;}
+.profmapBx {box-shadow: 0 0 2px 3px #eee; padding: 3px; height: 158px; margin-bottom: 15px;}
+.profmapBx img{ width: 100%; height: 100%;}
+.pinkClr{ color: #ff92e9 !important;}
+.blueClr{ color: #00aeff !important;}
+.tooltipBx {background: #666; border-radius: 50%; color: #fff; display: inline-block; font-size: 12px; font-style: normal; font-weight: 600; height: 15px; line-height: 15px; margin-left: 5px; text-align: center; width: 15px; position: relative;}
+.tooltipBx:hover .tooltipInn{ display: block;}
+.tooltipInn {background: #666 none repeat scroll 0 0; border-radius: 3px; color: #fff; font-size: 13px;
+  left: 50%; margin-left: -50px; padding: 6px; position: absolute; text-align: center; text-transform: uppercase;width: 100px; line-height: 20px; top:-42px; display: none;}
+.tooltipInn:after{ border-top: #666 solid 10px; border-right: transparent solid 10px; border-left: transparent solid 10px; content: ""; left: 50%; margin-left: -10px; bottom: -10px; position: absolute;}
+
+.myProfList {color: #595959; font-size: 15px;padding: 15px 0;}
+.myProfList li {display: block; padding-bottom: 15px; padding-right: 80px; position: relative;}
+.myProfList li > span {display: inline-block; color: #4e86a7; float: right; position: absolute; right: 0; top: 0; width: 80px;}
+.profileInfoBx {border: 1px solid #d5d5d5; padding: 20px; width: 100%; height: 423px; margin-bottom: 20px;}
+.bodyWork {border: 1px solid #d5d5d5; padding: 15px; width: 100%; height: 250px; margin-bottom: 20px;}
+.typeLabel {font-size: 15px; padding: 15px 0;}
+.typeLabel li {display: block; padding-bottom: 20px; padding-right: 175px; position: relative;}
+.typeLabel li > span {position: absolute; right: 0; top: 0; width: 175px; color: #4e87a8;}
+.typeLabel li > span > span{ display: block;}
+.typeLabel li > span > span small{ font-size: 15px;}
+.privateNoteBx {border: 1px solid #d5d5d5; padding: 20px; width: 100%;}
+.NoteTextarea{ padding: 15px 0;}
+.NoteTextarea .textareaInp{ height: 100px;}
+
+.profsave .logpopup-Btn{ display: inline-block; width: 120px !important;}
+.profsave a {background: #888 none repeat scroll 0 0; color: #fff; display: inline-block; font-size: 14px;
+  line-height: 20px; margin-left: 5px; padding: 9px 20px; vertical-align: top;}
+.profsave a:hover{ background: #333;}
+
+/*--------------------------26/12/2016--------------------*/
+.mylocatBg{ background: #f5f6f8; padding:40px 0;}
+.mylocationHd{ font-size: 28px; font-weight:700; text-transform: uppercase; color: #000; padding-bottom: 10px;}
+.mylocatInn{ background: #fff; padding: 20px; border: #ebecee solid 1px;}
+.specifyHd {color: #7a7a7a; font-size: 14px; padding: 0 0 20px;}
+.specifyHd > span {color: #000; display: block; font-size: 24px; padding-bottom: 5px; font-family: "uniformregular";}
+.addcountryCity {font-size: 16px;padding-bottom: 15px;}
+.addcountryCity > a {background: #00aeff none repeat scroll 0 0; color: #fff; display: inline-block; margin-right: 5px; padding: 10px 0; text-align: center; width: 140px; line-height: 22px; font-family: "uniformregular";}
+.addcountryCity > a:hover{ background: #057eb7;}
+.locatHd{ background: #949494; padding: 10px 0; text-align: center; font-size: 14px; color: #fff; line-height: 23px;}
+.locatHd strong{ display: block; font-size: 18px; text-transform: uppercase;}
+.locatHd span{ display: block;}
+.locatTabMain {border: 1px solid #e5e5e5; padding: 20px;}
+.locatTab {padding-bottom: 15px;}
+.locatTab li {float: left; width: 33.33%;}
+.locatTab li label {color: #a4a4a4; font-size: 13px; font-weight: 400; line-height: 20px; padding-left: 5px;
+  vertical-align: top;}
+.srchAreaBx {padding-bottom: 10px;}
+.srchareaFrmbx {padding-bottom: 10px;}
+.srchareaFrmbx > label {display: block; font-weight: 400; font-size: 14px;font-family: "uniformregular";}
+.dateBx-L {float: left; width: 48%;}
+.dateBx-M {color: #a4a4a4; float: left; font-size: 16px; line-height: 40px; text-align: center;width: 4%;}
+.dateBx-R {float: right; width: 48%;}
+.save-Btn {border-radius: 0; box-shadow: none !important; color: #fff !important; float: left; font-family: "uniformregular";
+  font-size: 16px; line-height: 30px; margin: 0 !important; min-height: 30px; min-width: 0 !important;  padding: 1px 20px !important;
+  text-transform: capitalize; width: auto !important;}
+.Delete-Btn{border-radius: 0; box-shadow: none !important; color: #fff !important; float: left; font-family: "uniformregular";
+  font-size: 16px; line-height: 30px; margin: 0 !important; min-height: 30px; min-width: 0 !important;  padding: 1px 20px !important;
+  text-transform: capitalize; width: auto !important; background: #d9534f !important; float: right;}
+.calIcon{ background: url(../images/calander-icon.png) right 10px center no-repeat;}
+
+/*------------------02/01/2017------------------*/
+.SettingMainBx {background: #fff none repeat scroll 0 0; margin-bottom: 20px; color: #7a7a7a; border: 1px solid #ececec;font-family: "uniformregular";}
+.SettingCont {padding: 20px;}
+.SettingCont > span {color: #000; display: block; font-size: 24px; padding-bottom: 5px;font-family: "uniformregular";}
+.SettingCont a{ color: #01a9ea;}
+.SettingList {padding-top: 10px;}
+.settingBx {border-top: 1px solid #ececec; padding: 15px;}
+.settBx-L {  float: left;font-size: 14px; padding: 5px 0; width: 25%; line-height: 28px;}
+.settTool {background: #666 none repeat scroll 0 0; border-radius: 50%; color: #fff; display: inline-block;
+  font-size: 12px; font-style: normal; height: 15px; line-height: 15px; position: relative; text-align: center;
+  width: 15px;}
+.settTool:hover span{ display: block;}
+.settTool span {background: #666 none repeat scroll 0 0; border-radius: 3px; left: 50%; margin-left: -70px;
+  padding: 5px;position: absolute; top: -45px; width: 140px; display: none;}
+.settTool span::after {border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #666;
+  bottom: -5px; content: ""; left: 50%; margin-left: -5px; position: absolute;}
+.settBx-R {  float: left; width: 75%;}
+.settBx-R md-switch{ margin: 5px 0;}
+.changepassBx {max-width: 400px; padding: 0 20px 20px 20px;}
+.msgBg md-select { margin: 0;}
+.msgBg md-tabs-wrapper{ background: #fff !important; border: #333 solid 1px; display: inline-block; width: 252px; }
+.msgBg md-pagination-wrapper {width: 252px !important;}
+.msgBg{ min-height: 295px;}
+.msgBg md-tabs{min-height: 215px !important;}
+.msgBg md-tabs-canvas{ height: 24px;}
+.msgBg md-pagination-wrapper{ height: 24px;}
+.msgBg .md-tab{ padding: 0 10px; border-right:#333 solid 1px; color: #a4a4a4 !important; line-height: 24px; font-size: 13px; text-transform: capitalize;}
+.msgBg .md-tab.md-active{color: #fff !important; background: #00aeff !important;}
+.userList {width: 150px;}
+.userList > li {display: block;}
+.userList > li a {border-bottom: 1px solid #ececec; display: block; padding: 7px 10px;}
+.userList > li a:hover{ color: #00aeff;}
+md-menu-content{ padding: 0;}
+.userBx .md-button:hover{ background: none;}
+
+
+.leftChat{ width:35%; border:1px solid #dedede; position:relative; background:#fff; float:left; font-family: "uniformregular";}
+.topBtn{ height:45px; border-bottom:1px solid #dedede;}
+.topBtn ul li{ float:left;}
+.topBtn ul li a{ display:block; color:#595959; text-align:center;padding:14px 15px 15px; font-size:13px;  font-family: 'uniformmedium'; border-right:1px solid #dedede;}
+.topBtn ul li a.active{ background:#f9f9f9; color:#000;}
+.compose{ width:22px; height:22px; position:absolute; right:10px; top:10px; cursor:pointer;}
+.searchBox{ padding:10px; border-bottom:1px solid #dedede;}
+.innerSrchBox{ height:34px; border:1px solid #dedede; position:relative; padding-right:30px;}
+.srchInput{ height:32px; border:0; padding:0 10px; width:100%; background:none; font-size:13px; font-family: 'uniformmedium';}
+.srchBtn{ width:24px; height:26px; border:0; background:url(../images/search.png) no-repeat center center; cursor:pointer; position:absolute; right:6px; top:3px;}
+.usersCon li{ padding:10px; position:relative; padding-left:70px; min-height:70px;}
+.userImage{ display:block; width:50px; position:absolute; left:10px; top:10px;}
+.userName{ display:block; line-height:10px; font-size:11px; margin-bottom:7px; font-family: 'uniformmedium'; color:#4a98d2; padding-right:50px;}
+.userName:hover{ text-decoration:underline;}
+.usersCon li p{ height:15px; font-size:11px; overflow:hidden;}
+.usersCon li:nth-child(even){ background:#f9f9f9;}
+.time{ display:block; font-size:11px; color:#b6b6b6; margin-top:4px;}
+.delete{ width:15px; height:15px; overflow:hidden; position:absolute; display:block; right:10px; top:10px;}
+.usersCon{ height:590px; overflow: auto;}
+.newMessage{ width:14px; height:14px; background:#ff9600; border-radius:100%; color:#fff; font-size:8px; text-align:center; line-height:13px; display:block; position:absolute; right:30px; top:10px;}
+.rightChat{ width:63%; float:right;}
+.userNames{ color:#000; font-size:16px; padding: 10px; background: #fff; border: #dedede solid 1px; border-bottom: 0;}
+.userChat{ border:1px solid #dedede; padding:15px 0; background:#fff;}
+.chatCon{ padding:0 0 0 15px}
+.conversionTxt{ text-align:center; font-size:12px; font-style:italic; color:#a1a1a1;}
+
+.otherUser{ position:relative ; margin-top:15px; padding-left:75px; padding-right:70px; min-height:52px; margin-right:15px;}
+.otherUserImage{ width:56px; position:absolute; left:0; top:0;}
+.timeBox{ display:block; font-size:12px; color:#4c9ad3; position:absolute; right:0; top:5px;}
+.uName{display:block; line-height:13px; font-size:13px; margin-bottom:7px; font-family: 'uniformmedium'; color:#4a98d2; }
+.userInfoBox p{ font-size:12px; overflow:hidden; color:#000;}
+.userInfoBox{ min-height:70px; position:relative; background:#b9ddf8; padding:10px;}
+.userInfoBox:after{ content:""; position:absolute; left:-6px; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #b9ddf8; top:11px;}
+.userInfoBox.selfUser:after{ content:""; position:absolute; left:auto; right:-6px; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:0; top:11px; border-left:6px solid #e7f3fd; }
+.userInfoBox.selfUser{ background:#e7f3fd;}
+.chatCon{ height:440px; overflow: auto;}
+.replyBox{ height:140px; width:auto; border:1px solid #dedede; margin-top:1px; background:#fff;}
+.userChatTxt{ width:100%; height:136px; border:0; padding:10px; font-size:13px; font-style:italic; color:#8d8d8d; resize:none;}
+.replyRow{height: 42px;background: #fff; border:1px solid #dedede; border-top:0;}
+.addFiles{ width:100px; height:41px; padding:10px; float:left; position:relative; overflow:hidden; color:#8a8a8a; font-size:13px; font-style:italic; background:url(../images/addfile.png) no-repeat 10px 12px; padding-left:30px; border-right:1px solid #dedede;} 
+.file{ position:absolute; left:0; top:0; bottom:0; right:0; opacity:0; cursor:pointer;}
+.replyBtn{ font-size:13px; width:70px; text-align:center; padding:4px 0; background:#168de9 ; display:block; color:#fff; float:right; margin-right:10px; margin-top:7px;}
+.replyBtn:hover{ background:#7B7B7B;}
+.messageBox{ min-width:600px;}
+
+.sendPhoto {border-right: 1px solid #dedede; display: inline-block; padding:10px;}
+.sendPhoto md-checkbox{ margin-bottom: 0;}
+.steplbl {color: #000000; font-size: 16px; font-family: "uniformregular"; padding-bottom: 5px;}
+.steplbl > span {color: #7b7b7b; font-size: 15px;}
+.steptopBx {color: #999; font-size: 14px; line-height: 18px; margin-bottom: 20px;}
+.steptopBx > span {display: inline-block; line-height: 18px; vertical-align: middle;}
+.steptopBx > span i{ vertical-align: bottom;}
+.stepdobBx md-select{ margin: 0;}
+.stepdobBx {margin: 0; padding: 0;}
+.Dob-L {float: left; margin-right: 2%; width: 32%;}
+.Dob-R{ float: right; width: 32%;}
+.stepdobBx{ padding-bottom: 20px;}
+.nextback button{ float: left;}
+.nextback button:nth-child(2){ float: right;}
+.greyBg{ background: #aeaeae;}
+.step3-L {float: left; width: 48%;}
+.step3-R {float: right; width: 48%;}
+.stepFrmBx md-select{ margin: 0 0 15px 0;}
+.stepmapBx{ background: #fff; box-shadow: #eee 0 0 2px 2px; padding: 3px; margin-bottom: 20px;}
+.stepmapBx iframe{ width: 100%; height: 250px;}
+.optionalTxt{ font-size: 14px; color: #666; font-family: "uniformregular"; margin: -10px 0 15px 0;}
+
+.stepNumb {margin: 15px auto 0px; width: 242px;}
+.stepNumb li {float: left; position: relative; width: 72px;}
+.stepNumb li span {background: #fff none repeat scroll 0 0; border: 1px solid #aeaeae; border-radius: 50%;
+  display: inline-block; font-size: 13px; height: 22px; line-height: 20px; text-align: center; width: 22px;}
+.stepNumb li span::after {background: #f3f3f3; content: ""; height: 1px; left: 0;  position: absolute; top: 50%; width: 100%; z-index: -1;}
+.stepNumb li span.active{ background: #00aeff; border: #00aeff solid 1px; color: #fff;}
+.stepNumb li span.active:after{ background: #00aeff;}
+.stepNumb li span.current{border: #00aeff solid 1px;}
+.stepNumb li:last-child{ width: 22px;}

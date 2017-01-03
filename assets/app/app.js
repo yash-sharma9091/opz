@@ -125,7 +125,7 @@ angular.module('zenbrisa.app')
 		"icon": "lock_outline"
 	},
 	"contactus": {
-		"url": "/#",
+		"url": "/#contactus",
 		"title": "Contact Us",
 		"icon": "contact_phone"
 	},
@@ -176,12 +176,29 @@ angular.module('zenbrisa.app')
 	}
 };
 
+$rootScope.userNavbar={
+	"search":{"title":"Search","href":"#/myprofile"},
+	"mailbox":{"title":"Mailbox","href":"#/"},
+	"profile":{"title":"Profile", "submenu":{}}
+
+};
+
 
 		  $rootScope.openNav= function(){
 				$mdSidenav("navbar").toggle()
 				.then(function(){
 			});
 }
+
+}])
+//load country data
+.run(['$rootScope','$location','appServices', function($rootScope,$location,appServices)
+{
+	appServices.getCountry(function(response){
+		$rootScope.country=response;
+	});
+	
+
 
 }]);
 

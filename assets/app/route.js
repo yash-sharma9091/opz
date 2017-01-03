@@ -77,6 +77,15 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false
     }
   })
+  .when('/contactus',{
+    templateUrl:"/partials/static-pages/contactus/contactus.html",
+    controller:'contactus',
+    access:
+    {
+          login:false
+    }
+  })
+  //dynamic page login require
   .when('/home',
     {
     templateUrl:"/partials/dashboard/user-home.html",

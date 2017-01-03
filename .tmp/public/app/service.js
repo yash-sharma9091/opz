@@ -1,5 +1,5 @@
 angular.module('service',['ngMaterial'])
-.factory('appServices', function($mdDialog,$http,localStorageService){
+.factory('appServices', function($mdDialog,$http,localStorageService,$templateCache){
 	var service={};
 
 	service.modal=function(template, controller,ev)
@@ -66,7 +66,25 @@ angular.module('service',['ngMaterial'])
 			localStorage.removeItem(key)
 		});
 		return true;
-	}
+	};
+
+	
+	service.getCountry= function(callback){
+
+		var $request={
+			method:'GET',
+			url:local_api_url+'country.json',
+			cache:$templateCache
+		
+		};
+
+		$http($request).then(success);
+		function success(reponse)
+		{
+			callback(reponse.data);
+		}
+
+	};
 
 	return service;
 });
