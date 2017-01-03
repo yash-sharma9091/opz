@@ -73,7 +73,6 @@ header{ background: #fff; padding: 10px 0;}
 nav {display: inline-block; margin: 15px 0 0 !important; min-height: 0 !important; vertical-align: top;}
 .nav > li > a{ padding: 7px 15px !important; color: #75787d; text-transform: uppercase;}
 .nav > li > a:focus, .nav > li > a:hover {background-color:#fff !important;  text-decoration: none; color: #00aeff !important;}
-.nav > li:last-child a{padding: 7px 0 7px 15px !important;}
 .loginBtnBx{display: inline-block; vertical-align: top;}
 .loginBtnBx a{ display: inline-block; font-size: 14px; text-transform: uppercase; color: #75787d; line-height: 20px; padding: 7px 15px;}
 .loginBtnBx a:hover{ background: #00aeff; color: #fff; border-radius: 3px;}
@@ -160,8 +159,16 @@ md-option:nth-child(4n){color: #00aeff !important;}
 /*---------------------Login Popup-------------*/
 form.frmBx{ width: 495px;}
 .LoginHd {color: #000; font-size: 20px !important; padding-top: 20px; text-align: center; padding-bottom: 0; text-transform: uppercase;}
-.loginInp{ border:#cad5dd solid 1px; background: #fff; width: 100%; font-family: 'uniformregular'; height: 42px; margin:0 0 12px 0; padding: 0 10px;}
-.textareaInp{ border:#cad5dd solid 1px; background: #fff; width: 100%; font-family: 'uniformregular'; height: 160px; margin:0 0 10px 0; padding:10px;}
+.loginInp {
+  background: #fff none repeat scroll 0 0 !important;
+  border: 1px solid #cad5dd !important;
+  font-family: "uniformregular" !important;
+  height: 42px !important;
+  margin: 0 0 12px !important;
+  padding: 0 10px !important;
+  width: 100% !important;
+}
+.textareaInp{ border:#cad5dd solid 1px !important; background: #fff !important; width: 100% !important; font-family: 'uniformregular' !important; height: 160px !important; margin:0 0 10px 0 !important; padding:10px !important;}
 .rembBx{ font-size: 12px; font-style: italic; color: #a4a4a4; padding-bottom: 0px; margin-top: 5px; font-family: 'uniformmedium';}
 .rembBx input[type=checkbox]{ margin: 0;}
 .rembBx label{ vertical-align: middle; font-weight: 400; margin: 0;}
@@ -573,7 +580,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .Delete-Btn{border-radius: 0; box-shadow: none !important; color: #fff !important; float: left; font-family: "uniformregular";
   font-size: 16px; line-height: 30px; margin: 0 !important; min-height: 30px; min-width: 0 !important;  padding: 1px 20px !important;
   text-transform: capitalize; width: auto !important; background: #d9534f !important; float: right;}
-.calIcon{ background: url(../images/calander-icon.png) right 10px center no-repeat;}
+.calIcon{ background:#fff url(../images/calander-icon.png) right 10px center no-repeat !important;}
 
 /*------------------02/01/2017------------------*/
 .SettingMainBx {background: #fff none repeat scroll 0 0; margin-bottom: 20px; color: #7a7a7a; border: 1px solid #ececec;font-family: "uniformregular";}
@@ -595,10 +602,10 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .settBx-R md-switch{ margin: 5px 0;}
 .changepassBx {max-width: 400px; padding: 0 20px 20px 20px;}
 .msgBg md-select { margin: 0;}
-.msgBg md-tabs-wrapper{ background: #fff !important; border: #333 solid 1px; display: inline-block; width: 252px; }
-.msgBg md-pagination-wrapper {width: 252px !important;}
-.msgBg{ min-height: 295px;}
-.msgBg md-tabs{min-height: 215px !important;}
+.msgBg md-tabs-wrapper{ background: #fff !important; border: #333 solid 1px; display: inline-block; width: 254px; }
+.msgBg md-pagination-wrapper {width: 254px !important;}
+.msgBg{ min-height: 340px;}
+.msgBg md-tabs{min-height: 240px !important;}
 .msgBg md-tabs-canvas{ height: 24px;}
 .msgBg md-pagination-wrapper{ height: 24px;}
 .msgBg .md-tab{ padding: 0 10px; border-right:#333 solid 1px; color: #a4a4a4 !important; line-height: 24px; font-size: 13px; text-transform: capitalize;}
@@ -609,8 +616,6 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .userList > li a:hover{ color: #00aeff;}
 md-menu-content{ padding: 0;}
 .userBx .md-button:hover{ background: none;}
-
-
 .leftChat{ width:35%; border:1px solid #dedede; position:relative; background:#fff; float:left; font-family: "uniformregular";}
 .topBtn{ height:45px; border-bottom:1px solid #dedede;}
 .topBtn ul li{ float:left;}
@@ -687,3 +692,11 @@ md-menu-content{ padding: 0;}
 .stepNumb li span.active:after{ background: #00aeff;}
 .stepNumb li span.current{border: #00aeff solid 1px;}
 .stepNumb li:last-child{ width: 22px;}
+
+
+md-input-container{ display: block; margin: 0 !important;}
+md-input-container md-select, md-input-container input {border: 1px solid #cad5dd !important; height: 42px !important; line-height: 42px !important; margin-bottom: 15px !important; width: 100% !important;}
+md-input-container label {display: block; font-size: 14px; font-weight: 400 !important; height: 44px;  left: 5px !important; padding-top: 0; top: -16px !important;}
+.md-input-focused > label, .md-input-has-value > label{ top:-24px !important; font-size: 17px !important; font-weight: 400 !important; left: 0 !important; color: #666 !important;}
+md-tab-content{overflow-x:hidden; overflow-y:auto;  }
+md-menu-content > ul > li > a {border-bottom: 1px solid #eee !important; display: block !important; margin: 0 !important; text-align: left !important;}

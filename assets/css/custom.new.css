@@ -113,6 +113,10 @@ md-progress-circular { margin: auto;}
 .alert.alert-success p{color: #008000;;}
 .alert.alert-success md-icon{color: #008000;}
 
+.ContactMap ng-map { height: 330px; }
+.map-icon{color: #01abff;  font-size: 51px;}
+.steptopBx md-radio-button {    display: inline-block;    margin-right: 10px;}
+
 @media(min-width:768px)
 {
   .nav-btn{ display:none }

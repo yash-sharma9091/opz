@@ -9,7 +9,8 @@ angular.module('service',['ngMaterial'])
 			templateUrl:template ,
 			parent: angular.element(document.body),
 			targetEvent: ev,
-			clickOutsideToClose:true
+			clickOutsideToClose:false,
+			disableParentScroll:true
 		})
 		.then(function(answer) {
          // $scope.status = 'You said the information was "' + answer + '".';

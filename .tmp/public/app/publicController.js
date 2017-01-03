@@ -3,8 +3,10 @@
 	function : login, signup, modal , contact us
     */
 
-    angular.module('zenbrisa.public.Controller',['service']).
-    controller('loginCtrl', loginCtrl).controller('contactus', contactus);
+    angular.module('zenbrisa.public.Controller',['service'])
+    .controller('loginCtrl', loginCtrl)
+    .controller('contactus', contactus)
+    .controller('profileStepCtrl', profileStepCtrl);
 
 //controller injector
 loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location'];
@@ -18,6 +20,7 @@ function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$locati
      mdDialog.cancel();
  };
 
+var dashbaord_url;
 //user login form
 e.userLogin =function(from,data)
 {
@@ -54,17 +57,28 @@ e.userLogin =function(from,data)
     						if(url)
     						{
     							
-    							$location.path(url);
+    						  dashbaord_url=url
     						}
-                         else
-                         {
-                            $location.path('/home');
-                        }
+                 else
+                 {
+                    dashbaord_url='/home';
+                    if(response.profileCompleteStatus==0)
+                    {
+                        //setup profile page
+                        rootScope.profileStep();
 
+                    }
+                    
+
+                }
+
+                        
                         rootScope.isUserLogin=true;
                         mdDialog.cancel();
-                    }
+                        $location.path(dashbaord_url);
+          }
 
+                
 
                 });
 
@@ -174,4 +188,87 @@ function contactus(e,appServices,rootScope,location)
        }
    }
 
+};
+
+//profile step complete 
+profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog'];
+
+function profileStepCtrl(e,appServices,rootScope,location,mdDialog)
+{
+    e.cancel = function() 
+  {
+     mdDialog.cancel();
+ };
+ e.user={};
+
+ //create year 
+      e.years=[];
+      var yearLimit = new Date().getFullYear() - 18;
+      for (var i=yearLimit;i>1930;i--)
+      {
+        e.years.push(i);
+
+      }
+
+      e.userProfiledata={};
+      //submit form
+      e.updateProfile = function(form,data)
+      {
+        console.log(form.$valid);
+        if(form.$valid)
+        {
+        e.alert='undefined';
+
+        //process step-1
+        if(e.step==1)
+        {
+        //check user age 
+        var age=getAge(data.dob.month+'/'+data.dob.month+'/'+data.dob.year);
+
+        if(age.age<18)
+        {
+          e.alert={'message':"You must be 18 years old",'type':'alert-danger'}; 
+        }
+        else
+        {
+          e.userProfiledata["step-1"]=data;
+          e.step=e.step+1;
+        }
+        }
+
+        if(e.step==2)
+        {
+          //todo: process step2
+
+        }
+
+        //final data
+        console.log(e.userProfiledata);     
+      }
+      else
+      {
+          e.alert={'message':"please fill your details",'type':'alert-danger'}; 
+ 
+      }
+      }
+}
+
+function getAge(dateString)
+{
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = (today.getMonth()+1)-(birthDate.getMonth()+1);
+  var data={};
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+      m=12-1;
+  }
+ data["age"]=age;
+
+  if(m!=0)
+  {
+    data["month"]=m;
+  }
+  return data;
 }

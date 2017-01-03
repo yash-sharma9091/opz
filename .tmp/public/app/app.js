@@ -14,12 +14,13 @@ angular.module('zenbrisa.app')
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();
-	
+
 	//login modal
 	$rootScope.login=function(ev)
 	{
 			appServices.modal('partials/template/login.html', loginCtrl, ev)
 	}
+
 	$rootScope.signup=function(ev)
 	{
 			appServices.modal('partials/template/signup.html', loginCtrl, ev)
@@ -32,6 +33,11 @@ angular.module('zenbrisa.app')
 	{
 			appServices.modal('partials/template/add-video.html', loginCtrl, ev)
 	}
+	$rootScope.profileStep=function(ev)
+	{
+		appServices.modal('partials/dashboard/profile-step.html', profileStepCtrl, ev)
+	};
+		//$rootScope.profileStep();
 }])
 
 //check login session 
