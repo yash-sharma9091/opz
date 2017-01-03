@@ -29,9 +29,34 @@
                 <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
                   <ul class="nav navbar-nav">
                     
-                    <li ng-repeat="menu in userNavbar"><a ng-href="{{menu.href}}">{{menu.title}}</a></li>
-                    
-                    <li><a>MAILBOX</a></li>
+                    <li ng-repeat="menu in userNavbar">
+               
+                      <md-button 
+                              ng-if="!menu.submenu" 
+                              ng-href="{{menu.href}}" aria-label="menu" > 
+                              {{menu.title}}
+                    </md-button>
+                      <!--if menu has sub cchils--> 
+                    <md-menu md-offset="0 45" ng-if="menu.submenu">
+
+                      <md-button 
+                        aria-label="menu" 
+                        ng-href="{{menu.hreef}}"
+                        ng-click="$mdOpenMenu($event)">
+                        
+                        {{menu.title}}
+                         <md-icon>arrow_drop_down</md-icon>
+                      </md-button>
+
+                      <md-menu-content width="3">
+                      <ul >
+                      <li role="menuitem" ng-repeat="x in menu.submenu">
+                        <md-button ng-href="{{x.href}}" aria-label="menu" > {{x.title}}</md-button>
+                      
+                      </li> </ul>
+                      </md-menu>
+                    </li>
+                    <!-- <li><a>MAILBOX</a></li>
                     <li><a>PROFILE <i class="material-icons">expand_more</i></a>
                       <ul>
                           <li><a>My Profile</a></li>
@@ -53,7 +78,7 @@
                           <li><a>Advertise 3</a></li>
                       </ul>
                     </li>
-                  </ul>
+ -->                  </ul>
                 </div>
               </nav>
 

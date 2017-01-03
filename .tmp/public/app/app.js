@@ -176,12 +176,35 @@ angular.module('zenbrisa.app')
 	}
 };
 
-$rootScope.userNavbar={
-	"search":{"title":"Search","href":"#/myprofile"},
-	"mailbox":{"title":"Mailbox","href":"#/"},
-	"profile":{"title":"Profile", "submenu":{}}
 
-};
+$rootScope.userNavbar={
+	"search":{"title":"Search", 
+	"submenu":{ "SearchByLocation":{"title":'Search By Location',"href":"#/"},"SearchMembers":{"title":'Search Members',"href":"#/"} }
+	},
+	"mailbox":{"title":"Mailbox","href":"#/"},
+	"profile":{"title":"Profile",
+	"submenu":{ 
+		"myprofile":{"title":'My Profile',"href":"#/myprofile"},
+		"profileEdit":{"title":'Edit Profile Details',"href":"#/profileEdit"} ,
+		"photogallery":{"title":'Photo Gallery',"href":"#/photogallery"},
+		"videogallery":{"title":'Video Gallery',"href":"#/videogallery"},
+		"packages":{"title":'Membership',"href":"#/refer"},
+		"refer":{"title":'Refer Friend Bonus',"href":"#/packages"},
+		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
+		"mylocations":{"title":'My Locations',"href":"#/mylocations"}
+	}
+},
+	
+	"community":{"title":"Community", 
+	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
+				"polls":{"title":'Polls',"href":"#/polls"} }
+	},
+	"advertise":{"title":"Advertise ", 
+	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/Ad-Subscription"},
+				"adrequest":{"title":'Ad Request',"href":"#/ad-request"} }
+	}
+
+}
 
 
 		  $rootScope.openNav= function(){
