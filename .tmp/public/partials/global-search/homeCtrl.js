@@ -1,5 +1,5 @@
 angular.module('zenbrisa.controllers')
-.controller('homepage',['$scope','$location','NgMap','appServices', function($scope,$location,NgMap, appServices){
+.controller('homepage',['$scope','$location','NgMap', function($scope,$location,NgMap){
 	/*Init Objects*/
 	$scope.searchData = {}
 
@@ -36,15 +36,11 @@ angular.module('zenbrisa.controllers')
 		$location.path('/search').search(searchData)
 	}
 
+
 	$scope.zn_SearchedResults = function(){
 		/**/
-		console.log($location.search())
-		var obj = $location.search();
-		appServices.post(API_URL.search, obj, function(response){
-			if(response.status == 1){
-				$scope.znUsers = response.data;
-			}
-		})
+		console.log("sdfsdf--------")
 	}
+
 
 }])

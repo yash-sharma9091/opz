@@ -6,19 +6,17 @@
               <div class="locationBx">
                 <i class="material-icons">location_on</i>
                 <div class="searchwithin">Search within 
-                  <span><input type="text" name="name" placeholder="Newyork" class="countryInp"></span>
+                  <span><input type="text" places-auto-complete name="name" placeholder="Newyork" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()"></span>
                 </div>
               </div>
               <div class="msglistBx">
-                <md-select ng-model="drink" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn ng-pristine ng-untouched ng-valid ng-empty" tabindex="0" aria-disabled="false" role="listbox" aria-expanded="false" aria-multiselectable="false" id="select_5" aria-owns="select_container_6" aria-invalid="false" aria-label="Massage Enthusiast"><md-select-value class="md-select-value md-select-placeholder" id="select_value_label_0"><span>Massage Enthusiast</span><span class="md-select-icon" aria-hidden="true"></span></md-select-value><div class="md-select-menu-container" aria-hidden="true" id="select_container_6"><md-select-menu class="_md"><md-content class="_md">
-                  <md-option value="Massage1" tabindex="0" class="md-ink-ripple" role="option" aria-selected="false" id="select_option_1"><div class="md-text">Massage 1</div></md-option>
-                  <md-option value="Massage2" tabindex="0" class="md-ink-ripple" role="option" aria-selected="false" id="select_option_2"><div class="md-text">Massage 2</div></md-option>
-                  <md-option value="Massage3" tabindex="0" class="md-ink-ripple" role="option" aria-selected="false" id="select_option_3"><div class="md-text">Massage 3</div></md-option>
-                  <md-option value="Massa" tabindex="0" class="md-ink-ripple" role="option" aria-selected="false" id="select_option_4"><div class="md-text">Massage 4</div></md-option>
-                </md-content></md-select-menu></div></md-select>
+                <md-select ng-model="searchData.service" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
+                  <md-option value="therapists">Massage Therapists</md-option>
+                  <md-option value="enthusiast">Massage Enthusiast</md-option>
+                </md-select>
               </div>
               <div class="srchfrmBx">
-                <button class="md-raised md-primary md-button md-ink-ripple" type="button" ng-transclude=""><img src="images/search-icon.png" alt="" class="ng-scope"></button>
+                <md-button class="md-raised md-primary"><img src="images/search-icon.png" alt=""></md-button>
               </div>
           </div>
       </div>
@@ -26,7 +24,7 @@
   </div>
 </section>
 
-<section class="midcontainerBg">
+<section class="midcontainerBg" ng-init="zn_SearchedResults()">
   <div class="container">
     <div class="row"> 
       <div class="col-sm-3">
@@ -36,7 +34,7 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Free Massage Exchange</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="2" ng-click="c()">Free Massage Exchange</md-checkbox>
               </li>
               <li>
                 <md-checkbox  aria-label="Checkbox 1">Paid Professional Massage</md-checkbox>
@@ -143,10 +141,11 @@
         </div>
       </div>
       <div class="col-sm-9">
-        <div class="listingHd">1-50 of 7224 Free Massage Exchange & Paid Professional Massage</div>
-        <div class="listing">
+        <div class="listingHd">1-20 of 7224 Free Massage Exchange & Paid Professional Massage</div>
+        <div class="listing" ng-if="znUsers.length > 0">
+
           <ul>
-            <li>
+            <!-- <li>
               <div class="listingTop lightvolateBg">
                 <div class="profpaidBx">
                   <a class="vollatBg">Paid Professional Massage</a>
@@ -246,8 +245,8 @@
                   <md-button class="md-raised md-primary viewBtn white"  ng-click="camposemail($event)">Email</md-button>
                 </div>
               </div>
-            </li>
-            <li class="greenBdr">
+            </li> -->
+             <li class="greenBdr" ng-repeat="user in znUsers track by $index">
               <div class="listingTop lightvolateBg">
                 <div class="profpaidBx">
                   <a class="vollatBg">Paid Professional Massage</a>
@@ -256,14 +255,14 @@
                 </div>
                 <div class="listingTop-Left">
                   <div class="listingImgBx">
-                    <div class="listingImg"><img src="images/listing-img.png"></div>
-                    <strong>Sara Joshep</strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>26 &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> Noida, Uttar Pradesh, India  I  0.2 Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received (2)</a></span>
+                    <div class="listingImg"><img ng-src="images/listing-img.png"></div>
+                    <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
+                    <span><small class="material-icons pinkClr personIcon">person</small>{{user.ageOne}} &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  0.2 Miles Away</span>
+                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received ({{user.reviewReceivedCount}})</a></span>
                     <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
                     <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
                   </div>
-                  <div class="listingPara">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing.</div>
+                  <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">
                     <span>Active: 2 Days Ago</span>
                   </div>
@@ -271,8 +270,8 @@
               </div>
               <div class="listingBot clearfix">
                 <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr">(1)</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos</a> 
+                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr" >({{user.publicPhotoCount}})</span></a> 
+                    <a><i class="material-icons">collections</i> Private Photos <span class="blueClr" >({{user.privatePhotoCount}})</span></a> 
                     <a>Request Photo Key </a>
                     <span class="toltip2">?<i>Photo Key</i></span>
                 </div>
@@ -282,7 +281,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <!--<li>
               <div class="listingTop whiteBg">
                 <div class="profpaidBx">
                   <a class="yellowBg">Updated Member</a>
@@ -314,9 +313,10 @@
                   <md-button class="md-raised md-primary viewBtn white"  ng-click="camposemail($event)">Email</md-button>
                 </div>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
+        <div ng-if="znUsers.length < 1" class='alert alert-info'>No Match Found in your Search Criteria.</div>
       </div>
     </div>
   </div>
