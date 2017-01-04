@@ -37,7 +37,8 @@ angular.module('zenbrisa.app')
 	{
 		appServices.modal('partials/dashboard/profile-step.html', profileStepCtrl, ev)
 	};
-		//$rootScope.profileStep();
+	//$rootScope.profileStep();
+	
 }])
 
 //check login session 
@@ -45,7 +46,7 @@ angular.module('zenbrisa.app')
 	
 	if(appServices.checkStorage('user'))
 	{
-		$rootScope.isUserLogin=true;
+		$rootScope.isUserLogin=appServices.checkStorage('user');
 	}
 
 	else
@@ -80,8 +81,28 @@ angular.module('zenbrisa.app')
 		$rootScope.isUserLogin=false;
 		$location.path('/');
 
+	};
+
+	//get user profile
+	$rootScope.getUserProfile= function(data){
+
+			if($rootScope.isUserLogin)
+			{
+
+						 appServices.post(API_URL.userprofile,data, function(response)
+						    { 
+						       console.log(response);
+						       $rootScope.userprofile=response.data;
+						    });
+			}
 	}
 
+	if($rootScope.isUserLogin)
+	{
+		var user={"email":$rootScope.isUserLogin.email};
+		$rootScope.getUserProfile(user);
+
+	}
 }])
 
 //define template

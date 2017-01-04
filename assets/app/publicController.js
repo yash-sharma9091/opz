@@ -45,11 +45,11 @@ e.userLogin =function(from,data)
 
           if(data.remember==false)
           {
-             localStorageService.set("user", response.data, "sessionStorage");
+             localStorageService.set("user", response.data.token, "sessionStorage");
          }
          if(data.remember==true)
          {
-             localStorageService.set("user", response.data, "localStorage");
+             localStorageService.set("user", response.data.token, "localStorage");
          }
 
     						//redirect to dashboard page
@@ -71,9 +71,8 @@ e.userLogin =function(from,data)
                     
 
                 }
-
-                        
-                        rootScope.isUserLogin=true;
+                       
+                        rootScope.isUserLogin=appServices.checkStorage('user');
                         mdDialog.cancel();
                         $location.path(dashbaord_url);
           }
@@ -191,17 +190,25 @@ function contactus(e,appServices,rootScope,location)
 };
 
 //profile step complete 
-profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog'];
+profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog','NgMap'];
 
-function profileStepCtrl(e,appServices,rootScope,location,mdDialog)
+function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap)
 {
     e.cancel = function() 
   {
      mdDialog.cancel();
  };
- e.user={};
 
- //create year 
+ e.user={};
+ e.step=1;
+
+ //get countery list
+ appServices.getCountry(function(response){
+    e.country=response;
+  });
+
+
+//create year 
       e.years=[];
       var yearLimit = new Date().getFullYear() - 18;
       for (var i=yearLimit;i>1930;i--)
@@ -210,15 +217,63 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog)
 
       }
 
+e.fullAddress={}
+
+e.placeChanged = function() 
+{
+  e.place = this.getPlace();
+
+  e.fullAddress={}
+  var address=e.place.address_components;
+
+  e.fullAddress['fulladress']=address;
+  if(e.place)
+  {
+    e.fullAddress["location"]=JSON.parse(JSON.stringify(e.place.geometry.location));
+  }
+  angular.forEach(address, function(value,key)
+  {
+  
+        //get country
+        angular.forEach(value.types, function(node,key){
+                
+                  if(node=='country')
+                  {
+                    e.fullAddress["country"]={"name":value.long_name,"code":value.short_name};
+
+                  }
+                  if(node=='administrative_area_level_1')
+                        {
+                          e.fullAddress["state"]={"name":value.long_name,"code":value.short_name};
+                        }
+
+                  if(node=='postal_code')
+                        {
+                          e.fullAddress["postal_code"]={"name":value.long_name,"code":value.short_name};
+                        }
+            });
+           
+        });
+ 
+
+      NgMap.getMap().then(function(map)
+      {
+          e.map = map;
+          e.map.setCenter(e.place.geometry.location);
+         
+      });
+
+      }
+          
+      var flag=0;
       e.userProfiledata={};
       //submit form
       e.updateProfile = function(form,data)
       {
-        console.log(form.$valid);
         if(form.$valid)
         {
         e.alert='undefined';
-
+       
         //process step-1
         if(e.step==1)
         {
@@ -229,46 +284,59 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog)
         {
           e.alert={'message':"You must be 18 years old",'type':'alert-danger'}; 
         }
-        else
-        {
-          e.userProfiledata["step-1"]=data;
-          e.step=e.step+1;
+        
         }
-        }
-
-        if(e.step==2)
+        if(e.step==3)
         {
-          //todo: process step2
 
+            if(data.address)
+            {
+              
+              if(!e.place)
+              {
+                  e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
+                  flag=1;
+              }
+              else{
+                 flag=0;
+              }
+             
+            }
+           
+        }
+        if(flag==0)
+        {
+         e.step=e.step+1;
         }
 
         //final data
-        console.log(e.userProfiledata);     
+        if(Object.keys(e.fullAddress).length>0)
+        {
+            data["fulladress"]=e.fullAddress;
+        }
+
+
+        //push data on server
+       //  var user=rootScope.isUserLogin;
+       // //{"id":11,"email":"rtracht@gmail.com"}
+       //  appServices.post(API_URL.userprofile,data, function(response)
+       //     { 
+       //        console.log(response);
+       //     });
+
+        console.log(JSON.stringify(data));     
       }
       else
       {
-          e.alert={'message':"please fill your details",'type':'alert-danger'}; 
+            if(  e.step==3)
+            {
+            if(!data.address)
+            {
+            
+               e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
  
+           }
+           }//end step if
+         } //end else 
       }
-      }
-}
-
-function getAge(dateString)
-{
-  var today = new Date();
-  var birthDate = new Date(dateString);
-  var age = today.getFullYear() - birthDate.getFullYear();
-  var m = (today.getMonth()+1)-(birthDate.getMonth()+1);
-  var data={};
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-      m=12-1;
-  }
- data["age"]=age;
-
-  if(m!=0)
-  {
-    data["month"]=m;
-  }
-  return data;
 }

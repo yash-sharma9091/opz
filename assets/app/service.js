@@ -27,6 +27,22 @@ angular.module('service',['ngMaterial'])
 			data:data
 		};
 
+		var token;
+		
+		if(sessionStorage['ls.user'])
+		{
+			token=JSON.parse(sessionStorage['ls.user']).token;
+		}
+		if(localStorage['ls.user'])
+		{
+			token=JSON.parse(localStorage['ls.user']).token;
+		}
+		if(token)
+		{
+		    $http.defaults.headers.common['user-token'] = token;
+	        $http.defaults.headers.common['user-role'] = "user";
+        }
+        
 		$http($request).then(success, error);
 
 		function success(response){
@@ -89,3 +105,39 @@ angular.module('service',['ngMaterial'])
 
 	return service;
 });
+
+
+
+function getAge(dateString)
+{
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = (today.getMonth()+1)-(birthDate.getMonth()+1);
+  var data={};
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+      m=12-1;
+  }
+ data["age"]=age;
+
+  if(m!=0)
+  {
+    data["month"]=m;
+  }
+  return data;
+}
+
+function removeDuplicates(originalArray, prop) {
+     var newArray = [];
+     var lookupObject  = {};
+
+     for(var i in originalArray) {
+        lookupObject[originalArray[i][prop]] = originalArray[i];
+     }
+
+     for(i in lookupObject) {
+         newArray.push(lookupObject[i]);
+     }
+      return newArray;
+ }

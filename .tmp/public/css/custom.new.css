@@ -116,6 +116,21 @@ md-progress-circular { margin: auto;}
 .ContactMap ng-map { height: 330px; }
 .map-icon{color: #01abff;  font-size: 51px;}
 .steptopBx md-radio-button {    display: inline-block;    margin-right: 10px;}
+hr {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.elipssis{
+    display: inline-block;
+    max-width: 106px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.userBx md-menu button md-icon{    float: right;  margin-top: 7px;}
+
+.map-modal ng-map { height: 200px; border: 1px #00aeff solid; margin-bottom: 15px; }
 
 @media(min-width:768px)
 {

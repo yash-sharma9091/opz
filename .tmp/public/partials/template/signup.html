@@ -22,13 +22,25 @@
   <md-input-container class="md-block">
     <label>I am a</label>
     <md-select ng-model="user.gender" name="gender" placeholder="I am a" required>
-        <md-option value="Male">Male</md-option>
-        <md-option value="Female">Female</md-option>
-        <md-option value="Gay">Gay</md-option>
-        <md-option value="Other">Both</md-option>
+        <md-option value="male">Male</md-option>
+        <md-option value="memale">Female</md-option>
+        <md-option value="gay">Gay</md-option>
+        <md-option value="other">Both</md-option>
     </md-select>
    
   </md-input-container>
+<md-input-container class="md-block margin-top25">
+            <label>Full name</label>
+            <input  name="fullname" 
+                    required 
+                    type="text"
+                    ng-model="user.fullname" 
+                   >
+            <div ng-messages="signup.fullname.$error">
+            <div ng-message="required">Full name is required.</div>
+            
+            </div>
+</md-input-container>
 
 
 <md-input-container class="md-block margin-top25">
@@ -43,7 +55,8 @@
             <div ng-message="pattern">Enter valid email address</div>
             </div>
 </md-input-container>
-
+<div class="row">
+  <div class="col-sm-6">
 <md-input-container class="md-block">
             <label>Password</label>
             <input  
@@ -57,7 +70,8 @@
             <div ng-message="required">Password is required.</div>
             </div>
       </md-input-container>
-            
+        </div>
+      <div class="col-sm-6">        
             <md-input-container class="md-block">
               <label>Confirm Password</label>
               <input  
@@ -72,7 +86,8 @@
               </div>
 
             </md-input-container>
-
+          </div>
+</div>
                 <div class="rembBx">
                 <md-input-container class="md-block">
                 <md-checkbox  aria-label="Checkbox 1" name="agree" ng-model="user.agree" >

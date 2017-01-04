@@ -1,11 +1,30 @@
 <md-dialog aria-label="step">
-  <form ng-cloak class="frmBx" ng-init="step=1" name="profileupdate">
+  <form ng-cloak class="frmBx" name="profileupdate" novalidate>
 
-    <md-dialog-content>
-  
-     <md-button class="md-icon-button closeIcon" ng-click="cancel()">
+
+    <md-dialog-content >
+    
+     <md-button ng-if="step<=4"  class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
-        </md-button>
+    </md-button>
+
+     <div ng-if="step==5" class="md-dialog-content">
+           <div class="alert text-center alert-success" >
+              <p> Your profile has been successfully updated</p>
+
+           
+           </div>
+
+             <md-button  
+            aria-label="finish"
+            ng-click="cancel()"
+            class="md-raised md-primary logpopup-Btn fr " 
+            >   
+            Finish
+            </md-button>   
+     </div>
+    <div ng-if="step<=4">
+
   	 <!--step header-->
       <h2 class="LoginHd">Step {{step}}</h2>
       <div class="stepNumb">
@@ -15,7 +34,9 @@
           <li><span  ng-class="{'current':step==3,'active':step>=3}">3</span></li>
           <li><span  ng-class="{'current':step==4,'active':step>=4}">4</span></li>
         </ul>
+
       </div>
+       <hr>
  	<!--end step header-->
 
       <div class="md-dialog-content">
@@ -29,9 +50,22 @@
         
 
       <!--step-1-->
-        <div class="stepFrmBx" ng-if="step==1" ng-init="user.gender='male'">
+<div class="stepFrmBx" ng-if="step==1" ng-init="user.gender='male'">
+      
+  <md-input-container >
+            <label>Full name</label>
+            <input  name="fullname" 
+                    required 
+                    type="text"
+                    ng-model="user.fullname" 
+                   >
+            <div ng-messages="profileupdate.fullname.$error">
+              <div ng-message="required">Full name is required.</div>
+            </div>
+</md-input-container>
+
           <div class="steplbl">My Gender*</div>
-          <div class="steptopBx">
+ <div class="steptopBx">
           <!--gender -->
 			  <md-radio-group ng-model="user.gender" required>
 
@@ -50,13 +84,14 @@
 			</md-radio-group>
 
           
-          </div>
+</div>
           <div class="steplbl">Birth Date <span>(used to calculate age-birthdae not revealed)*</span></div>
           <div class="stepdobBx clearfix">
 
 
-            <div class="Dob-L">
-              <md-select ng-model="user.dob.day" required 
+        <div class="Dob-L">
+           <md-input-container>
+              <md-select ng-model="user.dob.day" required name="day"
               			placeholder="Select Day" class="md-no-underline sechInp">
 											<md-option value="1">01</md-option>
 											<md-option value="2">02</md-option>
@@ -90,115 +125,166 @@
 											<md-option value="30">30</md-option>
 											<md-option value="31">31</md-option>
                 </md-select>
-            </div>
-            <div class="Dob-L">
+              <div class="errors" ng-messages="profileupdate.day.$error">
+                <div ng-message="required">Day is required</div>
+              </div>
+          </md-input-container>
+      </div>
+      <div class="Dob-L">
+          <md-input-container>
               <md-select 
-              ng-model="user.dob.month" 
+              ng-model="user.dob.month" name="month"
               placeholder="Select Month"  required
               class="md-no-underline sechInp">
-					<md-option value="1">January</md-option>
-					<md-option value="2">February</md-option>
-					<md-option value="3">March</md-option>
-					<md-option value="4">April</md-option>
-					<md-option value="5">May</md-option>
-					<md-option value="6">June</md-option>
-					<md-option value="7">July</md-option>
-					<md-option value="8">August</md-option>
-					<md-option value="9">September</md-option>
-					<md-option value="10">October</md-option>
-					<md-option value="11">November</md-option>
-					<md-option value="12">December</md-option>
-                </md-select>
-            </div>
+                  <md-option value="1">January</md-option>
+                  <md-option value="2">February</md-option>
+                  <md-option value="3">March</md-option>
+                  <md-option value="4">April</md-option>
+                  <md-option value="5">May</md-option>
+                  <md-option value="6">June</md-option>
+                  <md-option value="7">July</md-option>
+                  <md-option value="8">August</md-option>
+                  <md-option value="9">September</md-option>
+                  <md-option value="10">October</md-option>
+                  <md-option value="11">November</md-option>
+                  <md-option value="12">December</md-option>
+              </md-select>
+                <div class="errors" ng-messages="profileupdate.month.$error">
+                    <div ng-message="required">Month is required</div>
+                </div>
+          </md-input-container>
+      </div>
             <div class="Dob-R">
-              <md-select ng-model="user.dob.year" required placeholder="Select Year" class="md-no-underline sechInp">
+            <md-input-container>
+              <md-select ng-model="user.dob.year" name="year" required placeholder="Select Year" class="md-no-underline sechInp">
                   <md-option ng-repeat="x in years" value="{{x}}">{{x}}</md-option>
                  
                 </md-select>
+                 <div class="errors" ng-messages="profileupdate.year.$error">
+                  <div ng-message="required">Year is required</div>
+                </div>
+              </md-input-container>
+
             </div>
-          </div>
+            </div>
+      
         </div>
         <!--step2-->
 
         <div class="stepFrmBx" ng-if="step==2">
 
-          <md-select 
-          ng-model="weapon" 
-          placeholder="Seeking to Exchange With*" 
-          class="md-no-underline sechInp"
-          >
-            <md-option value="axe">Seeking to Exchange With*</md-option>
-          </md-select>
-          <md-select ng-model="weapon" placeholder="Type of Massage that Interests me*" class="md-no-underline sechInp">
-            <md-option value="axe">Type of Massage that Interests me*</md-option>
-          </md-select>
-          <md-select ng-model="weapon" placeholder="My Body Work Level*" class="md-no-underline sechInp">
-            <md-option value="axe">My Body Work Level*</md-option>
-          </md-select>
+        <md-input-container>
+            <label>Seeking to Exchange With</label>
+            
+            <md-select  ng-model="user.exchange" placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
+                <md-option value="male">Male</md-option>
+                <md-option value="female">Female</md-option>
+                <md-option value="both">Both</md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.exchange.$error">
+                  <div ng-message="required">Seeking  exchange is required</div>
+            </div>
+
+        </md-input-container>
+
+         <md-input-container>
+            <label>Type of massage that interests me </label>
+            
+            <md-select  ng-model="user.interests" required name="interests" class="md-no-underline">
+                <md-option value="therapeutic">Therapeutic</md-option>
+                <md-option value="sensual">sensual</md-option>
+                <md-option value="both">Both</md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.interests.$error">
+                  <div ng-message="required">Type of massage that interests is required</div>
+            </div>
+
+        </md-input-container>
+
+         <md-input-container>
+            <label>My Body Work Level</label>
+            
+            <md-select  ng-model="user.experience" required name="experience" class="md-no-underline">
+                <md-option value="professional">Professional/CMT</md-option>
+                <md-option value="student"> Student </md-option>
+                <md-option value="aficionadoAmateur">Aficionado and/or Amateur</md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.experience.$error">
+                  <div ng-message="required">Body work level is required</div>
+            </div>
+
+        </md-input-container>
+
         </div>
 
         <!--step3-->
         <div class="stepFrmBx" ng-if="step==3">
-          <div class="clearfix">
-            <div class="step3-L">
-              <md-select ng-model="weapon" placeholder="Country*" class="md-no-underline sechInp">
-                <md-option value="axe">India</md-option>
-                <md-option value="axe">Australia</md-option>
-              </md-select>
-            </div>
-            <div class="step3-R">
-              <md-select ng-model="weapon" placeholder="State*" class="md-no-underline sechInp">
-                <md-option value="axe">India</md-option>
-                <md-option value="axe">Australia</md-option>
-              </md-select>
-            </div>
-          </div>
-          <div class="clearfix">
-            <div class="step3-L">
-              <md-select ng-model="weapon" placeholder="City" class="md-no-underline sechInp">
-                <md-option value="axe">India</md-option>
-                <md-option value="axe">Australia</md-option>
-              </md-select>
-            </div>
-            <div class="step3-R">
-              <input type="text" name="name" ng-model="user.zipcode" placeholder="Zipcode" class="sechInp">
-            </div>
-          </div>
-          <div class="stepmapBx">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.3773779743606!2d77.38839531453193!3d28.618449691470147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cefed68ec17ff%3A0x2f7979b97cae58ae!2sFlexsin+Technologies+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1483362256849" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
-          </div>
+         
+
+          <md-input-container>
+              <label>Full address</label>
+              <input 
+                type="text" 
+                required 
+                places-auto-complete 
+                name="address" 
+                placeholder="Enter location and select from the list below" 
+                class="countryInp" 
+                ng-model="user.address" 
+                types="['geocode']" 
+                on-place-changed="placeChanged()">
+
+              <div ng-messages="profileupdate.address.$error">
+              <div ng-message="required">Full address is  required.</div>
+              </div>
+          </md-input-container>
+          <!--map view-->
+          <div class="map-modal" >
+           <ng-map> </ng-map>
+           </div>
+
+          <div class="clearfix"></div> 
+
         </div>
+
         <!--step4-->
         <div class="stepFrmBx" ng-if="step==4">
-          <md-select ng-model="weapon" placeholder="Type of massage that I prefer to give" class="md-no-underline sechInp">
-            <md-option value="axe">Type of massage that I prefer to give</md-option>
-          </md-select>
+         <md-input-container class="md-block">
+          <label>Type of massage that I prefer to give</label>
+          <textarea 
+              name="message"
+              ng-model="user.message" 
+              md-maxlength="300" rows="5" md-select-on-focus>
+           </textarea>
+         
+          </md-input-container>
+       
           <div class="optionalTxt">(Optional)</div>
         </div>
 
 
-        <div class="clearfix nextback">
+        <div class="clearfix nextback" ng-hide="step==5">
          <!--button step-->
          <md-button class="md-raised greyBg logpopup-Btn fl"
-         	 ng-click="step=step-1" ng-disabled="step==1">Back
+         	 ng-click="step=step-1" ng-disabled="step==1">
+           Back
         </md-button>
          <!--next button-->
-         <md-button class="md-raised md-primary logpopup-Btn fr" 
-         type="submit"
-         ng-hide="step==4" 
 
-         ng-disabled="step==4" 
-         ng-click="updateProfile(profileupdate,user);"
-         >
-         Next
-         </md-button>
-         <!--finish button-->
-          <md-button  ng-if="step==4"
-          	class="md-raised md-primary logpopup-Btn fr pull-right" 
-          	>
-          	Finsh
-          	</md-button>
+         <md-button  
+            type="submit"
+            aria-label="submit"
+            ng-click="updateProfile(profileupdate,user)"
+            class="md-raised md-primary logpopup-Btn fr pull-right" 
+            >   
+              <span ng-if="step<4">Next</span>
+              <span ng-if="step==4">Finsh</span>
+
+            </md-button> 
+
          </div>
+      </div>
+
       </div>
     </md-dialog-content>
 
