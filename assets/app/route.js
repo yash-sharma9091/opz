@@ -97,8 +97,9 @@ angular.module('app.ngRoute',['ngRoute'])
   .when('/search',
     {
     templateUrl:"/partials/global-search/search.html",
+    controller:"homepage",
     access:
-    {
+    { 
           login:false
     }
   })
