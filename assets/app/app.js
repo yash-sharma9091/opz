@@ -92,8 +92,8 @@ angular.module('zenbrisa.app')
 						 appServices.post(API_URL.userprofileStepNew,data, function(response)
 						    { 
 						     //  console.log(response);
-						       	$rootScope.userprofile=response.result;
-						       // $rootScope.userprofile={"fullName":"mahendra singh","gender":"male","dob":{"day":"3","month":"3","year":"1997"},"exchange":"female","interests":"therapeutic","experience":"professional","address":"New York, NY, United States","fulladress":{"fulladress":[{"long_name":"New York","short_name":"New York","types":["locality","political"]},{"long_name":"New York","short_name":"NY","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"location":{"lat":40.7127837,"lng":-74.00594130000002},"state":{"name":"New York","code":"NY"},"country":{"name":"United States","code":"US"}},"aboutme":"fsdfdsfdfsdfsd"};
+						       $rootScope.userprofile=response.result;
+						       //$rootScope.userprofile={"fullName":"mahendra singh","gender":"male","dob":{"day":"3","month":"3","year":"1997"},"exchange":"female","interests":"therapeutic","experience":"professional","address":"New York, NY, United States","fulladress":{"fulladress":[{"long_name":"New York","short_name":"New York","types":["locality","political"]},{"long_name":"New York","short_name":"NY","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"location":{"lat":40.7127837,"lng":-74.00594130000002},"state":{"name":"New York","code":"NY"},"country":{"name":"United States","code":"US"}},"aboutme":"fsdfdsfdfsdfsd"};
 						       
 						    	
 						    	if(profile)
@@ -107,8 +107,17 @@ angular.module('zenbrisa.app')
 	if($rootScope.isUserLogin)
 	{
 		var user={"email":$rootScope.isUserLogin.email};
-		//$rootScope.getUserProfile(user,'profile');
+		$rootScope.getUserProfile(user);
 
+	}
+
+	$rootScope.getAge=function(age)
+		{
+		
+		if(age)
+		{
+				return getAge(age.month+'/'+age.month+'/'+age.year).age;
+		}
 	}
 }])
 
@@ -120,7 +129,8 @@ angular.module('zenbrisa.app')
 			'testimonial':'partials/template/testimonial.html',
 			'howItWork':'partials/template/how-it-work.html',
 			'search':'partials/global-search/search-form.html',
-			'priceview':'partials/template/price.html'
+			'priceview':'partials/template/price.html',
+			'usersideNavbar':'partials/template/user-side-navbar.html'
 		}
 }])
 
@@ -218,7 +228,7 @@ $rootScope.userNavbar={
 	"mailbox":{"title":"Mailbox","href":"#/"},
 	"profile":{"title":"Profile",
 	"submenu":{ 
-		"myprofile":{"title":'My Profile',"href":"#/myprofile"},
+		"myprofile":{"title":'My Profile',"href":"#/my-profile"},
 		"profileEdit":{"title":'Edit Profile Details',"href":"#/profileEdit"} ,
 		"photogallery":{"title":'Photo Gallery',"href":"#/photogallery"},
 		"videogallery":{"title":'Video Gallery',"href":"#/videogallery"},

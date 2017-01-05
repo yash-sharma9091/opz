@@ -339,8 +339,14 @@ e.placeChanged = function()
 
 
         //push data on server
-        var userData=rootScope.isUserLogin;
+         if(e.step === 4)
+             {
+               data['profileComplete']=true;
+            }
+          
+            var userData=rootScope.isUserLogin;
             userData['data']=data;
+
             rootScope.getUserProfile(userData)
 
             console.log(JSON.stringify(data));     

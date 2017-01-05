@@ -94,6 +94,14 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+  .when('/my-profile',
+    {
+    templateUrl:"/partials/dashboard/my-profile.html",
+    access:
+    {
+          login:true
+    }
+  })
   .when('/search',
     {
     templateUrl:"/partials/global-search/search.html",
