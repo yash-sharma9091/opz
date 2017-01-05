@@ -12,7 +12,7 @@
               <div class="msglistBx">
                 <md-select ng-model="searchData.service" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
                   <md-option value="therapists">Massage Therapists</md-option>
-                  <md-option value="enthusiast">Massage Enthusiast</md-option>
+                  <md-option value="sensual">Massage Sensual</md-option>
                 </md-select>
               </div>
               <div class="srchfrmBx">
@@ -32,15 +32,16 @@
           <div class="updateHd">Update Search</div>
           <div class="seekingHd">Seeking</div>
           <div class="seekingList">
+
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="2" ng-click="c()">Free Massage Exchange</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="1" ng-model="searchData.free_exchange" ng-true-value="1" ng-false-value="{{''}}" >Free Massage Exchange</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Paid Professional Massage</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="2" ng-model="searchData.paid_exchange" ng-true-value="1" ng-false-value="{{''}}">Paid Professional Massage</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Both</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="3" ng-model="searchData.both_exchange" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
               </li>
             </ul>
           </div>
@@ -49,13 +50,13 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Therapeutic</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="therapeutic" ng-model="searchData.therapeutic" ng-true-value="1" ng-false-value="{{''}}">Therapeutic</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Sensual</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="sensual" ng-model="searchData.sensual" ng-true-value="1" ng-false-value="{{''}}">Sensual</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Both</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.both_service" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
               </li>
             </ul>
           </div>
@@ -64,16 +65,16 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Professional</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="professional" ng-model="searchData.level">Professional</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Student</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="student" ng-model="searchData.level">Student</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Aficionado</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="aficionado" ng-model="searchData.level">Aficionado</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Amateur</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="amateur" ng-model="searchData.level">Amateur</md-checkbox>
               </li>
             </ul>
           </div>
@@ -82,13 +83,13 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Male</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="male" ng-model="searchData.gender">Male</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Female</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="female" ng-model="searchData.gender">Female</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Both</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.gender">Both</md-checkbox>
               </li>
             </ul>
           </div>
@@ -136,12 +137,13 @@
             </ul>
           </div>
           <div class="updatebtnBx">
-            <md-button class="md-raised md-primary viewBtn white">Update Search</md-button>
+            <md-button class="md-raised md-primary viewBtn white" ng-click="updateSearch(searchData)">Update Search</md-button>
           </div>
         </div>
       </div>
       <div class="col-sm-9">
-        <div class="listingHd">1-20 of 7224 Free Massage Exchange & Paid Professional Massage</div>
+      
+        <div class="listingHd">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
         <div class="listing" ng-if="znUsers.length > 0">
 
           <ul>
@@ -247,7 +249,7 @@
               </div>
             </li> -->
              <li class="greenBdr" ng-repeat="user in znUsers track by $index">
-             <pre ng-hide="true" ng-if="$index==0">{{user | json}}</pre>
+             
               <div class="listingTop lightvolateBg">
                 <div class="profpaidBx">
                   <a class="vollatBg">Paid Professional Massage</a>
@@ -258,25 +260,36 @@
                   <div class="listingImgBx">
                     <div class="listingImg"><img ng-src="images/listing-img.png"></div>
                     <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>{{user.ageOne}} &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  0.2 Miles Away</span>
+                    <span><small class="material-icons pinkClr personIcon">person</small>{{user.ageOne}} &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  {{user.distance | number : 2}} Miles Away</span>
                     <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received ({{user.reviewReceivedCount}})</a></span>
                     
                     <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
-                    <small ng-hide="user.seeking_female != null && user.seeking_female != ''" ng-class="user.seeking_male != null && user.seeking_male != '' ? 'blueClr' : '' ">M</small>
-                    <small ng-hide="user.seeking_male != null && user.seeking_male != ''" ng-class="user.seeking_female != null && user.seeking_female != '' ? 'pinkClr' : '' ">F</small>
                     
-                    <small ng-show="user.seeking_both != null && user.seeking_both != ''" class="">B</small>
 
-                     <i class="toltip">?<span ng-show="user.seeking_both != null && user.seeking_both != ''">Both</span></i></span>
+                    <small class="blueClr">{{user.seeking_male?'M':''}}</small>
+                    <small class="pinkClr">{{user.seeking_female?'F':''}}</small>
+                    
+                    <i class="toltip">?
+                    <span ng-if="user.seeking_male != '' && user.seeking_female !=''">Both</span>
+                    <span ng-if="user.seeking_male != '' && user.seeking_female ==''">Male</span>
+                    <span ng-if="user.seeking_male == '' && user.seeking_female !=''">Female</span>
+                    </i></span>
                     
                     <span ng-show="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''"><span>Sensual</span>    : &nbsp; Seeks - 
 
-                    <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
+                    <small class="blueClr">{{user.seeking_male?'M':''}}</small>
+                    <small class="pinkClr">{{user.seeking_female?'F':''}}</small>
+
+                    <i class="toltip">?
+                    <span ng-if="user.seeking_male != '' && user.seeking_female !=''">Both</span>
+                    <span ng-if="user.seeking_male != '' && user.seeking_female ==''">Male</span>
+                    <span ng-if="user.seeking_male == '' && user.seeking_female !=''">Female</span>
+                    </i></span>
 
                   </div>
                   <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">
-                    <span>Active: 2 Days Ago</span>
+                    <span>Active: {{Math.round(Math.abs((Date.now() - user.updatedAt)/(oneDay)))}} Days Ago</span>
                   </div>
                 </div>
               </div>
@@ -327,6 +340,8 @@
               </div>
             </li> -->
           </ul>
+
+          <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current"></cl-paging>
         </div>
         <div ng-if="znUsers.length < 1" class='alert alert-info'>No Match Found in your Search Criteria.</div>
       </div>
