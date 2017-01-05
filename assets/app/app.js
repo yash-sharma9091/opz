@@ -37,7 +37,7 @@ angular.module('zenbrisa.app')
 	{
 		appServices.modal('partials/dashboard/profile-step.html', profileStepCtrl, ev)
 	};
-	//$rootScope.profileStep();
+	
 	
 }])
 
@@ -84,15 +84,22 @@ angular.module('zenbrisa.app')
 	};
 
 	//get user profile
-	$rootScope.getUserProfile= function(data){
+	$rootScope.getUserProfile= function(data,profile){
 
 			if($rootScope.isUserLogin)
 			{
 
-						 appServices.post(API_URL.userprofile,data, function(response)
+						 appServices.post(API_URL.userprofileStepNew,data, function(response)
 						    { 
-						       console.log(response);
-						       $rootScope.userprofile=response.result;
+						     //  console.log(response);
+						       	$rootScope.userprofile=response.result;
+						       // $rootScope.userprofile={"fullName":"mahendra singh","gender":"male","dob":{"day":"3","month":"3","year":"1997"},"exchange":"female","interests":"therapeutic","experience":"professional","address":"New York, NY, United States","fulladress":{"fulladress":[{"long_name":"New York","short_name":"New York","types":["locality","political"]},{"long_name":"New York","short_name":"NY","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"location":{"lat":40.7127837,"lng":-74.00594130000002},"state":{"name":"New York","code":"NY"},"country":{"name":"United States","code":"US"}},"aboutme":"fsdfdsfdfsdfsd"};
+						       
+						    	
+						    	if(profile)
+						    	{
+						    		$rootScope.profileStep();
+						    	}
 						    });
 			}
 	}
@@ -100,7 +107,7 @@ angular.module('zenbrisa.app')
 	if($rootScope.isUserLogin)
 	{
 		var user={"email":$rootScope.isUserLogin.email};
-		$rootScope.getUserProfile(user);
+		//$rootScope.getUserProfile(user,'profile');
 
 	}
 }])

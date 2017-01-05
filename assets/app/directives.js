@@ -48,7 +48,7 @@ angular.module('app.direcrives',[])
 	//-----------
     	element.on('click', function()
 		{
-			$('body, html').animate({
+	  $('body, html').animate({
         scrollTop:$('.'+attrs.scrollOffset).offset().top -30
       },900);
     	});
