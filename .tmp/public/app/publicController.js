@@ -40,6 +40,7 @@ e.userLogin =function(from,data)
 
       else if(response.status==1)
       {
+          rootScope.logout();
 
           e.alert={'message':"Success",'type':'alert-success'};
 
@@ -53,7 +54,9 @@ e.userLogin =function(from,data)
          }
 
     						//redirect to dashboard page
+
     						var url=appServices.getSessionStorage('redirectUrl');
+                rootScope.isUserLogin=appServices.checkStorage('user');
     						if(url)
     						{
     							
@@ -62,17 +65,22 @@ e.userLogin =function(from,data)
                  else
                  {
                     dashbaord_url='/home';
+                    var user={"email":rootScope.isUserLogin.email};
                     if(response.profileCompleteStatus==0)
                     {
-                        //setup profile page
-                        rootScope.profileStep();
+                                     
+                     rootScope.getUserProfile(user,'profile');
+
+
+                    }
+                     if(response.profileCompleteStatus==1)
+                    {
+                       rootScope.getUserProfile(user);
 
                     }
                     
 
                 }
-                       
-                        rootScope.isUserLogin=appServices.checkStorage('user');
                         mdDialog.cancel();
                         $location.path(dashbaord_url);
           }
@@ -199,10 +207,16 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap)
      mdDialog.cancel();
  };
 
+ //set profile data if updated
  e.user={};
  e.step=1;
+ if(rootScope.userprofile)
+ {
+  e.user=rootScope.userprofile;
+ }
 
- //get countery list
+
+ //get country list
  appServices.getCountry(function(response){
     e.country=response;
   });
@@ -264,7 +278,14 @@ e.placeChanged = function()
       });
 
       }
-          
+      
+      e.CheckFullAddress= function(event,user){
+        if(user)
+        {
+            delete user['fulladress'];
+        }
+      }
+
       var flag=0;
       e.userProfiledata={};
       //submit form
@@ -292,8 +313,9 @@ e.placeChanged = function()
             if(data.address)
             {
               
-              if(!e.place)
+              if(!e.place && !data.fulladress)
               {
+                  
                   e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
                   flag=1;
               }
@@ -317,14 +339,17 @@ e.placeChanged = function()
 
 
         //push data on server
-       //  var user=rootScope.isUserLogin;
-       // //{"id":11,"email":"rtracht@gmail.com"}
-       //  appServices.post(API_URL.userprofile,data, function(response)
-       //     { 
-       //        console.log(response);
-       //     });
+         if(e.step === 4)
+             {
+               data['profileComplete']=true;
+            }
+          
+            var userData=rootScope.isUserLogin;
+            userData['data']=data;
 
-        console.log(JSON.stringify(data));     
+            rootScope.getUserProfile(userData)
+
+            console.log(JSON.stringify(data));     
       }
       else
       {

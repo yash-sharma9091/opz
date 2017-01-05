@@ -6,6 +6,7 @@
     
      <md-button ng-if="step<=4"  class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
+          <md-tooltip>Skip (you can fill later)</md-tooltip>
     </md-button>
 
      <div ng-if="step==5" class="md-dialog-content">
@@ -47,19 +48,19 @@
            {{alert.message}}
            </p>
     </div>
-        
+        <!-- {{user}} -->
 
       <!--step-1-->
-<div class="stepFrmBx" ng-if="step==1" ng-init="user.gender='male'">
+<div class="stepFrmBx" ng-if="step==1" >
       
   <md-input-container >
             <label>Full name</label>
-            <input  name="fullname" 
+            <input  name="fullName" 
                     required 
                     type="text"
-                    ng-model="user.fullname" 
+                    ng-model="user.fullName" 
                    >
-            <div ng-messages="profileupdate.fullname.$error">
+            <div ng-messages="profileupdate.fullName.$error">
               <div ng-message="required">Full name is required.</div>
             </div>
 </md-input-container>
@@ -232,6 +233,7 @@
                 class="countryInp" 
                 ng-model="user.address" 
                 types="['geocode']" 
+                ng-keyup="CheckFullAddress($event,user)"
                 on-place-changed="placeChanged()">
 
               <div ng-messages="profileupdate.address.$error">
@@ -253,7 +255,7 @@
           <label>Type of massage that I prefer to give</label>
           <textarea 
               name="message"
-              ng-model="user.message" 
+              ng-model="user.aboutme" 
               md-maxlength="300" rows="5" md-select-on-focus>
            </textarea>
          

@@ -48,9 +48,15 @@ angular.module('app.direcrives',[])
 	//-----------
     	element.on('click', function()
 		{
+<<<<<<< HEAD
 			$('body, html').animate({
 		       scrollTop:$('.'+attrs.scrollOffset).offset().top -30
 		    },900);
+=======
+	  $('body, html').animate({
+        scrollTop:$('.'+attrs.scrollOffset).offset().top -30
+      },900);
+>>>>>>> 88062ba671366f9bbfc63791f98d9f344a979f38
     	});
 
     }
