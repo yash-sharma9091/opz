@@ -247,6 +247,7 @@
               </div>
             </li> -->
              <li class="greenBdr" ng-repeat="user in znUsers track by $index">
+             <pre ng-hide="true" ng-if="$index==0">{{user | json}}</pre>
               <div class="listingTop lightvolateBg">
                 <div class="profpaidBx">
                   <a class="vollatBg">Paid Professional Massage</a>
@@ -259,8 +260,19 @@
                     <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
                     <span><small class="material-icons pinkClr personIcon">person</small>{{user.ageOne}} &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  0.2 Miles Away</span>
                     <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received ({{user.reviewReceivedCount}})</a></span>
-                    <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
-                    <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
+                    
+                    <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
+                    <small ng-hide="user.seeking_female != null && user.seeking_female != ''" ng-class="user.seeking_male != null && user.seeking_male != '' ? 'blueClr' : '' ">M</small>
+                    <small ng-hide="user.seeking_male != null && user.seeking_male != ''" ng-class="user.seeking_female != null && user.seeking_female != '' ? 'pinkClr' : '' ">F</small>
+                    
+                    <small ng-show="user.seeking_both != null && user.seeking_both != ''" class="">B</small>
+
+                     <i class="toltip">?<span ng-show="user.seeking_both != null && user.seeking_both != ''">Both</span></i></span>
+                    
+                    <span ng-show="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''"><span>Sensual</span>    : &nbsp; Seeks - 
+
+                    <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
+
                   </div>
                   <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">

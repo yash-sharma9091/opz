@@ -1,7 +1,5 @@
 var api_base_url="http://158.85.67.166:9003/";
-
-//var api_base_url="http://localhost:9003/";
-
+var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
 
 angular.module('zenbrisa',
@@ -36,8 +34,5 @@ var API_URL=
 	"signup":api_base_url+"phase2/quickSignUp",
 	"forgetPassword":api_base_url+'users/forgotPassword',
 	"contactusMail":api_base_url+"users/contactusMail",
-	"userprofile":api_base_url+"users/getUserInfo",
 	"search":api_base_url+"search"
-
 }
-
