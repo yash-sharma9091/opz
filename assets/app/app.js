@@ -92,7 +92,7 @@ angular.module('zenbrisa.app')
 						 appServices.post(API_URL.userprofile,data, function(response)
 						    { 
 						       console.log(response);
-						       $rootScope.userprofile=response.data;
+						       $rootScope.userprofile=response.result;
 						    });
 			}
 	}
