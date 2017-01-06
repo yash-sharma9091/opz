@@ -111,6 +111,15 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false
     }
   })
+  .when('/setting',
+    {
+    templateUrl:"/partials/dashboard/setting/setting.html",
+    controller:"userDashboard",
+    access:
+    { 
+          login:true
+    }
+  })
     .when('/404',{
     templateUrl: function(){
       location.assign('/404');

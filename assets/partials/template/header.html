@@ -51,7 +51,9 @@
                       <md-menu-content width="3">
                       <ul >
                       <li role="menuitem" ng-repeat="x in menu.submenu">
-                        <md-button ng-href="{{x.href}}" aria-label="menu" > {{x.title}}</md-button>
+                        <md-button ng-href="{{x.href}}" aria-label="menu" 
+                          ng-click="menuOpen(x.click)"
+                        > {{x.title}}</md-button>
                       
                       </li> </ul>
                       </md-menu>
@@ -70,13 +72,14 @@
                   <md-icon> account_circle</md-icon>
                     <!-- <img src="images/user-img.jpg" alt=""> -->
                   </i> 
-                  <span class="elipssis">{{userprofile.fullName}}</span>
+                  <span class="elipssis"> 
+                    {{userprofile.fullName || 'Welcome.'}}</span>
                 <md-icon>arrow_drop_down</md-icon>
               </md-button>
               <md-menu-content width="2">
                 <ul class="userList">
                       <li role="menuitem"><a href="#">My Account</a></li>
-                      <li role="menuitem"><a href="#">Setting</a></li>
+                      <li role="menuitem"><a ng-href="{{userDashboard.setting.href}}">Setting</a></li>
                       <li role="menuitem" ng-click="logout()"><a >Logout</a></li>
                     </ul>
               </md-menu-content>

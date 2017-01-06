@@ -55,4 +55,50 @@ angular.module('app.direcrives',[])
 
     }
   }
+}]).directive('reating', ['$window',function($window){
+  return{
+  	scope:{reatingData:'='},
+  	template:'<small ng-repeat="x in stars track by $index"><md-icon ng-if="x==1">star_rate</md-icon><md-icon ng-if="x==0">star_half</md-icon></small>',
+    link:function(scope, element, attrs)
+		{
+			scope.stars=[];
+			
+			var i=scope.reatingData;
+			
+			if(i>=0.5 && i<=1)
+			{
+				scope.stars.push(0);
+			}
+			else if(i>=1 && i<=1.5)
+			{
+				scope.stars.push(1);
+			}
+			else if(i>=1.5 && i<=2)
+			{
+				scope.stars.push(1,0);
+			}
+			else if(i>=2 && i<=2.5)
+			{
+				scope.stars.push(1,1,0);
+			}
+			else if(i>=2.5 && i<=3.5)
+			{
+				scope.stars.push(1,1,1,0);
+			}
+			else if(i>=3.5 && i<=4.5)
+			{
+				scope.stars.push(1,1,1,1);
+			}
+			else if(i>=4.5 && i<=5.5)
+			{
+				scope.stars.push(1,1,1,1,0);
+			}
+			else if(i>=5.5 && i<=6.5)
+			{
+				scope.stars.push(1,1,1,1,1);
+			}
+
+		
+		}
+  }
 }]);

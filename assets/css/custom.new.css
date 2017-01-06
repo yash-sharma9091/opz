@@ -123,7 +123,7 @@ hr {
 
 .elipssis{
     display: inline-block;
-    max-width: 106px;
+    width: 106px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -131,7 +131,20 @@ hr {
 .userBx md-menu button md-icon{    float: right;  margin-top: 7px;}
 
 .map-modal ng-map { height: 200px; border: 1px #00aeff solid; margin-bottom: 15px; }
+.padding-l { padding-left: 0 }
+.padding-r { padding-right: 0 }
 
+.reating md-icon { color: #ffd203; }
+.profileNav p{ padding-bottom: 0 }
+
+md-tooltip .md-content { max-width: 300px; height: auto !important;  
+    line-height: 19px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+    text-align: left !important;
+      white-space: normal; 
+       }
 @media(min-width:768px)
 {
   .nav-btn{ display:none }

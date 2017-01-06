@@ -1,12 +1,11 @@
  <md-dialog aria-label="signup"  >
-  <form  class="frmBx" name="signup" novalidate  ng-init="user.agree=false" >
+  <form  class="frmBx" name="signup" novalidate  ng-init="user.agree=false;user.aliasOption='true'" >
 
      <md-dialog-content>
      <md-button class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
        <h2 class="LoginHd">Member Signup Form {{isSignupSuccess}}</h2>
-
        
       <div class="md-dialog-content" >
  
@@ -17,11 +16,57 @@
                </p>
         </div>
 
-     <div class="loginFrmTop" ng-if="!isSignupSuccess">
+  <div class="loginFrmTop" ng-if="!isSignupSuccess">
+ 
+  <div class="col-sm-6  padding-l">
+          <md-input-container class="md-block margin-top25 ">
+            <label>Full name</label>
+            <input  name="fullname" 
+                    required 
+                    type="text"
+                    ng-model="user.fullname" 
+                   >
+          <div ng-messages="signup.fullname.$error">
+          <div ng-message="required">Full name is required.</div>
             
+      </div>
+        <div class="clearfix"></div>
+  </md-input-container>
+  </div>
+
+
+   <div class="col-sm-6 padding-r">
+     <md-input-container class="md-block margin-top25">
+            <label>Alias name (optional)  </label>
+            <input  name="alias" 
+                    type="text"
+                    ng-model="user.alias" 
+                   >
+                 
+  </md-input-container>
+  </div>
+
+  <div class="clearfix"></div>
+
+ <div class="md-block">
+ <div class="steptopBx">
+    What you want to show on site? 
+    <div class="clearfix"></div>
+
+     <md-radio-group ng-model="user.aliasOption" >
+
+        <md-radio-button value="true"  >Full name</md-radio-button>
+        <md-radio-button value="false"> Alias </md-radio-button>
+     </md-radio-group>
+</div>
+ </div>
+
+
+
+
   <md-input-container class="md-block">
     <label>I am a</label>
-    <md-select ng-model="user.gender" name="gender" placeholder="I am a" required>
+    <md-select ng-model="user.gender" name="gender" placeholder="I am a" required class="md-no-underline">
         <md-option value="male">Male</md-option>
         <md-option value="memale">Female</md-option>
         <md-option value="gay">Gay</md-option>
@@ -29,18 +74,7 @@
     </md-select>
    
   </md-input-container>
-<md-input-container class="md-block margin-top25">
-            <label>Full name</label>
-            <input  name="fullname" 
-                    required 
-                    type="text"
-                    ng-model="user.fullname" 
-                   >
-            <div ng-messages="signup.fullname.$error">
-            <div ng-message="required">Full name is required.</div>
-            
-            </div>
-</md-input-container>
+
 
 
 <md-input-container class="md-block margin-top25">

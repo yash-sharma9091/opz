@@ -35,7 +35,7 @@
 
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="1" ng-model="searchData.free_exchange" ng-true-value="1" ng-false-value="{{''}}" >Free Massage Exchange</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="1" ng-model="searchData.free_exchange" ng-true-value="1" ng-false-value="{{''}}">Free Massage Exchange</md-checkbox>
               </li>
               <li>
                 <md-checkbox  aria-label="Checkbox 1" value="2" ng-model="searchData.paid_exchange" ng-true-value="1" ng-false-value="{{''}}">Paid Professional Massage</md-checkbox>
@@ -289,7 +289,7 @@
                   </div>
                   <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">
-                    <span>Active: {{Math.round(Math.abs((Date.now() - user.updatedAt)/(oneDay)))}} Days Ago</span>
+                    <span>Active: 2 Days Ago</span>
                   </div>
                 </div>
               </div>

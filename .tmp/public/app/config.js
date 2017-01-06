@@ -19,13 +19,15 @@ angular.module('zenbrisa',
 'app.direcrives',
 'service',
 'ngMap',
-'cl.paging'
+'cl.paging',
+'userDashboardModule'
+
 ]);
 
 angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('zenbrisa.app',[]);
-
+angular.module('userDashboardModule',[]);
 
 var API_URL=
 {
@@ -35,5 +37,6 @@ var API_URL=
 	"forgetPassword":api_base_url+'users/forgotPassword',
 	"contactusMail":api_base_url+"users/contactusMail",
 	"search":api_base_url+"search",
-	"userprofileStepNew": api_base_url+ 'users/getUserInfo'      
+	"userprofileStepNew": api_base_url+ 'users/getUserInfo' ,
+	"setting": api_base_url+ 'userSettings/updateUserSettings'   
 }

@@ -4,32 +4,40 @@
   <div class="container">
     <div class="profileTopBx">
       <div class="profile-Img">
-
-        <img src="/images/profile-img.jpg" alt="">
-        <span><img src="/images/star-rating.png"></span>
+      
+        <img ng-if="userprofile.profilePicture" ng-src="{{userprofile.profilePicture}}" 
+             alt="{{userprofile.fullName}}">
+        <img ng-if="!userprofile.profilePicture" src="images/default-user-icon-profile.png">
+        <span ng-if="reating" class="reating" reating reating-data="userprofile.avgRating"> </span>
       </div>
-     <!--  <per> {{userprofile | json}}</per> -->
+ 
       <div class="prof-right-top">
-        <strong>{{userprofile.fullName}}</strong>
+        <strong>   
+          {{ userprofile.fullName || 'Welcome..' }}
+        </strong>
 
         <small>
             <span ng-if="userprofile.dob">
             <i class="material-icons blueClr personIcon">person</i> 
-            {{getAge(userprofile.dob)}}   |
+            {{getAge(userprofile.dob)}} |
             </span>
 
             {{userprofile.address}}
             </small>
         <div class="professMsg">
+             <a class="vollatBg" 
+              ng-if="userprofile.professionalType=='paid' || userprofile.professionalType=='both'">
+                Paid Professional Massage</a>
             <a class="blueBg paidprofBtn" ng-click="profileStep()">Edit/update Profile</a>
         </div>
 
       </div>
       <div class="prof-right-bot">
       <!--about-me-->
-      <p>{{userprofile.aboutme}}</p>
+      <p ng-bind-html="userprofile.aboutme"></p>
 
         <!--subscriptionExpiredDate-->
+
         <span ng-if="userprofile.subscriptionExpiredDate">
           <i class="material-icons">wifi</i> 
           Subscription Expires on : {{userprofile.subscriptionExpiredDate |date:'EEE MMM, dd, yyyy'}}   
@@ -89,27 +97,67 @@
                       {{userprofile.exchange}}
                     </span>
 
-                  </i></span></li>
-                  <li>Body Type:  <span>Gym Fit</span></li>
+                  </i></span>
+
+                  </li>
+                  <li>Body Type:  
+                    <span>
+                      {{userprofile.bodyTypeOne || 'N/A'}}
+
+                      </span></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-sm-7">
-              <div class="profmapBx"><img src="images/prof-map-img.jpg"></div>
+          <div class="col-sm-7"  >
+       
+              <div class="profmapBx" >
+             
+                    <ng-map 
+                        ng-if="userprofile.fulladress.location" zoom="11"
+                        ng-init="pos=[userprofile.fulladress.location.lat,userprofile.fulladress.location.lng]"
+                          center="{{pos}}">
+                          <marker position="{{pos}}"> </marker>
+                    </ng-map>
+
+                </div>
               <div class="bodyWork">
                 <div class="profInfoHd">Personal Information</div>
                 <div class="typeLabel">
                   <ul>
-                    <li>Type of level: <span>Professional/CMT</span></li>
-                    <li>Styles of massage that I prefer to give: <span>Not Specified</span></li>
+                    <li>Type of level: 
+              <span>
+
+            {{(userprofile.experience=='professional' ? 'Professional/CMT' : userprofile.experience) || 'Not Specified'}}
+
+              </span>
+                  </li>
+                    <li ng-if="userprofile.massageStylesOne">
+                      Styles of massage that I prefer to give: 
+                      <span ng-bind-html="userprofile.massageStylesOne"></span>
+                    </li>
+
                     <li>Types of Massage that interest me 
                         <span>
-                          <span>Therapeutic : Seeks - <small class="pinkClr">F</small><i class="tooltipBx">?
-                            <span class="tooltipInn">Female</span>
-                          </i></span>
-                          <span>Sensual        : Seeks - <small class="blueClr">M</small><i class="tooltipBx">? <span class="tooltipInn">Male</span>
-                          </i></span>
+                          <span>{{userprofile.interests }} : Seeks - 
+                             <small class="pinkClr" 
+                    ng-class="{'pinkClr':userprofile.exchange=='female','blueClr':userprofile.exchange=='male'  }"> 
+                      {{ 
+                      userprofile.exchange=='male'?'M':
+                      userprofile.exchange=='female'?'F':
+                      userprofile.exchange=='both'?'MF':''
+
+                      }} 
+                      <i class="tooltipBx">?
+                    <span class="tooltipInn" 
+                          ng-if="userprofile.exchange=='both'">
+                          Male-Female
+                    </span>
+                    <span class="tooltipInn">
+                      {{userprofile.exchange}}
+                    </span>
+                      </i>
+                      </small>
                         </span>
                     </li>
                   </ul>

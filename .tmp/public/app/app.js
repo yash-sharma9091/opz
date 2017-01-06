@@ -93,9 +93,13 @@ angular.module('zenbrisa.app')
 						    { 
 						     //  console.log(response);
 						       $rootScope.userprofile=response.result;
-						       //$rootScope.userprofile={"fullName":"mahendra singh","gender":"male","dob":{"day":"3","month":"3","year":"1997"},"exchange":"female","interests":"therapeutic","experience":"professional","address":"New York, NY, United States","fulladress":{"fulladress":[{"long_name":"New York","short_name":"New York","types":["locality","political"]},{"long_name":"New York","short_name":"NY","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"location":{"lat":40.7127837,"lng":-74.00594130000002},"state":{"name":"New York","code":"NY"},"country":{"name":"United States","code":"US"}},"aboutme":"fsdfdsfdfsdfsd"};
-						       
-						    	
+						       $rootScope.userprofile={"userInfoId":4433,"fullName":"mahendra singh","username":null,"email":"mahendra_singh@seologistics.com","profilePic":null,"subscriptionPackageId":null,"subscriptionType":"free","subscriptionStartDate":null,"subscriptionExpiredDate":"2017-01-24T00:00:00.000Z","completeProfile":0,"id":4191,"userId":4433,"gender":"male","telephone":null,"zipcode":null,"country":null,"state":null,"city":null,"latitude":"0","longitude":"0","therapeuticMassageOne":null,"therapeuticMassageOneDesc":null,"prefer_therapeuticMassage":null,"sensualMassageOne":null,"sensualMassageOneDesc":null,"prefer_sensualMassage":null,"prefer_massage_exchange":null,"prefer_massage_paid":null,"dobOne":null,"ageOne":null,"languageOne":null,"bodyTypeOne":null,"heightOne":null,"drinkingHabitOne":null,"smokingHabitOne":null,"massageFrequencyOne":null,"levelTypeOne":null,"professionalType":null,"levelTypeOneOther":null,"experienceOne":null,"massageStylesOne":null,"massageStylesOneOther":null,"trainingHoursOne":null,"therapeuticMassageTwo":null,"therapeuticMassageTwoDesc":null,"sensualMassageTwo":null,"sensualMassageTwoDesc":null,"dobTwo":null,"ageTwo":null,"languageTwo":null,"bodyTypeTwo":null,"heightTwo":null,"drinkingHabitTwo":null,"smokingHabitTwo":null,"massageFrequencyTwo":null,"levelTypeTwo":null,"professionalTypeTwo":null,"levelTypeTwoOther":null,"experienceTwo":null,"massageStylesTwo":null,"massageStylesTwoOther":null,"trainingHoursTwo":null,"currentPhoneNo":null,"lastLoggedin":null,"availableTime":"0000-00-00 00:00:00","reviewSentCount":0,"reviewReceivedCount":0,"publicPhotoCount":0,"privatePhotoCount":0,"avgRating":3,"reviewsPenned":0,"favouriteCount":0,"blockedCount":0,"adProfExpDate":"0000-00-00 00:00:00","seeking_male":"","seeking_female":"","seeking_both":"","aboutme":"sdfsdfsdfsdfsdf  sd f sd f sd f sd fsdfsdf","createdAt":"2017-01-04T06:40:00.000Z","updatedAt":"2017-01-04T06:40:00.000Z","dob":{"day":"3","month":"3","year":"1997"},"exchange":"female","interests":"sensual","experience":"professional","address":"New York, NY, United States","fulladress":{"fulladress":[{"long_name":"New York","short_name":"New York","types":["locality","political"]},{"long_name":"New York","short_name":"NY","types":["administrative_area_level_1","political"]},{"long_name":"United States","short_name":"US","types":["country","political"]}],"location":{"lat":40.7127837,"lng":-74.00594130000002},"state":{"name":"New York","code":"NY"},"country":{"name":"United States","code":"US"}},"profileComplete":true,"alias":"mahendra","profilePicture":'/images/profile-img.jpg','aliasOption':'false'};
+						       	if($rootScope.userprofile.aliasOption=='true')
+						       	{
+						       		$rootScope.userprofile['fullName']=$rootScope.userprofile.aliasOption;
+						       	}
+						       	$rootScope.reating=5;
+
 						    	if(profile)
 						    	{
 						    		$rootScope.profileStep();
@@ -221,6 +225,13 @@ angular.module('zenbrisa.app')
 };
 
 
+$rootScope.menuOpen= function(id)
+{
+	if(id=='updateProfile')
+	{
+		$rootScope.profileStep();
+	}
+}
 $rootScope.userNavbar={
 	"search":{"title":"Search", 
 	"submenu":{ "SearchByLocation":{"title":'Search By Location',"href":"#/"},"SearchMembers":{"title":'Search Members',"href":"#/"} }
@@ -229,25 +240,29 @@ $rootScope.userNavbar={
 	"profile":{"title":"Profile",
 	"submenu":{ 
 		"myprofile":{"title":'My Profile',"href":"#/my-profile"},
-		"profileEdit":{"title":'Edit Profile Details',"href":"#/profileEdit"} ,
-		"photogallery":{"title":'Photo Gallery',"href":"#/photogallery"},
-		"videogallery":{"title":'Video Gallery',"href":"#/videogallery"},
-		"packages":{"title":'Membership',"href":"#/refer"},
-		"refer":{"title":'Refer Friend Bonus',"href":"#/packages"},
-		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
-		"mylocations":{"title":'My Locations',"href":"#/mylocations"}
+		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
+		"photogallery":{"title":'Photo Gallery',"href":"#/home"},
+		"videogallery":{"title":'Video Gallery',"href":"#/home"},
+		"packages":{"title":'Membership',"href":"#/home"},
+		"refer":{"title":'Refer Friend Bonus',"href":"#/home"},
+		"bonushistory":{"title":'Bonus History',"href":"#/home"},
+		"mylocations":{"title":'My Locations',"href":"#/home"}
 	}
 },
 	
 	"community":{"title":"Community", 
-	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
-				"polls":{"title":'Polls',"href":"#/polls"} }
+	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/home"},
+				"polls":{"title":'Polls',"href":"#/home"} }
 	},
 	"advertise":{"title":"Advertise ", 
-	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/Ad-Subscription"},
-				"adrequest":{"title":'Ad Request',"href":"#/ad-request"} }
+	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/home"},
+				"adrequest":{"title":'Ad Request',"href":"#/home"} }
 	}
 
+}
+
+$rootScope.userDashboard={
+	'setting':{'title':'Setting', 'href':'#/setting'}
 }
 
 
