@@ -1,5 +1,5 @@
 var api_base_url="http://158.85.67.166:9003/";
-//var api_base_url="http://localhost:9003/";
+var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
 
 angular.module('zenbrisa',

@@ -55,7 +55,7 @@ angular.module('zenbrisa.controllers')
 			        pages : Math.ceil((response.total)/obj.limit),
 			        limit : obj.limit,
 			        start : (obj.offset*obj.limit)+1,
-			        end : ((obj.offset+1)*obj.limit),
+			        end : (response.total < ((obj.offset+1)*obj.limit)) ? response.total : ((obj.offset+1)*obj.limit),
 			        offset : obj.offset,
 			        current: 1,
 			        steps : 5,
@@ -64,9 +64,43 @@ angular.module('zenbrisa.controllers')
 			    //console.log($scope.paging)
 			}
 		})
+		var v = $location.search();
 		$scope.searchData = $location.search();
-	}
 
+		$scope.searchData = {
+			free_exchange : (typeof v.free_exchange != undefined && v.free_exchange != null) ? parseInt(v.free_exchange) : '',
+			both_exchange : (typeof v.both_exchange != undefined && v.both_exchange != null) ? parseInt(v.both_exchange) : '',
+			paid_exchange : (typeof v.paid_exchange != undefined && v.paid_exchange != null) ? parseInt(v.paid_exchange) : '',
+			sensual : (typeof v.sensual != undefined && v.sensual != null) ? parseInt(v.sensual) : '',
+			therapeutic : (typeof v.therapeutic != undefined && v.therapeutic != null) ? parseInt(v.therapeutic) : '',
+			both_service : (typeof v.both_service != undefined && v.both_service != null) ? parseInt(v.both_service) : '',
+			lat : (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
+			lon : (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
+			min : (typeof v.min != undefined && v.min != null) ? (v.min) : '',
+			max : (typeof v.max != undefined && v.max != null) ? (v.max) : '',
+			country : (typeof v.country != undefined && v.country != null) ? (v.country) : '',
+			state : (typeof v.state != undefined && v.state != null) ? (v.state) : '',
+			city : (typeof v.city != undefined && v.city != null) ? (v.city) : '',
+			seeking_male : (typeof v.seeking_male != undefined && v.seeking_male != null) ? parseInt(v.seeking_male) : '',
+			seeking_female : (typeof v.seeking_female != undefined && v.seeking_female != null) ? parseInt(v.seeking_female) : '',
+			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null) ? parseInt(v.seeking_both) : '',
+			//free_exchange : parseInt(v.free_exchange),
+		}
+		
+		if(typeof v.level != undefined && v.level != null){
+			var level = v.level.split("|");
+			var l = {};
+			if(level.length > 0){
+				level.forEach(function(lvl, key){
+					l[key] = lvl
+				})
+
+				$scope.searchData.level = l
+			}
+
+		}
+
+	}
 
     
     function loadPages() {
@@ -93,6 +127,18 @@ angular.module('zenbrisa.controllers')
 			})
 		//}
 		$scope.searchData = $location.search();
+// 		var o = {
+//   "service": "therapists",
+//   "lat": "37.09024",
+//   "lon": "-95.71289100000001",
+//   "country": "United States",
+//   "free_exchange": 1,
+//   "paid_exchange": 1,
+//   "limit": 20,
+//   "offset": 0,
+//   "both_exchange": 1
+// };
+// $scope.paid_exchange = o.paid_exchange;
     }
 
     $scope.updateSearch = function(searchData){
@@ -106,13 +152,27 @@ angular.module('zenbrisa.controllers')
 		if(typeof searchData != undefined && searchData != null){
 			Object.keys(searchData).forEach((key) => result[key] = searchData[key]);
 		}
+		if(typeof result.level != undefined && result.level != null && Object.keys(result.level).length > 0){
+			var l = [];
+			Object.keys(result.level).forEach(function(key){
+				l.push(result.level[key])
+			})
+			result['level'] = l.join("|")
+		}
 
+		if(typeof result.bodytype != undefined && result.bodytype != null && Object.keys(result.bodytype).length > 0){
+			var b = [];
+			Object.keys(result.bodytype).forEach(function(key){
+				b.push(result.bodytype[key])
+			})
+			result['bodytype'] = b.join("|")
+		}
+		//console.log(result);
+		//return;
 		/*Delete Unwanted Keys*/
 		delete result.limit;
 		delete result.offset;
 
 		$location.search(result);
     }
-
-
 }])

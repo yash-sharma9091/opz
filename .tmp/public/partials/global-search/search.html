@@ -65,16 +65,16 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="professional" ng-model="searchData.level">Professional</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="professional" ng-model="searchData.level[0]" ng-true-value="'professional'" ng-false-value="{{''}}">Professional</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="student" ng-model="searchData.level">Student</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="student" ng-model="searchData.level[1]" ng-true-value="'student'" ng-false-value="{{''}}">Student</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="aficionado" ng-model="searchData.level">Aficionado</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="aficionado" ng-model="searchData.level[2]" ng-true-value="'aficionado'" ng-false-value="{{''}}">Aficionado</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="amateur" ng-model="searchData.level">Amateur</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="amateur" ng-model="searchData.level[3]" ng-true-value="'amateur'" ng-false-value="{{''}}">Amateur</md-checkbox>
               </li>
             </ul>
           </div>
@@ -83,13 +83,13 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="male" ng-model="searchData.gender">Male</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="male" ng-model="searchData.seeking_male" ng-true-value="1" ng-false-value="{{''}}">Male</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="female" ng-model="searchData.gender">Female</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="female" ng-model="searchData.seeking_female" ng-true-value="1" ng-false-value="{{''}}">Female</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.gender">Both</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.seeking_both" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
               </li>
             </ul>
           </div>
@@ -97,15 +97,15 @@
           <div class="seekingHd">Age Range</div>
           <div class="rengesliderBx">
             <article>
-            <div class="rangevalue clearfix">
-              <input type="text" ng-model="minRangeSlider.minValue" class="value-L appraence" />
-              <input type="text" ng-model="minRangeSlider.maxValue" class="value-R appraence" />
+            <div class="rangevalue~ clearfix">
+              <input type="number" min="18" value="18" max="100" ng-model="searchData.min" class="value-L appraence" />
+              <input type="number" min="18" value="18" max="100" ng-model="searchData.max" class="value-R appraence" />
             </div>
-            <rzslider 
+            <!-- <rzslider 
             rz-slider-model="minRangeSlider.minValue" 
             rz-slider-high="minRangeSlider.maxValue" 
             rz-slider-options="minRangeSlider.options">
-            </rzslider>
+            </rzslider> -->
 
         </article>
          </div>
@@ -114,25 +114,25 @@
           <div class="seekingList">
             <ul>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Slim or Petite</md-checkbox>
+              <md-checkbox  aria-label="Checkbox 1" value="slim_petite" ng-model="searchData.bodytype[0]" ng-true-value="'slim_petite'" ng-false-value="{{''}}">Slim or Petite</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Average</md-checkbox>
+              <md-checkbox  aria-label="Checkbox 1" value="average" ng-model="searchData.bodytype[1]" ng-true-value="'average'" ng-false-value="{{''}}">Average</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Gym Fit</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="gym_fit" ng-model="searchData.bodytype[2]" ng-true-value="'gym_fit'" ng-false-value="{{''}}">Gym Fit</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Muscular</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="Muscular" ng-model="searchData.bodytype[3]" ng-true-value="'muscular'" ng-false-value="{{''}}">Muscular</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Few Pounds over Average</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="few_pounds_over_average" ng-model="searchData.bodytype[4]" ng-true-value="'few_pounds_over_average'" ng-false-value="{{''}}">Few Pounds over Average</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">Large</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="large" ng-model="searchData.bodytype[5]" ng-true-value="'large'" ng-false-value="{{''}}">Large</md-checkbox>
               </li>
               <li>
-                <md-checkbox  aria-label="Checkbox 1">All</md-checkbox>
+                <md-checkbox  aria-label="Checkbox 1" value="all" ng-model="searchData.bodytype[6]" ng-true-value="'all'" ng-false-value="{{''}}">All</md-checkbox>
               </li>
             </ul>
           </div>
@@ -142,8 +142,8 @@
         </div>
       </div>
       <div class="col-sm-9">
-      
-        <div class="listingHd">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
+     
+        <div class="listingHd" ng-show="znUsers.length > 0">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
         <div class="listing" ng-if="znUsers.length > 0">
 
           <ul>
@@ -249,18 +249,26 @@
               </div>
             </li> -->
              <li class="greenBdr" ng-repeat="user in znUsers track by $index">
-             
-              <div class="listingTop lightvolateBg">
+             <!-- <pre>{{user | json}}</pre> -->
+              <div class="listingTop whiteBg">
                 <div class="profpaidBx">
-                  <a class="vollatBg">Paid Professional Massage</a>
+                  <a class="vollatBg" ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">Paid Professional Massage</a>
                   <a class="greenBg">Online</a>
-                  <a class="yellowBg">Updated Member</a>
+                  <a class="yellowBg" ng-hide="user.lastActive > 30">Updated Member</a>
                 </div>
                 <div class="listingTop-Left">
                   <div class="listingImgBx">
-                    <div class="listingImg"><img ng-src="images/listing-img.png"></div>
+                 
+                    <div class="listingImg">  
+
+                      <img ng-src="{{user.profilePic != '' && user.profilePic != null ? user.profilePicUrl : 'images/'+user.gender+'.png'}}">
+                    </div>
                     <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>{{user.ageOne}} &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  {{user.distance | number : 2}} Miles Away</span>
+                    <span>
+
+                    <small class="material-icons pinkClr personIcon" ng-show="user.ageOne != null && user.ageOne != '' ">person</small>{{user.ageOne}} <b ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
+
+                    <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  {{user.distance | number : 2}} Miles Away</span>
                     <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received ({{user.reviewReceivedCount}})</a></span>
                     
                     <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
@@ -289,7 +297,11 @@
                   </div>
                   <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">
+<<<<<<< HEAD
                     <span>Active: 2 Days Ago</span>
+=======
+                    <span>Active: {{user.lastActive}} Days Ago</span>
+>>>>>>> cc404bbcec3809ceeed2512ff6e349d6497c3303
                   </div>
                 </div>
               </div>
@@ -341,9 +353,9 @@
             </li> -->
           </ul>
 
-          <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current"></cl-paging>
+          <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current" ng-if="paging.total > 20"></cl-paging>
         </div>
-        <div ng-if="znUsers.length < 1" class='alert alert-info'>No Match Found in your Search Criteria.</div>
+        <div ng-if="znUsers.length < 1" class='alert alert-info width_100'>No Match Found in your Search Criteria.</div>
       </div>
     </div>
   </div>

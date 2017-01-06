@@ -1,4 +1,4 @@
-
+.width_100{max-width: 100% !important;}
 md-backdrop, md-sidenav {position: fixed;}
 
 md-toolbar {min-height: 50px;}
