@@ -61,30 +61,28 @@ angular.module('zenbrisa.controllers')
 			        steps : 5,
 			        onPageChanged: loadPages,
 			    };
-			    //console.log($scope.paging)
 			}
 		})
 		var v = $location.search();
 		$scope.searchData = $location.search();
 
 		$scope.searchData = {
-			free_exchange : (typeof v.free_exchange != undefined && v.free_exchange != null) ? parseInt(v.free_exchange) : '',
-			both_exchange : (typeof v.both_exchange != undefined && v.both_exchange != null) ? parseInt(v.both_exchange) : '',
-			paid_exchange : (typeof v.paid_exchange != undefined && v.paid_exchange != null) ? parseInt(v.paid_exchange) : '',
-			sensual : (typeof v.sensual != undefined && v.sensual != null) ? parseInt(v.sensual) : '',
-			therapeutic : (typeof v.therapeutic != undefined && v.therapeutic != null) ? parseInt(v.therapeutic) : '',
-			both_service : (typeof v.both_service != undefined && v.both_service != null) ? parseInt(v.both_service) : '',
+			free_exchange : (typeof v.free_exchange != undefined && v.free_exchange != null && v.free_exchange != '') ? 1 : '',
+			both_exchange : (typeof v.both_exchange != undefined && v.both_exchange != null && v.both_exchange != '') ? 1 : '',
+			paid_exchange : (typeof v.paid_exchange != undefined && v.paid_exchange != null && v.paid_exchange != '') ? 1 : '',
+			sensual : (typeof v.sensual != undefined && v.sensual != null && v.sensual != '') ? 1 : '',
+			therapeutic : (typeof v.therapeutic != undefined && v.therapeutic != null && v.therapeutic != '') ? 1 : '',
+			both_service : (typeof v.both_service != undefined && v.both_service != null && v.both_service != '') ? 1 : '',
 			lat : (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
 			lon : (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
 			min : (typeof v.min != undefined && v.min != null) ? (v.min) : '',
 			max : (typeof v.max != undefined && v.max != null) ? (v.max) : '',
-			country : (typeof v.country != undefined && v.country != null) ? (v.country) : '',
+			country : (typeof v.country != undefined && v.country != null && v.country != '') ? (v.country) : '',
 			state : (typeof v.state != undefined && v.state != null) ? (v.state) : '',
 			city : (typeof v.city != undefined && v.city != null) ? (v.city) : '',
-			seeking_male : (typeof v.seeking_male != undefined && v.seeking_male != null) ? parseInt(v.seeking_male) : '',
-			seeking_female : (typeof v.seeking_female != undefined && v.seeking_female != null) ? parseInt(v.seeking_female) : '',
-			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null) ? parseInt(v.seeking_both) : '',
-			//free_exchange : parseInt(v.free_exchange),
+			seeking_male : (typeof v.seeking_male != undefined && v.seeking_male != null && v.seeking_male != '') ? 1 : '',
+			seeking_female : (typeof v.seeking_female != undefined && v.seeking_female != null && v.seeking_female != '') ? 1 : '',
+			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null && v.seeking_both != '') ? 1 : '',
 		}
 		
 		if(typeof v.level != undefined && v.level != null){
@@ -100,21 +98,29 @@ angular.module('zenbrisa.controllers')
 
 		}
 
+		if(typeof v.bodytype != undefined && v.bodytype != null){
+			var bodytype = v.bodytype.split("|");
+			var b = {};
+			if(bodytype.length > 0){
+				bodytype.forEach(function(bdy, key){
+					b[key] = bdy
+				})
+
+				$scope.searchData.bodytype = b
+			}
+
+		}
+
 	}
 
     
     function loadPages() {
-    	//console.log("page changed")
-        //console.log('Current page is : ' + $scope.paging.current);
 		$scope.paging['start'] = ((($scope.paging.current-1)*$scope.paging.limit)+1);
         $scope.paging['end'] = ($scope.paging['total'] < ($scope.paging.current*$scope.paging.limit)) ? $scope.paging['total'] : ($scope.paging.current*$scope.paging.limit);
         // TODO : Load current page Data here
         $scope.paging['page'] = $scope.paging.current;
-        //if($scope.paging.current != 1){
 	        /*Search Results*/
-	        //console.log(obj)
 			var obj = $location.search();
-			//console.log(obj)
 			obj.offset = (($scope.paging.current-1)*$scope.paging.limit);
 			appServices.post(API_URL.search, obj, function(response){
 				if(response.status == 1){
@@ -122,23 +128,54 @@ angular.module('zenbrisa.controllers')
 					$('body, html').animate({
 				       scrollTop:0
 				    },900);
-				    //console.log($scope.paging)
 				}
 			})
-		//}
-		$scope.searchData = $location.search();
-// 		var o = {
-//   "service": "therapists",
-//   "lat": "37.09024",
-//   "lon": "-95.71289100000001",
-//   "country": "United States",
-//   "free_exchange": 1,
-//   "paid_exchange": 1,
-//   "limit": 20,
-//   "offset": 0,
-//   "both_exchange": 1
-// };
-// $scope.paid_exchange = o.paid_exchange;
+		var v = $location.search();
+		$scope.searchData = {
+			free_exchange : (typeof v.free_exchange != undefined && v.free_exchange != null && v.free_exchange != '') ? 1 : '',
+			both_exchange : (typeof v.both_exchange != undefined && v.both_exchange != null && v.both_exchange != '') ? 1 : '',
+			paid_exchange : (typeof v.paid_exchange != undefined && v.paid_exchange != null && v.paid_exchange != '') ? 1 : '',
+			sensual : (typeof v.sensual != undefined && v.sensual != null && v.sensual != '') ? 1 : '',
+			therapeutic : (typeof v.therapeutic != undefined && v.therapeutic != null && v.therapeutic != '') ? 1 : '',
+			both_service : (typeof v.both_service != undefined && v.both_service != null && v.both_service != '') ? 1 : '',
+			lat : (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
+			lon : (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
+			min : (typeof v.min != undefined && v.min != null) ? (v.min) : '',
+			max : (typeof v.max != undefined && v.max != null) ? (v.max) : '',
+			country : (typeof v.country != undefined && v.country != null && v.country != '') ? (v.country) : '',
+			state : (typeof v.state != undefined && v.state != null) ? (v.state) : '',
+			city : (typeof v.city != undefined && v.city != null) ? (v.city) : '',
+			seeking_male : (typeof v.seeking_male != undefined && v.seeking_male != null && v.seeking_male != '') ? 1 : '',
+			seeking_female : (typeof v.seeking_female != undefined && v.seeking_female != null && v.seeking_female != '') ? 1 : '',
+			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null && v.seeking_both != '') ? 1 : '',
+		}
+
+		if(typeof v.level != undefined && v.level != null){
+			var level = v.level.split("|");
+			var l = {};
+			if(level.length > 0){
+				level.forEach(function(lvl, key){
+					l[key] = lvl
+				})
+
+				$scope.searchData.level = l
+			}
+
+		}
+
+		if(typeof v.bodytype != undefined && v.bodytype != null){
+			var bodytype = v.bodytype.split("|");
+			var b = {};
+			if(bodytype.length > 0){
+				bodytype.forEach(function(bdy, key){
+					b[key] = bdy
+				})
+
+				$scope.searchData.bodytype = b
+			}
+
+		}
+
     }
 
     $scope.updateSearch = function(searchData){
@@ -167,12 +204,9 @@ angular.module('zenbrisa.controllers')
 			})
 			result['bodytype'] = b.join("|")
 		}
-		//console.log(result);
-		//return;
 		/*Delete Unwanted Keys*/
 		delete result.limit;
 		delete result.offset;
-
 		$location.search(result);
     }
 }])

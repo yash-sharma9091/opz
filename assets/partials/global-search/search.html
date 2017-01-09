@@ -16,7 +16,7 @@
                 </md-select>
               </div>
               <div class="srchfrmBx">
-                <md-button class="md-raised md-primary"><img src="images/search-icon.png" alt=""></md-button>
+                <md-button class="md-raised md-primary"><img src="images/search-icon.png" alt="" aria-label="Search"></md-button>
               </div>
           </div>
       </div>
@@ -98,8 +98,8 @@
           <div class="rengesliderBx">
             <article>
             <div class="rangevalue~ clearfix">
-              <input type="number" min="18" value="18" max="100" ng-model="searchData.min" class="value-L appraence" />
-              <input type="number" min="18" value="18" max="100" ng-model="searchData.max" class="value-R appraence" />
+              <input type="number" min="18" value="{{searchData.min ? searchData.min : 18}}" max="100" ng-model="searchData.min" class="value-L appraence" />
+              <input type="number" min="18" value="{{searchData.max ? searchData.max : 100}}" max="100" ng-model="searchData.max" class="value-R appraence" />
             </div>
             <!-- <rzslider 
             rz-slider-model="minRangeSlider.minValue" 
@@ -137,12 +137,12 @@
             </ul>
           </div>
           <div class="updatebtnBx">
-            <md-button class="md-raised md-primary viewBtn white" ng-click="updateSearch(searchData)">Update Search</md-button>
+            <md-button class="md-raised md-primary viewBtn white" ng-click="updateSearch(searchData)" aria-label="Update Search">Update Search</md-button>
           </div>
         </div>
       </div>
       <div class="col-sm-9">
-     
+      <!-- <pre>{{searchData | json}}</pre> -->
         <div class="listingHd" ng-show="znUsers.length > 0">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
         <div class="listing" ng-if="znUsers.length > 0">
 
@@ -250,7 +250,7 @@
             </li> -->
              <li class="greenBdr" ng-repeat="user in znUsers track by $index">
              <!-- <pre>{{user | json}}</pre> -->
-              <div class="listingTop whiteBg">
+              <div class="listingTop" ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : 'whiteBg'">
                 <div class="profpaidBx">
                   <a class="vollatBg" ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">Paid Professional Massage</a>
                   <a class="greenBg">Online</a>

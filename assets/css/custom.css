@@ -222,9 +222,9 @@ md-checkbox{ vertical-align: top;}
 .listingTop-Right {font-size: 13px; position: absolute; right: 0; top: 12px;}
 .listingTop-Right > span {display: block;font-family: 'uniformregular';}
 .listingTop-Right > i {display: block; padding: 20px 0 0 0; text-align: center;}
-.listingImgBx {color: #6e6e6e; font-size: 14px; padding-left: 135px;position: relative;font-family: 'uniformregular';}
+.listingImgBx {color: #6e6e6e; font-size: 14px; padding-left: 135px;position: relative;font-family: 'uniformregular';height: 115px;}
 .listingImg {left: 0; position: absolute; top: 0;}
-.listingImg > img {border: 1px solid #e4e3e3; width: 119px;}
+.listingImg > img {border: 1px solid #e4e3e3; width: 119px; height: 119px;}
 .listingImgBx strong {color: #282828; display: block;font-size: 18px; font-weight: 400; padding-bottom: 3px;font-family: 'uniformmedium';}
 .listingImgBx > span {display: block; padding: 2px 0; line-height: 20px;}
 .listingImgBx small{vertical-align: top; display: inline-block;}

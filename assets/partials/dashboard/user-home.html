@@ -41,20 +41,17 @@
         <md-tab-body>
               <div class="msglocat">
                 <div class="srchformBx">
-                  <md-select ng-model="weapon" placeholder="- Select within Miles -" class="md-no-underline sechInp">
-                    <md-option value="axe">10-20</md-option>
-                    <md-option value="sword">20-30</md-option>
-                    <md-option value="wand">30-40</md-option>
+                  <md-select ng-model="searched.Miles" placeholder="- Select within Miles -" class="md-no-underline sechInp">
+                    <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
                   </md-select>
                 </div>
                 <div class="srchformBx">
-                  <md-select ng-model="weapon" placeholder="- Select Location -" class="md-no-underline sechInp">
-                    <md-option value="axe">India</md-option>
-                    <md-option value="sword">Australia</md-option>
-                    <md-option value="wand">Japan</md-option>
-                    <md-option value="pen">USA</md-option>
+
+                  <md-select ng-model="searched.Country" placeholder="- Select Location -" class="md-no-underline sechInp">
+                    <md-option ng-repeat="x in country" value="{{x}}">{{x}}</md-option>
                   </md-select>
                 </div>
+                {{searched}}
                 <div class="srchsave">
                   <md-button class="md-raised md-primary logpopup-Btn">Search</md-button>
                 </div>
@@ -124,3 +121,4 @@
       </div>
   </div>
 </section>
+
