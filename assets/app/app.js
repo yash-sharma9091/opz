@@ -9,7 +9,11 @@ angular.module('zenbrisa.app')
   $mdThemingProvider.theme('default')
     .primaryPalette('light-blue')
     .accentPalette('blue');
+     $mdThemingProvider.theme('error');
+      $mdThemingProvider.theme('loader');
+     $mdThemingProvider.theme('success');
 })
+
 
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
@@ -74,6 +78,10 @@ angular.module('zenbrisa.app')
 
 	});
 
+$rootScope.closeAlert= function(alert){
+
+	alert=false;
+}
 	$rootScope.logout= function()
 	{
 		

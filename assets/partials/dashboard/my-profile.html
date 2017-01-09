@@ -1,6 +1,7 @@
 <div class="mainCont">
 
-<section class="profileTopBg">
+<section class="profileTopBg" 
+  ng-class="{'professional': userprofile.professionalType=='paid' || userprofile.professionalType=='both'}">
   <div class="container">
     <div class="profileTopBx">
       <div class="profile-Img">
@@ -112,7 +113,7 @@
           <div class="col-sm-7"  >
        
               <div class="profmapBx" >
-             
+                 
                     <ng-map 
                         ng-if="userprofile.fulladress.location" zoom="11"
                         ng-init="pos=[userprofile.fulladress.location.lat,userprofile.fulladress.location.lng]"

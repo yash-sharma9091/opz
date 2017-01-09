@@ -10,19 +10,15 @@
     </md-button>
 
      <div ng-if="step==5" class="md-dialog-content">
-           <div class="alert text-center alert-success" >
+           <div class="alert text-center alert-success">
               <p> Your profile has been successfully updated</p>
-
-           
            </div>
-
-             <md-button  
+         <md-button  
             aria-label="finish"
             ng-click="cancel()"
             class="md-raised md-primary logpopup-Btn fr " 
-            >   
-            Finish
-            </md-button>   
+            > Finish 
+        </md-button>   
      </div>
     <div ng-if="step<=4">
 
@@ -157,8 +153,11 @@
       </div>
             <div class="Dob-R">
             <md-input-container>
-              <md-select ng-model="user.dob.year" name="year" required placeholder="Select Year" class="md-no-underline sechInp">
-                  <md-option ng-repeat="x in years" value="{{x}}">{{x}}</md-option>
+              <md-select ng-model="user.dob.year" name="year" 
+              required 
+              placeholder="Select Year" 
+              class="md-no-underline sechInp">
+                <md-option ng-repeat="x in years" value="{{x}}">{{x}}</md-option>
                  
                 </md-select>
                  <div class="errors" ng-messages="profileupdate.year.$error">
@@ -241,8 +240,9 @@
               </div>
           </md-input-container>
           <!--map view-->
+          
           <div class="map-modal" >
-           <ng-map> </ng-map>
+            <ng-map  center="[{{user.fulladress.location.lat}},{{user.fulladress.location.lng}}]"></ng-map>
            </div>
 
           <div class="clearfix"></div> 

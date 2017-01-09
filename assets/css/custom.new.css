@@ -64,6 +64,7 @@ font-size: .9em;
     background-color: #FFFFFF;
     border-color: #00AAFF;
 }
+.professional{ background-color: #f2e7f8  !important;}
 .panel-primary {    border-color: #00AAFE;}
 
 .accordion .panel-primary.panel-open .panel-heading  a{ color: white;}
@@ -71,6 +72,8 @@ font-size: .9em;
 .accordion .panel-primary.panel-open .panel-heading  a::after
 { color:white;}
 
+.prof-right-top strong{ text-transform: uppercase; }
+.myProfList li > span { text-transform: capitalize; }
 .referBg md-icon{color: #00AAFE; }
  a{ cursor: pointer;}
 .list md-icon { float: left;     margin-left: -31px;}
@@ -106,14 +109,33 @@ md-progress-circular { margin: auto;}
 
  md-input-container { margin: 5px auto; }
  md-input-container .md-char-counter, md-input-container .md-input-message-animation { text-align: right; }
-.alert{ padding: 8px 15px;     max-width: 499px;}
+.alert{ padding: 8px 15px;     max-width: 499px; position: relative; }
+.alert .close { float: right;     position: absolute;      right: 5px;     top: 9px; }
 .alert p{ margin-bottom: 0; padding-bottom: 0; font-size: 13px; }
 .alert.alert-danger p{color: #d21d1a;}
 .alert.alert-danger md-icon{color: #d21d1a;}
 .alert.alert-success p{color: #008000;;}
 .alert.alert-success md-icon{color: #008000;}
 
+
+md-dialog .md-actions, md-dialog md-dialog-actions{ -webkit-justify-content: center;justify-content: center;
+}
+
+.md-button.md-default-theme.md-primary, .md-button.md-primary {border: 1px #d0d0d0 solid;}
+/*Error*/
+md-dialog[md-theme="error"] {color: red;
+    border: 2px #ff3333 solid;}
+md-dialog[md-theme="error"] button { color: red !important; border: 1px #ff3333 solid !important;  }
+/*Success*/
+
+md-dialog[md-theme="success"] {color: green;  border: 2px green solid;}
+md-dialog[md-theme="success"] button { color: green !important; border: 1px green solid !important;  }
+
+md-dialog[md-theme="loader"] md-dialog-actions{ display: none !important; }
 .ContactMap ng-map { height: 330px; }
+
+
+
 .map-icon{color: #01abff;  font-size: 51px;}
 .steptopBx md-radio-button {    display: inline-block;    margin-right: 10px;}
 hr {

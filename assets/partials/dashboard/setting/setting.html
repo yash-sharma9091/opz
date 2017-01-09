@@ -1,8 +1,8 @@
-<section class="mylocatBg" >
+<section class="mylocatBg" ng-init="setting(user)" >
   <div class="container">
     <div class="mylocationHd">Settings</div>
     <div class="SettingMainBx">
-
+    
       <div class="SettingCont">
         <p>Add <a href="mailto:oreply@zenbrisa.com">noreply@zenbrisa.com</a> to your address book / contact list to improve deliverability</p>
 
@@ -13,12 +13,13 @@
       <div class="SettingList">
         <div class="settingBx clearfix">
           <div class="settBx-L">Hide My Profile 
-            <i class="settTool">?
-              <md-tooltip md-direction="top">If you don’t want members to see your profile, you can put Hide Profile in ON position. You will be able to choose the members that can view your profile by  initiating contact with those members. We encourage all members to leave Hide Profile in OFF position to help you connect more easily with other members.</md-tooltip>
+
+            <i class="settTool" popover-trigger="'mouseenter'" popover-append-to-body ="true" popover-placement="top"  uib-popover="If you don’t want members to see your profile, you can put Hide Profile in ON position. You will be able to choose the members that can view your profile by  initiating contact with those members. We encourage all members to leave Hide Profile in OFF position to help you connect more easily with other members." popover-title="What's is this?" >?
+          
             </i>
           </div>
           <div class="settBx-R">
-            <md-switch ng-model="user.searchProfileStatus" 
+            <md-switch ng-model="user.searchProfileStatus"  ng-change="updateSetting(user)"
               class="mar0" aria-label="Switch 1" 
               ng-true-value="'enable'" ng-false-value="'disable'">OFF
             </md-switch>
@@ -37,11 +38,13 @@
 
         <div class="settingBx clearfix">
           <div class="settBx-L">Incognito Mode
-            <i class="settTool">?
-              <md-tooltip md-direction="top">
-                We encourage all members to leave INCOGNITO in OFF position as this will help you to connect more easily with other members. By switching INCOGNITO to ON position, other members will not know that you have visited their profile nor will they know that you have listed them as one of your FAVORITES.
-              </md-tooltip>
-            </i>
+            <i class="settTool"
+                 
+                popover-title="What's is this?" 
+                popover-trigger="'mouseenter'" 
+                popover-append-to-body ="true" 
+                uib-popover=" We encourage all members to leave INCOGNITO in OFF position as this will help you to connect more easily with other members. By switching INCOGNITO to ON position, other members will not know that you have visited their profile nor will they know that you have listed them as one of your FAVORITES.">?</i>
+
           </div>
           <div class="settBx-R">
             <md-switch 
@@ -75,27 +78,97 @@
 
     </div>
 
+    <!--change password-->
+
     <div class="SettingMainBx">
       <div class="SettingCont">
         <span>Change Password</span>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       </div>
       <div class="changepassBx">
-        <input type="text" name="name" ng-model="user.email" placeholder="Current Password" class="loginInp">
-        <input type="text" name="name" ng-model="user.email" placeholder="New Password" class="loginInp">
-        <input type="text" name="name" ng-model="user.email" placeholder="Confirm Password" class="loginInp">
-        <md-button class="md-raised md-primary logpopup-Btn" style="margin-left:0 !important;">Submit</md-button>
-      </div>
+ <div class="alert {{alert.type}}" ng-if="alert">
+          <p>
+          <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+            <span ng-bind-html="alert.message"> </span>
+           </p>
+          
     </div>
 
+  <form name="userpassword" novalidate ng-cloak >
+
+        <md-input-container class="md-block">
+          <label>Current Password</label>
+          <input  required  name="oldpassword" type="password" ng-model="userPassword.oldpassword">
+          <div ng-messages="userpassword.oldpassword.$error">
+          <div ng-message="required">Enter your old password.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>New Password</label>
+          <input  required  name="newpassword" type="password" ng-model="userPassword.newpassword">
+          <div ng-messages="userpassword.newpassword.$error">
+          <div ng-message="required">Enter your new password.</div>
+          </div>
+      </md-input-container>
+
+  <md-input-container class="md-block">
+        <label>Confirm Password</label>
+        <input 
+          password-verify="userPassword.newpassword"  
+          required
+          name="confirmPassword" 
+          type="password" 
+          ng-model="userPassword.confirmPassword">
+        <div ng-messages="userpassword.confirmPassword.$error">
+          <div ng-message="required">Enter your Confirm password.</div>
+          <div ng-message="passwordVerify">Confirm password not match with new password </div>
+        </div>
+  </md-input-container>
+
+    <md-button class="md-raised md-primary logpopup-Btn" type="submit" 
+    ng-click="updatePassword(userpassword,userPassword)" style="margin-left:0 !important;">
+    Submit</md-button>
+
+</form>
+
+     
+      </div>
+    </div>
+<!--Delete user account-->
     <div class="SettingMainBx">
       <div class="SettingCont">
         <span>Delete Your Account</span>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       </div>
       <div class="changepassBx">
-        <input type="text" name="name" ng-model="user.email" placeholder="Password" class="loginInp">
-        <md-button class="md-raised md-primary logpopup-Btn" style="margin-left:0 !important;">Delete</md-button>
+
+       <div class="alert {{alert1.type}}" ng-if="alert1">
+          <p>
+          <md-icon ng-if="alert1.type=='alert-danger'">error_outline</md-icon>
+            <span ng-bind-html="alert1.message"> <span> </p>
+        
+    </div>
+
+        <form name="deleteAccount" novalidate>
+         <md-input-container class="md-block">
+        <label>Current Password</label>
+        <input 
+       
+          required
+          name="password" 
+          type="password" 
+          ng-model="delete.password">
+        <div ng-messages="deleteAccount.password.$error">
+          <div ng-message="required">Enter your Current password.</div>
+         
+        </div>
+  </md-input-container>
+        <md-button 
+            class="md-raised md-primary logpopup-Btn" type="submit" 
+            style="margin-left:0 !important;" ng-click="DeleteUserAccount(deleteAccount,delete)">Delete</md-button>
+
+        </form>
       </div>
     </div>
 

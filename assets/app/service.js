@@ -1,5 +1,5 @@
 angular.module('service',['ngMaterial'])
-.factory('appServices', function($mdDialog,$http,localStorageService,$templateCache){
+.factory('appServices', function($mdDialog,$http,localStorageService,$templateCache,$mdDialog){
 	var service={};
 
 	service.modal=function(template, controller,ev)
@@ -102,6 +102,46 @@ angular.module('service',['ngMaterial'])
 		}
 
 	};
+	service.openAlertBox= function(title,message,theme){
+	
+     var alert=$mdDialog.alert()
+        .parent(angular.element(document.body))
+        .clickOutsideToClose(false)
+        .title(title)
+        .htmlContent(message)
+        .ariaLabel('Alert Dialog')
+        .ok('Ok')
+        .theme(theme);
+
+  $mdDialog.show(alert);
+
+  }
+
+  service.confirmAlert= function(title,message,theme,btnyes, btnno){
+	
+		var confirm = $mdDialog.confirm()
+		  .title(title)
+          .textContent(message)
+          .ariaLabel('confirm')
+          .ok(btnyes)
+          .cancel(btnno);
+
+          return confirm;
+
+
+  };
+    service.loader= function(message){
+	
+		var loader = $mdDialog.alert()
+          .textContent(message)
+          .ariaLabel('loader')
+          .ok("ok")
+          .theme('loader')
+
+           $mdDialog.show(loader);
+
+
+  }
 
 	return service;
 });

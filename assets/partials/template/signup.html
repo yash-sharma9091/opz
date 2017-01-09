@@ -12,7 +12,7 @@
         <div class="alert {{alert.type}}" ng-if="alert">
               <p>
                 <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
-                 {{alert.message}}
+                 <span ng-bind-html="alert.message"> </span>
                </p>
         </div>
 

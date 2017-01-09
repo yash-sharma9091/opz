@@ -54,7 +54,8 @@ e.userLogin =function(from,data)
          }
 
     						//redirect to dashboard page
-
+                appServices.loader("Please wait.. while we'r checking your profile details.");
+                
     						var url=appServices.getSessionStorage('redirectUrl');
                 rootScope.isUserLogin=appServices.checkStorage('user');
     						if(url)
@@ -64,17 +65,17 @@ e.userLogin =function(from,data)
     						}
                  else
                  {
-                    dashbaord_url='/home';
+                   
                     var user={"email":rootScope.isUserLogin.email};
                     if(response.profileCompleteStatus==0)
                     {
-                                     
-                     rootScope.getUserProfile(user,'profile');
-
+                        dashbaord_url='/setting';              
+                       rootScope.getUserProfile(user,'profile');
 
                     }
                      if(response.profileCompleteStatus==1)
                     {
+                      dashbaord_url='/home';
                        rootScope.getUserProfile(user);
 
                     }
@@ -198,9 +199,9 @@ function contactus(e,appServices,rootScope,location)
 };
 
 //profile step complete 
-profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog','NgMap'];
+profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog','NgMap','$timeout'];
 
-function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap)
+function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeout)
 {
     e.cancel = function() 
   {
@@ -213,7 +214,8 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap)
  if(rootScope.userprofile)
  {
   e.user=rootScope.userprofile;
- }
+
+}
 
 
  //get country list
@@ -307,8 +309,31 @@ e.placeChanged = function()
         }
         
         }
+        if(e.step==2){
+          //set map center
+              if(rootScope.userprofile)
+              {
+
+              // NgMap.getMap().then(function(map)
+              // {
+              //   e.map = map;
+              //   e.loc=rootScope.userprofile.fulladress.location;
+              //   var center = new google.maps.LatLng(loc.lat, loc.lng);
+               
+              // $timeout(function(){
+              //      console.log(rootScope.userprofile.fulladress.location);
+              //     e.map.setCenter(center);
+              //   },400)
+              // });
+
+
+              }
+        }
         if(e.step==3)
-        {
+        {   
+
+          
+
 
             if(data.address)
             {

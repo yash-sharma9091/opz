@@ -2,7 +2,7 @@
   <div class="footerTop">
     <div class="container">
       <div class="row">
-        <div class="col-sm-7">
+        <div ng-class="{'col-sm-9': isUserLogin,'col-sm-7':!isUserLogin }">
           <div class="foot-aboutHd">About Zenbrisa</div>
           <div class="foot-Cont">
             <p>
@@ -18,7 +18,7 @@
             </i>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" ng-hide="isUserLogin">
           <div class="footLinkhd">Services</div>
           <div class="foot-List">
             <ul>

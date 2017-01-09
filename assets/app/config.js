@@ -38,5 +38,9 @@ var API_URL=
 	"contactusMail":api_base_url+"users/contactusMail",
 	"search":api_base_url+"search",
 	"userprofileStepNew": api_base_url+ 'users/getUserInfo' ,
-	"setting": api_base_url+ 'userSettings/updateUserSettings'   
+	"getSetting": api_base_url+ 'userSettings/getUserSettings',  
+	"updateSetting":api_base_url+ 'userSettings/updateUserSettings',
+	"updatePassword":api_base_url+ 'users/changePassword',
+	"DeleteUserAccount": api_base_url+ 'users/checkPassword',
+	"deleteUserAccountData": api_base_url+'users/deleteAMember'
 }
