@@ -89,6 +89,7 @@ angular.module('app.ngRoute',['ngRoute'])
   .when('/home',
     {
     templateUrl:"/partials/dashboard/user-home.html",
+    controller:'userDashboardSearch',
     access:
     {
           login:true

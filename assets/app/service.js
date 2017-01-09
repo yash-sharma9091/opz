@@ -2,6 +2,31 @@ angular.module('service',['ngMaterial'])
 .factory('appServices', function($mdDialog,$http,localStorageService,$templateCache,$mdDialog){
 	var service={};
 
+	service.milesList = function(){
+		var miles = [
+	                    {"hideValue" : 0, "displayValue" : "--Select within miles--"},
+	                    {"hideValue" : 5, "displayValue" : "Within 5 miles (8 KM)"},
+	                    {"hideValue" : 10, "displayValue" : "Within 10 miles (16 km)"},
+	                    {"hideValue" : 20, "displayValue" : "Within 20 miles (32 km)"},
+	                    {"hideValue" : 30, "displayValue" : "Within 30 miles (48 km)"},
+	                    {"hideValue" : 40, "displayValue" : "Within 40 miles (64 km)"},
+	                    {"hideValue" : 50, "displayValue" : "Within 50 miles (80 km)"},
+	                    {"hideValue" : 60, "displayValue" : "Within 60 miles (97 km)"},
+	                    {"hideValue" : 70, "displayValue" : "Within 70 miles (113 km)"},
+	                    {"hideValue" : 80, "displayValue" : "Within 80 miles (129 km)"},
+	                    {"hideValue" : 90, "displayValue" : "Within 90 miles (145 km)"},
+	                    {"hideValue" : 100, "displayValue" : "Within 100 miles (161 km)"},
+	                    {"hideValue" : 150, "displayValue" : "Within 150 miles (241 km)"},
+	                    {"hideValue" : 200, "displayValue" : "Within 200 miles (322 km)"},
+	                    {"hideValue" : 300, "displayValue" : "Within 300 miles (483 km)"},
+	                    {"hideValue" : 400, "displayValue" : "Within 400 miles (644 km)"},
+	                    {"hideValue" : 500, "displayValue" : "Within 500 miles (805 km)"},
+	                    {"hideValue" : 1000, "displayValue" : "Within 1000 miles (1609 km)"},
+	                    {"hideValue" : "countrywide", "displayValue" : "Country-wide"}
+	                ];
+	    return miles;
+	}
+
 	service.modal=function(template, controller,ev)
 	{
 		$mdDialog.show({
