@@ -142,7 +142,8 @@ $rootScope.closeAlert= function(alert){
 			'howItWork':'partials/template/how-it-work.html',
 			'search':'partials/global-search/search-form.html',
 			'priceview':'partials/template/price.html',
-			'usersideNavbar':'partials/template/user-side-navbar.html'
+			'usersideNavbar':'partials/template/user-side-navbar.html',
+			'userProfileHeader':'partials/dashboard/user-profile-header.html'
 		}
 }])
 
@@ -262,7 +263,7 @@ $rootScope.userNavbar={
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/home"},
 				"polls":{"title":'Polls',"href":"#/home"} }
 	},
-	"advertise":{"title":"Advertise ", 
+	"advertise":{"title":"Advertize ", 
 	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/home"},
 				"adrequest":{"title":'Ad Request',"href":"#/home"} }
 	}
@@ -270,7 +271,13 @@ $rootScope.userNavbar={
 }
 
 $rootScope.userDashboard={
-	'setting':{'title':'Setting', 'href':'#/setting'}
+	'setting':{'title':'Setting', 'href':'#/setting'},
+	'favorites':{'title':'My Favorites', 'href':"#/my-favourites"},
+	'blockedUsers':{'title':'My Blocked List', 'href':"#/blocked-userlist"},
+	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"}
+
+	
+	
 }
 
 

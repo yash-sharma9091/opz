@@ -97,7 +97,7 @@ angular.module('app.ngRoute',['ngRoute'])
   })
   .when('/my-profile',
     {
-    templateUrl:"/partials/dashboard/my-profile.html",
+    templateUrl:"/partials/dashboard/userProfile/myProfile.html",
     access:
     {
           login:true
@@ -116,6 +116,33 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/dashboard/setting/setting.html",
     controller:"userDashboard",
+    access:
+    { 
+          login:true
+    }
+  })
+   .when('/my-favourites',
+    {
+    templateUrl:"/partials/dashboard/favorites/favorites.html",
+    controller:"MyFavourites",
+    access:
+    { 
+          login:true
+    }
+  })
+    .when('/blocked-userlist',
+    {
+    templateUrl:"/partials/dashboard/blockedUsers/blockedusers.html",
+    controller:"blockedusers",
+    access:
+    { 
+          login:true
+    }
+  })
+  .when('/reviews-penned',
+    {
+    templateUrl:"/partials/dashboard/reviewPinned/review-pinned.html",
+    controller:"userReviewPined",
     access:
     { 
           login:true

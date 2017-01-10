@@ -1,5 +1,5 @@
 angular.module('service',['ngMaterial'])
-.factory('appServices', function($mdDialog,$http,localStorageService,$templateCache,$mdDialog){
+.factory('appServices', function($mdDialog,$http,localStorageService,$templateCache,$mdDialog,$mdToast){
 	var service={};
 
 	service.milesList = function(){
@@ -27,6 +27,16 @@ angular.module('service',['ngMaterial'])
 	    return miles;
 	}
 
+service.alert =function(alert){
+
+				$mdToast.show(
+				$mdToast.simple()
+				.textContent(alert)
+				.position('top right')
+				.hideDelay(8000)
+				);
+
+		};
 	service.modal=function(template, controller,ev)
 	{
 		$mdDialog.show({

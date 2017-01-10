@@ -1,6 +1,14 @@
-angular.module('userDashboardModule',['ngMessages']).controller('userDashboard', userDashboard);
+angular.module('userDashboardModule',['ngMessages']).controller('userDashboard', userDashboard)
+.controller('MyFavourites', MyFavourites)
+.controller('blockedusers', blockedusers)
+.controller('userReviewPined', userReviewPined);
 
 userDashboard.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location'];
+MyFavourites.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+blockedusers.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+userReviewPined.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+
+
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 {
@@ -148,6 +156,164 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 		}
 
 	}
-	//e.setting();
+	
+
 }
 
+//MyFavourites controller
+function MyFavourites(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
+{
+		e.loading=true;
+		var data={};
+		appServices.post(API_URL.getfavourite,data, function(response)
+
+		{	
+
+		var data=response.result;	
+	
+				
+				e.loading=false;
+				if(response.status==1)
+				{
+					
+					e.data=data;
+				}	
+
+
+		});
+
+//set setUnfavorite user
+e.setUnfavorite =function(id, index,data){
+
+	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Favourites list ', 'default','Yes', 'No');
+
+								$mdDialog.show(confirm).then(function(response) 
+								{
+
+										data.splice(index,1);
+										
+										//remove form server
+										var user={'favUserId':id};
+										appServices.post(API_URL.removefavourite,user, function(response)
+
+										{
+												if(response.status==1)
+												{
+													if(response.result==1)
+													{
+														appServices.alert("Successfully removed from your favorite list")
+								
+													}
+												}	
+										});
+
+								});
+	
+
+};
+
+}
+
+
+//blocked user controller
+function blockedusers(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
+{
+		e.loading=true;
+		var data={};
+		appServices.post(API_URL.getblockUser,data, function(response)
+
+		{	
+
+		var data=response.data;	
+							
+				e.loading=false;
+				if(response.status==1)
+				{
+					e.data=data;
+				}	
+
+
+		});
+
+//remove form block list 
+e.setUnBlock=function(id, index,data){
+
+	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Block list ', 'default','Yes', 'No');
+
+								$mdDialog.show(confirm).then(function(response) 
+								{
+
+										data.splice(index,1);
+										
+										//remove form server
+										var user={'blockedUserId':id};
+										appServices.post(API_URL.removeBlockuser,user, function(response)
+
+										{
+												if(response.status==1)
+												{
+													
+														appServices.alert("Successfully removed from your block list")
+								
+												
+												}	
+										});
+
+								});
+	
+
+};
+
+}
+
+
+//blocked user controller
+function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
+{
+		e.loading=true;
+		var data={};
+		appServices.post(API_URL.getblockUser,data, function(response)
+
+		{	
+
+		var data=response.data;	
+							
+				e.loading=false;
+				if(response.status==1)
+				{
+					e.data=data;
+				}	
+
+
+		});
+
+//remove form block list 
+e.setUnBlock=function(id, index,data){
+
+	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Block list ', 'default','Yes', 'No');
+
+								$mdDialog.show(confirm).then(function(response) 
+								{
+
+										data.splice(index,1);
+										
+										//remove form server
+										var user={'blockedUserId':id};
+										appServices.post(API_URL.removeBlockuser,user, function(response)
+
+										{
+												if(response.status==1)
+												{
+													
+														appServices.alert("Successfully removed from your block list")
+								
+												
+												}	
+										});
+
+								});
+	
+
+};
+
+}

@@ -66,19 +66,58 @@
          <!--user dropdown menu-->
           <div class="userBx">
 
-            <md-menu md-offset="0 45" ng-if="isUserLogin" md-position-mode="target-right target">
-              <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
-                <i>
+            <md-menu class="notification" md-offset="0 45" ng-if="isUserLogin" md-position-mode="target-right target">
+              <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)" class="md-icon-button">
+               <md-icon>notifications_none</md-icon>
+               <small>3</small>
+              </md-button>
+              
+              <md-menu-content width="3">
+                <md-list class="notification">
+                  <md-list-item class="secondary-button-padding" ng-click="openNotification()"> 
+                        <p class="elipssis">Zenbrisa is a global membership network devoted to the world of massage.</p>
+                       <md-button class="md-icon-button md-secondary" > <md-icon>chevron_right</md-icon>
+                      
+                       </md-button>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                   <md-list-item class="secondary-button-padding" ng-click="openNotification()"> 
+                        <p class="elipssis">Zenbrisa is a global membership network devoted to the world of massage.</p>
+                       <md-button class="md-icon-button md-secondary" > <md-icon>chevron_right</md-icon>
+                       
+                       </md-button>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                   <md-list-item class="secondary-button-padding" ng-click="openNotification()"> 
+                        <p class="elipssis">Zenbrisa is a global membership network devoted to the world of massage.</p>
+                       <md-button class="md-icon-button md-secondary" > <md-icon>chevron_right</md-icon>
+                       
+                       </md-button>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </md-list>
+              </md-menu-content>
+            </md-menu>
+                 
+
+
+            <md-menu md-offset="0 45" ng-if="isUserLogin" md-position-mode="target-right target" >
+              <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)" class="usermenu">
+             
                   <md-icon> account_circle</md-icon>
                     <!-- <img src="images/user-img.jpg" alt=""> -->
-                  </i> 
+               
                   <span class="elipssis"> 
                     {{userprofile.fullName || 'Welcome.'}}</span>
                 <md-icon>arrow_drop_down</md-icon>
               </md-button>
               <md-menu-content width="2">
                 <ul class="userList">
-                      <li role="menuitem"><a href="#">My Account</a></li>
+                      <li role="menuitem">
+                      <a ng-href="{{userNavbar.profile.submenu.myprofile.href}}">My Account</a></li>
                       <li role="menuitem"><a ng-href="{{userDashboard.setting.href}}">Setting</a></li>
                       <li role="menuitem" ng-click="logout()"><a >Logout</a></li>
                     </ul>

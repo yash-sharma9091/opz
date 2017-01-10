@@ -66,7 +66,6 @@ font-size: .9em;
 }
 .professional{ background-color: #f2e7f8  !important;}
 .panel-primary {    border-color: #00AAFE;}
-
 .accordion .panel-primary.panel-open .panel-heading  a{ color: white;}
 .accordion .panel-primary.panel-open .panel-heading  a::before,
 .accordion .panel-primary.panel-open .panel-heading  a::after
@@ -106,7 +105,7 @@ md-progress-circular { margin: auto;}
   display: none;
 }
  .scroll-top md-icon { color: white !important;}
-
+.blockList { position: relative; }
  md-input-container { margin: 5px auto; }
  md-input-container .md-char-counter, md-input-container .md-input-message-animation { text-align: right; }
 .alert{ padding: 8px 15px;     max-width: 499px; position: relative; }
@@ -116,6 +115,7 @@ md-progress-circular { margin: auto;}
 .alert.alert-danger md-icon{color: #d21d1a;}
 .alert.alert-success p{color: #008000;;}
 .alert.alert-success md-icon{color: #008000;}
+
 
 
 md-dialog .md-actions, md-dialog md-dialog-actions{ -webkit-justify-content: center;justify-content: center;
@@ -130,14 +130,21 @@ md-dialog[md-theme="error"] button { color: red !important; border: 1px #ff3333 
 
 md-dialog[md-theme="success"] {color: green;  border: 2px green solid;}
 md-dialog[md-theme="success"] button { color: green !important; border: 1px green solid !important;  }
-
 md-dialog[md-theme="loader"] md-dialog-actions{ display: none !important; }
-.ContactMap ng-map { height: 330px; }
+md-dialog[md-theme="default"] md-dialog-actions button.md-default-theme:first-child{  
+ background-color:rgb(221,44,0) !important;  color: white; border: 0; }
 
+md-dialog[md-theme="default"] md-dialog-actions button.md-default-theme:last-child{  
+background-color: rgb(3,169,244) !important;color: white;border: 0; }
+
+.ContactMap ng-map { height: 330px; }
+.blueBg { color: white !important;   background-color: #00adff !important; }
 
 
 .map-icon{color: #01abff;  font-size: 51px;}
 .steptopBx md-radio-button {    display: inline-block;    margin-right: 10px;}
+.md-toast-content{    background-color: #0fb1ff !important;}
+.md-toast-content md-icon { color: white !important }
 hr {
     margin-top: 15px;
     margin-bottom: 0px;
@@ -147,10 +154,11 @@ hr {
     display: inline-block;
     width: 106px;
     overflow: hidden;
+    line-height: 11px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.userBx md-menu button md-icon{    float: right;  margin-top: 7px;}
+.usermenu md-menu button md-icon{    float: right;  margin-top: 7px;}
 
 .map-modal ng-map { height: 200px; border: 1px #00aeff solid; margin-bottom: 15px; }
 .padding-l { padding-left: 0 }
@@ -159,6 +167,20 @@ hr {
 .reating md-icon { color: #ffd203; }
 .profileNav p{ padding-bottom: 0 }
 
+.notification .md-icon-button md-icon{ color: #00adff; }
+.notification .md-icon-button { overflow: inherit !important; }
+.notification .md-icon-button small{    position: absolute;
+    z-index: 2;
+    top: -3px;
+    left: 12px;
+    background-color: #fd4141;
+    display: block;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    color: white;
+    line-height: 20px;
+    font-size: 72%;}
 md-tooltip .md-content { max-width: 300px; height: auto !important;  
     line-height: 19px;
     padding-left: 8px;
@@ -167,6 +189,21 @@ md-tooltip .md-content { max-width: 300px; height: auto !important;
     text-align: left !important;
       white-space: normal; 
        }
+      .notification .elipssis{ width:200px; padding-bottom: 0; line-height: 22px; }
+md-progress-circular path {stoke: #00adff !important }
+
+.loading { padding-top:100px; position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 1; background-color: rgba(255,255,255,0.9); }
+md-toast { position: fixed; }
+._md-toast-animating,.md-toast-animating { overflow: auto !important;}
+
+.blocklistBx span{ display: block; text-align: center;    font-size: 14px }
+.blocklistBx .btn {     margin: 0 !important;
+    display: block !important;
+    width: 100%;
+    border-radius: 0;
+    border: 0; }
+    .blocklistBx .loc{     margin: 5px 0; }
+        .blocklistBx .loc md-icon { font-size: 20px !important }
 @media(min-width:768px)
 {
   .nav-btn{ display:none }

@@ -1,0 +1,130 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader" ></section>
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="profileInfoBx">
+              <div class="profInfoHd">Personal Information</div>
+              <div class="myProfList">
+                <ul>
+                  <li ng-if="userprofile.gender">Gender: <span> {{userprofile.gender}}</span></li>
+                  <li ng-if="userprofile.fulladress.country">Country:  
+                      <span>{{userprofile.fulladress.country.name}}</span>
+                  </li>
+                  <li ng-if="userprofile.fulladress.state">
+                      State: <span>{{userprofile.fulladress.state.name}}</span>
+                  </li>
+                  
+                  <li ng-if="userprofile.address">Address:  <span>{{userprofile.address}}</span></li>
+                  <li ng-if="userprofile.dob">Age:  
+                      <span>{{getAge(userprofile.dob)}}Y </span>
+                  </li>
+            
+                  <li ng-if="userprofile.exchange">
+                    Seeking to <br>exchange with:  
+                    <span class="pinkClr" 
+                    ng-class="{'pinkClr':userprofile.exchange=='female','blueClr':userprofile.exchange=='male'  }"> 
+                      {{ 
+                      userprofile.exchange=='male'?'M':
+                      userprofile.exchange=='female'?'F':
+                      userprofile.exchange=='both'?'MF':''
+
+                      }} 
+                      <i class="tooltipBx">?
+                    <span class="tooltipInn" 
+                          ng-if="userprofile.exchange=='both'">
+                          Male-Female
+                    </span>
+                    <span class="tooltipInn">
+                      {{userprofile.exchange}}
+                    </span>
+
+                  </i></span>
+
+                  </li>
+                  <li>Body Type:  
+                    <span>
+                      {{userprofile.bodyTypeOne || 'N/A'}}
+
+                      </span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7"  >
+       
+              <div class="profmapBx" >
+                 
+                    <ng-map 
+                        ng-if="userprofile.fulladress.location" zoom="11"
+                        ng-init="pos=[userprofile.fulladress.location.lat,userprofile.fulladress.location.lng]"
+                          center="{{pos}}">
+                          <marker position="{{pos}}"> </marker>
+                    </ng-map>
+
+                </div>
+              <div class="bodyWork">
+                <div class="profInfoHd">Personal Information</div>
+                <div class="typeLabel">
+                  <ul>
+                    <li>Type of level: 
+              <span>
+
+            {{(userprofile.experience=='professional' ? 'Professional/CMT' : userprofile.experience) || 'Not Specified'}}
+
+              </span>
+                  </li>
+                    <li ng-if="userprofile.massageStylesOne">
+                      Styles of massage that I prefer to give: 
+                      <span ng-bind-html="userprofile.massageStylesOne"></span>
+                    </li>
+
+                    <li>Types of Massage that interest me 
+                        <span>
+                          <span>{{userprofile.interests }} : Seeks - 
+                             <small class="pinkClr" 
+                    ng-class="{'pinkClr':userprofile.exchange=='female','blueClr':userprofile.exchange=='male'  }"> 
+                      {{ 
+                      userprofile.exchange=='male'?'M':
+                      userprofile.exchange=='female'?'F':
+                      userprofile.exchange=='both'?'MF':''
+
+                      }} 
+                      <i class="tooltipBx">?
+                    <span class="tooltipInn" 
+                          ng-if="userprofile.exchange=='both'">
+                          Male-Female
+                    </span>
+                    <span class="tooltipInn">
+                      {{userprofile.exchange}}
+                    </span>
+                      </i>
+                      </small>
+                        </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>	 

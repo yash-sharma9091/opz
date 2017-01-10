@@ -405,8 +405,8 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .blocklistBx span a {color: #000; display: inline-block;}
 .blocklistBx span a:hover {color: #00aeff;}
 .blocklistBx span small {color: #999; display: block; font-size: 16px; padding-top: 5px;}
-.blocklistBx > a {background: #00aeff;color: #fff; display: block; font-size: 18px;line-height: 21px;padding: 10px 0; text-align: center;}
-.blocklistBx > a:hover {background: #0687c3;}
+.blocklistBx > .btn {background: #00aeff;color: #fff; display: block; font-size: 18px;line-height: 21px;padding: 10px 0; text-align: center;}
+.blocklistBx > .btn:hover {background: #0687c3;}
 /*------------------29/11/2016------------------*/
 
 .searchBg{ position: relative; background: url(../images/search-bg.jpg) center top no-repeat; background-size: cover;}

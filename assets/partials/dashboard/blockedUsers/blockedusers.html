@@ -1,0 +1,52 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+          
+          <!--review list data-->
+        <div class="row blockList">
+          <div class="publicHd">My Blocked List ({{data.length}})</div>
+            <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+
+            <div>
+                  <div class="noData" ng-show="data.length==0"> <md-icon >do_not_disturb</md-icon>  You haven't added any blocked user yet!</div>
+                <div class="col-sm-3 col-xs-6" ng-repeat="x in data track by $index">
+                  <div class="blocklistBx">
+                    <a>
+                      <i>
+                        <img ng-if="x.profilePic" ng-src="{{x.profilePic}}" alt="{{x.fullName || x.username}}">
+                        <img ng-if="!x.profilePic" src="images/default-user-icon-profile.png" alt="default">
+                      </i>
+                        <span>{{x.fullName || x.username}}<small class="loc"> <md-icon>location_on</md-icon> {{x.country}}</small></span>
+                      </a>
+                        <md-button ng-click="setUnBlock(x.id, $index,data)" class="md-block btn blueBg">Unfavorite</md-button>
+                    </div>
+                </div>
+           </div>
+         
+
+       </div> <!--end row-->
+      </div> <!--end coloumn-->
+
+    </div>
+  </div>
+</section>
+
+</div>	 

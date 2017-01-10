@@ -25,17 +25,17 @@
                 <p>Reviews Received</p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" href="#/my-profile"> 
+            <md-list-item  class="active" ng-href="{{userDashboard.reviewspenned.href}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
                 <p>Reviews Penned</p>
            </md-list-item>
-            <md-divider></md-divider>
-            <md-list-item  class="active" href="#/my-profile"> 
+            <md-divider></md-divider> 
+            <md-list-item  class="active"  ng-href="{{userDashboard.favorites.href}}"> 
                 <md-icon  aria-label="icon" >star</md-icon>
                 <p>My Favorites</p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" href="#/my-profile"> 
+            <md-list-item  class="active" ng-href="{{userDashboard.blockedUsers.href}}"> 
                 <md-icon  aria-label="icon" >do_not_disturb</md-icon>
                 <p>My Blocked List</p>
            </md-list-item>

@@ -1,6 +1,6 @@
 var api_base_url="http://158.85.67.166:9003/";
 var api_image_url="http://zenbrisa.com:9002/";
-var api_base_url="http://localhost:9003/";
+//var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
 
 angular.module('zenbrisa',
@@ -44,5 +44,9 @@ var API_URL=
 	"updateSetting":api_base_url+ 'userSettings/updateUserSettings',
 	"updatePassword":api_base_url+ 'users/changePassword',
 	"DeleteUserAccount": api_base_url+ 'users/checkPassword',
-	"deleteUserAccountData": api_base_url+'users/deleteAMember'
+	"deleteUserAccountData": api_base_url+'users/deleteAMember',
+	"getfavourite": api_base_url+'users/getAllFavourite',
+	"removefavourite": api_base_url+'users/makeUnFavourite',
+	"getblockUser": api_base_url+'users/getBlockedUsers',
+	"removeBlockuser": api_base_url+'users/unblockAUser'
 }
