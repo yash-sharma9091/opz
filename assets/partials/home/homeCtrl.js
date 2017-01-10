@@ -12,8 +12,26 @@ angular.module('zenbrisa.controllers')
 
 	/*Get User Requested Data*/
 	$scope.get_searched_results = function(searchData){
+		
+		if(typeof searchData.search_by != undefined && searchData.search_by != null && searchData.search_by != ''){
+			var search_by = searchData.search_by;
+			if(search_by == 'free_exchange'){
+				searchData['free_exchange'] = 1
+			}
+
+			if(search_by == 'paid_exchange'){
+				searchData['paid_exchange'] = 1
+			}
+
+			if(search_by == 'both_exchange'){
+				searchData['both_exchange'] = 1
+			}
+		}
+
 		var address = searchData.address;
-		var components = address.split(', ');
+		if(typeof address != undefined && address != null && address != ''){
+			var components = address.split(', ');
+		}
 		
 		if(typeof components != undefined && components != null && components.length > 0){
 			var length = components.length;
@@ -31,6 +49,7 @@ angular.module('zenbrisa.controllers')
 		}
 		
 		delete searchData['address'];
+		delete searchData['search_by'];
 		//console.log(searchData)
 		$location.path('/search').search(searchData)
 	}
