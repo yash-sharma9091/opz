@@ -7,10 +7,11 @@
             <span><input type="text" places-auto-complete name="name" placeholder="Newyork" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()"></span>
           </div>      
         </div>
-        <div class="msglistBx" ng-init="searchData.service='therapists'">
-          <md-select ng-model="searchData.service" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
-            <md-option value="therapists">Massage Therapists</md-option>
-            <md-option value="sensual">Massage Sensual</md-option>
+        <div class="msglistBx" ng-init="searchData.search_by='free_exchange'">
+          <md-select ng-model="searchData.search_by" placeholder="Free Exchange" class="md-no-underline selectmrgn">
+            <md-option value="free_exchange">Free Exchange</md-option>
+            <md-option value="paid_exchange">Paid Exchange</md-option>
+            <md-option value="both">Both</md-option>
           </md-select>
         </div>
         <div class="srchfrmBx">

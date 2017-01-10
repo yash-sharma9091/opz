@@ -1,25 +1,9 @@
 <section class="listingBanner">
   <div class="listingtrans">
     <div class="listingFrm">
-      <div class="container clearfix">
-          <div class="bannersrchBx clearfix">
-              <div class="locationBx">
-                <i class="material-icons">location_on</i>
-                <div class="searchwithin">Search within 
-                  <span><input type="text" places-auto-complete name="name" placeholder="Newyork" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()"></span>
-                </div>
-              </div>
-              <div class="msglistBx">
-                <md-select ng-model="searchData.service" placeholder="Massage Enthusiast" class="md-no-underline selectmrgn">
-                  <md-option value="therapists">Massage Therapists</md-option>
-                  <md-option value="sensual">Massage Sensual</md-option>
-                </md-select>
-              </div>
-              <div class="srchfrmBx">
-                <md-button class="md-raised md-primary"><img src="images/search-icon.png" alt="" aria-label="Search"></md-button>
-              </div>
-          </div>
-      </div>
+        
+    <div ng-include="template.search"></div>
+
     </div>
   </div>
 </section>
@@ -298,6 +282,7 @@
                   <div class="listingPara" ng-bind="user.aboutme"></div>
                   <div class="listingTop-Right">
                     <span>Active: {{user.lastActive}} Days Ago</span>
+                    <i ng-if="user.professionalType == 'both' || user.professionalType == 'paid'"><img src="images/massageTag.png"></i>
                   </div>
                 </div>
               </div>
