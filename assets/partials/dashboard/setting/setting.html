@@ -1,4 +1,4 @@
-<section class="mylocatBg" ng-init="setting(user)" >
+<section class="mylocatBg" >
   <div class="container">
     <div class="mylocationHd">Settings</div>
     <div class="SettingMainBx">
@@ -21,7 +21,8 @@
           <div class="settBx-R">
             <md-switch ng-model="user.searchProfileStatus"  ng-change="updateSetting(user)"
               class="mar0" aria-label="Switch 1" 
-              ng-true-value="'enable'" ng-false-value="'disable'">OFF
+              ng-true-value="'enable'" ng-false-value="'disable'">
+              {{user.searchProfileStatus=='enable'?'ON':'OFF'}}
             </md-switch>
           </div>
         </div>
@@ -29,9 +30,10 @@
         <div class="settingBx clearfix">
           <div class="settBx-L">Show Sensual Ad </div>
           <div class="settBx-R">
-            <md-switch ng-model="user.sensualAds" 
+            <md-switch ng-model="user.sensualAds"  ng-change="updateSetting(user)"
                         class="mar0" aria-label="Switch 1" 
-                       ng-true-value="'enable'" ng-false-value="'disable'">OFF
+                       ng-true-value="'enable'" ng-false-value="'disable'">
+                       {{user.sensualAds=='enable'?'ON':'OFF'}}
             </md-switch>
           </div>
         </div>
@@ -51,7 +53,8 @@
                     ng-model="user.provisitMailStatus" 
                     class="mar0" 
                     aria-label="Switch 1" 
-                    ng-true-value="'enable'" ng-false-value="'disable'">OFF
+                    ng-true-value="'enable'" ng-change="updateSetting(user)" ng-false-value="'disable'">
+                    {{user.provisitMailStatus=='enable'?'ON':'OFF'}}
           </md-switch>
           </div>
         </div>
@@ -59,16 +62,20 @@
           <div class="settBx-L">New Mail Notification</div>
           <div class="settBx-R">
             <md-switch 
-                  ng-model="user.newMailStatus" 
+                  ng-model="user.newMailStatus"  ng-change="updateSetting(user)"
                   class="mar0" aria-label="Switch 1" 
-                  ng-true-value="'enable'" ng-false-value="'disable'">OFF
+                  ng-true-value="'enable'" ng-false-value="'disable'">
+                   {{user.newMailStatus=='enable'?'ON':'OFF'}}
             </md-switch>
           </div>
         </div>
         <div class="settingBx clearfix">
           <div class="settBx-L">Poll Mail Notification</div>
           <div class="settBx-R">
-            <md-switch ng-model="user.pollMailStatus" ng-false-value="'disable'"  class="mar0" aria-label="Switch 1" ng-true-value="'enable'">OFF</md-switch>
+            <md-switch ng-model="user.pollMailStatus" ng-change="updateSetting(user)" ng-false-value="'disable'"  class="mar0" aria-label="Switch 1" ng-true-value="'enable'">
+               {{user.pollMailStatus=='enable'?'ON':'OFF'}}
+
+            </md-switch>
           </div>
         </div>
 

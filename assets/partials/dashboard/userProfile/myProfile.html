@@ -13,7 +13,6 @@
         <span ng-include="template.usersideNavbar"> Loading..</span>
         </div>
       <!--end user sidenavbar-->
-
       <div class="col-sm-9">
         <div class="row">
           <div class="col-sm-5">
@@ -22,43 +21,39 @@
               <div class="myProfList">
                 <ul>
                   <li ng-if="userprofile.gender">Gender: <span> {{userprofile.gender}}</span></li>
-                  <li ng-if="userprofile.fulladress.country">Country:  
-                      <span>{{userprofile.fulladress.country.name}}</span>
+                  <li ng-if="userprofile.country">Country:  
+                      <span>{{userprofile.country}}</span>
                   </li>
-                  <li ng-if="userprofile.fulladress.state">
-                      State: <span>{{userprofile.fulladress.state.name}}</span>
+                  <li ng-if="userprofile.state">
+                      State: <span>{{userprofile.state}}</span>
                   </li>
                   
                   <li ng-if="userprofile.address">Address:  <span>{{userprofile.address}}</span></li>
-                  <li ng-if="userprofile.dob">Age:  
-                      <span>{{getAge(userprofile.dob)}}Y </span>
+                  <li ng-if="userprofile.dobOne">Age:  
+                      <span>{{userprofile.age}}Y </span>
                   </li>
             
-                  <li ng-if="userprofile.exchange">
+                  <li>
                     Seeking to <br>exchange with:  
                     <span class="pinkClr" 
-                    ng-class="{'pinkClr':userprofile.exchange=='female','blueClr':userprofile.exchange=='male'  }"> 
-                      {{ 
-                      userprofile.exchange=='male'?'M':
-                      userprofile.exchange=='female'?'F':
-                      userprofile.exchange=='both'?'MF':''
+                    ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
+                      {{userprofile.seeking_both?'MF':''}} 
+                      <span ng-if="!userprofile.seeking_both">
+                      {{userprofile.seeking_male?'M':'' || userprofile.seeking_female?'F':''}}
+                      </span>
 
-                      }} 
-                      <i class="tooltipBx">?
-                    <span class="tooltipInn" 
-                          ng-if="userprofile.exchange=='both'">
-                          Male-Female
-                    </span>
-                    <span class="tooltipInn">
-                      {{userprofile.exchange}}
-                    </span>
-
-                  </i></span>
+                    <i class="tooltipBx"  
+                      uib-popover="{{userprofile.seeking_female?'Female':                      userprofile.seeking_male?'Male':
+                      userprofile.seeking_both?'Male-Female':''
+                      }} " 
+                      popover-trigger="'mouseenter'" 
+                      popover-append-to-body="'true'"> ? </i>
+                 
+                  </span>
 
                   </li>
                   <li>Body Type:  
-                    <span>
-                      {{userprofile.bodyTypeOne || 'N/A'}}
+                    <span split-str="userprofile.bodyTypeOne" ng-if="userprofile.bodyTypeOne">
 
                       </span></li>
                 </ul>
@@ -70,10 +65,10 @@
               <div class="profmapBx" >
                  
                     <ng-map 
-                        ng-if="userprofile.fulladress.location" zoom="11"
-                        ng-init="pos=[userprofile.fulladress.location.lat,userprofile.fulladress.location.lng]"
-                          center="{{pos}}">
-                          <marker position="{{pos}}"> </marker>
+                        ng-if="userprofile.latitude" zoom="11"
+                        ng-init="pos=[userprofile.latitude,userprofile.longitude]"
+                        center="{{pos}}">
+                        <marker position="{{pos}}"> </marker>
                     </ng-map>
 
                 </div>
@@ -84,38 +79,44 @@
                     <li>Type of level: 
               <span>
 
-            {{(userprofile.experience=='professional' ? 'Professional/CMT' : userprofile.experience) || 'Not Specified'}}
+            {{(userprofile.levelTypeOne=='professional_cmt' ? 'Professional/CMT' : userprofile.levelTypeOne=='aficionado'?'Aficionado or Amateur':userprofile.levelTypeOne ) || 'Not Specified'}}
 
               </span>
                   </li>
                     <li ng-if="userprofile.massageStylesOne">
                       Styles of massage that I prefer to give: 
-                      <span ng-bind-html="userprofile.massageStylesOne"></span>
+                      <span ng-if="userprofile.massageStylesOne" split-str="userprofile.massageStylesOne" > </span>
+                      <span ng-if="!userprofile.massageStylesOne">
+                            'Not Specified'
+                      </span>
                     </li>
 
                     <li>Types of Massage that interest me 
-                        <span>
-                          <span>{{userprofile.interests }} : Seeks - 
-                             <small class="pinkClr" 
+                   
+                      <span>
+                      {{userprofile.therapeuticMassageOne || userprofile.sensualMassageOne}}:
+                     <small class="pinkClr" 
                     ng-class="{'pinkClr':userprofile.exchange=='female','blueClr':userprofile.exchange=='male'  }"> 
-                      {{ 
-                      userprofile.exchange=='male'?'M':
-                      userprofile.exchange=='female'?'F':
-                      userprofile.exchange=='both'?'MF':''
+                    Seeks -
+                        {{userprofile.seeking_both?'MF':''}}
+                      <span ng-if="!userprofile.seeking_both">
+                        {{userprofile.seeking_female?'F':''}} 
+                        {{userprofile.seeking_male?'M':''}} 
+                      </span>
+                      <i class="tooltipBx"
+                      uib-popover=" {{ 
+                      userprofile.seeking_female?'Female':                      userprofile.seeking_male?'Male':
+                      userprofile.seeking_both?'Male-Female':''
+                      }} " 
+                      popover-trigger="'mouseenter'" 
+                      popover-append-to-body="'true'"
+                   
+                      >?</i>
 
-                      }} 
-                      <i class="tooltipBx">?
-                    <span class="tooltipInn" 
-                          ng-if="userprofile.exchange=='both'">
-                          Male-Female
-                    </span>
-                    <span class="tooltipInn">
-                      {{userprofile.exchange}}
-                    </span>
-                      </i>
                       </small>
                         </span>
                     </li>
+
                   </ul>
                 </div>
               </div>

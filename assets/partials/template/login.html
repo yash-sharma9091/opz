@@ -82,7 +82,7 @@
 
               <div class="rembBx">
               <md-checkbox  aria-label="remember" ng-model="user.remember"> Remember Me </md-checkbox>
-                <i><a ng-click="$parent.forgetpassword=true"> Forget Password ?</a></i>
+                <i><a ng-click="$parent.forgetpassword=true; $parent.alert=false"> Forget Password ?</a></i>
               </div>
               <md-button type="submit" ng-click="userLogin(login,user)" class="md-raised md-primary logpopup-Btn">Login</md-button>
            </div>

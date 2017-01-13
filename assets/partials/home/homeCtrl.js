@@ -1,7 +1,15 @@
 angular.module('zenbrisa.controllers')
-.controller('homepage',['$scope','$location','NgMap','appServices', function($scope,$location,NgMap, appServices){
+.controller('homepage',['$scope','$location','NgMap','appServices','$rootScope', function($scope,$location,NgMap, appServices,$rootScope){
 	/*Init Objects*/
 	$scope.searchData = {}
+  $scope.dynamicPopover = {
+    content: 'Hello, World!',
+    templateUrl: 'myPopoverTemplate.html',
+    title: 'Title dfgfdgdf'
+  };
+
+
+
 
 	/*Get Places from Google Map*/
 	$scope.placeChanged = function() {

@@ -25,9 +25,9 @@ angular.module('zenbrisa',
 'userDashboardSearchModule'
 ]);
 
+angular.module('zenbrisa.app',[]);
 angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
-angular.module('zenbrisa.app',[]);
 angular.module('userDashboardModule',[]);
 angular.module('userDashboardSearchModule',[]);
 
@@ -48,5 +48,6 @@ var API_URL=
 	"getfavourite": api_base_url+'users/getAllFavourite',
 	"removefavourite": api_base_url+'users/makeUnFavourite',
 	"getblockUser": api_base_url+'users/getBlockedUsers',
-	"removeBlockuser": api_base_url+'users/unblockAUser'
+	"removeBlockuser": api_base_url+'users/unblockAUser',
+	"logout": api_base_url+'users/userLogout'
 }

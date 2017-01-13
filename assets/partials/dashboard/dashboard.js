@@ -36,8 +36,11 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 			appServices.post(API_URL.getSetting,e.user, function(response)
            {   
            		e.user=response.data;
+           		
            });
+
 	}
+	e.setting();
 
 	e.updateSetting= function(user)
 	{
@@ -46,12 +49,14 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 			{
 				user=user;
 			}
-
+			$timeout(function(){
 			appServices.post(API_URL.updateSetting,e.user, function(response)
            {   
-           		console.log(response)
+           		
            		e.user=response.data;
+           		
            });
+		},200)
 	}
 
 

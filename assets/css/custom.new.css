@@ -24,6 +24,9 @@ md-sidenav md-list .md-button:hover md-icon,md-sidenav md-list .md-button:hover 
     height: 40px;
     width: 40px;
   }
+
+.hideEle{     visibility: hidden;  position: absolute; }
+
  blue{color:#00A9FF}
 .accordion .panel-heading {  border-radius: 0;padding: 0}
 .accordion .panel {  border-radius: 0;}
@@ -127,7 +130,7 @@ md-dialog[md-theme="error"] {color: red;
     border: 2px #ff3333 solid;}
 md-dialog[md-theme="error"] button { color: red !important; border: 1px #ff3333 solid !important;  }
 /*Success*/
-
+.testimonial-bg { position: relative; }
 md-dialog[md-theme="success"] {color: green;  border: 2px green solid;}
 md-dialog[md-theme="success"] button { color: green !important; border: 1px green solid !important;  }
 md-dialog[md-theme="loader"] md-dialog-actions{ display: none !important; }
@@ -160,7 +163,7 @@ hr {
 }
 .usermenu md-menu button md-icon{    float: right;  margin-top: 7px;}
 
-.map-modal ng-map { height: 200px; border: 1px #00aeff solid; margin-bottom: 15px; }
+.map-modal ng-map { height:150px; border: 1px #00aeff solid; margin-bottom: 15px; }
 .padding-l { padding-left: 0 }
 .padding-r { padding-right: 0 }
 
@@ -189,21 +192,50 @@ md-tooltip .md-content { max-width: 300px; height: auto !important;
     text-align: left !important;
       white-space: normal; 
        }
-      .notification .elipssis{ width:200px; padding-bottom: 0; line-height: 22px; }
+.notification .elipssis{ width:200px; padding-bottom: 0; line-height: 22px; }
 md-progress-circular path {stoke: #00adff !important }
 
 .loading { padding-top:100px; position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 1; background-color: rgba(255,255,255,0.9); }
-md-toast { position: fixed; }
+  md-toast { position: fixed; }
 ._md-toast-animating,.md-toast-animating { overflow: auto !important;}
 
 .blocklistBx span{ display: block; text-align: center;    font-size: 14px }
-.blocklistBx .btn {     margin: 0 !important;
-    display: block !important;
+.blocklistBx .btn { margin: 0 !important;display: block !important;   width: 100%;  border-radius: 0;  border: 0; }
+.blocklistBx .loc{ margin: 5px 0; }
+.blocklistBx .loc md-icon { font-size: 20px !important }
+.listingBot-L .md-button { overflow: inherit !important;  margin: 0px 0px;  text-transform: capitalize !important;     color: #aeaeae !important}
+.listingBot-L .md-button  md-icon {color:rgba(0, 0, 0, 0.3);}
+.listingBot-L .md-button:hover { color: black !important }
+.listingBot-L .md-button:hover  md-icon {color:rgba(0, 0, 0, 0.5);}
+.listingBot-L { padding:.0; }
+.listingTop-Left strong{    text-transform: capitalize;}
+.needlogin strong {margin-bottom: 15px; display: block ; text-align: center;  color: rgb(3,155,229); font-style: italic; }
+.needlogin { width: 250px; }
+.needlogin .login-btn{  margin-right: 10px;   color: #03a9f4 !important; border: 1px #03a9f4 solid;}
+.needlogin .login-btn md-icon {color:#03a9f4 !important}
+
+.needlogin .signup-btn{  margin-left: 10px;   color:#ff8300 !important; border: 1px #ff8300 solid;}
+.needlogin .signup-btn md-icon {color:#ff8300 !important}
+.popover { z-index: 10; !important; }
+
+.fullAdd
+{    
+    margin-top: -12px;
+    margin-bottom: 10px;
+    height: 20px;
+}
+.myProfList li small, .typeLabel small { text-transform: capitalize; }
+.profileTopBx { min-height: 130px; }
+.typeLabel li > span { text-transform: capitalize; }
+md-input-container input { padding: 2px 15px !important }
+
+.profile-Img > img {    max-width: 182px;}
+.image-view{    height: 170px;
+    display: block;
     width: 100%;
-    border-radius: 0;
-    border: 0; }
-    .blocklistBx .loc{     margin: 5px 0; }
-        .blocklistBx .loc md-icon { font-size: 20px !important }
+    background-size: cover;}
+    .blocklistBx:hover {  border: 1px solid #00adff;}
+    .star{     color: #ec9015; }
 @media(min-width:768px)
 {
   .nav-btn{ display:none }

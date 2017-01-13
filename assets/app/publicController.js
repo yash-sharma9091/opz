@@ -1,12 +1,13 @@
 /*
 	name : public controller
 	function : login, signup, modal , contact us
-    */
 
-    angular.module('zenbrisa.public.Controller',['service'])
-    .controller('loginCtrl', loginCtrl)
-    .controller('contactus', contactus)
-    .controller('profileStepCtrl', profileStepCtrl);
+*/
+
+angular.module('zenbrisa.public.Controller',['service'])
+.controller('loginCtrl', loginCtrl)
+.controller('contactus', contactus)
+.controller('profileStepCtrl', profileStepCtrl);
 
 //controller injector
 loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location'];
@@ -14,6 +15,8 @@ loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$ro
 
 function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$location)
 { 
+  e.navabar=rootScope.navbar;
+  console.log(rootScope.navbar)
 
 	e.cancel = function() 
 	{
@@ -40,7 +43,8 @@ e.userLogin =function(from,data)
 
       else if(response.status==1)
       {
-          rootScope.logout();
+          
+          appServices.logout();
 
           e.alert={'message':"Success",'type':'alert-success'};
 
@@ -54,9 +58,7 @@ e.userLogin =function(from,data)
          }
 
     						//redirect to dashboard page
-                appServices.loader("Please wait.. while we'r checking your profile details.");
-                
-    						var url=appServices.getSessionStorage('redirectUrl');
+              		var url=appServices.getSessionStorage('redirectUrl');
                 rootScope.isUserLogin=appServices.checkStorage('user');
     						if(url)
     						{
@@ -67,16 +69,21 @@ e.userLogin =function(from,data)
                  {
                    
                     var user={"email":rootScope.isUserLogin.email};
+
                     if(response.profileCompleteStatus==0)
                     {
-                        dashbaord_url='/setting';              
+                        appServices.loader("Please wait.. while we'r checking your profile details.");
+                
+            
+                       dashbaord_url='/setting';              
                        rootScope.getUserProfile(user,'profile');
 
                     }
                      if(response.profileCompleteStatus==1)
                     {
+                      
                       dashbaord_url='/home';
-                       rootScope.getUserProfile(user);
+                      rootScope.getUserProfile(user);
 
                     }
                     
@@ -203,17 +210,39 @@ profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDia
 
 function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeout)
 {
-    e.cancel = function() 
+  e.cancel = function() 
   {
-     mdDialog.cancel();
- };
+    mdDialog.cancel();
+  };
+
+e.setMapcenter= function(location){
+
+  NgMap.getMap().then(function(map)
+  {
+      e.map = map;
+      e.map.setCenter(location);
+  });
+}
 
  //set profile data if updated
  e.user={};
  e.step=1;
+ e.fullAddress={};
+
  if(rootScope.userprofile)
- {
-  e.user=rootScope.userprofile;
+ {  
+    var userprofile=rootScope.userprofile;
+
+    e.user=rootScope.userprofile;
+    //set address on load
+  
+    var location={'latitude':userprofile['latitude'],"longitude":userprofile['longitude']};
+    e.fulladdress=strToAddress(userprofile['country'],userprofile['streetAddress'],userprofile['extendedAddress'],userprofile['state'],userprofile['city'],userprofile['zipcode'],location);
+  
+
+    //set map center
+    var loc={'lat':userprofile['latitude'], "lng":userprofile['longitude']};
+    e.setMapcenter(loc);
 
 }
 
@@ -233,160 +262,166 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeou
 
       }
 
-e.fullAddress={}
+
 
 e.placeChanged = function() 
 {
-  e.place = this.getPlace();
 
-  e.fullAddress={}
-  var address=e.place.address_components;
+e.place = this.getPlace();
+e.fullAddress={};
+$timeout(function(){
+var country = angular.element(document.querySelector(".country-name")).html();
+var streetAddress=angular.element(document.querySelector(".street-address")).html();
+var extendedAddress=angular.element(document.querySelector(".extended-address")).html();
+var state=angular.element(document.querySelector(".region")).html();
+var city=angular.element(document.querySelector(".locality")).html();
+var postal=angular.element(document.querySelector(".postal-code")).html();
+var location=JSON.parse(JSON.stringify(e.place.geometry.location));
 
-  e.fullAddress['fulladress']=address;
-  if(e.place)
-  {
-    e.fullAddress["location"]=JSON.parse(JSON.stringify(e.place.geometry.location));
-  }
-  angular.forEach(address, function(value,key)
-  {
-  
-        //get country
-        angular.forEach(value.types, function(node,key){
-                
-                  if(node=='country')
-                  {
-                    e.fullAddress["country"]={"name":value.long_name,"code":value.short_name};
+e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,postal,location)
+console.log(e.fulladdress);
 
-                  }
-                  if(node=='administrative_area_level_1')
-                        {
-                          e.fullAddress["state"]={"name":value.long_name,"code":value.short_name};
-                        }
+e.setMapcenter(e.place.geometry.location)
 
-                  if(node=='postal_code')
-                        {
-                          e.fullAddress["postal_code"]={"name":value.long_name,"code":value.short_name};
-                        }
-            });
-           
-        });
- 
 
-      NgMap.getMap().then(function(map)
-      {
-          e.map = map;
-          e.map.setCenter(e.place.geometry.location);
-         
-      });
+},100);
 
-      }
+} //end function get places
+
       
-      e.CheckFullAddress= function(event,user){
+      e.CheckFullAddress= function(event,user)
+      {
         if(user)
         {
-            delete user['fulladress'];
+            delete user['fulladdress'];
         }
       }
 
       var flag=0;
       e.userProfiledata={};
-      //submit form
+
+      e.stepBack= function(){
+          e.step=e.step-1;
+        
+      }
+      //submit profile form  step 
       e.updateProfile = function(form,data)
       {
         if(form.$valid)
         {
+        
+     
+        data['profileComplete']=false;
         e.alert='undefined';
-       
-        //process step-1
+
+        //profile step 1
         if(e.step==1)
         {
-        //check user age 
-        var age=getAge(data.dob.month+'/'+data.dob.month+'/'+data.dob.year);
-
-        if(age.age<18)
-        {
-          e.alert={'message':"You must be 18 years old",'type':'alert-danger'}; 
-        }
-        
-        }
-        if(e.step==2){
-          //set map center
-              if(rootScope.userprofile)
-              {
-
-              // NgMap.getMap().then(function(map)
-              // {
-              //   e.map = map;
-              //   e.loc=rootScope.userprofile.fulladress.location;
-              //   var center = new google.maps.LatLng(loc.lat, loc.lng);
-               
-              // $timeout(function(){
-              //      console.log(rootScope.userprofile.fulladress.location);
-              //     e.map.setCenter(center);
-              //   },400)
-              // });
-
-
-              }
-        }
-        if(e.step==3)
-        {   
-
           
+            var age=getAge(data.dob.month+'/'+data.dob.day+'/'+data.dob.year);
 
-
-            if(data.address)
+            if(age.age<18)
             {
-              
-              if(!e.place && !data.fulladress)
-              {
-                  
-                  e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
-                  flag=1;
-              }
-              else{
-                 flag=0;
-              }
-             
+              e.alert={'message':"You must be 18 years old",'type':'alert-danger'}; 
             }
+            else
+            { 
+                e.step=2;
+                e.user['dobOne']=strToDate(data.dob.year,data.dob.month,data.dob.day);
+
+            }
+        }
+
+        //profile step 2
+        else if(e.step==2)
+        {
+
+
+        e.step=3;
+        //set map center if exist
+        var loc={'lat':parseFloat(userprofile['latitude']), "lng":parseFloat(userprofile['longitude'])};
+       e.setMapcenter(loc);
            
         }
-        if(flag==0)
+         //profile step 3
+        else if(e.step==3)
         {
-         e.step=e.step+1;
-        }
+        //set map center
 
-        //final data
-        if(Object.keys(e.fullAddress).length>0)
+
+
+          if(data.address)
+            {
+             
+              if(!e.place && !data.address)
+              {
+                  e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
+                  return false; 
+              }
+              else
+              { 
+                if(!e.fulladdress['city'])
+                {
+                  e.alert={'message':"Please provide your city, type your full address",'type':'alert-danger'}; 
+                  return false; 
+                }
+                else
+                {
+                   e.step=4;
+                  
+                }
+              }
+          }
+             }
+        //profile step 4
+        else if(e.step==4)
         {
-            data["fulladress"]=e.fullAddress;
+          data['profileComplete']=true;
+          if(Object.keys(e.fulladdress).length>0)
+          {
+            data=setJsonData(data,e.fulladdress);
+          }
+
+           e.step=5;
+           console.log(data);
         }
-
-
-        //push data on server
-         if(e.step === 4)
-             {
-               data['profileComplete']=true;
-            }
-          
-            var userData=rootScope.isUserLogin;
-            userData['data']=data;
-
-            rootScope.getUserProfile(userData)
-
-            console.log(JSON.stringify(data));     
-      }
-      else
-      {
-            if(  e.step==3)
-            {
-            if(!data.address)
-            {
-            
-               e.alert={'message':"Incomplete address, please provide atleast your city",'type':'alert-danger'}; 
- 
-           }
-           }//end step if
+        
+        //send data on server
+        userData=rootScope.isUserLogin;
+        userData["data"]=data;
+        console.log(JSON.stringify(userData));
+        rootScope.getUserProfile(userData);
+       
          } //end else 
+
       }
-}
+
+  //add seeking_exchange
+  e.seeking_exchange = function(data)
+  {
+ 
+      if(data=='female')
+      {
+        e.user['seeking_female']=data;
+
+        delete e.user['seeking_male'];
+        delete e.user['seeking_both'];
+
+      }
+      else if(data=="male")
+      {
+        e.user['seeking_male']=data;
+        delete e.user['male'];
+        delete e.user['seeking_both'];
+
+      }
+      else if(data=="both")
+      {
+        e.user['seeking_both']=data;
+        e.user['seeking_female']='female';
+        e.user['seeking_male']="male";
+      }
+      
+    }//end seeking fun
+
+ }

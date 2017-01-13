@@ -6,7 +6,7 @@ angular.module('zenbrisa.controllers')
 
 	$scope.zn_SearchedResults = function(){
 		/**/
-		console.log($location.search())
+		console.log($location.search());
 		//$http.post("")
 	}
 

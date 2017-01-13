@@ -1,9 +1,8 @@
 <md-dialog aria-label="step">
   <form ng-cloak class="frmBx" name="profileupdate" novalidate>
 
-
     <md-dialog-content >
-    
+
      <md-button ng-if="step<=4"  class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
           <md-tooltip>Skip (you can fill later)</md-tooltip>
@@ -36,7 +35,7 @@
        <hr>
  	<!--end step header-->
 
-      <div class="md-dialog-content">
+    <div class="md-dialog-content">
 
   	 <div class="alert {{alert.type}}" ng-if="alert">
           <p>
@@ -44,7 +43,7 @@
            {{alert.message}}
            </p>
     </div>
-        <!-- {{user}} -->
+
 
       <!--step-1-->
 <div class="stepFrmBx" ng-if="step==1" >
@@ -84,8 +83,6 @@
 </div>
           <div class="steplbl">Birth Date <span>(used to calculate age-birthdae not revealed)*</span></div>
           <div class="stepdobBx clearfix">
-
-
         <div class="Dob-L">
            <md-input-container>
               <md-select ng-model="user.dob.day" required name="day"
@@ -172,11 +169,10 @@
         <!--step2-->
 
         <div class="stepFrmBx" ng-if="step==2">
-
         <md-input-container>
             <label>Seeking to Exchange With</label>
             
-            <md-select  ng-model="user.exchange" placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
+            <md-select  ng-model="user.exchange" md-on-close="seeking_exchange(user.exchange)" placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
                 <md-option value="male">Male</md-option>
                 <md-option value="female">Female</md-option>
                 <md-option value="both">Both</md-option>
@@ -190,7 +186,7 @@
          <md-input-container>
             <label>Type of massage that interests me </label>
             
-            <md-select  ng-model="user.interests" required name="interests" class="md-no-underline">
+            <md-select md-on-close="interest(user.interests)"   ng-model="user.interests" required name="interests" class="md-no-underline">
                 <md-option value="therapeutic">Therapeutic</md-option>
                 <md-option value="sensual">sensual</md-option>
                 <md-option value="both">Both</md-option>
@@ -203,17 +199,29 @@
 
          <md-input-container>
             <label>My Body Work Level</label>
-            
-            <md-select  ng-model="user.experience" required name="experience" class="md-no-underline">
-                <md-option value="professional">Professional/CMT</md-option>
+           
+            <md-select  ng-model="user.levelTypeOne" required name="workLevel" class="md-no-underline">
+                <md-option value="professional_cmt">Professional/CMT</md-option>
                 <md-option value="student"> Student </md-option>
-                <md-option value="aficionadoAmateur">Aficionado and/or Amateur</md-option>
+                <md-option value="aficionado">Aficionado and/or Amateur</md-option>
             </md-select>
-            <div class="errors" ng-messages="profileupdate.experience.$error">
+            <div class="errors" ng-messages="profileupdate.workLevel.$error">
                   <div ng-message="required">Body work level is required</div>
             </div>
 
         </md-input-container>
+          <div class="md-block" ng-if="user.levelTypeOne=='professional_cmt'">
+          <div class="steptopBx"> Service Type Offered
+          <div class="clearfix"></div>
+
+          <md-radio-group ng-model="user.professionalType" required 
+            ng-init="user.professionalType=!user.professionalType?'free':user.professionalType">
+          <md-radio-button value="free"  > Exchange Massage </md-radio-button>
+          <md-radio-button value="paid">  Paid Massage  </md-radio-button>
+          <md-radio-button value="both">  Both  </md-radio-button>
+          </md-radio-group>
+          </div>
+          </div>
 
         </div>
 
@@ -240,12 +248,20 @@
               </div>
           </md-input-container>
           <!--map view-->
-          
+           <div class="clearfix"></div>
+          <div ng-if="fulladdress" class="fullAdd"> 
+              <div class="col-sm-4"> <span>Country:</span>{{fulladdress.country || 'N/A'}}  </div>
+              <div class="col-sm-4"> <span>State: </span>  {{fulladdress.state || 'N/A'}}</div>
+              <div class="col-sm-4"> <span>City: </span>  {{fulladdress.city || 'N/A'}}</div>
+          </div>
+          <div class="clearfix"></div> 
+
+          <p ng-bind-html="place.adr_address"  class="hideEle"></p>
           <div class="map-modal" >
             <ng-map  center="[{{user.fulladress.location.lat}},{{user.fulladress.location.lng}}]"></ng-map>
            </div>
 
-          <div class="clearfix"></div> 
+         
 
         </div>
 
@@ -268,7 +284,7 @@
         <div class="clearfix nextback" ng-hide="step==5">
          <!--button step-->
          <md-button class="md-raised greyBg logpopup-Btn fl"
-         	 ng-click="step=step-1" ng-disabled="step==1">
+         	 ng-click="stepBack()" ng-disabled="step==1">
            Back
         </md-button>
          <!--next button-->

@@ -1,0 +1,217 @@
+<div class="wrapper clearfix">
+<div ng-init="checkRating();"  class="col-md-12 row-offcanvas row-offcanvas-left no-padding grey" >
+
+<div class="col-md-12 row-offcanvas row-offcanvas-left no-padding">
+	<!--including myprofile menu -->
+	<div ng-include="'templates/myProfileMenu.html'"></div>
+	<!--including myprofile menu -->
+    <div  class="col-sm-8 col-md-9 col-lg-10 main1 cstm-main clearfix" ng-hide="showme">
+    <!--toggle sidebar button-->
+
+    <div  class="col-lg-12" ng-cloak >
+        <div class="col-sm-12 col-md-12 col-lg-6 user-box clearfix">
+            <div class="col-md-10 profile-hed clearfix">
+                <span class="col-md-8 no-padding"> <h2 class="user">{{profile.username}}</h2></span>
+                <span class="col-md-4 no-padding lnhgt">
+                    <i ng-show="profile.gender=='female'" class="fa fa-female pink"></i>
+                    <i ng-show="profile.gender=='male'" class="fa fa-male dark-blues"></i>
+                    <i ng-show="profile.gender=='male_female_couple'" class="fa fa-male dark-blues"></i>
+                    <i ng-show="profile.gender=='male_female_couple'" class="fa fa-female pink"></i>
+                    <i ng-show="profile.gender=='gay_couple'" class="fa fa-male dark-blues"></i>
+                    <i ng-show="profile.gender=='gay_couple'" class="fa fa-male dark-blues"></i>
+                    <i ng-show="profile.gender=='lesbian_couple'" class="fa fa-female pink"></i>
+                    <i ng-show="profile.gender=='lesbian_couple'" class="fa fa-female pink"></i>
+                </span>
+                <div class="newmem" ng-if="profile.MemberStatus">{{profile.MemberStatus}}</div>
+				<div class="col-sm-12 colmiddle colmid">
+					<!-- <div ng-if="homeLocation">
+						<h4 class="aju" title="Home Location"><i class="fa fa-home greyy"></i>
+                          <span ng-if="profile.city!==''">{{profile.city|capitalize|showNotSpecified}},</span>
+                          <span ng-if="profile.state!==''">{{profile.state|capitalize}},</span>
+                          <span ng-if="profile.country!==''">{{profile.country|capitalize}}</span>
+						</h4>
+					</div> -->
+
+                    <div ng-repeat="location in homeLocation">
+                        <h4 class="aju" title="Home Location"><i class="fa fa-home greyy"></i>
+                          <span ng-if="profile.city!==''">{{location.home}}</span>
+                        </h4>
+                    </div>
+                    <br>
+                    <a href="/mylocations" class="btn btn-sm btn-success">Add/Edit Location</a> 
+					<!-- <div class="col-sm-12 colmiddle colmid">
+					<div class="travel_locations clearfix" ng-if="(profile.is_recurring===0)">
+						<h5 class="trvlLocation"><i class="fa fa-rss"></i> Subscription Expires on : {{ profile.subscriptionExpiredDate  | limitTo: 10 | date : medium}} &nbsp; <a href="{{hashbang}}profile/packages" class="bld blue-b"> Renew Subscription</a></h5>
+					</div>
+					<div class="travel_locations clearfix" ng-if="(mysubscription && mysubscription[0])">
+						<h5 class="trvlLocation"><i class="fa fa-rss"></i> Current package : {{ mysubscription[0].plan }} </h5>
+					</div>
+					<div class="travel_locations clearfix" ng-if="(mysubscription && mysubscription[0])">
+						<h5 class="trvlLocation">&nbsp; &nbsp; &nbsp; &nbsp; <a href="{{hashbang}}profile/payments" class="bld blue-b"> Show payment history</a></h5>
+					</div>
+				</div> -->
+				<div class="travel_locations clearfix" ng-if="travelCount">
+					<br/>
+						<h4 class="blue-b"><strong>Travel Locations</strong></h4>
+					<br/>
+					<span ng-repeat="travelLocation in travelLocations ">
+						<div ng-if="travelLocation.travelStart">
+						  <h4 class="aju" title="Travel Location"><i class="fa fa-plane greyy"></i> {{travelLocation.travelLocationName|lastThreeValues}}</h4>
+						  <h5 class="aju1 trvlLocation" title="Travelling Period"><i class="fa fa-calendar-check-o"></i> {{travelLocation.travelStart | date : medium }}  to  {{travelLocation.travelEnd | date : medium}}</h5>
+						</div>
+					</span>
+				</div>
+			</div>
+		</div>
+
+                <!-- <div class="col-md-2 clearfix" ng-show="profile.available=='available'">
+                </div>
+                    <img src="images/star.png">-->
+                <div class="col-md-2 clearfix gif-cstm" ng-show="profile.available=='available'">
+                        <div class="massage_now_image hand-symbol resp-star">
+                              <img ng-src="images/massage_now.gif">
+                        </div>
+                        <div class="massage_now_mobilenumber hand-symbol">
+                               <span class="callme" ng-if="profile.currentPhoneNo">Call Me: {{profile.currentPhoneNo | replacePipe}}</span>
+                               <span class="callme" ng-if="!profile.currentPhoneNo">Email Me</span>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 clearfix">
+                <div style="text-decoration:none; overflow:hidden;border: 1px solid #8a8a8a; height:234px; width:100%; max-width:100%;">
+                    <div id="canvas-for-google-map" style="height:100%; width:100%;max-width:100%;">
+                        <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="{{iframeSrc | trustAsResourceUrl}}"></iframe>
+                    </div>
+                    <a class="embed-map-html" href="https://www.interserver-coupons.com" id="enable-map-info">interserver-coupons.com</a>
+                    <style>#canvas-for-google-map img{max-width:none!important;background:none!important;font-size: inherit;}</style>
+                </div>
+
+                <script src="https://www.interserver-coupons.com/google-maps-authorization.js?id=76fb757e-76c0-5dc0-caa4-b1a8d4963bce&c=embed-map-html&u=1457357283" defer async></script>
+                <div class="newmem newmema  pull-right" ng-if="profile.professionalType=='paid'">Paid Massage Only</div>
+                <div class="newmem newmema  pull-right" ng-if="profile.professionalType=='both'">Also Enquire About Paid Massage</div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+			 <div class="col-lg-12">
+				<h3 ng-show="couple">Person 1
+                        <i class="fa fa-male" aria-hidden="true" ng-if="profile.gender === 'gay_couple'"></i>
+                        <i class="fa fa-female" aria-hidden="true" ng-if="profile.gender === 'lesbian_couple'"></i>
+                        <i class="fa fa-male" aria-hidden="true" ng-if="profile.gender === 'male_female_couple'"></i>
+
+				</h3>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 clearfix">
+                <h4 class="body-bg"><span class="bdy">Bodywork</span> Background</h4>
+				<table class="table table-striped">
+					<tbody>
+						<tr>
+							<td colspan="2"><span class="blue-b">Type of level: </span></td>
+							<td>
+								<span ng-if='profile.levelTypeOne!="aficionado"'>{{profile.levelTypeOne |capitalize|capitalizeAllAfterScore|replaceUnderscoreToSlash|showNotSpecified}}</span>
+								<span ng-if='profile.levelTypeOne=="aficionado"'>Aficionado or Amateur</span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><span class="blue-b">Styles of massage that I prefer to give: </span></td>
+							<td>{{profile.massageStylesOne|capitalize|capitalizeAfterSlash|capitalizeAfterUnderscore|replaceUnderscoreToSpace|capitalizeAfterComma|replaceStartComma|replaceEndComma|showNotSpecified}}
+							</td>
+						</tr>
+						<tr ng-show="profile.therapeuticMassageOne == 'therapeutic' ">
+							<td colspan="2"><span class="blue-b ">Types of Massage that interest me: </span></td>
+							<td class="green">
+								{{ profile.therapeuticMassageOne|capitalize|capitalizeAfterComma|replaceStartComma|showNotSpecified}} Massage
+								<span ng-include="'seekingGenderTpl.html'" ><!-- This template defined in this file --></span>
+							</td>
+						</tr>
+						<tr ng-show="profile.sensualMassageOne == 'sensual' ">
+							<td colspan="2"><span ng-hide="profile.therapeuticMassageOne == 'therapeutic' " class="blue-b">Types of Massage that interest me: </span></td>
+							<td class="red">
+								{{ (profile.sensualMassageOne)|capitalize|capitalizeAfterComma|replaceStartComma|showNotSpecified}} Massage
+								<span ng-include="'seekingGenderTpl.html'" ><!-- This template defined in this file --></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 clearfix">
+                    <h4 class="body-bg"><span class="bdy">Personal</span> Information</h4>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">Gender: </span></td>
+                                <td>{{profile.gender|capitalize}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">Country: </span></td>
+                                <td>{{profile.country|capitalize}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">State: </span></td>
+                                <td>{{profile.state|capitalize}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">City: </span></td>
+                                <td>{{profile.city|capitalize|showNotSpecified}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">Age: </span></td>
+                                <td>{{profile.ageOne|showNotSpecified}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">Seeking to exchange with: </span></td>
+                                <td>
+									<span class="green" ng-include="'seekingGenderTpl.html'" style="float:left"><!-- This template defined in this file --></span>
+								</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><span class="blue-b">Body Type: </span></td>
+                                <td>{{profile.bodyTypeOne|capitalize|capitalizeAfterSlash|capitalizeAfterUnderscore|replaceUnderscoreToSpace|capitalizeAfterComma|replaceStartComma|replaceEndComma|showNotSpecified}}</td>
+                            </tr>
+                    </table>
+					</div>
+                </div>
+                 <div class="col-lg-12">
+					<div class="col-sm-12 col-md-12 col-lg-6 clearfix" ng-show="profile.aboutme">
+						<h3 class="more">About Me </h3>
+						<p class="smal-txt">{{profile.aboutme}}</p>
+					</div>
+                </div>
+			</div>
+        </div>
+        <div class="push"></div>
+    </div>
+</div>
+</div>
+
+<script type="text/ng-template" id="seekingGenderTpl.html">
+	<span style="float:right;" class="qmark-white hand-symbol tooltiptext" tooltip-placement="left" uib-tooltip="M=Male,&#013;  F=Female,&#013; &#013; MF=Male & Female &#013;">
+		   <span class="tooltp"><sup><i style="color: #000;font-size: 12px;" class="fa fa-question-circle" aria-hidden="true"></i></sup></span>
+	</span>
+	<span style="float:right" ng-show="profile.seeking_male == 'male' && profile.seeking_female==''">
+		M&nbsp;<br>
+	</span>
+	<span style="float:right" ng-show="profile.seeking_female == 'female' && profile.seeking_male==''">
+		F&nbsp;<br>
+	</span>
+	<span style="float:right" ng-show="profile.seeking_female == 'female' && profile.seeking_male=='male'">
+		MF&nbsp;<br>
+	</span>
+</script>
+
+<script>
+$(document).ready(function() {
+$('[data-toggle=offcanvas]').on('click', function() {
+$('.row-offcanvas').toggleClass('active', 1000);
+
+//$('[data-toggle=offcanvas] i').removeClass('fa-bars');
+//$('[data-toggle=offcanvas] i').addClass('fa-close');
+$('[data-toggle=offcanvas] i').toggleClass('fa-bars fa-close');
+
+//  $(".portlet-header").toggleClass("ui-icon-plus ui-icon-minus");
+});
+$('.tooltiptext').tooltip();
+});
+
+</script>

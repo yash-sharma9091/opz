@@ -33,7 +33,7 @@ service.alert =function(alert){
 				$mdToast.simple()
 				.textContent(alert)
 				.position('top right')
-				.hideDelay(8000)
+				.hideDelay(6000)
 				);
 
 		};
@@ -55,7 +55,8 @@ service.alert =function(alert){
 	};
 
 	service.post=function(url,data, callback)
-	{
+	{	
+
 		var $request={
 			method:'POST',
 			url:url,
@@ -117,6 +118,7 @@ service.alert =function(alert){
 		Object.keys(localStorage).filter(function(key){
 			localStorage.removeItem(key)
 		});
+
 		return true;
 	};
 
@@ -177,29 +179,51 @@ service.alert =function(alert){
 
 
   }
+  service.removeNull= function(data)
+  {
+
+  	if(data)
+  	{
+  		angular.forEach(data,function(value, key){
+
+  			if(value==null || value=='null' || value=="" || value=='undefined')
+  			{
+  				delete data[key];
+  			}
+  		});
+
+  			return data;
+  	}
+
+  }
 
 	return service;
 });
 
 
 
+
+
 function getAge(dateString)
 {
+
   var today = new Date();
   var birthDate = new Date(dateString);
   var age = today.getFullYear() - birthDate.getFullYear();
   var m = (today.getMonth()+1)-(birthDate.getMonth()+1);
   var data={};
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+  {
       age--;
       m=12-1;
   }
- data["age"]=age;
+  data["age"]=age;
 
   if(m!=0)
   {
     data["month"]=m;
   }
+
   return data;
 }
 
@@ -216,3 +240,99 @@ function removeDuplicates(originalArray, prop) {
      }
       return newArray;
  }
+
+
+// Date.prototype.mmddyyyy = function(mm,dd,yyyy) {
+
+//   var mm = mm;
+//   var dd = dd;
+//   var yyyy = yyyy;
+
+//   var fullDate = [(mm>9 ? '' : '0') + mm,
+//               (dd>9 ? '' : '0') + dd,
+//               yyyy
+//          ].join('-');
+//          return new Date(fullDate);
+// };
+
+function getDateStr(date){
+	var d={};
+	var d1=new Date(date);
+	d['day']=d1.getDay().toString();
+	d['month']=(d1.getMonth()+1 ).toString();
+	d['year']=d1.getFullYear().toString();
+	return d;
+}
+
+function strToDate(yy,mm,dd)
+{		
+	var date=mm+'/'+dd+'/'+yy;
+
+	var date=new Date(date);
+	return date;	
+
+}
+
+//create address node
+
+
+function strToAddress(country,streetAddress,extendedAddress,state,city,postal,location)
+{
+
+var data={};
+
+if(country)
+{
+  data["country"]=country;
+}
+if(state)
+{
+  data["state"]=state;
+}
+if(city)
+{
+  data["city"]=city;
+}
+if(postal)
+{
+  data["zipcode"]=postal;
+}
+
+if(streetAddress)
+{
+  data["streetAddress"]=streetAddress;
+}
+if(extendedAddress)
+{
+  data["extendedAddress"]=extendedAddress;
+}
+if(location)
+{	
+	if(location.lat )
+	{
+		data["latitude"]=parseFloat(location.lat);
+	}
+	if(location.latitude){
+		data["latitude"]=parseFloat(location.latitude);
+	}
+	if(location.longitude){
+		data["longitude"]=parseFloat(location.longitude);
+	}
+	if(location.lat)
+	{
+  		data["longitude"]=parseFloat(location.lng);
+  	}
+}
+
+return data;
+}
+
+function setJsonData(data, node){
+	if(node)
+	{
+		angular.forEach(node, function(value, key){
+			data[key]=value;
+		});
+		return data;
+	}
+}

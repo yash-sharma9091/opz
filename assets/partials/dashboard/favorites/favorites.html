@@ -18,7 +18,7 @@
           
           <!--review list data-->
         <div class="row blockList">
-          <div class="publicHd">My Favorites</div>
+          <div class="publicHd">My Favorites ({{data.length}})</div>
             <div class="loading" ng-show="loading">
                <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
                <span>Loading..</span>
@@ -29,9 +29,8 @@
                 <div class="col-sm-3 col-xs-6" ng-repeat="x in data track by $index">
                   <div class="blocklistBx">
                     <a>
-                      <i>
-                        <img ng-if="x.profilePic" ng-src="{{x.profilePic}}" alt="{{x.fullName || x.username}}">
-                        <img ng-if="!x.profilePic" src="images/default-user-icon-profile.png" alt="default">
+                      <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">
+                        <md-icon class="star">star</md-icon>
                       </i>
                         <span>{{x.fullName || x.username}}<small>{{x.country}}</small></span>
                       </a>

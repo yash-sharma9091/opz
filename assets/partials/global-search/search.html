@@ -232,28 +232,45 @@
                 </div>
               </div>
             </li> -->
-             <li class="greenBdr" ng-repeat="user in znUsers track by $index">
-             <!-- <pre>{{user | json}}</pre> -->
-              <div class="listingTop" ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : 'whiteBg'">
+              <!--class="greenBdr"-->
+             <li  ng-repeat="user in znUsers track by $index">
+           
+              <div class="listingTop" 
+                    ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : 'whiteBg'">
+
                 <div class="profpaidBx">
-                  <a class="vollatBg" ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">Paid Professional Massage</a>
-                  <a class="greenBg">Online</a>
-                  <a class="yellowBg" ng-hide="user.lastActive > 30">Updated Member</a>
+                  <a class="vollatBg" 
+                    ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">
+                    Paid Professional Massage
+                  </a>
+                  <!-- <a class="greenBg">Online</a> -->
+
+                <a class="yellowBg" ng-hide="user.lastActive > 30">Updated Member</a>
                 </div>
                 <div class="listingTop-Left">
                   <div class="listingImgBx">
                  
                     <div class="listingImg">  
-
                       <img ng-src="{{user.profilePic != '' && user.profilePic != null ? user.profilePicUrl : 'images/'+user.gender+'.png'}}">
                     </div>
                     <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
                     <span>
 
-                    <small class="material-icons pinkClr personIcon" ng-show="user.ageOne != null && user.ageOne != '' ">person</small>{{user.ageOne}} <b ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
-
-                    <small class="material-icons personIcon">room</small> {{user.city+", "}} {{user.state+", "}} {{user.country}}  I  {{user.distance | number : 2}} Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received ({{user.reviewReceivedCount}})</a></span>
+                    <small class="material-icons pinkClr personIcon" 
+                            ng-show="user.ageOne != null && user.ageOne != '' ">person</small>
+                            {{user.ageOne}} 
+                    <b ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
+                    <small class="material-icons personIcon">room</small> 
+                    {{user.city+", "}} {{user.state+", "}} {{user.country}} I 
+                    {{user.distance | number : 2}} Miles Away
+                    </span>
+                    
+                    <span ng-if="isUserLogin">
+                        <a>Favorite</a> | 
+                        <a>Write a Review</a>  |  
+                        <a class="greyClr"> Review Penned</a> | 
+                        <a>Reviews Received ({{user.reviewReceivedCount}})</a>
+                    </span>
                     
                     <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
                     
@@ -286,16 +303,61 @@
                   </div>
                 </div>
               </div>
+
               <div class="listingBot clearfix">
                 <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr" >({{user.publicPhotoCount}})</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos <span class="blueClr" >({{user.privatePhotoCount}})</span></a> 
-                    <a>Request Photo Key </a>
-                    <span class="toltip2">?<i>Photo Key</i></span>
+                    <md-button>
+                        <md-icon>camera_alt</md-icon> Public Photos 
+                        <span class="blueClr" >({{user.publicPhotoCount}})</span>
+                    </md-button>
+                <!--if uder not login-->
+                <span ng-if="!isUserLogin">
+                    <md-button 
+                        uib-popover-template="'needLogin.html'"
+                        popover-trigger="'outsideClick'"
+                        popover-title="Private Photos" 
+                        popover-placement="top"
+                      >
+                      <md-icon>collections</md-icon> Private Photos 
+                      <span class="blueClr" >({{user.privatePhotoCount}})</span>
+                    </md-button> 
+
+                    <md-button   
+                        uib-popover-template="'needLogin.html'"
+                        popover-trigger="'outsideClick'"
+                        popover-title="Request Photo Key" 
+                        popover-placement="top">Request Photo Key <span class="toltip2">?<i>Photo Key</i></span>
+                    </md-button>
+
+                    <md-button
+                        uib-popover-template="'needLogin.html'"
+                        popover-trigger="'outsideClick'"
+                        popover-title="Block" 
+                        popover-placement="top">
+                        <md-icon> do_not_disturb_on</md-icon> Block
+                    </md-button>
+                    </span>
+                  <!--if uder login-->
+                  <span ng-if="isUserLogin">
+
+                    <md-button >
+                      <md-icon>collections</md-icon> Private Photos 
+                      <span class="blueClr" >({{user.privatePhotoCount}})</span>
+                    </md-button> 
+
+                    <md-button >Request Photo Key <span class="toltip2">?<i>Photo Key</i></span>
+                    </md-button>
+
+                    <md-button>
+                        <md-icon> do_not_disturb_on</md-icon> Block
+                    </md-button>
+                  </span>
+
                 </div>
                 <div class="listingBot-R">
                   <md-button class="md-raised md-primary viewBtn white">View Conversation</md-button>
-                  <md-button class="md-raised md-primary viewBtn white" ng-click="camposemail($event)">Email</md-button>
+                  <!-- ng-click="camposemail($event)" -->
+                  <md-button class="md-raised md-primary viewBtn white" >Email</md-button>
                 </div>
               </div>
             </li>
@@ -341,3 +403,19 @@
     </div>
   </div>
 </section>
+
+
+<!--need to be login template -->
+<script type="text/ng-template" id="needLogin.html">
+  <div class="needlogin text-center">
+        <strong> Need to be login? </strong>
+        <md-button class="login-btn" ng-click="openPopover=!openPopover;login();">  <md-icon> account_circle</md-icon> Login </md-button> 
+        <md-button  class="signup-btn" ng-click="openPopover=!openPopover;signup();">  <md-icon> account_box</md-icon> Signup    </md-button> 
+              
+        </div>
+             
+      </div>
+        </div>
+  </div>
+   
+</script>
