@@ -49,5 +49,6 @@ var API_URL=
 	"removefavourite": api_base_url+'users/makeUnFavourite',
 	"getblockUser": api_base_url+'users/getBlockedUsers',
 	"removeBlockuser": api_base_url+'users/unblockAUser',
-	"logout": api_base_url+'users/userLogout'
+	"getTravelCities":api_base_url+"travelLocations/getTravelCities",
+	"logout": api_base_url+'users/userLogout',
 }

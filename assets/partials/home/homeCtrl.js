@@ -31,7 +31,7 @@ angular.module('zenbrisa.controllers')
 				searchData['paid_exchange'] = 1
 			}
 
-			if(search_by == 'both_exchange'){
+			if(search_by == 'both'){
 				searchData['both_exchange'] = 1
 			}
 		}
@@ -57,6 +57,8 @@ angular.module('zenbrisa.controllers')
 		}
 		
 		delete searchData['address'];
+		delete searchData['lat'];
+		delete searchData['lon'];
 		delete searchData['search_by'];
 		//console.log(searchData)
 		$location.path('/search').search(searchData)
@@ -72,7 +74,7 @@ angular.module('zenbrisa.controllers')
 		});
 		/*Search Results*/
 		var obj = $location.search();
-		obj.limit = 20;
+		obj.limit = 50;
 		obj.offset = 0;
 		appServices.post(API_URL.search, obj, function(response){
 			if(response.status == 1){
@@ -236,4 +238,24 @@ angular.module('zenbrisa.controllers')
 		delete result.offset;
 		$location.search(result);
     }
+
+    /*$scope.setFields = function(){
+    	var loc = [];
+    	if($scope.searchData['city']){
+    		loc.push($scope.searchData['city'])
+    	}
+
+    	if($scope.searchData['state']){
+    		loc.push($scope.searchData['state'])
+    	}
+
+    	if($scope.searchData['country']){
+    		loc.push($scope.searchData['country'])
+    	}
+
+    	//console.log($scope.searchData)
+    	$scope.searchData = {
+    		address : loc.join(", ")
+    	}
+    }*/
 }])
