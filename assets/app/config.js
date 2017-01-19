@@ -30,6 +30,7 @@ angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('userDashboardModule',[]);
 angular.module('userDashboardSearchModule',[]);
+angular.module('userLocationsModule',[]);
 
 var API_URL=
 {
@@ -55,7 +56,7 @@ var API_URL=
 	"getUserVideo":api_base_url+'users/getVideosByUserId',
 	"removeVideoById":api_base_url+'users/deleteVideo',
 	"AddUserVideo":api_base_url+'users/addVideo',
-	"getTravelCities":api_base_url+"travelLocations/getTravelCities"
-	
+	"getTravelCities":api_base_url+"travelLocations/getTravelCities",
+	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations"
 
 }

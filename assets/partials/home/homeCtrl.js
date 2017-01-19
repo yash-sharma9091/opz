@@ -2,13 +2,12 @@ angular.module('zenbrisa.controllers')
 .controller('homepage',['$scope','$location','NgMap','appServices','$rootScope', function($scope,$location,NgMap, appServices,$rootScope){
 	/*Init Objects*/
 	$scope.searchData = {}
-  $scope.dynamicPopover = {
-    content: 'Hello, World!',
-    templateUrl: 'myPopoverTemplate.html',
-    title: 'Title dfgfdgdf'
-  };
-
-
+    
+    $scope.dynamicPopover = {
+	    content: 'Hello, World!',
+	    templateUrl: 'myPopoverTemplate.html',
+	    title: 'Title dfgfdgdf'
+	};
 
 
 	/*Get Places from Google Map*/
@@ -65,14 +64,15 @@ angular.module('zenbrisa.controllers')
 	}
 
 	$scope.zn_SearchedResults = function(){
-		navigator.geolocation.getCurrentPosition(function(position, html5Error) {
+		/*navigator.geolocation.getCurrentPosition(function(position, html5Error) {
 		     //geo_loc = processGeolocationResult(position);
 		     //currLatLong = geo_loc.split(",");
 		     console.log(position.coords.latitude.toFixed(8))
 		     console.log(position.coords.longitude.toFixed(8))
 		     //initializeCurrent(currLatLong[0], currLatLong[1]);
-		});
+		});*/
 		/*Search Results*/
+		$scope.loading = true;
 		var obj = $location.search();
 		obj.limit = 50;
 		obj.offset = 0;
@@ -91,6 +91,7 @@ angular.module('zenbrisa.controllers')
 			        onPageChanged: loadPages,
 			    };
 			}
+			$scope.loading = false;
 		})
 		var v = $location.search();
 		$scope.searchData = $location.search();

@@ -109,6 +109,15 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+  .when('/my-locations',
+    {
+    templateUrl:"/partials/dashboard/locations/my-locations.html",
+    controller:'userLocations',
+    access:
+    {
+          login:true
+    }
+  })
   .when('/search',
     {
     templateUrl:"/partials/global-search/search.html",
