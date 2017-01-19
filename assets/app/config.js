@@ -54,7 +54,8 @@ var API_URL=
 	"getReviews":api_base_url+'users/getMyReceivedReviews',
 	"getUserVideo":api_base_url+'users/getVideosByUserId',
 	"removeVideoById":api_base_url+'users/deleteVideo',
-	"AddUserVideo":api_base_url+'users/addVideo'
-
+	"AddUserVideo":api_base_url+'users/addVideo',
+	"getTravelCities":api_base_url+"travelLocations/getTravelCities"
 	
+
 }

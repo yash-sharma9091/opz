@@ -234,9 +234,9 @@
             </li> -->
               <!--class="greenBdr"-->
              <li  ng-repeat="user in znUsers track by $index">
-           
+             <!--  <pre>{{user | json}}</pre> -->
               <div class="listingTop" 
-                    ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : 'whiteBg'">
+                    ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
 
                 <div class="profpaidBx">
                   <a class="vollatBg" 
@@ -244,7 +244,8 @@
                     Paid Professional Massage
                   </a>
                   <!-- <a class="greenBg">Online</a> -->
-
+                <a class="bluBG" ng-if="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''">Therapeutic</a>
+                <a class="bluBG" ng-if="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''">Sensual</a>
                 <a class="yellowBg" ng-hide="user.lastActive > 30">Updated Member</a>
                 </div>
                 <div class="listingTop-Left">
@@ -396,7 +397,7 @@
             </li> -->
           </ul>
 
-          <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current" ng-if="paging.total > 20"></cl-paging>
+          <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current" ng-if="paging.total > paging.limit"></cl-paging>
         </div>
         <div ng-if="znUsers.length < 1" class='alert alert-info width_100'>No Match Found in your Search Criteria.</div>
       </div>

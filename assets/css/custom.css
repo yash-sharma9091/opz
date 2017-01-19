@@ -718,3 +718,11 @@ md-input-container md-select, md-input-container input {
   width: 100% !important;
 }
 .mdselMrgn{ margin-bottom: 25px !important;} 
+
+.lightylbg {
+    background: #fefef4 !important;
+}
+.bluBG{ background-color: #0134FF; }
+.bluBG:hover {
+    background: #0630d8;
+}

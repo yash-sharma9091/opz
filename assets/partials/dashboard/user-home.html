@@ -38,22 +38,23 @@
 
         <md-tab id="tab1">
         <md-tab-label>My Location</md-tab-label>
-        <md-tab-body>
+        <md-tab-body ng-init="searched.mile=''">
               <div class="msglocat">
                 <div class="srchformBx">
-                  <md-select ng-model="searched.Miles" placeholder="- Select within Miles -" class="md-no-underline sechInp">
+                  <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
                     <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
                   </md-select>
                 </div>
-                <div class="srchformBx">
+                <div class="srchformBx" ng-init="mySavedLocations()">
 
-                  <md-select ng-model="searched.Country" placeholder="- Select Location -" class="md-no-underline sechInp">
-                    <md-option ng-repeat="x in country" value="{{x}}">{{x}}</md-option>
+                  <md-select ng-model="searched.location" placeholder="- Select Location -" class="md-no-underline sechInp">
+                    <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}">{{x.travelLocationName}}</md-option>
+                    <!--  -->
                   </md-select>
                 </div>
-                {{searched}}
+                
                 <div class="srchsave">
-                  <md-button class="md-raised md-primary logpopup-Btn">Search</md-button>
+                  <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromSavedLocations(searched)" aria-label="Search">Search</md-button>
                 </div>
               </div>
 </md-tab-body>
