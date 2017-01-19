@@ -117,9 +117,14 @@
               <md-menu-content width="2">
                 <ul class="userList">
                       <li role="menuitem">
-                      <a ng-href="{{userNavbar.profile.submenu.myprofile.href}}">My Profile</a></li>
-                      <li role="menuitem"><a ng-href="{{userDashboard.setting.href}}">Setting</a></li>
-                      <li role="menuitem" ng-click="logout()"><a >Logout</a></li>
+                      <a ng-href="{{userNavbar.profile.submenu.myprofile.href}}">
+                      <md-icon>assignment_ind</md-icon>My Profile</a></li>
+                      <li role="menuitem">
+                      <a ng-href="{{userDashboard.setting.href}}">
+                        <md-icon>settings</md-icon> Settings</a>
+                      </li>
+                      <li role="menuitem" ng-click="logout()">
+                      <a > <md-icon>exit_to_app</md-icon>Logout</a></li>
                     </ul>
               </md-menu-content>
             </md-menu>

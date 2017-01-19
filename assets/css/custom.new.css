@@ -272,6 +272,7 @@ md-input-container input { padding: 2px 15px !important }
 .text-white {  color: white !important; }
 .modal-lg { max-width: 500px; }
 .modal-lg textarea{ height: 70px !important; }
+.userList md-icon {font-size: 21px !important;}
 @media(min-width:768px)
 {
   .nav-btn{ display:none }
