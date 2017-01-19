@@ -215,12 +215,13 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeou
     mdDialog.cancel();
   };
 
-e.setMapcenter= function(location){
+e.setMapcenter= function(pos){
 
   NgMap.getMap().then(function(map)
   {
       e.map = map;
-      e.map.setCenter(location);
+      e.map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
+   
   });
 }
 
@@ -242,6 +243,7 @@ e.setMapcenter= function(location){
 
     //set map center
     var loc={'lat':userprofile['latitude'], "lng":userprofile['longitude']};
+   /// console.log(loc);
     e.setMapcenter(loc);
 
 }
@@ -279,9 +281,15 @@ var postal=angular.element(document.querySelector(".postal-code")).html();
 var location=JSON.parse(JSON.stringify(e.place.geometry.location));
 
 e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,postal,location)
-console.log(e.fulladdress);
 
-e.setMapcenter(e.place.geometry.location)
+
+ NgMap.getMap().then(function(map)
+  {
+      e.map = map;
+    
+      e.map.setCenter(e.place.geometry.location);
+    
+  });
 
 
 },100);
@@ -328,7 +336,7 @@ e.setMapcenter(e.place.geometry.location)
             { 
                 e.step=2;
                 e.user['dobOne']=strToDate(data.dob.year,data.dob.month,data.dob.day);
-
+                
             }
         }
 
@@ -340,7 +348,7 @@ e.setMapcenter(e.place.geometry.location)
         e.step=3;
         //set map center if exist
         var loc={'lat':parseFloat(userprofile['latitude']), "lng":parseFloat(userprofile['longitude'])};
-       e.setMapcenter(loc);
+        e.setMapcenter(loc);
            
         }
          //profile step 3
@@ -389,7 +397,6 @@ e.setMapcenter(e.place.geometry.location)
         //send data on server
         userData=rootScope.isUserLogin;
         userData["data"]=data;
-        console.log(JSON.stringify(userData));
         rootScope.getUserProfile(userData);
        
          } //end else 

@@ -116,6 +116,7 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/dashboard/setting/setting.html",
     controller:"userDashboard",
+    
     access:
     { 
           login:true
@@ -125,6 +126,7 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/dashboard/favorites/favorites.html",
     controller:"MyFavourites",
+    //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
           login:true
@@ -134,6 +136,7 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/dashboard/blockedUsers/blockedusers.html",
     controller:"blockedusers",
+    //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
           login:true
@@ -141,8 +144,40 @@ angular.module('app.ngRoute',['ngRoute'])
   })
   .when('/reviews-penned',
     {
-    templateUrl:"/partials/dashboard/reviewPinned/review-pinned.html",
+    templateUrl:"/partials/dashboard/reviews/review-pinned.html",
     controller:"userReviewPined",
+    //controller path file path : assest/dashboard/dashboard.js
+    access:
+    { 
+          login:true
+    }
+  })
+   .when('/reviews-received',
+    {
+    templateUrl:"/partials/dashboard/reviews/review-received.html",
+    controller:"userReviewReceived",
+    //controller path file path : assest/dashboard/dashboard.js
+    access:
+    { 
+          login:true
+    }
+
+  })
+   .when('/my-vedio',
+    {
+    templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
+    controller:"myVedio",
+    //controller path file path : assest/dashboard/dashboard.js
+    access:
+    { 
+          login:true
+    }
+  })
+    .when('/photogallery-public',
+    {
+    templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
+    controller:"photogalleryPublic",
+    //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
           login:true

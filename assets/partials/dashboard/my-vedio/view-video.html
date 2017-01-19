@@ -1,0 +1,23 @@
+
+ <md-dialog aria-label="view video">
+  <form ng-cloak>
+    <md-toolbar class="viewvideoTitle">
+      <div class="md-toolbar-tools">
+        <h2>{{videoTitle}}</h2>
+       
+         <md-button class="md-icon-button closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content"  layout="row"  layout-align="center center">
+
+        <iframe ng-src="{{getUrl(videourl)}}" class="videoModal"></iframe>
+      </div>
+    </md-dialog-content>
+
+   
+  </form>
+</md-dialog>

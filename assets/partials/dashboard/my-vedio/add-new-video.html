@@ -1,0 +1,66 @@
+<md-dialog aria-label="addvideo">
+  <form name="videoFrom" novalidate>
+ 
+    <md-dialog-content>
+      <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+        <h2 class="LoginHd">Add Video</h2>
+      <div class="md-dialog-content modal-lg">
+        
+ 
+
+          <div class="loginFrmTop">
+          <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+                <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                 <span ng-bind-html="alert.message"> </span>
+               </p>
+        </div> 
+
+
+            <md-input-container class="md-block">
+            <label>Enter video title</label>
+            <input required name="title" ng-model="video.title" >
+            <div ng-messages="videoFrom.title.$error" role="alert" >
+              <div ng-message="required" class="my-message">Enter your video title</div>
+            </div>
+          
+          </md-input-container>
+
+           <md-input-container class="md-block">
+
+            <label>Provide the Youtube/Embedded URL</label>
+            <input required name="url" ng-model="video.url"  type="url" >
+            <div ng-messages="videoFrom.url.$error" role="alert" >
+              <div ng-message="required" class="my-message">Enter your embedded URL</div>
+              <div ng-message="pattern" class="my-message">Enter valid URL</div>
+            </div>
+          
+          </md-input-container>
+
+
+           <md-input-container class="md-block">
+          <label>Description</label>
+          <textarea ng-model="video.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+
+           </div>
+        </div>
+            
+            <!--button action-->
+            <md-dialog-actions layout="row">
+               <div class="addvid-BtnBx clearfix">
+                <md-button type="submit" aria-label="add"  ng-click="AddVideo(videoFrom,video)" class="md-raised md-primary logpopup-Btn">
+                  <span ng-if="!isProcess">Add Video</span>
+                  <span ng-if="isProcess" >Processing..</span>
+
+                  </md-button>
+                <md-button class="md-raised md-primary btn-gray logpopup-Btn" ng-click="cancel()">Back</md-button>
+                </div>
+            </md-dialog-actions>
+    </md-dialog-content>
+
+    
+  </form>
+</md-dialog>

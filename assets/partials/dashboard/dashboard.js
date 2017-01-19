@@ -1,12 +1,18 @@
 angular.module('userDashboardModule',['ngMessages']).controller('userDashboard', userDashboard)
 .controller('MyFavourites', MyFavourites)
 .controller('blockedusers', blockedusers)
-.controller('userReviewPined', userReviewPined);
+.controller('userReviewPined', userReviewPined)
+.controller('userReviewReceived', userReviewReceived)
+.controller('myVedio', myVedio)
+.controller('addNewVideo', addNewVideo);;
 
 userDashboard.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location'];
 MyFavourites.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 blockedusers.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 userReviewPined.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+userReviewReceived.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+myVedio.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast','$sce'];
+addNewVideo.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
 
 
@@ -101,7 +107,7 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 		if(form.$valid)
 		{
 			e.alert1={'message':'Processing..','type':'alert-success'};
-			var confirm=appServices.confirmAlert('Are you sure?','Are you sure to delete your Zenbrisa Account', 'default','Yes', 'No');
+			var confirm=appServices.confirmAlert('Confirm?','Are you sure to delete your Zenbrisa Account', 'default','Yes', 'No');
 			
 			data['userId']=rootscope.isUserLogin.userId;
 			appServices.post(API_URL.DeleteUserAccount,data, function(response)
@@ -190,7 +196,7 @@ function MyFavourites(e, rootscope,appServices,$mdDialog,$timeout,location,mdToa
 //set setUnfavorite user
 e.setUnfavorite =function(id, index,data){
 
-	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Favourites list ', 'default','Yes', 'No');
+	var confirm=appServices.confirmAlert('Confirm?','Are you sure to remove form your Favourites list ', 'default','Yes', 'No');
 
 								$mdDialog.show(confirm).then(function(response) 
 								{
@@ -243,7 +249,7 @@ function blockedusers(e, rootscope,appServices,$mdDialog,$timeout,location,mdToa
 //remove form block list 
 e.setUnBlock=function(id, index,data){
 
-	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Block list ', 'default','Yes', 'No');
+	var confirm=appServices.confirmAlert('Confirm?','Are you sure to remove form your Block list ', 'default','Yes', 'No');
 
 								$mdDialog.show(confirm).then(function(response) 
 								{
@@ -272,53 +278,158 @@ e.setUnBlock=function(id, index,data){
 }
 
 
-//blocked user controller
+// user userReviewPined controller 
 function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
 {
+		//http request for get review form server 
 		e.loading=true;
 		var data={};
-		appServices.post(API_URL.getblockUser,data, function(response)
+		appServices.post(API_URL.getMyPennedReview,data, function(response)
 
 		{	
 
 		var data=response.data;	
-							
 				e.loading=false;
-				if(response.status==1)
-				{
-					e.data=data;
-				}	
-
+				e.data=data;
 
 		});
 
-//remove form block list 
-e.setUnBlock=function(id, index,data){
+}
 
-	var confirm=appServices.confirmAlert('Are you sure?','Are you sure to remove form your Block list ', 'default','Yes', 'No');
 
-								$mdDialog.show(confirm).then(function(response) 
+// user userReviewPined controller 
+function userReviewReceived(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
+{
+		//http request for get review form server 
+		e.loading=true;
+		var data={};
+
+		appServices.post(API_URL.getReviews,data, function(response)
+
+		{	
+
+		var data=response.data;	
+				e.loading=false;
+				e.data=data;
+
+		});
+
+}
+
+// user userReviewPined controller 
+function myVedio(e, rootscope,appServices,mdDialog,$timeout,location,mdToast,$sce)
+{
+
+		//http request for get video list form server 
+		e.loading=true;
+
+		var data={'userId':rootscope.isUserLogin.userId};
+
+		appServices.post(API_URL.getUserVideo,data, function(response)
+
+		{	
+
+		var data=response.data;	
+				e.loading=false;
+				rootscope.videoList=data;
+			});
+	//open add video diaglog-box
+	e.addvideo=function(ev)
+	{
+			appServices.modal('partials/dashboard/my-vedio/add-new-video.html', addNewVideo, ev);
+	}
+
+
+
+//delete video by ID
+e.deleteVideoById = function(id,data,index)
+{
+	var confirm=appServices.confirmAlert('Confirm?','Are you sure to remove from your video list ', 'default','Yes', 'No');
+
+								mdDialog.show(confirm).then(function(response) 
 								{
 
 										data.splice(index,1);
-										
 										//remove form server
-										var user={'blockedUserId':id};
-										appServices.post(API_URL.removeBlockuser,user, function(response)
+										var user={'videoId':id};
+										appServices.post(API_URL.removeVideoById,user, function(response)
 
 										{
-												if(response.status==1)
-												{
-													
-														appServices.alert("Successfully removed from your block list")
+												appServices.alert("Successfully removed from your video list")
 								
-												
-												}	
+						
 										});
 
 								});
 	
+}
 
-};
+
+
+//openmodal full srceen 
+e.zoomMap = function(url,title,evt)
+{
+				rootscope.videourl=url;
+				rootscope.videoTitle=title;
+
+			    mdDialog.show({
+			   	  controller: 'addNewVideo',
+			      templateUrl: 'partials/dashboard/my-vedio/view-video.html',
+			      parent: angular.element(document.body),
+			      targetEvent: evt,
+			      scope:e.$new(),
+			      clickOutsideToClose:true,
+			      fullscreen:true // Only for -xs, -sm breakpoints.
+			    })
+			    .then(function(answer) {
+			   
+			    }, function() {
+
+			      
+			    });
+  };
+
+
+
+} //end controller 
+
+function addNewVideo(e,$rootScope,appServices,$mdDialog,$timeout,$location,$mdToast)
+{
+e.video={};
+e.cancel= function()
+	{
+	
+		$mdDialog.cancel();
+	}
+
+e.AddVideo = function(form,data)
+{
+	
+	if(form.$valid)
+	{
+	e.alert={'message':"Processing..",'type':'alert-success'}
+	e.isProcess=true;
+	data['userid']=$rootScope.isUserLogin.userId;
+
+	appServices.post(API_URL.AddUserVideo,data, function(response)
+
+		{	
+			if(response.limitExceed===true)
+			{
+				e.alert={'message':"You don't have allowed added video Limit Exceeded",'type':'alert-danger'};	
+			}
+			
+			
+			if(response.data)
+			{
+				$rootScope.videoList.push(response.data);
+				e.isProcess=false;
+				e.video={};
+				e.alert={'message':"Your video has been successfully added",'type':'alert-success'};
+			}
+
+		});	
+	}
+}
 
 }

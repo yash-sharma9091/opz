@@ -1,3 +1,5 @@
 #node_modules/**/*
 Zenbrisa-html/**/*
 .tmp
+server-info
+

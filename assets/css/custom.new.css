@@ -155,7 +155,7 @@ hr {
 
 .elipssis{
     display: inline-block;
-    width: 106px;
+     max-width: 106px;
     overflow: hidden;
     line-height: 11px;
     text-overflow: ellipsis;
@@ -225,7 +225,7 @@ md-progress-circular path {stoke: #00adff !important }
     height: 20px;
 }
 .myProfList li small, .typeLabel small { text-transform: capitalize; }
-.profileTopBx { min-height: 130px; }
+.profileTopBx {  min-height: 180px; }
 .typeLabel li > span { text-transform: capitalize; }
 md-input-container input { padding: 2px 15px !important }
 
@@ -235,10 +235,47 @@ md-input-container input { padding: 2px 15px !important }
     width: 100%;
     background-size: cover;}
     .blocklistBx:hover {  border: 1px solid #00adff;}
-    .star{     color: #ec9015; }
+    .star, .star md-icon{     color: #ec9015; }
+    .profileTopBg {     padding: 15px 0; }
+    .typeLabel li {     padding-bottom: 30px; }
+.reviewList .image-view {height: 157px;}
+
+.tags, span.tags{
+      position: absolute;
+    right: 3px;
+    color: white;
+    font-size: 10px;
+    font-style: normal;
+    top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.blockList {  padding-top:0px;}
+.reviewList ul li:hover { border: #0fb1ff solid 1px; }
+.revDet strong{    margin-top: 11px;}
+.btn-gray{ background: #7f7f7f; }
+.vedio-content {     margin: 10px auto;    border: 1px #e0e0e0 solid; }
+.vedio-content:hover {    border: 1px #04a6f4 solid;}
+.text-small span{ font-size: 90% }
+.vedio-content p.title
+{ 
+    margin: 8px 10px;
+    overflow: hidden; font-weight: 500; text-align: center; white-space: nowrap;
+    text-overflow: ellipsis; padding-bottom: 0;
+}
+
+.viewvideoTitle  {color: white !important}
+.viewvideoTitle .closeIcon{  right:20px; color: white !important }
+.btn-action {    border-top: 1px #e0e0e0 solid; background-color: #f3f3f3;}
+.btn-action .md-button { text-transform: capitalize !important; }
+.videoModal {  border:0; width: 980px; height: 400px; }
+.text-white {  color: white !important; }
+.modal-lg { max-width: 500px; }
+.modal-lg textarea{ height: 70px !important; }
 @media(min-width:768px)
 {
   .nav-btn{ display:none }
+
 }
 
 @media(max-width: 767px)

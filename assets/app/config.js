@@ -49,5 +49,12 @@ var API_URL=
 	"removefavourite": api_base_url+'users/makeUnFavourite',
 	"getblockUser": api_base_url+'users/getBlockedUsers',
 	"removeBlockuser": api_base_url+'users/unblockAUser',
-	"logout": api_base_url+'users/userLogout'
+	"logout": api_base_url+'users/userLogout',
+	"getMyPennedReview":api_base_url+'users/getMyPennedReviews',
+	"getReviews":api_base_url+'users/getMyReceivedReviews',
+	"getUserVideo":api_base_url+'users/getVideosByUserId',
+	"removeVideoById":api_base_url+'users/deleteVideo',
+	"AddUserVideo":api_base_url+'users/addVideo'
+
+	
 }

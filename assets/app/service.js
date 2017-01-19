@@ -241,34 +241,33 @@ function removeDuplicates(originalArray, prop) {
       return newArray;
  }
 
-
-// Date.prototype.mmddyyyy = function(mm,dd,yyyy) {
-
-//   var mm = mm;
-//   var dd = dd;
-//   var yyyy = yyyy;
-
-//   var fullDate = [(mm>9 ? '' : '0') + mm,
-//               (dd>9 ? '' : '0') + dd,
-//               yyyy
-//          ].join('-');
-//          return new Date(fullDate);
-// };
-
-function getDateStr(date){
-	var d={};
-	var d1=new Date(date);
-	d['day']=d1.getDay().toString();
-	d['month']=(d1.getMonth()+1 ).toString();
-	d['year']=d1.getFullYear().toString();
-	return d;
+function getDateStr(date)
+ {	
+	var d2={};
+ 	if(date)
+ 	{
+ 		var d=new Date(date);
+ 		d2['day']=d.getDate().toString();
+ 		d2['month']=(d.getMonth()+1).toString();
+ 		d2['year']=d.getFullYear().toString();
+		return d2;
+	}
 }
 
+function getFormateddate(date)
+{
+	console.log("sdkjfsdjk")
+	var d=new Date(date);
+	 console.log(d)
+	return d
+}
 function strToDate(yy,mm,dd)
-{		
-	var date=mm+'/'+dd+'/'+yy;
+{	
 
-	var date=new Date(date);
+	var date=new Date();
+	date.setDate(dd);
+	date.setMonth(mm-1);
+	date.setFullYear(yy);
 	return date;	
 
 }

@@ -43,8 +43,7 @@
                       </span>
 
                     <i class="tooltipBx"  
-                      uib-popover="{{userprofile.seeking_female?'Female':                      userprofile.seeking_male?'Male':
-                      userprofile.seeking_both?'Male-Female':''
+                      uib-popover="{{userprofile.seeking_both?'Male-Female' :  userprofile.seeking_male?'Male': userprofile.seeking_female?'Female':'Not Specified'
                       }} " 
                       popover-trigger="'mouseenter'" 
                       popover-append-to-body="'true'"> ? </i>
@@ -104,9 +103,7 @@
                         {{userprofile.seeking_male?'M':''}} 
                       </span>
                       <i class="tooltipBx"
-                      uib-popover=" {{ 
-                      userprofile.seeking_female?'Female':                      userprofile.seeking_male?'Male':
-                      userprofile.seeking_both?'Male-Female':''
+                    uib-popover="{{userprofile.seeking_both?'Male-Female' :  userprofile.seeking_male?'Male': userprofile.seeking_female?'Female':'Not Specified'
                       }} " 
                       popover-trigger="'mouseenter'" 
                       popover-append-to-body="'true'"

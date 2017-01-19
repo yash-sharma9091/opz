@@ -14,7 +14,6 @@ angular.module('zenbrisa.app')
      $mdThemingProvider.theme('success');
 })
 
-
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();
@@ -33,20 +32,17 @@ angular.module('zenbrisa.app')
 	{
 			appServices.modal('partials/template/campose-mail.html', loginCtrl, ev)
 	}
-	$rootScope.addvideo=function(ev)
-	{
-			appServices.modal('partials/template/add-video.html', loginCtrl, ev)
-	}
+	
 	$rootScope.profileStep=function(ev)
 	{
-		appServices.modal('partials/dashboard/profile-step.html', profileStepCtrl, ev)
+		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev)
 	};
 	
 	
 }])
 
 //check login session 
-.run(['$rootScope','appServices','$location','localStorageService', function($rootScope,appServices,$location,localStorageService){
+.run(['$rootScope','appServices','$location','localStorageService','$sce', function($rootScope,appServices,$location,localStorageService,$sce){
 	
 	if(appServices.checkStorage('user'))
 	{
@@ -117,7 +113,7 @@ $rootScope.closeAlert= function(alert){
 										profileData['dob']=getDateStr(profileData['dobOne']);
 										
 										var age=getAge(profileData['dobOne']);
-										
+										//console.log(profileData['dob'])
 										profileData['age']=age.age
 										
 
@@ -129,23 +125,56 @@ $rootScope.closeAlert= function(alert){
 										{
 											profileData['latitude']=parseFloat(profileData['latitude'])
 										}
+									
 										if(!profileData['address'])
-										{
-											profileData['address']=profileData['city'] +', ' + profileData['state'] + ', '+ profileData['country'];
+										{	
+												profileData['address']=profileData['city'] +', ' + profileData['state'] + ', '+ profileData['country'];
+												
+												var add=profileData['address'];
+												console.log(add);
+													add.search('undefined');
+													
 										}
 										if(!profileData['fullName'])
 										{
 											profileData['fullName']=profileData['username'];
 										}
+
+										if(profileData['seeking_male']=='male')
+										{
+											profileData['exchange']='male';
+										}
+
+										if(profileData['seeking_female']=='female')
+										{
+											profileData['exchange']='female';
+										}
+										
+										if(profileData['seeking_both']=='both')
+										{
+											profileData['exchange']='both';
+										}
+										// //therapeuticMassageOne : "therapeutic"
+										if(!profileData['interests'])
+										{
+										
+											if(profileData['therapeuticMassageOne'])
+											{
+												profileData['interests']='therapeutic';
+
+											}
+										}
+									
 										$rootScope.userprofile=profileData;
 										
-									}
+										}
+
 
 										if(profile)
 										{
 											$rootScope.profileStep(); //open profile modal 
 										}
-										//$rootScope.profileStep();
+										
 
 							}); //end http post
 
@@ -157,6 +186,18 @@ $rootScope.closeAlert= function(alert){
 		var user={"email":$rootScope.isUserLogin.email};
 		$rootScope.getUserProfile(user);
 
+	}
+
+
+		$rootScope.getUrl = function(url)
+		{
+			 return  $sce.trustAsResourceUrl(url);
+		}
+
+	$rootScope.getFormateddate=function(date)
+	{
+	var d=new Date(date);
+	return d.toDateString();
 	}
 
 	$rootScope.getAge=function(age)
@@ -311,7 +352,9 @@ $rootScope.userDashboard={
 	'setting':{'title':'Setting', 'href':'#/setting'},
 	'favorites':{'title':'My Favorites', 'href':"#/my-favourites"},
 	'blockedUsers':{'title':'My Blocked List', 'href':"#/blocked-userlist"},
-	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"}
+	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"},
+	'reviewsreceived':{'title':'Reviews Received', 'href':"#/reviews-received"},
+    'myvedio':{'title':'My Vedio ', 'href':"#/my-vedio"}
 
 	
 	

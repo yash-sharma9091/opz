@@ -1,0 +1,78 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+          
+          <!--review list data-->
+        <div class="row blockList">
+          <div class="publicHd">Received Reviews ({{data.length}})</div>
+            <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+
+            <div>
+                  <div class="noData" ng-show="data.length==0"> <md-icon >star</md-icon>  
+                  You haven't Received any Reviews yet!</div>
+                  
+               <div class="reviewList">
+          <ul>
+            <li ng-repeat="x in data track by $index">
+            <a >
+              <div class="review-img">
+               
+                <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">
+                  <md-icon class="star">star</md-icon>
+                </i>
+
+            </div>
+            <div class="revDet">
+            <!--status with color-->
+            <span class="label label-success tags" 
+                  ng-if="x.approvalStatus=='Approved'">
+                  {{x.approvalStatus}}
+            </span>
+            <span class="label label-danger tags" 
+                  ng-if="x.approvalStatus=='Disapproved'">
+                  {{x.approvalStatus}}
+            </span>
+                        <span class="label tags label-primary" 
+                  ng-if="x.approvalStatus=='Pending'">
+                  {{x.approvalStatus}}
+            </span>
+             
+                <strong>{{x.fullName}} <small> {{getFormateddate(x.createdAt)}} </small></strong>
+                <i class="star" reating reating-data="x.rating"></i>
+                <p ng-bind-html="x.reviewNote"></p>
+                <span>Reviewed By: {{x.username}} </span>
+              </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!--end reviewe pned list-->
+           </div>
+         
+
+       </div> <!--end row-->
+      </div> <!--end coloumn-->
+
+    </div>
+  </div>
+</section>
+
+</div>	 
