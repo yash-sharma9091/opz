@@ -39,24 +39,28 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
   .when('/free-massage-exchange',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/free-massage-exchange/free-massage-exchange.html",
     access:
     {
           login:false
     }
   }).when('/gay-massage',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/gay-massage/gay-massage.html",
     access:
     {
           login:false
     }
   }).when('/paid-professional-massage',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/paid-professional-massage/paid-professional-massage.html",
     access:
     {
           login:false
     }
   }).when('/sensual-massage',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/sensual-massage/sensual-massage.html",
     access:
     {
@@ -64,6 +68,7 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
   .when('/therapeutic-massage',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/therapeutic-massage/therapeutic-massage.html",
     access:
     {
@@ -71,6 +76,7 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
   .when('/advertise',{
+    controller:"homepage",
     templateUrl:"/partials/static-pages/advertise/advertise.html",
     access:
     {
