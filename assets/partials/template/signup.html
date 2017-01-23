@@ -21,7 +21,6 @@
         <md-progress-circular  ng-if="checking"
                    md-mode="indeterminate" 
                    min-length="6"
-                    md-maxlength="150"
                    md-diameter="15px">
                    </md-progress-circular>
             <label>User Name </label>
@@ -34,7 +33,7 @@
                    >
           <div ng-messages="signup.username.$error">
           <div ng-message="required">Username is required.</div>
-          <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="minlength">Enter username between 6 to 10 chnarcter.</div>
           <div ng-message="username">
            {{user.username}} is already taken, 
               please choose a different name
