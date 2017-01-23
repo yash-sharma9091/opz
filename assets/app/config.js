@@ -66,8 +66,8 @@ var API_URL=
 	"deleteMyPhoto":api_base_url+ 'users/deletePhoto',
 	"setProfilePic":api_base_url+'users/makeProfilePicture',
 	//"uploadPhoto": api_base_url+'users/uploadPhoto'
-	"uploadPhoto": api_base_url+'users/addPhoto?privacy=',
-	"checkuserName":api_base_url+'phase2/checkUsername'
+	"uploadPhoto": api_base_url+'users/addPhoto',
+	"checkuserName":api_base_url+'phase2/checkUsername',
 	
 
 	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations"
