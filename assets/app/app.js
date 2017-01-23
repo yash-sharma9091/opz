@@ -74,6 +74,13 @@ angular.module('zenbrisa.app')
 
 	});
 
+//header profile expend
+
+$rootScope.headerExp=true;
+$rootScope.userHeaderExp= function()
+{
+	$rootScope.headerExp=!$rootScope.headerExp;
+}
 $rootScope.closeAlert= function(alert){
 
 	alert=false;
@@ -220,7 +227,8 @@ $rootScope.closeAlert= function(alert){
 			'search':'partials/global-search/search-form.html',
 			'priceview':'partials/template/price.html',
 			'usersideNavbar':'partials/template/user-side-navbar.html',
-			'userProfileHeader':'partials/dashboard/user-profile-header.html'
+			'userProfileHeader':'partials/dashboard/user-profile-header.html',
+			'photoGalleryContent' :'partials/dashboard/photoGallery/photo-gallery-content.html'
 		}
 }])
 
@@ -328,7 +336,7 @@ $rootScope.userNavbar={
 	"submenu":{ 
 		"myprofile":{"title":'My Profile',"href":"#/my-profile"},
 		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
-		"photogallery":{"title":'Photo Gallery',"href":"#/home"},
+		"photogallery":{"title":'Photo Gallery',"href":"#/photo-gallery"},
 		"videogallery":{"title":'Video Gallery',"href":"#/home"},
 		"packages":{"title":'Membership',"href":"#/home"},
 		"refer":{"title":'Refer Friend Bonus',"href":"#/home"},
@@ -348,16 +356,16 @@ $rootScope.userNavbar={
 
 }
 
-$rootScope.userDashboard={
+$rootScope.userDashboard=
+{
 	'setting':{'title':'Setting', 'href':'#/setting'},
 	'favorites':{'title':'My Favorites', 'href':"#/my-favourites"},
 	'blockedUsers':{'title':'My Blocked List', 'href':"#/blocked-userlist"},
 	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"},
 	'reviewsreceived':{'title':'Reviews Received', 'href':"#/reviews-received"},
-    'myvedio':{'title':'My Vedio ', 'href':"#/my-vedio"}
-
-	
-	
+    'myvedio':{'title':'My Vedio ', 'href':"#/my-vedio"},
+    'photoGallery':{'title':'Public Photo Gallery ', 'href':"#/photo-gallery"}
+    
 }
 
 
@@ -366,6 +374,8 @@ $rootScope.userDashboard={
 				.then(function(){
 			});
 }
+
+
 
 }])
 //load country data

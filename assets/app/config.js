@@ -22,7 +22,10 @@ angular.module('zenbrisa',
 'ngMap',
 'cl.paging',
 'userDashboardModule',
-'userDashboardSearchModule'
+'userDashboardSearchModule',
+'userPhotoGalleryModule',
+'ame.lightbox',
+'filevalidate'
 ]);
 
 angular.module('zenbrisa.app',[]);
@@ -30,6 +33,7 @@ angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('userDashboardModule',[]);
 angular.module('userDashboardSearchModule',[]);
+angular.module('userPhotoGalleryModule',[]);
 
 var API_URL=
 {
@@ -55,7 +59,13 @@ var API_URL=
 	"getUserVideo":api_base_url+'users/getVideosByUserId',
 	"removeVideoById":api_base_url+'users/deleteVideo',
 	"AddUserVideo":api_base_url+'users/addVideo',
-	"getTravelCities":api_base_url+"travelLocations/getTravelCities"
+	"getTravelCities":api_base_url+"travelLocations/getTravelCities",
+	"getUserphoto":api_base_url+'users/getMyPhotos',
+	"deleteMyPhoto":api_base_url+ 'users/deletePhoto',
+	"setProfilePic":api_base_url+'users/makeProfilePicture',
+	//"uploadPhoto": api_base_url+'users/uploadPhoto'
+	"uploadPhoto": api_base_url+'users/addPhoto?privacy=',
+	"checkuserName":api_base_url+'phase2/checkUsername'
 	
 
 }

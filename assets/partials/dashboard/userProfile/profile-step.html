@@ -49,7 +49,7 @@
 <div class="stepFrmBx" ng-if="step==1" >
       
   <md-input-container >
-            <label>Full name</label>
+            <label>Username/ Full name</label>
             <input  name="fullName" 
                     required 
                     type="text"
@@ -71,10 +71,10 @@
 				<md-radio-button value="female" class="md-primary">
 				<md-icon class="pinkClr">person</md-icon> Female
 				</md-radio-button>
-
+<!-- 
 				<md-radio-button value="both" class="md-primary">
 				<md-icon class="blueClr">person</md-icon> Both
-				</md-radio-button>
+				</md-radio-button> -->
 				
 			</md-radio-group>
 
@@ -187,7 +187,7 @@
             
             <md-select md-on-close="interest(user.interests)"   ng-model="user.interests" required name="interests" class="md-no-underline">
                 <md-option value="therapeutic">Therapeutic</md-option>
-                <md-option value="sensual">sensual</md-option>
+                <md-option value="sensual">Sensual</md-option>
                 <md-option value="both">Both</md-option>
             </md-select>
             <div class="errors" ng-messages="profileupdate.interests.$error">
@@ -259,9 +259,6 @@
           <div class="map-modal" >
             <ng-map  center="[{{user.fulladress.location.lat}},{{user.fulladress.location.lng}}]"></ng-map>
            </div>
-
-         
-
         </div>
 
         <!--step4-->
@@ -271,7 +268,7 @@
           <textarea 
               name="message"
               ng-model="user.aboutme" 
-              md-maxlength="300" rows="5" md-select-on-focus>
+               rows="5" md-select-on-focus>
            </textarea>
          
           </md-input-container>

@@ -352,7 +352,7 @@ e.deleteVideoById = function(id,data,index)
 										data.splice(index,1);
 										//remove form server
 										var user={'videoId':id};
-										appServices.post(API_URL.removeVideoById,user, function(response)
+										appServices.post(API_URL.deleteMyPhoto,user, function(response)
 
 										{
 												appServices.alert("Successfully removed from your video list")

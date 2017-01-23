@@ -18,24 +18,36 @@
 
   <div class="loginFrmTop" ng-if="!isSignupSuccess">
  
-  <div class="col-sm-6  padding-l">
-          <md-input-container class="md-block margin-top25 ">
-            <label>Full name</label>
-            <input  name="fullname" 
+  
+      <md-input-container class="md-block margin-top25 loaderText">
+        <md-progress-circular  ng-if="checking"
+                   md-mode="indeterminate" 
+                   min-length="6"
+                    md-maxlength="150"
+                   md-diameter="15px">
+                   </md-progress-circular>
+            <label>User Name </label>
+            <input  name="username" 
                     required 
                     type="text"
-                    ng-model="user.fullname" 
+
+                    ng-keyup="checkUsrname(user.username,signup)"
+                    ng-model="user.username" 
                    >
-          <div ng-messages="signup.fullname.$error">
-          <div ng-message="required">Full name is required.</div>
+          <div ng-messages="signup.username.$error">
+          <div ng-message="required">Username is required.</div>
+          <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="username">
+           {{user.username}} is already taken, 
+              please choose a different name
+          </div>
+         
             
       </div>
         <div class="clearfix"></div>
   </md-input-container>
-  </div>
-
-
-   <div class="col-sm-6 padding-r">
+ 
+<!-- 
      <md-input-container class="md-block margin-top25">
             <label>Alias name (optional)  </label>
             <input  name="alias" 
@@ -44,11 +56,11 @@
                    >
                  
   </md-input-container>
-  </div>
 
-  <div class="clearfix"></div>
+ -->
+  <!-- <div class="clearfix"></div> -->
 
- <div class="md-block">
+ <!-- <div class="md-block">
  <div class="steptopBx">
     What you want to show on site? 
     <div class="clearfix"></div>
@@ -59,18 +71,17 @@
         <md-radio-button value="true"> Alias </md-radio-button>
      </md-radio-group>
 </div>
- </div>
+ </div> -->
 
 
 
 
   <md-input-container class="md-block">
-    <label>I am a</label>
-    <md-select ng-model="user.gender" name="gender" placeholder="I am a" required class="md-no-underline">
+    <label>Gender </label>
+    <md-select ng-model="user.gender" name="gender" placeholder="Gender" required class="md-no-underline">
         <md-option value="male">Male</md-option>
         <md-option value="female">Female</md-option>
-        <md-option value="gay">Gay</md-option>
-        <md-option value="other">Both</md-option>
+    
     </md-select>
    
   </md-input-container>
@@ -114,7 +125,6 @@
                       type="password"
                       ng-model="user.confirmpassword" 
               >
-             
               <div ng-messages="signup.confirmpassword.$error">
                 <div ng-message="required">Confirm Password is required.</div>
               </div>
@@ -127,9 +137,10 @@
                 <md-checkbox  aria-label="Checkbox 1" name="agree" ng-model="user.agree" >
                 I agree to </md-checkbox>
 
-                <a ng-href="{{navabar.term.url}}">
-                Terms of Services</a> &amp; 
-                <a ng-href="{{navabar.privacy.url}}">Privacy Policy</a>
+                <a href="#/term-of-use" target="_blank">
+                Terms of Use</a> &amp; 
+                <a href="#/privacy"  target="_blank">Privacy Policy</a>
+
                 <div class="clearfix"></div>
 
              

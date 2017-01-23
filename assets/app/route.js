@@ -179,16 +179,27 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-    .when('/photogallery-public',
+    .when('/photo-gallery/:id',
     {
-    templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
-    controller:"photogalleryPublic",
-    //controller path file path : assest/dashboard/dashboard.js
+    templateUrl:"/partials/dashboard/photoGallery/photo-gallery.html",
+    controller:"photoGallery",
+    //controller path file path : assest/dashboard/photogallery.js
     access:
     { 
           login:true
     }
   })
+     .when('/photo-gallery/',
+    {
+    templateUrl:"/partials/dashboard/photoGallery/photo-gallery.html",
+    controller:"photoGallery",
+    //controller path file path : assest/dashboard/photogallery.js
+    access:
+    { 
+          login:true
+    }
+  })
+   
     .when('/404',{
     templateUrl: function(){
       location.assign('/404');

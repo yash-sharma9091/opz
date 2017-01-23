@@ -1,0 +1,29 @@
+
+      <div class="profPicDesc" ng-init="contentInfo=true; contentInfo1=true;">
+          <div class="profdesc">
+            <strong>Profile Photo
+                <md-button class="md-icon-button  pull-right" aria-label="exp1" ng-click="contentInfo1=!contentInfo1">
+                    <md-icon ng-if="!contentInfo1">add</md-icon>
+                    <md-icon ng-if="contentInfo1"> remove</md-icon>
+                  </md-button>
+            </strong>
+            <p ng-if="contentInfo1"><i class="material-icons">check</i> 
+            You will have the most success and speed up connecting with another Zenbrisa member if you can show the other member a clear, square closeup photo of yourself. Everyone wants to place a face with a name. In order to Upload a Profile Photo, please first upload a photo to your Public or Private Photos and then click on the green icon on the bottom left corner of the photo. Once the Profile Photo appears in the left corner of your profile, it may appear a bit distorted. You will see a Cropping Tool in order to optimize your photo and remove the distortion.
+            </p>
+          </div>
+
+          <div class="profdesc">
+            <strong>Public and Private Photo Galleries 
+                  <md-button aria-label="exp2" class="md-icon-button pull-right" ng-click="contentInfo=!contentInfo">
+                    <md-icon ng-if="!contentInfo">add</md-icon>
+                    <md-icon ng-if="contentInfo"> remove</md-icon>
+                  </md-button>
+            </strong>
+            <div ng-if="contentInfo">
+            <p><i class="material-icons">check</i> Please make sure to only post CURRENT photos of yourself….Other members do not want to see how you used to look!</p>
+            <p><i class="material-icons">check</i> Please make sure that the photos that you post are actually photos of yourself!! Trying to pass off photos of someone else as yourself is unlawful and can result in cancellation of Zenbrisa membership.</p>
+            <p><i class="material-icons">check</i> Private Photo Gallery - Your Private Photo Gallery can only be viewed by those members in which you have sent a Photo Key. </p>
+            <p><i class="material-icons">check</i> Please make sure that all Sensual photos posted are in good taste. Do not post any photos that are lude, pornographic or include sex acts.</p>
+            </div>
+          </div>
+        </div>

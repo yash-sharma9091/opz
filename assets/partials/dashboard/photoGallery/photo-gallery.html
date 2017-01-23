@@ -1,0 +1,338 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+          
+          <!--review list data-->
+        <div class="row blockList">
+         
+          <!--upload picture-->
+
+          <div class="file-upload-container" ng-class="{'active':fileUploadList.length>=1}">
+            <div class="browseBx" ng-class="{'active':fileUploadList.length>=1}">
+             <div class="uploading" ng-if="isUploading">
+                    <md-progress-circular  
+                   md-mode="indeterminate" 
+                   md-diameter="20px">
+                   </md-progress-circular>
+                   Uploading..
+              </div>
+
+              <input type="file"
+              name="files"
+              file-type="image"
+              filesize="5242880"
+              message="error"
+              maxfile="maxFile"
+                 max="20"
+              ng-model="fileUploadList"
+              ng-fileupload="fileUploadList"
+              multiple 
+              class="browseFile"/>
+     
+            <label> 
+              <span ng-if="fileUploadList.length==0">Select your file (<i>Jpg,Jpeg,png,bmp</i>)</span>
+              <span ng-if="fileUploadList.length>=1">
+                
+                <md-icon>add_circle_outline</md-icon> 
+                <span>
+                Add File<span ng-if="fileUploadList.length>1">s</span> ( {{fileUploadList.length}})
+                </span>
+              </span>
+
+            </label>
+
+            <md-button aria-label="upload" ng-click="uploadFile()"  type="button" name="button" class="selfileBtn">
+              <span  ng-if="fileUploadList.length==0" ng-hide="isUploading">Browse file</span>
+              <span  ng-if="fileUploadList.length>=1" ng-hide="isUploading">
+                <md-icon>file_upload</md-icon> Upload 
+              </span>
+              <span ng-if="isUploading"><md-icon>file_upload</md-icon> Uploading..</span>
+
+            </md-button>
+            </div>
+            <div class="clearfix"></div>
+          <div class="pubgall">
+          Please Browse in photo and then click Upload. Kindly refrain from adding sexual photos in 
+          <a class="blueClr">public gallery</a>.
+          
+          </div>
+
+      <!--file preview list-->
+
+      <div class="fileview" ng-if="fileUploadList.length>0">
+      <strong class="center-block"> 
+      <!--count file-->
+        <md-icon>photo</md-icon>
+          File List ({{fileUploadList.length}}) 
+          <md-icon>public</md-icon> 
+
+        <md-button ng-hide="isUploading" ng-click="removeAll()" remove-all="fileUploadList">
+        <md-icon>delete</md-icon> Remove All</md-button>
+      </strong>
+      <ul>
+        <li ng-repeat="x in fileUploadList track by $index" 
+        ng-init="x.privacy='public'; x.uploading=false; x.isUploaded=false;">
+          <img class="img-thumbnail" img-preview view="x.doc"  file="x.value" />
+            <span>{{x.name}}</span>
+            <span class="wrap">
+
+              <md-switch ng-hide="x.isUploaded"  ng-model="x.privacy" aria-label="privacy" ng-true-value="'private'" ng-false-value="'public'" class="md-warn switch">
+                <span ng-if="x.privacy=='public'">Public</span>
+                  <span ng-if="x.privacy=='private'">Private</span>
+              </md-switch>
+
+                   <md-progress-circular  ng-if="x.uploading"
+                   md-mode="indeterminate" 
+                   md-diameter="20px">
+                   </md-progress-circular>
+               <md-button ng-show="x.isUploaded" class="md-icon-button green">
+                <md-icon >
+                <i class="material-icons">check</i></md-icon>
+              </md-button>  
+              <md-button ng-hide="x.uploading || x.isUploaded" remove-file remove="$index" data="fileUploadList" class="md-icon-button">
+                <md-icon >
+                <i class="material-icons">delete</i></md-icon>
+              </md-button>
+          </span>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+   
+    </div>
+     <div class="clearfix"></div>
+    </div>
+
+             <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+
+       
+      
+       <div class="publicHd">
+          <span ng-if="selectedTabs==0"> Public Photo Gallery ({{publicPhotoList.length}})</span>
+          <span ng-if="selectedTabs==1"> Private Photo Gallery ({{privatePhotoList.length}})</span>
+          <span ng-if="selectedTabs==2"> All Photo Gallery ({{photoList.length}})</span>
+       </div>
+
+        <!--tabs  for private and public photo-->
+           <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" md-selected="selectedTabs" >
+           <!--public photo-->
+               <md-tab label="Public Photo Gallery ({{publicPhotoList.length}})" md-on-select="changeTabs()">
+                  <md-content class="md-padding">
+                      
+                        <div ng-hide="publicPhotoList.length==0" class="profpicTxt"> To Make Any of These Images Your PROFILE PHOTO, Please Click 
+                        <img src="images/portuser-icon.png" alt="user-icon"> icon
+                        </div>
+
+
+                        <div class="noData" ng-show="publicPhotoList.length==0"> 
+                        <md-icon >photo</md-icon>  You haven't added any Public Photo yet!</div>
+                        <!--image list-->
+
+                      <div class="row gallMain gallery">
+
+                        <div class="col-sm-3 col-xs-6" 
+                          ng-repeat="x in publicPhotoList track by $index" ng-init="x.isLoading=false">
+
+                          <div class="gallImgBx">
+
+                            <div class="loading black" ng-if="x.isLoading">
+                            <md-progress-circular class="md-primary" md-diameter="30">
+                              </md-progress-circular>
+                            <span>Please wait we'r processing.. your request</span>
+                            </div>
+
+
+                          <div class="img-view" style="background-image:url({{x.thumbImageName}})">
+
+                          </div>
+                        <!--   <img ng-src="{{x.thumbImageName}}"> -->
+                        <!--image hover -->
+                        <i class="transition">
+                        <a ng-click="openLightbox(publicPhotoList)" class="transition">
+                        <img src="images/zoom-icon.png" alt=""></a>
+                        </i>
+                        <span class="clearfix addelIcon">
+
+                          <a class="pull-left" 
+                              ng-click="setProfilePicture(x.justName, x.imageWOurl,x.id, $index,publicPhotoList)">
+                          <img src="images/portuser-icon.png" alt="add">
+                          </a>
+                          
+                          <a class="pull-right"  
+                              ng-click="removePhoto(publicPhotoList,x.id,$index)">
+                          <img src="images/close-gall-icon.png" alt="remove">
+                          </a>
+                          </span>
+                        </div>
+                        </div>
+
+
+
+                      </div>
+
+
+
+                  </md-content>
+               </md-tab>
+
+                <!--private  photo-->
+               <md-tab md-on-select="changeTabs()" label="Private Photo Gallery ({{privatePhotoList.length}})">
+                  <md-content class="md-padding">
+                       
+                        <div ng-hide="privatePhotoList.length==0" class="profpicTxt"> 
+                          To Make Any of These Images Your PROFILE PHOTO, Please Click 
+                        <img src="images/portuser-icon.png" alt="user-icon"> icon
+                        </div>
+
+
+                        <div class="noData" ng-show="privatePhotoList.length==0"> 
+                        <md-icon >photo</md-icon>  You haven't added any Private Photo yet!</div>
+                        <!--image list-->
+
+                      <div class="row gallMain gallery">
+
+                        <div class="col-sm-3 col-xs-6" ng-repeat="x in privatePhotoList track by $index" ng-init="x.isLoading">
+
+                          <div class="gallImgBx">
+                          <div class="loading black" ng-if="x.isLoading">
+                            <md-progress-circular class="md-primary" md-diameter="30">
+                              </md-progress-circular>
+                            <span>Please wait we'r processing.. your request</span>
+                            </div>
+                          <div class="img-view" style="background-image:url({{x.thumbImageName}})">
+
+                          </div>
+                        <!--   <img ng-src="{{x.thumbImageName}}"> -->
+                        <!--image hover -->
+                        <i class="transition">
+                        <a ng-click="openLightbox(privatePhotoList)" class="transition">
+                        <img src="images/zoom-icon.png" alt=""></a>
+                        </i>
+                        <!--image action-->
+                          <span class="clearfix addelIcon">
+
+                          <a class="pull-left" 
+                              ng-click="setProfilePicture(x.justName, x.imageWOurl,x.id, $index,privatePhotoList)">
+                          <img src="images/portuser-icon.png" alt="add">
+                          </a>
+                          
+                          <a class="pull-right"  
+                              ng-click="removePhoto(privatePhotoList,x.id,$index)">
+                          <img src="images/close-gall-icon.png" alt="remove">
+                          </a>
+                          </span>
+                        </div>
+                        </div>
+
+
+
+                      </div>
+
+
+
+                  </md-content>
+               </md-tab>
+
+                <!--all -->
+               <md-tab md-on-select="changeTabs()" label="All Photo Gallery ({{photoList.length}})">
+                  <md-content class="md-padding">
+                      
+                        <div ng-hide="photoList.length==0" class="profpicTxt"> To Make Any of These Images Your PROFILE PHOTO, Please Click 
+                        <img src="images/portuser-icon.png" alt="user-icon"> icon
+                        </div>
+
+
+                        <div class="noData" ng-show="photoList.length==0"> 
+                        <md-icon >photo</md-icon>  You haven't added any Photo yet!</div>
+                        <!--image list-->
+
+                      <div class="row gallMain gallery">
+
+                        <div class="col-sm-3 col-xs-6" ng-repeat="x in photoList track by $index" ng-init="x.isLoading=false">
+
+                          <div class="gallImgBx">
+                              <div class="loading black" ng-if="x.isLoading">
+                            <md-progress-circular class="md-primary" md-diameter="30">
+                              </md-progress-circular>
+                            <span>Please wait we'r processing.. your request</span>
+                            </div>
+                          <div class="img-view" style="background-image:url({{x.thumbImageName}})">
+
+                          </div>
+                        <!--   <img ng-src="{{x.thumbImageName}}"> -->
+                        <!--image hover -->
+                        <i class="transition">
+                        <a ng-click="openLightbox(photoList)" class="transition">
+                        <img src="images/zoom-icon.png" alt=""></a>
+                        </i>
+                         <span class="clearfix addelIcon">
+
+                          <a class="pull-left" 
+                              ng-click="setProfilePicture(x.justName, x.imageWOurl,x.id, $index,photoList)">
+                          <img src="images/portuser-icon.png" alt="add">
+                          </a>
+                          
+                          <a class="pull-right"  
+                              ng-click="removePhoto(publicPhotoList,x.id,$index)">
+                          <img src="images/close-gall-icon.png" alt="remove">
+                          </a>
+                          </span>
+                        </div>
+                        </div>
+
+
+
+                      </div>
+
+
+
+                  </md-content>
+               </md-tab>
+
+
+           </md-tabs>
+       
+
+<!--include content and profile information-->
+<div ng-include="template.photoGalleryContent"> Loading..</div>
+
+       </div> <!--end row-->
+      </div> <!--end coloumn-->
+
+    </div>
+  </div>
+</section>
+
+</div>   
+
+<!--more info -->
+<script type="text/ng-template" id="moreinfo.html">
+  <div class="needlogin text-center text-small">
+  <md-icon>update</md-icon> <span> Uploaded Date: {{getFormateddate(x.createdDatetime)}}</span>
+</div>           
+</script>
+
+<!--description tpl-->
+<script type="text/ng-template" id="description.html">
+  <div class="needlogin text-center text-small">
+  <span ng-bind-html="x.description"> Loading..</span>
+</div>
+             
+
+</script>

@@ -10,13 +10,13 @@ angular.module('zenbrisa.public.Controller',['service'])
 .controller('profileStepCtrl', profileStepCtrl);
 
 //controller injector
-loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location'];
+loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
 
 
-function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$location)
+function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
 { 
   e.navabar=rootScope.navbar;
-  console.log(rootScope.navbar)
+
 
 	e.cancel = function() 
 	{
@@ -24,6 +24,36 @@ function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$locati
  };
 
 var dashbaord_url;
+
+///checkusername
+e.checkUsrname= function(query,form){
+  var user={username:query};
+
+  timeout(function(){
+    e.checking=true;
+  appServices.post(API_URL.checkuserName,user, function(response)
+     {
+      if(response.message==='username_exists')
+      {
+           form.username.$setValidity("username", false);
+           
+      }
+      else if(response.message==='no_username')
+      {
+        form.username.$setValidity("username", true);
+         
+      }
+      else
+      {
+         
+        form.username.$setValidity("username", true);
+      }
+      
+       e.checking=false;
+     });
+  },650)
+}
+
 //user login form
 e.userLogin =function(from,data)
 {
@@ -173,10 +203,26 @@ e.userLogin =function(from,data)
 //contact us controller
 
 //controller injector
-contactus.$inject=['$scope','appServices','$rootScope','$location'];
+contactus.$inject=['$scope','appServices','$rootScope','$location','$timeout'];
 
-function contactus(e,appServices,rootScope,location)
-{
+function contactus(e,appServices,rootScope,location, timeout)
+{   
+  e.searchTerm;
+
+  e.keyDown= function(ev){
+      ev.stopPropagation();
+  }
+   // element.find('input').on('keydown', function(ev) {
+   //        ev.stopPropagation();
+   //    });
+
+
+    e.loadCountry = function(){
+      return timeout(function() {
+        e.countries =rootScope.country;
+        },100);
+    }
+
     e.user={};
     e.contacts= function(form,data){
         if(form.$valid)

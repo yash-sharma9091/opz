@@ -54,7 +54,7 @@
         <div class="col-sm-4">
          <md-input-container class="md-block">
         <input type="text" name="name" 
-              ng-model="user.phone" placeholder="TelePhone" 
+              ng-model="user.phone" placeholder="Telephone" 
         >
          </md-input-container>
         </div>
@@ -80,8 +80,13 @@
 
          <md-input-container  class="md-block">
           <label>Country</label>
-          <md-select name="type" ng-model="user.country" required name="country">
-            <md-option ng-repeat="x in country" value="{{x}}">{{x}}</md-option >
+          <md-select name="type" 
+          ng-model="user.country"  
+          md-container-class="list-sm" 
+          class="md-no-underline" 
+          md-on-open="loadCountry()"
+          required name="country">
+            <md-option ng-repeat="x in countries" ng-value="x">{{x}}</md-option >
                   
           </md-select>
           <div ng-messages="contactus.country.$error">
@@ -94,7 +99,7 @@
 
          <md-input-container  class="md-block">
           <label>Subject</label>
-          <md-select name="type" ng-model="user.subject" required name="subject">
+          <md-select name="type" md-container-class="list-sm" ng-model="user.subject" required name="subject" class="md-no-underline">
                   <md-option  value="Customer Care">Customer Care</md-option >
                   <md-option  value="Admin">Admin</md-option >
                   <md-option  value="Feedback">Feedback</md-option >
@@ -120,7 +125,7 @@
               name="message"
               required 
               ng-model="user.message" 
-              md-maxlength="300" rows="5" md-select-on-focus>
+              rows="5" md-select-on-focus>
            </textarea>
            <div ng-messages="contactus.message.$error">
           <div ng-message="required">Message is  required.</div>

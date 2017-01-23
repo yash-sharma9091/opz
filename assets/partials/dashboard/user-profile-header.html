@@ -2,7 +2,7 @@
   ng-class="{'professional': userprofile.professionalType=='paid' || userprofile.professionalType=='both'}">
   
   <div class="container">
-    <div class="profileTopBx">
+    <div class="profileTopBx" ng-class="{'exp': !headerExp}">
       <div class="profile-Img">
         <img ng-if="userprofile.profilePic" ng-src="{{userprofile.profilePic}}" 
              alt="{{userprofile.fullName}}">
@@ -21,15 +21,21 @@
               {{userprofile.address}}
         </small>
         
-        <div class="professMsg">
+        <div class="professMsg" >
              <a class="vollatBg" 
               ng-if="userprofile.professionalType=='paid' || userprofile.professionalType=='both'">
-                Paid Professional Massage</a>
+                Paid Professional Massage
+              </a>
             <md-button class="blueBg" ng-click="profileStep()">Edit/update Profile</md-button>
+            <md-button class="md-icon-button btn-exp pull-right" 
+            ng-click="userHeaderExp(headerExp)" aria-label="exp">
+                    <md-icon ng-if="!headerExp">keyboard_arrow_down</md-icon>
+                    <md-icon ng-if="headerExp"> keyboard_arrow_up</md-icon>
+                  </md-button>
         </div>
 
       </div>
-      <div class="prof-right-bot">
+      <div class="prof-right-bot" ng-if="headerExp">
       <!--about-me-->
       <p ng-bind-html="userprofile.aboutme"></p>
 
