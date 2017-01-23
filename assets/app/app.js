@@ -339,7 +339,7 @@ $rootScope.userNavbar={
 		"packages":{"title":'Membership',"href":"#/home"},
 		"refer":{"title":'Refer Friend Bonus',"href":"#/home"},
 		"bonushistory":{"title":'Bonus History',"href":"#/home"},
-		"mylocations":{"title":'My Locations',"href":"#/home"}
+		"mylocations":{"title":'My Locations',"href":"#/my-locations"}
 	}
 },
 	

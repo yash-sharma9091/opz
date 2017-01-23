@@ -126,112 +126,17 @@
         </div>
       </div>
       <div class="col-sm-9">
+        <div class="loading" ng-show="loading">
+           <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+           <span>Loading..</span>
+        </div>
+
       <!-- <pre>{{searchData | json}}</pre> -->
         <div class="listingHd" ng-show="znUsers.length > 0">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
+
         <div class="listing" ng-if="znUsers.length > 0">
 
           <ul>
-            <!-- <li>
-              <div class="listingTop lightvolateBg">
-                <div class="profpaidBx">
-                  <a class="vollatBg">Paid Professional Massage</a>
-                  <a class="yellowBg">Updated Member</a>
-                </div>
-                <div class="listingTop-Left">
-                  <div class="listingImgBx">
-                    <div class="listingImg"><img src="images/listing-img.png"></div>
-                    <strong>Sara Joshep</strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>26 &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> Noida, Uttar Pradesh, India  I  0.2 Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received (2)</a></span>
-                    <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
-                    <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
-                  </div>
-                  <div class="listingPara">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing.</div>
-                  <div class="listingTop-Right">
-                    <span>Active: 2 Days Ago</span>
-                    <i><img src="images/massageTag.png"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="listingBot clearfix">
-                <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr">(1)</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos</a> 
-                    <a>Request Photo Key </a>
-                    <span class="toltip2">?<i>Photo Key</i></span>
-                </div>
-                <div class="listingBot-R">
-                  <md-button class="md-raised md-primary viewBtn white">View Conversation</md-button>
-                  <md-button class="md-raised md-primary viewBtn white"  ng-click="camposemail($event)">Email</md-button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listingTop whiteBg">
-                <div class="profpaidBx">
-                  <a class="orangeBg">NEW Member</a>
-                </div>
-                <div class="listingTop-Left">
-                  <div class="listingImgBx">
-                    <div class="listingImg"><img src="images/listing-img2.png"></div>
-                    <strong>Alex Ryan</strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>26 &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> Noida, Uttar Pradesh, India  I  0.2 Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received (2)</a></span>
-                    <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
-                    <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
-                  </div>
-                  <div class="listingPara">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing.</div>
-                  <div class="listingTop-Right">
-                    <span>Active: 2 Days Ago</span>
-                  </div>
-                </div>
-              </div>
-              <div class="listingBot clearfix">
-                <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr">(1)</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos</a> 
-                    <a>Request Photo Key </a>
-                    <span class="toltip2">?<i>Photo Key</i></span>
-                </div>
-                <div class="listingBot-R">
-                  <md-button class="md-raised md-primary viewBtn white">View Conversation</md-button>
-                  <md-button class="md-raised md-primary viewBtn white" ng-click="camposemail($event)">Email</md-button>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="listingTop whiteBg">
-                <div class="profpaidBx">
-                  <a class="yellowBg">Updated Member</a>
-                </div>
-                <div class="listingTop-Left">
-                  <div class="listingImgBx">
-                    <div class="listingImg"><img src="images/listing-img3.png"></div>
-                    <strong>Lara Larsen</strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>26 &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> Noida, Uttar Pradesh, India  I  0.2 Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received (2)</a></span>
-                    <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
-                    <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
-                  </div>
-                  <div class="listingPara">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing.</div>
-                  <div class="listingTop-Right">
-                    <span>Active: 2 Days Ago</span>
-                  </div>
-                </div>
-              </div>
-              <div class="listingBot clearfix">
-                <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr">(1)</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos</a> 
-                    <a>Request Photo Key </a>
-                    <span class="toltip2">?<i>Photo Key</i></span>
-                </div>
-                <div class="listingBot-R">
-                  <md-button class="md-raised md-primary viewBtn white greyBg">View Conversation</md-button>
-                  <md-button class="md-raised md-primary viewBtn white"  ng-click="camposemail($event)">Email</md-button>
-                </div>
-              </div>
-            </li> -->
               <!--class="greenBdr"-->
              <li  ng-repeat="user in znUsers track by $index">
              <!--  <pre>{{user | json}}</pre> -->
@@ -362,39 +267,6 @@
                 </div>
               </div>
             </li>
-            <!--<li>
-              <div class="listingTop whiteBg">
-                <div class="profpaidBx">
-                  <a class="yellowBg">Updated Member</a>
-                </div>
-                <div class="listingTop-Left">
-                  <div class="listingImgBx">
-                    <div class="listingImg"><img src="images/listing-img.png"></div>
-                    <strong>Sara Joshep</strong>
-                    <span><small class="material-icons pinkClr personIcon">person</small>26 &nbsp; |&nbsp; <small class="material-icons personIcon">room</small> Noida, Uttar Pradesh, India  I  0.2 Miles Away</span>
-                    <span><a>Favorite</a> | <a>Block</a>  |  <a>Write a Review</a>  |  <a class="greyClr">Review Penned</a>   | <a>Reviews Received (2)</a></span>
-                    <span><span>Therapeutic</span> : &nbsp; Seeks - <small class="blueClr">M</small> <i class="toltip">?<span>Male</span></i></span>
-                    <span><span>Sensual</span>    : &nbsp; Seeks - <small class="pinkClr">F</small> <i class="toltip">?<span>Female</span></i></span>
-                  </div>
-                  <div class="listingPara">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing.</div>
-                  <div class="listingTop-Right">
-                    <span>Active: 2 Days Ago</span>
-                  </div>
-                </div>
-              </div>
-              <div class="listingBot clearfix">
-                <div class="listingBot-L">
-                    <a><i class="material-icons">camera_alt</i> Public Photos <span class="blueClr">(1)</span></a> 
-                    <a><i class="material-icons">collections</i> Private Photos</a> 
-                    <a>Request Photo Key </a>
-                    <span class="toltip2">?<i>Photo Key</i></span>
-                </div>
-                <div class="listingBot-R">
-                  <md-button class="md-raised md-primary viewBtn white greyBg">View Conversation</md-button>
-                  <md-button class="md-raised md-primary viewBtn white"  ng-click="camposemail($event)">Email</md-button>
-                </div>
-              </div>
-            </li> -->
           </ul>
 
           <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current" ng-if="paging.total > paging.limit"></cl-paging>

@@ -38,7 +38,7 @@
 
         <md-tab id="tab1">
         <md-tab-label>My Location</md-tab-label>
-        <md-tab-body ng-init="searched.mile=''">
+        <md-tab-body ng-init="searched.mile=''"> 
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="srchformBx" ng-init="mySavedLocations()">
 
-                  <md-select ng-model="searched.location" placeholder="- Select Location -" class="md-no-underline sechInp">
+                  <md-select ng-model="searched.location" placeholder="- Select Location -" class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}">{{x.travelLocationName}}</md-option>
                     <!--  -->
                   </md-select>
@@ -66,7 +66,8 @@
         <md-tab-body>
               <div class="msglocat">
                 <div class="srchformBx">
-                  <md-select ng-model="weapon" placeholder="- Select state -" class="md-no-underline sechInp">
+
+                  <md-select ng-model="weapon2" placeholder="- Select state -" class="md-no-underline sechInp">
                     <md-option value="axe">Delhi</md-option>
                     <md-option value="sword">UP</md-option>
                     <md-option value="wand">Haryana</md-option>
@@ -74,7 +75,7 @@
                   </md-select>
                 </div>
                 <div class="srchformBx">
-                  <md-select ng-model="weapon" placeholder="- Select City -" class="md-no-underline sechInp">
+                  <md-select ng-model="weapon3" placeholder="- Select City -" class="md-no-underline sechInp">
                     <md-option value="axe">Indraprasth</md-option>
                     <md-option value="sword">Jamia</md-option>
                     <md-option value="wand">Kanghat Palace</md-option>
@@ -89,19 +90,21 @@
 <md-tab id="tab3">
         <md-tab-label>Members</md-tab-label>
         <md-tab-body>
+        
               <div class="msglocat">
                 <div class="srchformBx">
-                  <md-select ng-model="weapon" placeholder="- Select Members -" class="md-no-underline sechInp">
-                    <md-option value="axe">5</md-option>
-                    <md-option value="sword">10</md-option>
-                    <md-option value="wand">15</md-option>
+                  <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
+                    <md-option value="availability">Massage Now!<sup>TM</sup></md-option>
+                    <md-option value="username">Username</md-option>
+                    <md-option value="keyword">Keyword</md-option>
+                    <md-option value="professional">Professional Masseur</md-option>
                   </md-select>
                 </div>
-                <div class="srchformBx">
-                  <input type="text" name="mobilenumber" class="sechInp" placeholder="Enter Your Mobile Number">
+                <div class="srchformBx" ng-if="searched.type == 'username' || searched.type == 'keyword'">
+                  <input type="text" name="mobilenumber" ng-model="searched.q" class="sechInp" placeholder="Enter Details">
                 </div>
                 <div class="srchsave">
-                  <md-button class="md-raised md-primary logpopup-Btn">Search</md-button>
+                  <md-button class="md-raised md-primary logpopup-Btn" aria-label="Search Member" ng-click="searchMember(searched)">Search</md-button>
                 </div>
               </div>
   </md-tab-body>
