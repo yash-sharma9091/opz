@@ -318,8 +318,6 @@ $rootScope.closeAlert= function(alert){
 	}
 };
 
-
-
 $rootScope.menuOpen= function(id)
 {
 	if(id=='updateProfile')

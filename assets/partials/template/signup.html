@@ -17,8 +17,6 @@
         </div>
 
   <div class="loginFrmTop" ng-if="!isSignupSuccess">
- 
-  
       <md-input-container class="md-block margin-top25 loaderText">
         <md-progress-circular  ng-if="checking"
                    md-mode="indeterminate" 
@@ -46,36 +44,6 @@
       </div>
         <div class="clearfix"></div>
   </md-input-container>
- 
-<!-- 
-     <md-input-container class="md-block margin-top25">
-            <label>Alias name (optional)  </label>
-            <input  name="alias" 
-                    type="text"
-                    ng-model="user.alias" 
-                   >
-                 
-  </md-input-container>
-
- -->
-  <!-- <div class="clearfix"></div> -->
-
- <!-- <div class="md-block">
- <div class="steptopBx">
-    What you want to show on site? 
-    <div class="clearfix"></div>
-
-     <md-radio-group ng-model="user.aliasOption" >
-
-        <md-radio-button value="false"  >Full name</md-radio-button>
-        <md-radio-button value="true"> Alias </md-radio-button>
-     </md-radio-group>
-</div>
- </div> -->
-
-
-
-
   <md-input-container class="md-block">
     <label>Gender </label>
     <md-select ng-model="user.gender" name="gender" placeholder="Gender" required class="md-no-underline">
