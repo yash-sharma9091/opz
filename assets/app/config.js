@@ -23,6 +23,7 @@ angular.module('zenbrisa',
 'cl.paging',
 'userDashboardModule',
 'userDashboardSearchModule',
+'userLocationsModule',
 'userPhotoGalleryModule',
 'ame.lightbox',
 'filevalidate'
@@ -70,7 +71,11 @@ var API_URL=
 	"checkuserName":api_base_url+'phase2/checkUsername',
 	
 
-	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations"
-
-
+	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations",
+	"updateLocationCategory" : api_base_url+"travelLocations/updateLocationCategory",
+	"updateLocationPrimary" : api_base_url+"travelLocations/updateLocationPrimary",
+	"saveMyLocation" : api_base_url+"travelLocations/saveMyLocation",
+	"deleteTravelLocation" : api_base_url+"travelLocations/deleteTravelLocation",
+	"checkTravelCityPresent" : api_base_url+"travelLocations/checkTravelCityPresent",
+	"addTravelLocation" : api_base_url+"travelLocations/addTravelLocation"
 }

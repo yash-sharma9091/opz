@@ -219,7 +219,7 @@ function contactus(e,appServices,rootScope,location, timeout)
 
     e.loadCountry = function(){
       return timeout(function() {
-        e.countries =rootScope.country;
+        e.countries = rootScope.country;
         },100);
     }
 

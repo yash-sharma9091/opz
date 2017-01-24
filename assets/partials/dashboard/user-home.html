@@ -7,7 +7,12 @@
               <div class="msgNowHd">Massage Now!<sup>&trade;</sup></div>
               <div class="availablTxt clearfix">
                   <md-checkbox  aria-label="Checkbox 1">I am available till</md-checkbox>
-                  <span><input type="text" name="time" class="TimeiNp" placeholder="0:00"></span>
+                  <span>
+                    <div uib-timepicker
+                  ng-model="mytime"
+                  ng-change="changed()"
+                  hour-step="1" minute-step="10" ></div> 
+                  </span>
               </div>
               <div class="srchformBx">
                 <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
@@ -47,9 +52,18 @@
                 </div>
                 <div class="srchformBx" ng-init="mySavedLocations()">
 
-                  <md-select ng-model="searched.location" placeholder="- Select Location -" class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
-                    <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}">{{x.travelLocationName}}</md-option>
-                    <!--  -->
+                  <md-select ng-model="searched.location"
+                  placeholder="- Select Location -" 
+                  md-on-close="addLocation(searched.location, $event)"
+                  class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
+
+                    <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
+
+                    <md-option value="addCity">Add City</md-option>
+                    <md-option value="addCountry">Add Country</md-option>
+                     <md-option value="editList">Edit List</md-option>
+
+                    
                   </md-select>
                 </div>
                 
@@ -67,25 +81,27 @@
               <div class="msglocat">
                 <div class="srchformBx">
 
-                  <md-select ng-model="weapon2" placeholder="- Select state -" class="md-no-underline sechInp">
-                    <md-option value="axe">Delhi</md-option>
-                    <md-option value="sword">UP</md-option>
-                    <md-option value="wand">Haryana</md-option>
-                    <md-option value="pen">Mumbai</md-option>
-                  </md-select>
-                </div>
-                <div class="srchformBx">
-                  <md-select ng-model="weapon3" placeholder="- Select City -" class="md-no-underline sechInp">
-                    <md-option value="axe">Indraprasth</md-option>
-                    <md-option value="sword">Jamia</md-option>
-                    <md-option value="wand">Kanghat Palace</md-option>
-                  </md-select>
+
+                <md-content class="md-padding autocomplete" layout="column">
+                   <h2 class="md-title">Select Country</h2>
+                <md-contact-chips
+                                  ng-model="asyncContacts"
+                                  md-contacts="countries($query)"
+                                  md-contact-name="title"
+                                  md-contact-image="image"
+                                  md-contact-email="email"
+                                  md-require-match="true"
+                                  md-highlight-flags="i"
+                                  filter-selected="filterSelected"
+                                  placeholder="To">
+                  </md-contact-chips>
+                </md-content> 
                 </div>
                 <div class="srchsave">
-                  <md-button class="md-raised md-primary logpopup-Btn">Search</md-button>
+                  <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromCountries(asyncContacts)" aria-label="Search From Countries">Search</md-button>
                 </div>
               </div>
-</md-tab-body>
+          </md-tab-body>
       </md-tab>
 <md-tab id="tab3">
         <md-tab-label>Members</md-tab-label>

@@ -1,0 +1,48 @@
+<md-dialog aria-label="AddCity">
+     <md-dialog-content>
+     <md-button class="md-icon-button closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+     <h2 class="LoginHd">Add New City</h2>
+      <div class="md-dialog-content">
+
+        <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+               <span ng-bind-html="alert.message"> </span>
+               
+               </p>
+        </div>
+
+           <div class="loginFrmTop">
+              <form  class="frmBx" name="addcity" novalidate>
+
+            <md-input-container class="md-block">
+            <label>City</label>
+            <input  name="city" 
+                    required 
+                    type="text"
+                    ng-model="city" 
+                    places-auto-complete
+                    types="['geocode']" 
+                    on-place-changed="placeChanged()"
+                    >
+            <!--error template-->
+            <div ng-messages="addcity.city.$error">
+            <div ng-message="required">City Name is required.</div>
+            </div>
+            </md-input-container>
+
+            <md-button type="submit" class="md-raised md-primary" ng-click="addCity(city)">Submit </md-button>
+
+            <div class="clearfix"></div>
+
+
+              </form>
+           <!--login form-->
+
+            
+      </div>
+    </md-dialog-content>
+
+</md-dialog>
