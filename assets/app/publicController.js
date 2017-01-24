@@ -88,7 +88,7 @@ e.userLogin =function(from,data)
          }
 
     						//redirect to dashboard page
-              		var url=appServices.getSessionStorage('redirectUrl');
+              var url=appServices.getSessionStorage('redirectUrl');
                 rootScope.isUserLogin=appServices.checkStorage('user');
     						if(url)
     						{
@@ -102,7 +102,7 @@ e.userLogin =function(from,data)
 
                     if(response.profileCompleteStatus==0)
                     {
-                        appServices.loader("Please wait.. while we'r checking your profile details.");
+                       // appServices.loader("Please wait.. while we'r checking your profile details.");
                 
             
                        dashbaord_url='/setting';              
@@ -113,7 +113,9 @@ e.userLogin =function(from,data)
                     {
                       
                       dashbaord_url='/home';
+                      mdDialog.cancel();
                       rootScope.getUserProfile(user);
+                      
 
                     }
                     
@@ -152,7 +154,7 @@ e.userLogin =function(from,data)
             {   
                 if(response.status==2)
                 {
-                   e.alert={'message':"This email is already registered please choose another one",'type':'alert-danger'};
+                   e.alert={'message':data.message,'type':'alert-danger'};
                }
                else
                {
