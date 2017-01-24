@@ -768,8 +768,49 @@ span.tags {
 .alert {    border-radius: 2px;}
 .rembBx a{ line-height: 23px; }
 .contFrm .alert {max-width: 100%;}
+.referBg .container { position: relative; }
+/*.add-btn {    background-color: rgba(0, 173, 255, 0.94) !important;
+    color: white !important;}
+*/.btn-right
+{    
+        position: absolute;
+        right: -5px;
+        color: white !important;
+        top: -3px;
+        height: 40px !important;
+        width: 44px !important;
+        line-height: 35px !important;
+        min-height: 35px !important;
+        border-left: 1px #cad5dd solid;
+        border-radius: 0;
+        min-width: 0;
+        background-color: #efefef;
+}
+.referBg .container { min-height: 400px; }
+.remove-btn md-icon{    color: rgb(243, 49, 67)!important;}
+.usercommitBx li {
+    padding: 10px 0 10px 80px;
+    position: relative;
+    min-height: 77px;
+    border-bottom: 1px #ececec solid;
+}
+.usercommitBx i{ background-size: cover }
 md-input-container textarea {    border: 1px #cad5dd solid !important;}
-
+.vote {       
+        border: 2px rgb(0, 174, 255) solid;
+    text-align: center;
+    color: #00aeff;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 55px;  margin-top: -10px !important;
+    height: 55px !important;
+    width: 55px !important;}
+.title {     position: absolute;
+    bottom: -7px;
+    left: 31px;}
+.md-list-item-text{    padding-top: 14px;}
+.margin-top { margin-top: 5px; }
+.alert.full{ max-width: 100%; }
 @media(min-width:768px) {
     .nav-btn {
         display: none

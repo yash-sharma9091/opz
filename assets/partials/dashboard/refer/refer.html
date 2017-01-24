@@ -1,0 +1,99 @@
+<section class="referBg">
+  <div class="container">
+    <div class="referfrdBx">
+        <div class="referfrdHd"> Refer Friend Bonus </div>
+        <div class="referList">
+
+          <ul>
+            <li>Receive 30 days free bonus added to your paid subscription​,​ when ​your referred friend makes a subscription payment.</li>
+            <li>This earned bonus is only available for paid sub​s​cription members. If you are not yet a paid subscription member, this bonus will take effect upon your paid subscription. Only 2 free bonus months will be applied in any calendar year. Any other bonus months earned will be carried forward to the following paid subscription year.</li>
+          </ul>
+        </div>
+
+        <div class="referFrmBx">
+          <div class="alert {{alert.type}} full" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+               <span ng-bind-html="alert.message"> </span>
+               
+               </p>
+        </div>
+        <form name="refer" novalidate>
+          <div class="row" >
+
+            <div class="col-sm-4">
+           <md-input-container class="md-block">
+            <label>Your Name</label>
+            <input  name="senderName" 
+                    required 
+                    type="text"
+                    ng-model="user.senderName" 
+                    >
+            <!--error template-->
+            <div ng-messages="refer.senderName.$error">
+            <div ng-message="required">Name is required.</div>
+        
+            </div>
+            </md-input-container>
+
+
+            </div>
+            <div class="col-sm-4">
+
+            <md-input-container class="md-block">
+            <label>Friend's Name</label>
+            <input  name="referName" 
+                    required 
+                    type="text"
+                    ng-model="user.referName"   
+                    >
+            <!--error template-->
+            <div ng-messages="refer.referName.$error">
+            <div ng-message="required">Friend's Name is required.</div>
+         
+            </div>
+            </md-input-container>
+
+            </div>
+            <div class="col-sm-4">
+            <md-input-container class="md-block">
+            <label>Friend's E-mail Address</label>
+            <input  name="referEmail" 
+                    required 
+                    type="text"
+                    ng-model="user.referEmail" 
+                    ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/" 
+                    >
+            <!--error template-->
+            <div ng-messages="refer.referEmail.$error">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Enter valid email address</div>
+            </div>
+            </md-input-container>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+             <md-input-container class="md-block">
+            <label>Your Message</label>
+                <textarea 
+                name="message" 
+                ng-model="user.message" 
+                class="textareaInp"></textarea>
+              </md-input-container>
+            </div>
+
+          </div>
+          
+          <md-button class="md-raised md-primary logpopup-Btn"  type="submit"
+          style="margin-left:0 !important;"
+            ng-click="referAfriend(user,refer)"
+
+          >Send</md-button>
+
+          </form>
+        </div>
+    </div>
+  </div>
+</section>

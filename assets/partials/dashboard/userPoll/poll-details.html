@@ -1,0 +1,66 @@
+<div class="mainCont">
+<!--user profile header-->
+<section class="referBg">
+  <div class="container">
+    <div class="loading" ng-show="loading">
+             <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+             <span>Loading..</span>
+            </div>
+
+      <div class="pollsHd">
+      <span>
+        <a ng-href="{{userNavbar.community.submenu.allPoll.href}}">Back</a>
+      <a ng-href="{{userNavbar.community.submenu.allPoll.href}}">All Polls</a>
+    
+      </span>
+
+      </div>
+     
+  
+    <!--show graph and chart-->
+      <div >
+
+      <div class="pollBx">
+      <div class="contributedHd" ng-if="polls">
+          <span>  {{polls.title}} </span>
+         <small>Contributed by: {{polls.authorType}}</small>
+      </div>
+      <div class="pollrangeMain" >
+        <ul>
+          <li ng-repeat="x in percentageData">
+            <span>{{x.option}}    <i>{{x.percent}}</i></span>
+            <div class="rangeBg">
+              <div class="rangeClr" style="width:{{x.percent}};"></div>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+      </div>
+
+
+
+<!--user commnent section-->
+    <div class="pollsHd" ng-if="userComments">User Comments</div>
+    <div class="pollBx">
+        <div class="usercommitBx">
+          <ul>
+            <li ng-repeat="x in userComments">
+              <i style="background-image:url({{x.profilePic?x.profilePic:'images/default-user-icon-profile.png'}})">
+           
+           </i>
+              <strong>{{x.username}}</strong>
+              <p>{{x.comment}}</p>
+            </li>
+           
+          </ul>
+        </div>
+    </div>
+
+
+  </div>
+</section>
+
+</div>   
+</div>

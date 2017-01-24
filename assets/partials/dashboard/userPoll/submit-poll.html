@@ -1,0 +1,102 @@
+<div class="mainCont">
+<!--user profile header-->
+<section class="referBg">
+  <div class="container">
+   <div class="pollsHd">Submit a Poll 
+   <span>
+       <a ng-href="{{userNavbar.community.submenu.polls.href}}">Back</a>
+       <a ng-href="{{userNavbar.community.submenu.allPoll.href}}">All Polls</a>
+   </span>
+   </div>
+    <div class="loading" ng-show="loading">
+       <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+       <span>Loading..</span>
+    </div>
+    <form name="createPoll" novalidate  class="suggpollFrm">
+
+ <div class="alert {{alert.type}}" ng-if="alert">
+        <p>
+          <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+          <span ng-bind-html="alert.message"> </span>
+        </p>
+        </div>
+
+    <!--pollname-->
+    <md-input-container class="md-block" >
+          
+            <input name="title" 
+                    ng-model="newPoll.title" 
+                    placeholder="Poll Name"
+                    required >
+
+            <div ng-messages="createPoll.title.$error" role="alert" multiple>
+              <div ng-message="required" >Enter poll name </div>
+            </div>
+    </md-input-container>
+    <!--question-->
+
+    <md-input-container class="md-block">
+          
+            <input name="question" 
+                    ng-model="newPoll.question" 
+                    placeholder="Enter Question"
+                   required >
+
+            <div ng-messages="createPoll.question.$error" role="alert">
+              <div ng-message="required" >Enter Question name/title </div>
+            </div>
+    </md-input-container>
+
+
+<!--Answer Option Type-->
+
+  <md-input-container class="md-block">
+      
+           <md-select 
+             class="md-no-underline" 
+             aria-label="answers" 
+             placeholder="Answer Option Type" 
+             name="ansOptionType" 
+             ng-model="newPoll.ansOptionType" 
+             required>
+             <md-option value="radiobutton">Single  Selection or Single Answer(RadioButton)
+             </md-option>
+
+               <md-option value="checkbox">Multiple Selection or More than one Answer(CheckBox)
+               </md-option>
+           </md-select>
+      
+         <div class="errors" ng-messages="createPoll.ansOptionType.$error">
+          <div ng-message="required">Select your Answer type</div>
+        </div>
+        </md-input-container>
+ 
+      <!--options-->
+        <div class="loopBx" ng-repeat="x in newPoll.answer_options track by $index">
+            <md-input-container class="md-block" >
+              
+                <input  name="options" 
+                        ng-model="x.newAnswer" 
+                        placeholder="Enter Options"
+                        required >
+                  <md-button class="add-btn btn-right" ng-if="$last" ng-click="addNew(newPoll.answer_options)">
+                    <md-icon>add</md-icon>
+                  </md-button>
+
+                   <md-button  ng-click="remove(newPoll.answer_options,$index)"
+                    class="remove-btn  btn-right" ng-hide="$last">
+                    <md-icon>remove</md-icon>
+                  </md-button>
+               
+          </md-input-container>
+
+         
+        </div>
+
+         <md-button type="submit" class="md-raised md-primary  logpopup-Btn " ng-click="submitPoll(newPoll,createPoll )">Create poll</md-button>
+
+    </form>
+  </div>
+</section>
+
+</div>   

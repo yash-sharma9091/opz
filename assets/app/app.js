@@ -4,14 +4,13 @@ angular.module('zenbrisa.app')
 	$log.info("zenbrisa Application, Beta Version 1.2 @ flexsin Technology India")
 	// console.log($location.absUrl());
 })
-
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('light-blue')
     .accentPalette('blue');
-     $mdThemingProvider.theme('error');
-      $mdThemingProvider.theme('loader');
-     $mdThemingProvider.theme('success');
+	$mdThemingProvider.theme('error');
+	$mdThemingProvider.theme('loader');
+	$mdThemingProvider.theme('success');
 })
 
 //open modal and popupwindow function
@@ -196,10 +195,10 @@ $rootScope.closeAlert= function(alert){
 	}
 
 
-		$rootScope.getUrl = function(url)
-		{
-			 return  $sce.trustAsResourceUrl(url);
-		}
+	$rootScope.getUrl = function(url)
+	{
+		 return  $sce.trustAsResourceUrl(url);
+	}
 
 	$rootScope.getFormateddate=function(date)
 	{
@@ -327,7 +326,9 @@ $rootScope.menuOpen= function(id)
 }
 $rootScope.userNavbar={
 	"search":{"title":"Search", 
-	"submenu":{ "SearchByLocation":{"title":'Search By Location',"href":"#/"},"SearchMembers":{"title":'Search Members',"href":"#/"} }
+	"submenu":{ "SearchByLocation":
+	{"title":'Search By Location',"href":"#/home"},
+	"SearchMembers":{"title":'Search Members',"href":"#/home"} }
 	},
 	"mailbox":{"title":"Mailbox","href":"#/"},
 	"profile":{"title":"Profile",
@@ -336,16 +337,19 @@ $rootScope.userNavbar={
 		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
 		"photogallery":{"title":'Photo Gallery',"href":"#/photo-gallery"},
 		"videogallery":{"title":'Video Gallery',"href":"#/home"},
-		"packages":{"title":'Membership',"href":"#/home"},
-		"refer":{"title":'Refer Friend Bonus',"href":"#/home"},
-		"bonushistory":{"title":'Bonus History',"href":"#/home"},
+		// "packages":{"title":'Membership',"href":"#/home"},
+		"refer":{"title":'Refer Friend Bonus',"href":"#/refer-friend"},
+		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
 		"mylocations":{"title":'My Locations',"href":"#/my-locations"}
 	}
 },
 	
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/home"},
-				"polls":{"title":'Polls',"href":"#/home"} }
+				"polls":{"title":'Polls',"href":"#/my-poll"},
+				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
+				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
+			 }
 	},
 	"advertise":{"title":"Advertize ", 
 	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/home"},
@@ -365,7 +369,6 @@ $rootScope.userDashboard=
     'photoGallery':{'title':'Public Photo Gallery ', 'href':"#/photo-gallery"}
     
 }
-
 
 		  $rootScope.openNav= function(){
 				$mdSidenav("navbar").toggle()

@@ -208,7 +208,67 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-   
+  .when('/my-poll',
+  {
+    templateUrl:"/partials/dashboard/userPoll/user-poll.html",
+    controller:"userPoll",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+  .when('/create-poll',
+  {
+    templateUrl:"/partials/dashboard/userPoll/submit-poll.html",
+    controller:"userPoll",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+  .when('/all-poll',
+  {
+    templateUrl:"/partials/dashboard/userPoll/all-poll.html",
+    controller:"allPoll",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+  .when('/poll-details/:id',
+  {
+    templateUrl:"/partials/dashboard/userPoll/poll-details.html",
+    controller:"allPoll",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+.when('/refer-friend',
+  {
+    templateUrl:"/partials/dashboard/refer/refer.html",
+    controller:"refer",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+.when('/bonus-history',
+  {
+    templateUrl:"/partials/dashboard/refer/bonus-history.html",
+    controller:"refer",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+
     .when('/404',{
     templateUrl: function(){
       location.assign('/404');

@@ -1,0 +1,38 @@
+<div class="mainCont">
+<!--user profile header-->
+<section class="referBg">
+  <div class="container">
+    <div class="loading" ng-show="loading">
+       <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+       <span>Loading..</span>
+      </div>
+      <div class="pollBx">
+
+      <div class="pollsHd">
+            Zenbrisa Polls
+          <span>
+            <a ng-href="{{userNavbar.community.submenu.polls.href}}">My Poll</a>
+            <a ng-href="{{userNavbar.community.submenu.submitPoll.href}}">Suggest a Poll</a>
+          </span>
+      </div>
+      <!--show question answers-->
+
+      <md-list>
+         <md-list-item class="md-3-line" ng-repeat="item in userPoll" ng-click="pollDeatils(item.id)">
+         <div class="md-avatar vote">{{item.totalVotes}} </div>
+         <span class="title">Vote</span>
+           <div class="md-list-item-text" layout="column">
+            <h3>{{ item.question }}</h3>
+              <h4>{{ item.authorType }}</h4>
+              <p>{{ item.title }}</p>
+          
+          
+          </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+      </md-list>
+
+    
+</div>
+</div>   
+</div>

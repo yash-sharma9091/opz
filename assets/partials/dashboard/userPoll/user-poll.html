@@ -1,0 +1,134 @@
+<div class="mainCont">
+<!--user profile header-->
+<section class="referBg">
+  <div class="container">
+    <div class="loading" ng-show="loading">
+             <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+             <span>Loading..</span>
+            </div>
+
+      <div class="pollsHd">
+
+        <span>
+
+      <a ng-href="{{userNavbar.community.submenu.allPoll.href}}">All Polls</a>
+      <a ng-href="{{userNavbar.community.submenu.submitPoll.href}}">Suggest a Poll</a>
+      </span>
+
+      </div>
+      <!--show question answers-->
+  <div ng-show="pollAttendedPollById==0">
+    <div class="pollsHd">
+
+        {{data.title}} 
+        <span>
+
+      <a href="">All Polls</a>
+        <a ng-href="{{userNavbar.community.submenu.submitPoll.href}}">Suggest a Poll</a></span>
+
+      </div>
+    <div class="pollBx">
+    <div class="alert {{alert.type}}" ng-if="alert">
+      <p>
+      <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+      <span ng-bind-html="alert.message"> </span>
+      </p>
+    </div>
+
+
+      <div class="contributedHd">
+          <span>{{data.question}}</span>
+          <small>Contributed by: {{data.authorType}}</small>
+      </div>
+
+      <!--poll list-->
+      <div class="choosingOpt">
+        <span ng-if="data.ansOptionType=='radiobutton'">Choose Single Option</span>
+         <span ng-if="data.ansOptionType=='checkbox'">Choose multiple options</span>
+         
+         <!--checkbox-->
+          <div flex="100" ng-repeat="item in data.Answer_options" ng-if="data.ansOptionType=='checkbox'">
+              
+              <md-checkbox 
+                    ng-checked="exists(item, poll_answer)" 
+                    ng-click="toggle(item, poll_answer)">
+               {{ item.option }}
+              </md-checkbox>
+
+            </div>
+
+
+          <md-radio-group 
+              ng-model="poll_answer" 
+              ng-show="data.ansOptionType=='radiobutton'" >
+      
+              <md-radio-button 
+                  ng-repeat="x in data.Answer_options" 
+                  ng-value="x" class="md-primary">
+                  {{x.option}}
+              </md-radio-button>
+            </md-radio-group>
+      </div>
+    </div>
+
+    <div class="pollsHd">Leave a Comment:</div>
+    <div class="pollBx">
+        <textarea 
+          name="textarea" 
+          ng-model="data.poll_answer_comment" 
+          placeholder="Type your comments here" 
+          class="textareaInp">
+            
+          </textarea>
+      <md-button 
+        class="md-raised md-primary logpopup-Btn" 
+        style="margin-left:0 !important;" ng-click="answerLatestPoll(data)">Vote
+      </md-button>
+    </div>
+    </div>
+
+    <!--show graph and chart-->
+      <div ng-if="pollAttendedPollById==1">
+
+      <div class="pollBx">
+      <div class="contributedHd">
+          <span>  {{data.title}} </span>
+         <small>Contributed by: {{data.authorType}}</small>
+      </div>
+      <div class="pollrangeMain" >
+        <ul>
+          <li ng-repeat="x in percentageData">
+            <span>{{x.option}}    <i>{{x.percent}}</i></span>
+            <div class="rangeBg">
+              <div class="rangeClr" style="width:{{x.percent}};"></div>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+      </div>
+
+<!--user commnent section-->
+    <div class="pollsHd">User Comments</div>
+    <div class="pollBx">
+        <div class="usercommitBx">
+          <ul>
+            <li ng-repeat="x in userComments">
+              <i style="background-image:url({{x.profilePic?x.profilePic:'images/default-user-icon-profile.png'}})">
+           <!--    <img ng-if="x.profilePic" ng-src="{{x.profilePic}}">
+              <img ng-if="!x.profilePic" src="images/default-user-icon-profile.png">
+           -->    </i>
+              <strong>{{x.username}}</strong>
+              <p>{{x.comment}}</p>
+            </li>
+           
+          </ul>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+</div>   
+</div>

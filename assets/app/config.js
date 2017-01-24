@@ -24,6 +24,7 @@ angular.module('zenbrisa',
 'userDashboardModule',
 'userDashboardSearchModule',
 'userPhotoGalleryModule',
+'userPollModule',
 'ame.lightbox',
 'filevalidate'
 ]);
@@ -35,6 +36,8 @@ angular.module('userDashboardModule',[]);
 angular.module('userDashboardSearchModule',[]);
 angular.module('userPhotoGalleryModule',[]);
 angular.module('userLocationsModule',[]);
+angular.module('userPollModule',[]);
+
 
 var API_URL=
 {
@@ -69,8 +72,18 @@ var API_URL=
 	"uploadPhoto": api_base_url+'users/addPhoto',
 	"checkuserName":api_base_url+'phase2/checkUsername',
 	
+	"getPoll":api_base_url+'userpoll/getRecentPoll',
+	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations",
+	
+	"addPoll": api_base_url + "userpoll/addpoll",
+	"checkPoll":api_base_url+ "userpoll/checkPollAttended",
+	"submitPoll":api_base_url+ "userpoll/answerpoll",
+	"getPollPercentage": api_base_url+'userpoll/pollAnswerPercentage',
+	"pollComment": api_base_url+'userpoll/getpollcomments',
+	"allPoll":api_base_url+'userpoll/getpolls',
+	"referFriend":api_base_url+'users/referFriend',
+	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory'
 
-	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations"
 
 
 }
