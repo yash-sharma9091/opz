@@ -13,6 +13,12 @@ angular.module('zenbrisa.app')
 	$mdThemingProvider.theme('success');
 })
 
+.config(function($mdDateLocaleProvider) {
+  $mdDateLocaleProvider.formatDate = function(date) 
+  {
+    return moment(date).format('YYYY-MM-DD');
+  }})
+
 //open modal and popupwindow function
 .run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
 	cfpLoadingBar.start();

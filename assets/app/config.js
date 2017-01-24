@@ -24,6 +24,7 @@ angular.module('zenbrisa',
 'cl.paging',
 'userDashboardModule',
 'userDashboardSearchModule',
+'userLocationsModule',
 'userPhotoGalleryModule',
 'userPollModule',
 'ame.lightbox',
@@ -86,8 +87,13 @@ var API_URL=
 	"referFriend":api_base_url+'users/referFriend',
 	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory',
 
-	"blogList":api_base_url+ 'blog/getBlogList'
-
-
+	"blogList":api_base_url+ 'blog/getBlogList',
+	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations",
+	"updateLocationCategory" : api_base_url+"travelLocations/updateLocationCategory",
+	"updateLocationPrimary" : api_base_url+"travelLocations/updateLocationPrimary",
+	"saveMyLocation" : api_base_url+"travelLocations/saveMyLocation",
+	"deleteTravelLocation" : api_base_url+"travelLocations/deleteTravelLocation",
+	"checkTravelCityPresent" : api_base_url+"travelLocations/checkTravelCityPresent",
+	"addTravelLocation" : api_base_url+"travelLocations/addTravelLocation"
 
 }

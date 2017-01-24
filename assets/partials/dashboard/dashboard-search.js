@@ -1,10 +1,10 @@
 angular.module('userDashboardSearchModule',[]).controller('userDashboardSearch', userDashboardSearch);
 
-userDashboardSearch.$inject=['$scope', '$rootScope','appServices','$location'];
+userDashboardSearch.$inject=['$scope', '$rootScope','appServices','$location','$filter'];
 
-function userDashboardSearch(e, rootscope,appServices,$location)
+function userDashboardSearch(e, rootscope, appServices, $location, $filter)
 {
-	e.commonMilesArray              = appServices.milesList();
+	e.commonMilesArray = appServices.milesList();
 	e.searched = {
 		mile : '',
 		location : '',
@@ -88,6 +88,293 @@ function userDashboardSearch(e, rootscope,appServices,$location)
 			}
 		}
 	}
+
+	e.asyncContacts = [];
+	e.filterSelected = true;
+	var data = rootscope.country;
+	var countries = []
+	for (k in data){
+	    countries.push({
+	    	title : data[k]
+	    })
+	 }
+	e.countries = function(value){
+		/*Filter countries for Dropdown Chips*/
+	    return $filter('filter')(countries,{title : value});
+	} 
+
+	e.searchFromCountries = function(countries){
+		/*Search data from multiple countries*/
+		var c = []
+		if(countries.length > 0){
+			countries.map(function(country){
+				c.push(country.title)
+			})
+		}
+		if(c.length == 0){
+			appServices.alert("Please Select at least One Country");
+			return;
+		}
+		e.searchData = [];
+		$location.path('/search').search({"countries":c.join("|")})
+	}
 	
+	//addLocation
+	e.addLocation= function(id,ev)
+	{
+		if(id==="addCity")
+		{
+		appServices.modal('partials/template/addLocation.html', addLocation, ev)
+		}
+
+		if(id==="addCountry")
+		{
+		appServices.modal('partials/template/addLocation.html', addLocation, ev)
+		}
+
+		if(id==='editList'){
+			$location.path('/my-locations');
+		}
+	}
+}
+
+
+
+
+function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $routeParams)
+{
+	$scope.cancel = function() 
+	{
+     $mdDialog.cancel();
+ 	};
+ 	//form submit
+
+ 	$scope.placeChanged = function() {
+		$scope.place = this.getPlace();
+		console.log($scope.place)
+		var lat = JSON.parse(JSON.stringify($scope.place.geometry.location)).lat;
+		var lon = JSON.parse(JSON.stringify($scope.place.geometry.location)).lng;	
+
+		var long_name = $scope.place.address_components;
+		long_name = long_name[long_name.length-1].long_name
+		$scope.addCity(lat, lon, $scope.place.formatted_address, $scope.place.address_components)
+	}
+
+	$scope.addCity  = function (lat, lng, formattedAddress, components){
+     	$scope.exception_country_city = ['Singapore'];
+         console.log("lat====="+lat);
+         console.log("long====="+lng);
+         console.log("address====="+formattedAddress);
+         //console.log("formattedAddressCountry====="+formattedAddressCountry);
+
+         if(!lat && !lng && !formattedAddress){
+
+            $scope.errorMessage = "please enter a valid location";
+        }else{
+        	    $scope.city2 = false;
+        	    var formattedAddressCountry = $scope.city;
+				formattedAddressCountry = formattedAddressCountry.split(', ');
+        	    formattedAddressCountry = formattedAddressCountry[formattedAddressCountry.length - 1]
+        	    //console.log(formattedAddressCountry);
+        	    //console.log("tst -----");
+        	    //return;
+        		//console.log("googale api "+JSON.stringify($scope.autocomplete.getPlace()));
+        		angular.forEach(components, function(value, key) {
+				  //console.log("googale value "+JSON.stringify(value));
+				  	if( value.types.indexOf('administrative_area_level_1')!==-1){
+				  		$scope.city2 = true;
+				  	}
+
+				  	if($scope.exception_country_city.indexOf(formattedAddress)!==-1){
+				  		$scope.city2 = true;
+				  	}
+				});
+
+			//	return;
+                  if( $scope.city2 === false){
+                  		//console.log("error ---");
+                  		appServices.alert("please do not enter country");
+                  		return;
+
+        			}else{
+        					//Check Travel City is already present
+						request = {
+						    cityAddress: formattedAddress
+						};
+						//console.log("Check Travel City is already present");
+						//console.log(request);
+
+						appServices.post(API_URL.checkTravelCityPresent, {request: request}, function(response){
+							if (response.status == 1 && response.data.length == 0) {
+						        console.log("If Part");
+						        console.log("Add travel City Response");
+						        console.log(response);
+						        /*******----------------------**********-----*******/
+						        if ($routeParams.travelLocationId) {
+						            console.log("routeParam Present");
+
+						            //Update City
+						            request = {
+						                id: $routeParams.travelLocationId,
+						                cityAddress: formattedAddress,
+						                locationType: "city"
+						            };
+						            console.log(request);
+						            $http.post($rootScope.STATIC_URL + 'travelLocations/updateTravelLocation', {
+						                request: request
+						            }).success(function(response) {
+						                if (response.status == 1) {
+						                    console.log("Update Country");
+						                    console.log(response);
+						                    //$scope.updateLcId = response.data.id;
+						                    $location.path('/landingpage');
+						                    //  $window.location.href = $rootScope.hashbang + "landingpage";
+
+						                }
+
+
+						            }).error(function() {
+						                $scope.errorMessage = "Please Try Again";
+						                $timeout(function() {
+						                    $scope.errorMessage = false;
+						                }, 3000);
+						            });
+
+						        } else {
+						            //Add Travel Location
+						            request = {
+						                latitude: lat,
+						                longitude: lng,
+						                cityCountryname: formattedAddressCountry,
+						                cityAddress: formattedAddress,
+						                locationType: "city"
+						            };
+						            
+
+						            appServices.post(API_URL.addTravelLocation,{request: request}, function(response2){	
+						            	if (response2.status == 1) {
+						                    //console.log("Add travel City Response");
+						                    //console.log(response);
+						                    appServices.alert("New City has been added.");
+						                    $location.path('/my-locations');
+						                    //$window.location.href = $rootScope.hashbang + "landingpage";
+						                }else{
+						                	appServices.alert("Please Try Again");
+						                	return;
+						                }
+						            })
+
+						            /*$http.post($rootScope.STATIC_URL + 'travelLocations/addTravelLocation', {
+						                request: request
+						            }).success(function(response) {
+						                if (response.status == 1) {
+						                    console.log("Add travel City Response");
+						                    console.log(response);
+						                    $location.path('/landingpage');
+						                    //$window.location.href = $rootScope.hashbang + "landingpage";
+						                }
+						            }).error(function() {
+						                $scope.errorMessage = "Please Try Again";
+						                $timeout(function() {
+						                    $scope.errorMessage = false;
+						                }, 3000);
+						            });*/
+
+
+
+						        }
+
+						    } else {
+						        console.log("Else Part");
+						        appServices.alert("Location already added");
+						        return;
+
+						    }
+						})
+
+						/*$http.post($rootScope.STATIC_URL + 'travelLocations/checkTravelCityPresent', {
+						    request: request
+						}).success(function(response) {
+						    console.log(response);
+						    if (response.status == 1 && response.data.length == 0) {
+						        console.log("If Part");
+						        console.log("Add travel City Response");
+						        console.log(response);
+
+						        if ($routeParams.travelLocationId) {
+						            console.log("routeParam Present");
+
+						            //Update City
+						            request = {
+						                id: $routeParams.travelLocationId,
+						                cityAddress: formattedAddress,
+						                locationType: "city"
+						            };
+						            console.log(request);
+						            $http.post($rootScope.STATIC_URL + 'travelLocations/updateTravelLocation', {
+						                request: request
+						            }).success(function(response) {
+						                if (response.status == 1) {
+						                    console.log("Update Country");
+						                    console.log(response);
+						                    //$scope.updateLcId = response.data.id;
+						                    $location.path('/landingpage');
+						                    //  $window.location.href = $rootScope.hashbang + "landingpage";
+
+						                }
+
+
+						            }).error(function() {
+						                $scope.errorMessage = "Please Try Again";
+						                $timeout(function() {
+						                    $scope.errorMessage = false;
+						                }, 3000);
+						            });
+
+						        } else {
+						            //Add Travel Location
+						            request = {
+						                latitude: lat,
+						                longitude: lng,
+						                cityCountryname: formattedAddressCountry,
+						                cityAddress: formattedAddress,
+						                locationType: "city"
+						            };
+						            $http.post($rootScope.STATIC_URL + 'travelLocations/addTravelLocation', {
+						                request: request
+						            }).success(function(response) {
+						                if (response.status == 1) {
+						                    console.log("Add travel City Response");
+						                    console.log(response);
+						                    $location.path('/landingpage');
+						                    //$window.location.href = $rootScope.hashbang + "landingpage";
+						                }
+						            }).error(function() {
+						                $scope.errorMessage = "Please Try Again";
+						                $timeout(function() {
+						                    $scope.errorMessage = false;
+						                }, 3000);
+						            });
+						        }
+
+						    } else {
+						        console.log("Else Part");
+						        $scope.errorMessage = "Location already added";
+
+
+						    }
+
+
+						}).error(function() {
+						    $scope.errorMessage = "Please Try Again";
+						    $timeout(function() {
+						        $scope.errorMessage = false;
+						    }, 3000);
+						});*/
+        			}
+              }
+
+     }
+
 }
 

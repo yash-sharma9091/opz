@@ -6,28 +6,56 @@
         <span>Specify Your Home & Travel cities, and Common Search Locations.</span>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
       </div>
-      <div class="addcountryCity">
+      <div class="addcountryCity" ng-controller="userDashboardSearch">
         <a href="">Add Country</a>
-        <a href="">Add City</a>
+        <a ng-click="addLocation('addCity')">Add City</a>
       </div>
       <div class="row">
-        <div class="col-md-5 col-sm-6">
+
+<div class="col-md-6 col-sm-6" ng-repeat="myLocation in myLocations track by $index" 
+          ng-init="myLocation.travelEnd=myLocation.travelEnd?myLocation.travelEnd:''; myLocation.travelStart=myLocation.travelStart?myLocation.travelStart:''">
+
+
           <div class="locatHd">
-            <strong>Gurugram, Haryana,India</strong>
-            <span>(9810981098, 9999999999)</span>
+            <strong>{{myLocation.locationNames}}</strong>
+            <span><span ng-hide="myLocation.latitude == 0">({{myLocation.latitude}}, {{myLocation.longitude}})</span><span ng-hide="myLocation.latitude != 0">&nbsp;</span></span>
+            
           </div>
           <div class="locatTabMain">
-            <md-radio-group ng-model="data.group1">
-            <div class="locatTab">
-                <ul class="clearfix">
+
+
+           <div class="locatTab">
+
+        <ul class="clearfix">
+        <li style="width:30%">
+           <md-radio-group ng-model="myLocation.primaryLocation">
+           <md-radio-button  ng-attr-id="{{ myLocation.locationType == 'country' ? 'locationPrimaryCountry' : myLocation.locationType }}" 
+                      ng-click="locationPrimaryChange(myLocation.id, myLocation.locationPrimary, $event)"
+                      class="md-primary" 
+                      value="primary">Primary
+            </md-radio-button>
+
+           </md-radio-group>
+           </li>
+
+           <li style="width:70%">
+            <md-radio-group ng-model="myLocation.locationCategory">
+            <ul>
                   <li>
-                      <md-radio-button value="Primary" class="md-primary">Primary</md-radio-button>
+                      <md-radio-button  id="locationCategoryHome" 
+                      class="md-primary" value="home" ng-click="locationCategoryChange(myLocation.id, myLocation.locationCategory, $event)">Home</md-radio-button>
                   </li>
                   <li>
-                      <md-radio-button value="Home" class="md-primary">Home</md-radio-button>
-                  </li>
-                  <li>
-                      <md-radio-button value="Travel" class="md-primary">Travel</md-radio-button>
+                      <md-radio-button 
+                      value="travel" 
+                      id="locationCategoryTravel" 
+                      value="travel"  
+                      class="md-primary" 
+                      ng-click="locationCategoryChange(myLocation.id, myLocation.locationCategory, $event)">Travel
+                      </md-radio-button>
+                      </li>
+                  </ul>
+                  </md-radio-group>  
                   </li>
                 </ul>
             </div>
@@ -36,37 +64,39 @@
               <div class="srchareaFrmbx">
                 <md-input-container>
                   <label>Search Area</label>
-                  <md-select ng-model="weapon" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
+                  
+                  <md-select ng-model="myLocation.searchLocation" class="md-no-underline">
+                    <md-option ng-repeat="miles in commonMilesArray" value="{{miles.hideValue}}" >{{miles.displayValue}}</md-option>
+                    <!-- ng-selected="(typeof searchLocation != undefined && searchLocation != null && searchLocation !='' && searchLocation == miles.hideValue) ? true : false " -->
                   </md-select>
                 </md-input-container>
 
               </div>
               
-              <div class="srchareaFrmbx">
+              <div class="srchareaFrmbx" ng-if="myLocation.locationCategory == 'travel'">
                 <!-- <label>Date</label> -->
                 <div class="clearfix">
                   <div class="dateBx-L">
                     <md-input-container>
                     <label>Start Date</label>
-                    <input type="text" name="name" ng-model="user.startDate" class=" calIcon">
+                    <!-- <input type="text" name="name" ng-model="user.startDate" class=" calIcon"> -->
+                    <md-datepicker ng-model="myLocation.travelStart" md-placeholder="Enter date" class=""></md-datepicker>
                     </md-input-container>
                   </div>
                   <div class="dateBx-M"> - </div>
                   <div class="dateBx-R">
                     <md-input-container>
                     <label>End Date</label>
-                    <input type="text" name="name" ng-model="user.endDate" class="calIcon">
+                    <!-- <input type="text" name="name" ng-model="user.endDate" class="calIcon"> -->
+                    <md-datepicker ng-model="myLocation.travelEnd" 
+                     md-placeholder="Enter date" ></md-datepicker>
                     </md-input-container>
                   </div>
                 </div>
               </div>
               <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
+                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;" ng-click="mylocationsSave($index)" aria-label="Save Location">Save</md-button>
+                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;" aria-label="Delete Location" ng-click="deleteLocation(myLocation.id, myLocation.locationNames, myLocation.primaryLocation)">Delete</md-button>
               </div>
             </div>
 
@@ -142,80 +172,26 @@
 
           </div>
         </div>
-        <div class="col-md-5 col-sm-6">
-          <div class="locatHd">
-            <strong>Madrid, Spain </strong>
-            <span>(9810981098, 9999999999)</span>
-          </div>
-          <div class="locatTabMain">
-            <md-radio-group ng-model="data.group2">
-            <div class="locatTab">
-                <ul class="clearfix">
-                  <li>
-                      <md-radio-button value="Primary" class="md-primary">Primary</md-radio-button>
-                  </li>
-                  <li>
-                      <md-radio-button value="Home" class="md-primary">Home</md-radio-button>
-                  </li>
-                  <li>
-                      <md-radio-button value="Travel" class="md-primary">Travel</md-radio-button>
-                  </li>
-                </ul>
-            </div>
-             </md-radio-group>
-            <div class="srchAreaBx">
-              <div class="srchareaFrmbx">
-                <md-input-container>
-                  <label>Search Area</label>
-                  <md-select ng-model="weapon4" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
-                  </md-select>
-              </div>
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
-              </div>
-            </div>
+      
 
-            <div class="srchAreaBx" style="display:none;">
-              <div class="srchareaFrmbx">
-                <md-input-container>
-                <label>Search Area2</label>
-                  <md-select ng-model="weapon5" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
-                  </md-select>
-              </div>            
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
-              </div>
-            </div>
 
-            <div class="srchAreaBx" style="display:none;">
-              <div class="srchareaFrmbx">
-                <md-input-container>
-                  <label>Search Area3</label>
-                  <md-select ng-model="weapon6" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
-                  </md-select>
-              </div>
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
-              </div>
-            </div>
 
-          </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
       </div>
     </div>
   </div>
