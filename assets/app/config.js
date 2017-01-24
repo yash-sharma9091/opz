@@ -27,7 +27,8 @@ angular.module('zenbrisa',
 'userPhotoGalleryModule',
 'userPollModule',
 'ame.lightbox',
-'filevalidate'
+'filevalidate',
+'zenbrisa.blog'
 ]);
 
 angular.module('zenbrisa.app',[]);
@@ -38,7 +39,7 @@ angular.module('userDashboardSearchModule',[]);
 angular.module('userPhotoGalleryModule',[]);
 angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
-
+angular.module('zenbrisa.blog',[]);
 
 var API_URL=
 {
@@ -83,7 +84,9 @@ var API_URL=
 	"pollComment": api_base_url+'userpoll/getpollcomments',
 	"allPoll":api_base_url+'userpoll/getpolls',
 	"referFriend":api_base_url+'users/referFriend',
-	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory'
+	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory',
+
+	"blogList":api_base_url+ 'blog/getBlogList'
 
 
 

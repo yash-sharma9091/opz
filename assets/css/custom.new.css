@@ -811,6 +811,18 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .md-list-item-text{    padding-top: 14px;}
 .margin-top { margin-top: 5px; }
 .alert.full{ max-width: 100%; }
+
+.blogList li i 
+{
+    border: 1px solid #e5e5e5;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    height: 159px;
+    background-size: cover;
+}
+
 @media(min-width:768px) {
     .nav-btn {
         display: none

@@ -268,6 +268,16 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+.when('/blog',
+  {
+    templateUrl:"/partials/blog/blogList.html",
+    controller:"blog",
+    //controller path file path : assest/blog/blog.js
+    access:
+    { 
+          login:false
+    }
+  })
 
     .when('/404',{
     templateUrl: function(){

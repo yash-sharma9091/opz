@@ -1,0 +1,46 @@
+<section class="referBg">
+  <div class="container">
+    <div class="pollsHd">Blog <span><a href="">Post a Blog</a></span></div>
+
+    <div class="pollBx" style="margin-bottom:10px;">
+    
+    <!--blog list-->
+      <div class="blogList">
+
+       <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+
+        <ul>
+          
+          <li ng-repeat="x in data track by $index">
+            <i ng-if="x.featuredImage"   style="background-image:url('{{x.featuredImage}}')"></i>
+ <i ng-if="!x.featuredImage"  style="background-image:url('/images/no_image.jpg')"></i>
+
+
+
+           
+            <strong><a>{{x.urlTitle}}</a></strong>
+            <p> <span ng-bind-html="x.shortDesc"></span> <a href="#">Read More</a></p>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="pagerBx">
+      <div class="pager">
+        <ul>
+          <li><a href="">Prev</a></li>
+          <li><a href="">1</a></li>
+          <li><a href="" class="active">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
+          <li><a href="">5</a></li>
+          <li><a href="" class="active">Next</a></li>
+        <ul>
+      </div>
+    </div>
+
+  </div>
+</section>
