@@ -145,7 +145,7 @@ $rootScope.closeAlert= function(alert){
 										{
 											profileData['fullName']=profileData['username'];
 										}
-
+                                                                                    
 										if(profileData['seeking_male']=='male')
 										{
 											profileData['exchange']='male';
