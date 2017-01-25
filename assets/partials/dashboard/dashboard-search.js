@@ -5,6 +5,7 @@ userDashboardSearch.$inject=['$scope', '$rootScope','appServices','$location','$
 function userDashboardSearch(e, rootscope, appServices, $location, $filter)
 {
 	e.commonMilesArray = appServices.milesList();
+	e.commonCountryPhoneCodeArray = appServices.phoneCodeArray;
 	e.searched = {
 		mile : '',
 		location : '',
@@ -376,5 +377,149 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 
      }
 
+    e.clrMassage = function(){
+    	e.massage = {};
+    	console.log("Operation Calcelled!");
+    	appServices.alert("Operation Calcelled!");
+    }
+
+    e.saveAvailTimeClick  = function(){
+
+           //var currentDate = new Date();
+           var availableTime  = "";
+           console.log($scope.avlTimeChange);
+           console.log("commonCountryPhoneCodeArrayFirst-------------------------------------------------------------++++++++++++++");
+           console.log($scope.commonCountryPhoneCodeArrayFirst);
+           console.log("====== massageNowDetails.currentPhoneNo  ===========");
+           console.log($scope.massageNowDetails.currentPhoneNo);
+           if($scope.avlTimeChange){
+                availableTime  = $scope.avlTimeChange;
+            }else if(typeof($scope.avlTimeChange) == 'undefined'){
+                availableTime = $scope.massageNowDetails.massageTime;
+            }
+
+
+            if($scope.massageNowDetails.checked == false && $scope.massageNowDetails.massageTime == "00:00"){
+               console.log("Please Both");
+               $scope.availableTimeError = "Please mention your availability by selecting the checkbox";
+
+            }else if($scope.massageNowDetails.checked == false){
+               console.log("Please check the box");
+               $scope.availableTimeError = "Please mention your availability by selecting the checkbox";
+
+            }//current Time greater than Selected Time Check
+            else if($scope.massageNowDetails.massageTime){
+                    var selectedHour    = parseInt($scope.massageNowDetails.massageTime.split(':')[0]);
+                    var selectedMinute  = parseInt($scope.massageNowDetails.massageTime.split(':')[1]);
+                    if( (selectedHour < HELPER_currentHour && selectedMinute < HELPER_currentMinute) || (selectedHour == HELPER_currentHour && selectedMinute < HELPER_currentMinute)){
+                          console.log("hi ------------");
+                          $scope.availableTimeError = "Entered time must be greater than current time";
+                              //$timeout(function () {
+                                   // $scope.availableTimeError = false;
+                              //}, 3000);
+                              return false;
+                    }
+                    else if($scope.massageNowDetails.massageTime == "00:00" && $scope.avlTimeChange == "00:00"){
+                                $scope.availableTimeError = "Please mention the time till when you are available";
+                               //$rootScope.showloader                =   false;
+                    }
+                    else if($scope.massageNowDetails.currentPhoneNo || $scope.commonCountryPhoneCodeArrayFirst != 0){
+                        //console.log("$scope.commonCountryPhoneCodeArrayFirst -------------------------------");
+                        //console.log($scope.commonCountryPhoneCodeArrayFirst);
+                       // return false;
+                             /*if(!$scope.commonCountryPhoneCodeArrayFirst){
+                                    console.log("$scope.commonCountryPhoneCodeArrayFirst ====== NOT SELECT");
+                                    console.log($scope.commonCountryPhoneCodeArrayFirst);
+                                    //$scope.availableTimeError = "Please mention the time till when you are available";
+                             }*/
+                             if($scope.commonCountryPhoneCodeArrayFirst == 0){
+                                    console.log("Zero ========");
+                                    $scope.availableTimeError = "Please select your country code";
+                             }
+                             else{
+                                       console.log("$scope.commonCountryPhoneCodeArrayFirst ======  SELECT");
+                                       console.log($scope.commonCountryPhoneCodeArrayFirst);
+                                       console.log("saved numberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                                       //var numbercheck = /^\d{10}$/;
+                                       //console.log($scope.massageNowDetails.currentPhoneNo);
+                                       //console.log(isNaN($scope.massageNowDetails.currentPhoneNo));
+                                       //console.log($scope.massageNowDetails.currentPhoneNo.match(numbercheck));
+                                       //console.log(/^[0-9]{5,15}$/.test($scope.massageNowDetails.currentPhoneNo));
+
+                                       if(!(/^[0-9]{5,15}$/.test($scope.massageNowDetails.currentPhoneNo))){
+                                          $scope.availableTimeError = "Please enter a valid mobile number";
+
+                                       }else{
+                                        saveMassageNow();
+                                       }
+                            }
+
+
+                    }
+                    else{
+                                saveMassageNow();
+                    }
+            }
+
+            $timeout(function () {
+                $scope.availableTimeError = false;
+            }, 3000);
+
+
+                function saveMassageNow(){
+                    /*var today = new Date();
+                    var dd = today.getDate();
+                            var mm = today.getMonth()+1; //January is 0!
+                            var yyyy = today.getFullYear();
+
+                            if(dd<10) {
+                                dd='0'+dd
+                            }
+
+                        if(mm<10) {
+                            mm='0'+mm
+                        }
+                        today = mm+"/"+dd+"/"+yyyy;
+                        console.log(today);*/
+                        console.log($scope.avlTimeChange);
+                        var availableTimeSplit = availableTime.split(":");
+                        availableTime = HELPER_DATE_SLASH_M_D_Y+" "+availableTime;
+                        if($scope.massageNowDetails.currentPhoneNo){
+                            console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+                            //console.log($scope.commonCountryPhoneCodeArrayFirst);
+                            //console.log($scope.commonCountryPhoneCodeArrayFirst.dial_code);
+                            console.log($scope.commonCountryPhoneCodeArrayFirst)
+                                request = {availableTime: availableTime, phoneNumber: $scope.commonCountryPhoneCodeArrayFirst + "|" + $scope.massageNowDetails.currentPhoneNo};
+                        }else{
+
+                                request = {availableTime: availableTime, phoneNumber: $scope.massageNowDetails.currentPhoneNo};
+                        }
+                        console.log("request ================================++++++++++++++++++++++++++++++++++++++++++");
+                        console.log(request);
+                        $http.post($rootScope.STATIC_URL + 'massagenow/addMassageNow', {request: request}).success(function (response) {
+                            if (response.status == 1)
+                            {
+                                console.log("Add Massage Now");
+                                console.log(response);
+                                $rootScope.showloader                =   false;
+                                //$scope.massageNowSuccess             =   "Successfully saved";
+                                var massageNowSuccess={status:true,message: "Successfully saved"};
+                                $rootScope.addAlert(massageNowSuccess);
+                                $timeout(function () {
+                                    //$scope.massageNowSuccess = false;
+                                }, 3000);
+
+                            }
+                        }).error(function () {
+                            $scope.errorMessage = "Please Try Again";
+                            $timeout(function () {
+                                $scope.errorMessage = false;
+                            }, 3000);
+                        });
+
+                    }
+
+
+  }
 }
 

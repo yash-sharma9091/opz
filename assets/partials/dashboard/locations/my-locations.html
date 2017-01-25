@@ -77,19 +77,29 @@
                 <!-- <label>Date</label> -->
                 <div class="clearfix">
                   <div class="dateBx-L">
-                    <md-input-container>
+                    <md-input-container ng-init="open=false">
                     <label>Start Date</label>
                     <!-- <input type="text" name="name" ng-model="user.startDate" class=" calIcon"> -->
-                    <md-datepicker ng-model="myLocation.travelStart" md-placeholder="Enter date" class=""></md-datepicker>
+                   
+                    <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelStart" is-open="open" min-date="-1"  min="0" ng-required="true" close-text="Close" ng-click="open = !open;" />
+
+
+                    <!-- <pre><em>{{myLocation.travelStart | date:'yyyy-MM-dd' }}</em></pre> -->
+                    <!-- <div uib-datepicker ng-model="myLocation.travelStart" class="well well-sm"></div> -->
+
+
+                    <!-- <md-datepicker ng-model="myLocation.travelStart" md-placeholder="Enter date" class="" value="{{myLocation.travelStart}}"></md-datepicker> -->
                     </md-input-container>
                   </div>
                   <div class="dateBx-M"> - </div>
                   <div class="dateBx-R">
-                    <md-input-container>
+                    <md-input-container ng-init="open2=false">
                     <label>End Date</label>
                     <!-- <input type="text" name="name" ng-model="user.endDate" class="calIcon"> -->
-                    <md-datepicker ng-model="myLocation.travelEnd" 
-                     md-placeholder="Enter date" ></md-datepicker>
+                    <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelEnd" is-open="open2" min-date="0" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open2 = !open2;" />
+
+                    <!-- <md-datepicker ng-model="myLocation.travelEnd" 
+                     md-placeholder="Enter date" ></md-datepicker> -->
                     </md-input-container>
                   </div>
                 </div>

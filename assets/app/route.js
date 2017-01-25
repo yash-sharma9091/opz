@@ -325,7 +325,7 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-.when('/blog',
+.when('/blogs',
   {
     templateUrl:"/partials/blog/blogList.html",
     controller:"blog",
@@ -333,6 +333,26 @@ angular.module('app.ngRoute',['ngRoute'])
     access:
     { 
           login:false
+    }
+  })
+.when('/blog/:blogId/:slug',
+  {
+    templateUrl:"/partials/blog/single.html",
+    controller:"blog",
+    //controller path file path : assest/blog/blog.js
+    access:
+    { 
+          login:false
+    }
+  })
+.when('/blog/post-a-blog',
+  {
+    templateUrl:"/partials/blog/post.html",
+    controller:"blog",
+    //controller path file path : assest/blog/blog.js
+    access:
+    { 
+          login:true
     }
   })
 

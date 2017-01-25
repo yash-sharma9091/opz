@@ -256,7 +256,7 @@ $rootScope.closeAlert= function(alert){
 		"icon": "account_balance"
 	},
 	"blog": {
-		"url": "/#",
+		"url": "/#/blogs",
 		"title": "Blog",
 		"icon": "contact_mail"
 	},
@@ -355,7 +355,7 @@ $rootScope.userNavbar={
 },
 	
 	"community":{"title":"Community", 
-	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blog"},
+	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll"},
 				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
 				"allPoll":{"title":'All Poll',"href":"#/all-poll"}

@@ -179,40 +179,14 @@ function userLocations(e, rootscope, appServices, $location)
 
 
              if(e.myLocations[$index].travelStart != ''){
-             	var t1 = new Date(e.myLocations[$index].travelStart);
-
-			    var dd = t1.getDate();
-			    var mm = t1.getMonth()+1; //January is 0!
-
-			    var yyyy = t1.getFullYear();
-			    if(dd<10){
-			        dd='0'+dd
-			    } 
-			    if(mm<10){
-			        mm='0'+mm
-			    } 
-				t1 = yyyy+'-'+mm+'-'+dd;
-             	e.myLocations[$index].travelStart = t1
-
-             	var t2 = new Date(e.myLocations[$index].travelEnd);
-             	var dd = t2.getDate();
-			    var mm = t2.getMonth()+1; //January is 0!
-
-			    var yyyy = t2.getFullYear();
-			    if(dd<10){
-			        dd='0'+dd
-			    } 
-			    if(mm<10){
-			        mm='0'+mm
-			    } 
-				t2 = yyyy+'-'+mm+'-'+dd;
-             	e.myLocations[$index].travelEnd = t2
-             	
+              e.myLocations[$index].travelStart = moment(e.myLocations[$index].travelStart).format('YYYY-MM-DD');
+              e.myLocations[$index].travelEnd = moment(e.myLocations[$index].travelEnd).format('YYYY-MM-DD');             	
              }
+             
              request = {
                         id              : e.myLocations[$index].id,
-                        travelStart     : t1,
-                        travelEnd       : t2,
+                        travelStart     : e.myLocations[$index].travelStart,
+                        travelEnd       : e.myLocations[$index].travelEnd,
                         searchLocation  : e.myLocations[$index].searchLocation,
                         };
 

@@ -1,6 +1,6 @@
-<section class="referBg">
+<section class="referBg" ng-init="blogs()">
   <div class="container">
-    <div class="pollsHd">Blog <span><a href="">Post a Blog</a></span></div>
+    <div class="pollsHd">Blog <span><a ng-click="goTo('blog/post-a-blog')">Post a Blog</a></span></div>
 
     <div class="pollBx" style="margin-bottom:10px;">
     
@@ -12,24 +12,24 @@
                <span>Loading..</span>
             </div>
 
-        <ul>
-          
-          <li ng-repeat="x in data track by $index">
+        <ul ng-if="data.length > 0">
+          <li dir-paginate="x in data | itemsPerPage: 3">
             <i ng-if="x.featuredImage"   style="background-image:url('{{x.featuredImage}}')"></i>
  <i ng-if="!x.featuredImage"  style="background-image:url('/images/no_image.jpg')"></i>
-
-
-
-           
-            <strong><a>{{x.urlTitle}}</a></strong>
-            <p> <span ng-bind-html="x.shortDesc"></span> <a href="#">Read More</a></p>
+            <strong><a ng-click="goToBlog(x.id,x.title)">{{x.title}}</a></strong>
+            <p> <span ng-bind-html="x.shortDesc"></span> <a ng-click="goToBlog(x.id,x.title)">Read More</a></p>
           </li>
           
         </ul>
+
+        <div class="alert alert-info mw100" ng-if="data.length == 0">
+            No Blogs Found
+        </div>
       </div>
     </div>
-    <div class="pagerBx">
-      <div class="pager">
+    <div class="pagerBx" ng-if="data.length > 0">
+    <dir-pagination-controls></dir-pagination-controls>
+      <!-- <div class="pager">
         <ul>
           <li><a href="">Prev</a></li>
           <li><a href="">1</a></li>
@@ -40,7 +40,7 @@
           <li><a href="" class="active">Next</a></li>
         <ul>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </section>
