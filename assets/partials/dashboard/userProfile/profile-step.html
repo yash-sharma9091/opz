@@ -209,12 +209,14 @@
             </div>
 
         </md-input-container>
+        
           <div class="md-block" ng-if="user.levelTypeOne=='professional_cmt'">
           <div class="steptopBx"> Service Type Offered
           <div class="clearfix"></div>
 
-          <md-radio-group ng-model="user.professionalType" required 
-            ng-init="user.professionalType=!user.professionalType?'free':user.professionalType">
+          <md-radio-group ng-model="user.professionalType" 
+          required    
+          ng-init="user.professionalType=!user.professionalType?'free':user.professionalType">
           <md-radio-button value="free"  > Exchange Massage </md-radio-button>
           <md-radio-button value="paid">  Paid Massage  </md-radio-button>
           <md-radio-button value="both">  Both  </md-radio-button>
@@ -280,7 +282,7 @@
         <div class="clearfix nextback" ng-hide="step==5">
          <!--button step-->
          <md-button class="md-raised greyBg logpopup-Btn fl"
-         	 ng-click="stepBack()" ng-disabled="step==1">
+         	 ng-click="stepBack()" ng-hide="step==1">
            Back
         </md-button>
          <!--next button-->
@@ -289,10 +291,11 @@
             type="submit"
             aria-label="submit"
             ng-click="updateProfile(profileupdate,user)"
-            class="md-raised md-primary logpopup-Btn fr pull-right" 
+            class="md-raised md-primary logpopup-Btn fr"  
+            ng-class="{' pull-right':step!=1,'center-btn':step==1}"
             >   
               <span ng-if="step<4">Next</span>
-              <span ng-if="step==4">Finsh</span>
+              <span ng-if="step==4">Submit</span>
 
             </md-button> 
 

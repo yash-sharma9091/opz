@@ -3,29 +3,31 @@
       <div class="container">
         <div class="row clearfix">
           <div class="col-sm-6">
-            <div class="msgBg" ng-init="massageNowDetails.allow = false ">
+            <div class="msgBg">
               <div class="msgNowHd">Massage Now!<sup>&trade;</sup></div>
               <div class="availablTxt clearfix">
-                  <md-checkbox ng-model="massageNowDetails.checked" ng-change="availableTimeCheckBoxClick(massageNowDetails.checked)" ng-click="avoidErrorMsg()" value="true" aria-label="Checkbox 1">I am available till</md-checkbox>
+                  <md-checkbox  aria-label="Checkbox 1">I am available till</md-checkbox>
                   <span>
                     <div uib-timepicker
-                    ng-change="timePickerChange(massageNowDetails.massageTime)" 
-                    ng-model="massageNowDetails.massageTime"
-                    ng-change=""
-                    hour-step="1" minute-step="10" ></div> 
+                  ng-model="mytime"
+                  ng-change="changed()"
+                  hour-step="1" minute-step="10" ></div>
                   </span>
               </div>
               <div class="srchformBx">
-                <md-select ng-model="commonCountryPhoneCodeArrayFirst" placeholder="- Select Your Country Code -" class="md-no-underline sechInp" ng-disabled="massageNowDetails.allow == false " ng-options="commonCountryPhoneCode.dial_code as commonCountryPhoneCode.name for commonCountryPhoneCode in commonCountryPhoneCodeArray">
+                <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
+                  <md-option value="axe">+91</md-option>
+                  <md-option value="sword">+92</md-option>
+                  <md-option value="wand">+61</md-option>
+                  <md-option value="pen">+62</md-option>
                 </md-select>
               </div>
               <div class="srchformBx">
-                <input type="text" name="mobilenumber" ng-model="massageNowDetails.mobile" class="sechInp" placeholder="Enter Your Mobile Number" ng-disabled="massageNowDetails.allow == false ">
+                <input type="text" name="mobilenumber" class="sechInp" placeholder="Enter Your Mobile Number">
               </div>
-              {{massageNowDetails}}
               <div class="srchsave">
-                <md-button class="md-raised md-primary logpopup-Btn" aria-label="Save" ng-click="saveAvailTimeClick()">Save</md-button>
-                <md-button class="md-raised md-primary logpopup-Btn" aria-label="Cancel" ng-click="clrMassage()">Cancel</md-button>
+                <md-button class="md-raised md-primary logpopup-Btn">Save</md-button>
+                <md-button class="md-raised md-primary logpopup-Btn">Cancel</md-button>
               </div>
             </div>
           </div>
@@ -34,14 +36,14 @@
 
               <div class="msgNowHd">Search For Massages</div>
 
-<md-tabs 
-        class="md-accent" 
-        md-selected="data.selectedIndex" 
+<md-tabs
+        class="md-accent"
+        md-selected="data.selectedIndex"
         md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
 
         <md-tab id="tab1">
         <md-tab-label>My Location</md-tab-label>
-        <md-tab-body ng-init="searched.mile=''"> 
+        <md-tab-body ng-init="searched.mile=''">
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
@@ -51,7 +53,7 @@
                 <div class="srchformBx" ng-init="mySavedLocations()">
 
                   <md-select ng-model="searched.location"
-                  placeholder="- Select Location -" 
+                  placeholder="- Select Location -"
                   md-on-close="addLocation(searched.location, $event)"
                   class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
 
@@ -61,10 +63,10 @@
                     <md-option value="addCountry">Add Country</md-option>
                      <md-option value="editList">Edit List</md-option>
 
-                    
+
                   </md-select>
                 </div>
-                
+
                 <div class="srchsave">
                   <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromSavedLocations(searched)" aria-label="Search">Search</md-button>
                 </div>
@@ -93,7 +95,7 @@
                                   filter-selected="filterSelected"
                                   placeholder="To">
                   </md-contact-chips>
-                </md-content> 
+                </md-content>
                 </div>
                 <div class="srchsave">
                   <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromCountries(asyncContacts)" aria-label="Search From Countries">Search</md-button>
@@ -104,7 +106,7 @@
 <md-tab id="tab3">
         <md-tab-label>Members</md-tab-label>
         <md-tab-body>
-        
+
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
@@ -128,7 +130,7 @@
 
                 </div>
               </div>
-            </div> 
+            </div>
 
         <div class="noteTxt">
         <span>Please Note:</span>
@@ -139,4 +141,5 @@
       </div>
   </div>
 </section>
+
 
