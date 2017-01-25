@@ -29,7 +29,8 @@ angular.module('zenbrisa',
 'userPollModule',
 'ame.lightbox',
 'filevalidate',
-'zenbrisa.blog'
+'zenbrisa.blog',
+'angularUtils.directives.dirPagination'
 ]);
 
 angular.module('zenbrisa.app',[]);
@@ -88,6 +89,9 @@ var API_URL=
 	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory',
 
 	"blogList":api_base_url+ 'blog/getBlogList',
+	"getSingleBlog" : api_base_url+"blog/getBlogDetails",
+	"uploadImage" : api_base_url+"blog/uploadImage",
+	"addBlog" : api_base_url+"blog/addBlog",
 	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations",
 	"updateLocationCategory" : api_base_url+"travelLocations/updateLocationCategory",
 	"updateLocationPrimary" : api_base_url+"travelLocations/updateLocationPrimary",

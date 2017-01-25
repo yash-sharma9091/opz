@@ -726,3 +726,5 @@ md-input-container md-select, md-input-container input {
 .bluBG:hover {
     background: #0630d8;
 }
+.mw100{max-width: 100% !important;}
+.w100{width: 100% !important;}
