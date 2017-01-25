@@ -21,7 +21,7 @@
          
           <!--upload picture-->
 
-          <div class="file-upload-container" ng-class="{'active':fileUploadList.length>=1}">
+          <div ng-if="!isUserId" class="file-upload-container" ng-class="{'active':fileUploadList.length>=1}">
             <div class="browseBx" ng-class="{'active':fileUploadList.length>=1}">
              <div class="uploading" ng-if="isUploading">
                     <md-progress-circular  
@@ -78,8 +78,7 @@
       <!--count file-->
         <md-icon>photo</md-icon>
           File List ({{fileUploadList.length}}) 
-          <md-icon>public</md-icon> 
-
+        
         <md-button ng-hide="isUploading" ng-click="removeAll()" remove-all="fileUploadList">
         <md-icon>delete</md-icon> Remove All</md-button>
       </strong>
@@ -116,10 +115,10 @@
      <div class="clearfix"></div>
     </div>
 
-             <div class="loading" ng-show="loading">
-               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
-               <span>Loading..</span>
-            </div>
+       <div class="loading" ng-show="loading">
+         <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+         <span>Loading..</span>
+      </div>
 
        
       
@@ -156,14 +155,19 @@
                               </md-progress-circular>
                             <span>Please wait we'r processing.. your request</span>
                             </div>
+                   
 
+        <div class="img-view" 
+          style="background-image:url({{x.thumbImageName}})">
+        </div>
+        
+        <div 
+            class="img-view" 
+            ng-hide="error" 
+            style="background-image:url({{x.thumbImageNameLocal}})">
+              
+        </div>
 
-                          <div class="img-view" style="background-image:url({{x.thumbImageName}})">
-
-                          </div>
-                                             <div class="img-view" style="background-image:url({{x.thumbImageNameLocal}})">
-
-                          </div>
                         <!--   <img ng-src="{{x.thumbImageName}}"> -->
                         <!--image hover -->
                         <i class="transition">
@@ -242,18 +246,12 @@
                           </span>
                         </div>
                         </div>
-
-
-
                       </div>
-
-
-
                   </md-content>
                </md-tab>
 
                 <!--all -->
-               <md-tab md-on-select="changeTabs()" label="All Photo Gallery ({{photoList.length}})">
+               <md-tab md-on-select="changeTabs()" ng-if="!isUserId" label="All Photo Gallery ({{photoList.length}})">
                   <md-content class="md-padding">
                       
                         <div ng-hide="photoList.length==0" class="profpicTxt"> To Make Any of These Images Your PROFILE PHOTO, Please Click 

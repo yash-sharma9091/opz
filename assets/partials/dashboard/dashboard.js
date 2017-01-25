@@ -328,7 +328,6 @@ function myVedio(e, rootscope,appServices,mdDialog,$timeout,location,mdToast,$sc
 		appServices.post(API_URL.getUserVideo,data, function(response)
 
 		{	
-
 		var data=response.data;	
 				e.loading=false;
 				rootscope.videoList=data;
@@ -356,8 +355,7 @@ e.deleteVideoById = function(id,data,index)
 
 										{
 												appServices.alert("Successfully removed from your video list")
-								
-						
+														
 										});
 
 								});

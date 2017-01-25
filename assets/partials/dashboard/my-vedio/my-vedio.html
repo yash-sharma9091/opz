@@ -25,7 +25,7 @@
         </div>
 
         <!--add new video-->
-        <div class="uploadBtnbx">
+        <div class="uploadBtnbx" ng-hide="isUserProfile">
           <md-button class="md-raised md-primary logpopup-Btn"  
             ng-click="addvideo($event)">  <md-icon class="text-white" >videocam</md-icon> Add Videos
           </md-button>
@@ -39,7 +39,7 @@
             <div>
                 <!--not added video-->
                 <div class="noData" ng-show="videoList.length==0"> 
-                <md-icon >videocam</md-icon>  You haven't added any video yet!</div>
+                <md-icon >videocam</md-icon>Hey  {{userprofile.username}} don't have anything here yet!</div>
 
         <!--video template list -->
         <div class="videoBx">

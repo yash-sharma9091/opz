@@ -101,14 +101,25 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-  .when('/my-profile',
+  .when('/profile',
     {
     templateUrl:"/partials/dashboard/userProfile/myProfile.html",
+    //path:-- assets/app.js 
     access:
     {
           login:true
     }
   })
+  .when('/profile/:_id',
+    {
+    templateUrl:"/partials/dashboard/userProfile/myProfile.html",
+    controller:'userProfileView',
+    access:
+    {
+          login:true
+    }
+  })
+
   .when('/my-locations',
     {
     templateUrl:"/partials/dashboard/locations/my-locations.html",
@@ -167,11 +178,34 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+   .when('/reviews-penned/:_id',
+    {
+    templateUrl:"/partials/dashboard/reviews/review-pinned.html",
+    controller:"userProfileView",
+    //controller path file path : assest/dashboard/userprofile.js
+    access:
+    { 
+          login:true
+    }
+
+  })
+
    .when('/reviews-received',
     {
     templateUrl:"/partials/dashboard/reviews/review-received.html",
     controller:"userReviewReceived",
     //controller path file path : assest/dashboard/dashboard.js
+    access:
+    { 
+          login:true
+    }
+
+  })
+   .when('/reviews-received/:_id',
+    {
+    templateUrl:"/partials/dashboard/reviews/review-received.html",
+    controller:"userProfileView",
+    //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
           login:true
@@ -188,11 +222,34 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+   //user profile view public
+   .when('/my-vedio/:_id',
+    {
+    templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
+    controller:"userProfileView",
+    //controller path file path : assest/dashboard/userProfileView.js
+    access:
+    { 
+          login:true
+    }
+  })
+
+   //user profile public on search or view
     .when('/photo-gallery/:id',
     {
     templateUrl:"/partials/dashboard/photoGallery/photo-gallery.html",
     controller:"photoGallery",
     //controller path file path : assest/dashboard/photogallery.js
+    access:
+    { 
+          login:true
+    }
+  })
+    .when('/photo-gallery/:id/:_id',
+    {
+    templateUrl:"/partials/dashboard/photoGallery/other-photo-gallery.html",
+    controller:"userProfileView",
+    //controller path file path : assest/dashboard/userProfileView.js
     access:
     { 
           login:true

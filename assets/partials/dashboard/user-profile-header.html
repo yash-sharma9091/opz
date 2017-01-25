@@ -1,13 +1,19 @@
 <section class="profileTopBg" 
   ng-class="{'professional': userprofile.professionalType=='paid' || userprofile.professionalType=='both'}">
   
+    <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+            
   <div class="container">
     <div class="profileTopBx" ng-class="{'exp': !headerExp}">
-      <div class="profile-Img">
-        <img ng-if="userprofile.profilePic" ng-src="{{userprofile.profilePic}}" 
-             alt="{{userprofile.fullName}}">
-        <img ng-if="!userprofile.profilePic" src="images/default-user-icon-profile.png">
-        <span ng-if="reating" class="reating" reating reating-data="userprofile.avgRating"> </span>
+      <div class="profile-Img" style="background-image:url({{userprofile.profilePic || 'images/default-user-icon-profile.png'}})">
+  <!--       <img ng-if="userprofile.profilePic" ng-src="{{userprofile.profilePic}}" 
+             alt="{{userprofile.fullName}}"> -->
+
+        <!-- <img ng-if="!userprofile.profilePic" src="images/default-user-icon-profile.png"> -->
+        <span ng-if="userprofile.avgRating" class="reating" reating reating-data="userprofile.avgRating" ng-show="headerExp"> </span>
       </div>
  
       <div class="prof-right-top">
@@ -17,7 +23,7 @@
       
             <span ng-if="userprofile.dob">
               <i class="material-icons blueClr personIcon">person</i> 
-              {{userprofile.age}} |  </span>
+              {{userprofile.age || userprofile.ageOne}} |  </span>
               {{userprofile.address}}
         </small>
         
@@ -26,8 +32,8 @@
               ng-if="userprofile.professionalType=='paid' || userprofile.professionalType=='both'">
                 Paid Professional Massage
               </a>
-            <md-button class="blueBg" ng-click="profileStep()">Edit/update Profile</md-button>
-            <md-button class="md-icon-button btn-exp pull-right" 
+            <md-button ng-if="!isUserProfile" class="blueBg" ng-click="profileStep()">Edit/update Profile</md-button>
+            <md-button class="md-icon-button btn-exp pull-right"  
             ng-click="userHeaderExp(headerExp)" aria-label="exp">
                     <md-icon ng-if="!headerExp">keyboard_arrow_down</md-icon>
                     <md-icon ng-if="headerExp"> keyboard_arrow_up</md-icon>

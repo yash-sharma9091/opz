@@ -1,0 +1,132 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+          
+          <!--review list data-->
+        <div class="row blockList">
+         
+          <!--prvate photo gallery-->
+
+           <md-content class="md-padding" ng-if="private" ng-hide="isValidGallery">
+            <div class="publicHd">
+              <span ng-if="selectedTabs==0"> Private Photo Gallery 
+                <span ng-if="isValidGallery">({{photoList.length}})</span>
+              </span>
+              <!--load private gallery-->
+              </div>
+
+          <div ng-if="!isValidGallery" class="form-sm">
+                  <!--key form-->
+
+            <div class="alert {{alert.type}}" ng-if="alert">
+            <p>
+                <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                <span ng-bind-html="alert.message"> </span>
+
+            </p>
+            </div>
+
+            <form novalidate name="privatekey" >
+                
+            <md-input-container class="md-block">
+            <label>Enter Private Key</label>
+            <input  name="photokey" 
+                    required 
+                    type="password"
+                    ng-model="user.photokey" 
+                    >
+            <!--error template-->
+            <div ng-messages="privatekey.photokey.$error">
+            <div ng-message="required">Enter Private key.</div>
+            
+            </div>
+            </md-input-container>
+            <div class="btn-actions">
+             <md-button type="submit" type="submit" ng-click="ChekPrivateKey(user,privatekey)" 
+                        class="md-raised md-primary ">
+                        Submit
+              </md-button>
+
+               <md-button type="button" ng-click="sendPhotoKey($event)" 
+                        class="md-raised md-primary ">
+                        Request photo key
+              </md-button>
+              </div>
+
+            </form>
+
+          </div>
+
+
+          <div ng-if="isValidGallery">
+              
+          </div>
+
+           </md-content>
+
+           <!--public photo gallery-->
+
+      <md-content class="md-padding" ng-if="photoList.length>0">
+                    
+       <div class="publicHd">
+          <span ng-if="public"> Public Photo Gallery ({{photoList.length}})</span>
+          <span ng-if="private"> Private Photo Gallery ({{photoList.length}})</span>
+        
+       </div>
+
+
+
+             </md-content>
+
+          <md-content class="md-padding">
+              <div class="noData" ng-show="photoList.length==0"> 
+              <md-icon >photo</md-icon>  You haven't added any Public Photo yet!</div>
+              <!--image list-->
+
+            <div class="row gallMain gallery">
+
+              <div class="col-sm-3 col-xs-6" 
+                ng-repeat="x in photoList track by $index" >
+
+              <div class="gallImgBx">
+
+              <div class="img-view" 
+                  style="background-image:url({{x.imageName}})">
+              </div>
+
+
+              <i class="transition">
+              <a ng-click="openLightbox(photoList)" class="transition">
+              <img src="images/zoom-icon.png" alt=""></a>
+              </i>
+
+              </div>
+              </div>
+
+            </div>
+
+           </md-content> 
+
+
+       </div> <!--end row-->
+      </div> <!--end coloumn-->
+
+    </div>
+  </div>
+</section>
+
+</div>   

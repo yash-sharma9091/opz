@@ -1,0 +1,63 @@
+<md-dialog aria-label="send photo key">
+
+     <md-dialog-content>
+     <md-button class="md-icon-button closeIcon" ng-click="cancel()">
+          <md-icon  aria-label="Close">close</md-icon>
+        </md-button>
+      <h2  class="LoginHd">Request Photo Key</h2>
+
+      <div class="md-dialog-content">
+
+        <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+               <span ng-bind-html="alert.message"> </span>
+               
+               </p>
+        </div>
+
+           <div class="loginFrmTop">
+              <!--forget password form-->
+              
+           <!--login form-->
+
+            <form  class="frmBx" name="login" novalidate>
+             <p>Note: You can change this note if you would like and put your own personal message.
+          
+           <md-input-container class="md-block">
+      
+          <textarea  required ng-model="message" 
+          name="message" 
+          rows="5" 
+          md-select-on-focus 
+          aria-label="msg">
+            
+          </textarea>
+
+
+        <div ng-messages="login.message.$error" role="alert">
+
+          <div ng-message="required">  Enter your message  </div>
+        </div>
+
+        </md-input-container>
+
+      <md-dialog-actions layout="row">
+       
+      <md-button aria-label="send" type="submit" ng-click="sendkey()" class="md-raised md-primary"> 
+        <span ng-if="loading">   Prcessing.. </span>
+        <span  ng-if="!loading"> Send        </span>
+
+       </md-button>
+      <md-button aria-label="ok" class="md-raised md-primary" ng-click="cancel()"> Cancel  
+        </md-button>
+      </md-dialog-actions>
+
+
+            </form>
+
+        
+      </div>
+    </md-dialog-content>
+
+</md-dialog>

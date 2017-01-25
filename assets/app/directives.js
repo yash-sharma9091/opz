@@ -1,4 +1,38 @@
 angular.module('app.direcrives',[])
+.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        scope:{error:'='},
+        link: function(scope, element, attrs) {
+        	
+            element.bind('load', function() {
+                scope.error=false;
+            });
+            element.bind('error', function(){
+                scope.error=true;
+
+            });
+        }
+    };
+})
+.directive('imageonloadcdn', function() {
+    return {
+        restrict: 'A',
+        scope:{error1:'='},
+        link: function(scope, element, attrs) {
+        	
+            element.bind('load', function() {
+                scope.error1=false;
+
+            });
+            element.bind('error', function(){
+                scope.error1=true;
+                console.log("not loedr")
+                
+            });
+        }
+    };
+})
 .directive('owlCarosuel',['$timeout', function($timeout){
 	return {
 		scope:{loading:'='},
