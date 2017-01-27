@@ -175,7 +175,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:false
     }
   })
    .when('/reviews-penned/:_id',
@@ -185,7 +185,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
-          login:true
+          login:false
     }
 
   })
@@ -197,7 +197,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:false
     }
 
   })
@@ -208,7 +208,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
-          login:true
+          login:false
     }
 
   })
@@ -230,7 +230,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userProfileView.js
     access:
     { 
-          login:true
+          login:false
     }
   })
 

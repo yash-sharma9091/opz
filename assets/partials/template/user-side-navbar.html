@@ -24,7 +24,7 @@
                 </p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" 
+            <md-list-item ng-if="isUserLogin" class="active" 
             ng-href="{{userDashboard.photoGallery.href}}/private/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >photo</md-icon>
                 <p>Private Photo Gallery 
@@ -34,7 +34,7 @@
                 </span>
                 </p>
            </md-list-item>
-             <md-divider></md-divider>
+             <md-divider ng-if="isUserLogin"></md-divider>
             <md-list-item  class="active" 
             ng-href="{{userDashboard.myvedio.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >videocam</md-icon>
