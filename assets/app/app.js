@@ -199,8 +199,11 @@ $rootScope.closeAlert= function(alert){
 		$rootScope.getUserProfile(user);
 
 	}
+	
+	$rootScope.getmap= function(lat,lng){
 
-
+		return lat+','+lng;
+	}
 	$rootScope.getUrl = function(url)
 	{
 		 return  $sce.trustAsResourceUrl(url);
@@ -219,7 +222,8 @@ $rootScope.closeAlert= function(alert){
 		{
 				return getAge(age.month+'/'+age.month+'/'+age.year).age;
 		}
-	}
+	};
+	
 }])
 
 //define template
@@ -252,7 +256,7 @@ $rootScope.closeAlert= function(alert){
 		"icon": "account_balance"
 	},
 	"blog": {
-		"url": "/#",
+		"url": "/#/blogs",
 		"title": "Blog",
 		"icon": "contact_mail"
 	},
@@ -339,7 +343,7 @@ $rootScope.userNavbar={
 	"mailbox":{"title":"Mailbox","href":"#/"},
 	"profile":{"title":"Profile",
 	"submenu":{ 
-		"myprofile":{"title":'My Profile',"href":"#/my-profile"},
+		"myprofile":{"title":'My Profile',"href":"#/profile"},
 		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
 		"photogallery":{"title":'Photo Gallery',"href":"#/photo-gallery"},
 		"videogallery":{"title":'Video Gallery',"href":"#/home"},
@@ -351,7 +355,7 @@ $rootScope.userNavbar={
 },
 	
 	"community":{"title":"Community", 
-	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blog"},
+	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll"},
 				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
 				"allPoll":{"title":'All Poll',"href":"#/all-poll"}

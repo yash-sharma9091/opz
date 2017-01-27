@@ -1,0 +1,23 @@
+<section class="referBg" ng-init="getSingleBlog()">
+  <div class="container">
+  <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+    <div class="pollsHd">{{blogData.title}} <span><a ng-click="goTo('blog/post-a-blog')">Post a Blog</a></span></div>
+    <div class="pollBx">
+        <div class="blogdetail">
+          <i ng-if="(blogData.featuredImage != null && blogData.featuredImage != '')"><img src="http://cdn.zenbrisa.com/blog/{{blogData.featuredImage}}" alt="" class="w100"></i>
+          <span><small class="material-icons">access_time</small> {{blogData.blogDate}} </span>
+          <div ng-bind-html="blogData.description"></div>
+          
+        </div>
+    </div>
+    <div class="pollsHd">Leave a Comment:</div>
+    <div class="pollBx">
+      <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp ng-pristine ng-untouched ng-valid ng-empty" aria-invalid="false"></textarea>
+      <button class="md-raised md-primary logpopup-Btn md-button md-ink-ripple" type="button" ng-transclude="" style="margin-left:0 !important;"><span class="ng-scope">Submit</span></button>
+    </div>
+    </div>
+
+  </section>

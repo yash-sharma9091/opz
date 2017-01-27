@@ -31,12 +31,14 @@
            <md-input-container class="md-block">
 
             <label>Provide the Youtube/Embedded URL</label>
-            <input required name="url" ng-model="video.url"  type="url" >
+            <input required name="url" ng-model="video.url"  type="url"    
+            ng-pattern="/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/">
             <div ng-messages="videoFrom.url.$error" role="alert" >
               <div ng-message="required" class="my-message">Enter your embedded URL</div>
               <div ng-message="pattern" class="my-message">Enter valid URL</div>
             </div>
-          
+       
+        
           </md-input-container>
 
 

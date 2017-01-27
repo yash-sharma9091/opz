@@ -1,0 +1,44 @@
+<section class="referBg">
+  <div class="container">
+    <div class="pollsHd">Post Blog <span><a href="">Back</a></span></div>
+    <form ng-submit="addUserBlog()" class="form-horizontal" role="form" name="newBlogAdd">
+
+    <div class="postBlogBx">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="uploadImg">
+
+
+
+            <input type="text" name="name" ng-model="user.name" placeholder="Image Upload" class="loginInp ng-pristine ng-valid ng-empty ng-touched" readonly="" 
+             aria-invalid="false" style="">
+            <button type="button" name="button" class="fileButton">Browse</button>
+            <input id="file-3" type="file" ng-model="myFile" name="myFile" onchange="angular.element(this).scope().pickImage(this,'blog')" accept="image/jpeg,image/png" multiple="" class="InpFile">
+          </div>
+          </div>
+        <div class="col-sm-4"><input type="text" name="name" ng-model="newTitle" placeholder="Enter Title" class="loginInp ng-pristine ng-valid ng-empty ng-touched" aria-invalid="false" style=""></div>
+        <div class="col-sm-4 blogImgurl">
+          <div class="uploadImg">
+            <input type="text" name="name" ng-model="user.name" placeholder="Blog Image URL" class="loginInp ng-pristine ng-valid ng-empty ng-touched" aria-invalid="false" style="">
+            <button type="button" name="button" class="fileButton">Browse</button>
+            <input type="file" name="file" file-model="newFeaturedImage" class="InpFile">
+          </div>
+          <span>*To add an image in between your blog content, copy &amp; paste this url.</span>
+        </div>
+      </div>
+      <div class="row padtop">
+        <div class="col-sm-12">
+            <textarea name="textarea" ng-model="shortDescription" placeholder="Short Description" class="textareaInp ng-valid ng-touched ng-not-empty ng-dirty ng-valid-parse" aria-invalid="false" style=""></textarea>
+        </div>
+      </div>
+      <div class="row padtop">
+        <div class="col-sm-12">
+           <!-- <div class="textaditer"><img src="images/textediter.png" alt=""></div> -->
+           <textarea name="textarea" ng-model="newDescription" placeholder="Long Description" class="textareaInp ng-valid ng-touched ng-not-empty ng-dirty ng-valid-parse" aria-invalid="false" style=""></textarea>
+        </div>
+      </div>
+      <button class="md-raised md-primary logpopup-Btn md-button md-ink-ripple" type="submit" ng-transclude="" style="margin-left:0 !important;"><span class="ng-scope">Submit Blog</span></button>
+    </div>
+    </form>
+  </div>
+</section>

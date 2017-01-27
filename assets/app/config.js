@@ -29,7 +29,9 @@ angular.module('zenbrisa',
 'userPollModule',
 'ame.lightbox',
 'filevalidate',
-'zenbrisa.blog'
+'zenbrisa.blog',
+'zenbrisa.userProfile',
+'angularUtils.directives.dirPagination'
 ]);
 
 angular.module('zenbrisa.app',[]);
@@ -41,6 +43,7 @@ angular.module('userPhotoGalleryModule',[]);
 angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
+angular.module('zenbrisa.userProfile',[]);
 
 var API_URL=
 {
@@ -88,12 +91,27 @@ var API_URL=
 	"getMyBonusHistory":api_base_url+'subscription/getMyBonusHistory',
 
 	"blogList":api_base_url+ 'blog/getBlogList',
+	"getSingleBlog" : api_base_url+"blog/getBlogDetails",
+	"uploadImage" : api_base_url+"blog/uploadImage",
+	"addBlog" : api_base_url+"blog/addBlog",
 	"getTravelLocations" : api_base_url+"travelLocations/getTravelLocations",
 	"updateLocationCategory" : api_base_url+"travelLocations/updateLocationCategory",
 	"updateLocationPrimary" : api_base_url+"travelLocations/updateLocationPrimary",
 	"saveMyLocation" : api_base_url+"travelLocations/saveMyLocation",
 	"deleteTravelLocation" : api_base_url+"travelLocations/deleteTravelLocation",
 	"checkTravelCityPresent" : api_base_url+"travelLocations/checkTravelCityPresent",
-	"addTravelLocation" : api_base_url+"travelLocations/addTravelLocation"
+	"addTravelLocation" : api_base_url+"travelLocations/addTravelLocation",
+
+	"getOtherUserProfile":api_base_url+'users/getOtherUserDetails',
+	"getReviewsOther":api_base_url+'users/getOtherReceivedReviews',
+	"reviewsPennedOtherprofile":api_base_url+'users/getOtherPennedReviews',
+	"addTofav":api_base_url+'users/addToFavourite',
+	"removeTofav":api_base_url+'users/makeUnFavourite',
+	"getAllCountOtherprofile":api_base_url+'users/getAllCountOtherprofile',
+	"blockuser" :api_base_url+ 'users/blockAUser',
+	"unblockAUser" :api_base_url+ 'users/unblockAUser',
+	"getPublicPhoto":api_base_url+'users/getPublicPhotos',
+	"checkPhotoKey":api_base_url+'users/getPrivatePhotos',
+	"requestPhotoKey":api_base_url+'requests/sendRequest'
 
 }

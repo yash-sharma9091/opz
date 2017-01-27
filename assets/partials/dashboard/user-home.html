@@ -11,7 +11,7 @@
                     <div uib-timepicker
                   ng-model="mytime"
                   ng-change="changed()"
-                  hour-step="1" minute-step="10" ></div> 
+                  hour-step="1" minute-step="10" ></div>
                   </span>
               </div>
               <div class="srchformBx">
@@ -36,14 +36,14 @@
 
               <div class="msgNowHd">Search For Massages</div>
 
-<md-tabs 
-        class="md-accent" 
-        md-selected="data.selectedIndex" 
+<md-tabs
+        class="md-accent"
+        md-selected="data.selectedIndex"
         md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
 
         <md-tab id="tab1">
         <md-tab-label>My Location</md-tab-label>
-        <md-tab-body ng-init="searched.mile=''"> 
+        <md-tab-body ng-init="searched.mile=''">
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
@@ -53,7 +53,7 @@
                 <div class="srchformBx" ng-init="mySavedLocations()">
 
                   <md-select ng-model="searched.location"
-                  placeholder="- Select Location -" 
+                  placeholder="- Select Location -"
                   md-on-close="addLocation(searched.location, $event)"
                   class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
 
@@ -63,10 +63,10 @@
                     <md-option value="addCountry">Add Country</md-option>
                      <md-option value="editList">Edit List</md-option>
 
-                    
+
                   </md-select>
                 </div>
-                
+
                 <div class="srchsave">
                   <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromSavedLocations(searched)" aria-label="Search">Search</md-button>
                 </div>
@@ -95,7 +95,7 @@
                                   filter-selected="filterSelected"
                                   placeholder="To">
                   </md-contact-chips>
-                </md-content> 
+                </md-content>
                 </div>
                 <div class="srchsave">
                   <md-button class="md-raised md-primary logpopup-Btn" ng-click="searchFromCountries(asyncContacts)" aria-label="Search From Countries">Search</md-button>
@@ -106,7 +106,7 @@
 <md-tab id="tab3">
         <md-tab-label>Members</md-tab-label>
         <md-tab-body>
-        
+
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
@@ -130,7 +130,7 @@
 
                 </div>
               </div>
-            </div> 
+            </div>
 
         <div class="noteTxt">
         <span>Please Note:</span>
@@ -141,4 +141,5 @@
       </div>
   </div>
 </section>
+
 

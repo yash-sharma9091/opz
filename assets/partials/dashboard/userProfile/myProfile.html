@@ -30,7 +30,7 @@
                   
                   <li ng-if="userprofile.address">Address:  <span>{{userprofile.address}}</span></li>
                   <li ng-if="userprofile.dobOne">Age:  
-                      <span>{{userprofile.age}}Y </span>
+                      <span>{{userprofile.age || userprofile.ageOne}}Y </span>
                   </li>
             
                   <li>
@@ -62,12 +62,10 @@
           <div class="col-sm-7"  >
        
               <div class="profmapBx" >
-                 
-                    <ng-map 
-                        ng-if="userprofile.latitude" zoom="11"
-                        ng-init="pos=[userprofile.latitude,userprofile.longitude]"
-                        center="{{pos}}">
-                        <marker position="{{pos}}"> </marker>
+                     <ng-map 
+                        ng-if="getmap(userprofile.latitude,userprofile.longitude)" zoom="11"
+                          center="{{getmap(userprofile.latitude,userprofile.longitude)}}">
+                        <marker position="{{getmap(userprofile.latitude,userprofile.longitude)}}"> </marker>
                     </ng-map>
 
                 </div>

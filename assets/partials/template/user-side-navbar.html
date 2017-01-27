@@ -1,46 +1,131 @@
 <div class="profileNav">
 <md-list>
-          <md-list-item  class="active" ng-href="{{userNavbar.profile.submenu.myprofile.href}}"> 
+          <md-list-item  ng-if="!isUserProfile"
+        
+          ng-href="{{userNavbar.profile.submenu.myprofile.href}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
-                <p>My Profile</p>
+                <p>My Profile </p>
            </md-list-item>
+
+            <md-list-item  ng-if="isUserProfile"  ng-href="{{userNavbar.profile.submenu.myprofile.href}}/{{isUserId}}"> 
+                <md-icon  aria-label="icon" >person</md-icon>
+                <p>Profile Information </p>
+           </md-list-item>
+
             <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.photoGallery.href}}/public"> 
+            <md-list-item  class="active" 
+              ng-href="{{userDashboard.photoGallery.href}}/public/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >camera_alt</md-icon>
-                <p>Public photo Gallery</p>
+                <p>Public photo Gallery
+                <span ng-if="userInfoCount.publicPhotoCount" 
+                      class="badge pull-right">
+                      {{userInfoCount.publicPhotoCount || 0}}
+                </span>
+                </p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.photoGallery.href}}/private"> 
+            <md-list-item  class="active" 
+            ng-href="{{userDashboard.photoGallery.href}}/private/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >photo</md-icon>
-                <p>Private Photo Gallery</p>
+                <p>Private Photo Gallery 
+                   <span ng-if="userInfoCount.privatePhotoCount" 
+                      class="badge pull-right">
+                      {{userInfoCount.privatePhotoCount || 0}}
+                </span>
+                </p>
            </md-list-item>
              <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.myvedio.href}}"> 
+            <md-list-item  class="active" 
+            ng-href="{{userDashboard.myvedio.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >videocam</md-icon>
-                <p>Video Gallery</p>
+                <p>Video Gallery 
+                  <span ng-if="userInfoCount.videoCount" 
+                      class="badge pull-right">
+                      {{userInfoCount.videoCount || 0}}
+                </span>
+                </p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.reviewsreceived.href}}"> 
+            <md-list-item  class="active" 
+            ng-href="{{userDashboard.reviewsreceived.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >insert_drive_file</md-icon>
-                <p>Reviews Received</p>
+                <p>Reviews Received 
+                <span ng-if="userInfoCount.reviewReceived" 
+                      class="badge pull-right">
+                      {{userInfoCount.reviewReceived || 0}}
+                </span>
+                </p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.reviewspenned.href}}"> 
+            <md-list-item  class="active" 
+            ng-href="{{userDashboard.reviewspenned.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
-                <p>Reviews Penned</p>
+                <p>Reviews Penned 
+                   <span ng-if="userInfoCount.reviewPenned" 
+                      class="badge pull-right">
+                      {{userInfoCount.reviewPenned  || 0}}
+                </span>
+                </p>
            </md-list-item>
             <md-divider></md-divider> 
-            <md-list-item  class="active"  ng-href="{{userDashboard.favorites.href}}"> 
+   <!--user favourites-->
+            <md-list-item  class="active" ng-if="!isUserId" 
+            ng-href="{{userDashboard.favorites.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >star</md-icon>
-                <p>My Favorites</p>
+                <p>My Favorites 
+                    <span ng-if="userInfoCount.favouriteCount" 
+                      class="badge pull-right">
+                      {{userInfoCount.favouriteCount  || 0}}
+                </span>
+                </p>
+           </md-list-item>
+
+        <!--if other profile is loaded add to fav-->
+           <md-list-item  class="active" ng-if="isUserId && !favYes" 
+              ng-click="AddFav(isUserId)"> 
+                <md-icon  aria-label="icon" >star</md-icon>
+                <p>Add to Favorites  </p>
+           </md-list-item>
+
+            <!--if other profile is loaded add to fav-->
+           <md-list-item  class="active" ng-if="isUserId && favYes" 
+              ng-click="removeFav(isUserId)"> 
+                <md-icon  aria-label="icon" >star</md-icon>
+                <p>Remove to Favorites  </p>
            </md-list-item>
             <md-divider></md-divider>
-            <md-list-item  class="active" ng-href="{{userDashboard.blockedUsers.href}}"> 
+
+           <!--blocked user- blockYes-->
+
+          
+            <md-list-item  class="active"  ng-if="!isUserId"
+            ng-href="{{userDashboard.blockedUsers.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >do_not_disturb</md-icon>
-                <p>My Blocked List</p>
+                <p>My Blocked List 
+                   <span ng-if="userInfoCount.blockedCount" 
+                      class="badge pull-right">
+                      {{userInfoCount.blockedCount  || 0}}
+                </span>
+                </p>
            </md-list-item>
+
+             <md-list-item  class="active"  ng-if="isUserId && blockYes"
+            ng-click="removeBlockuser(isUserId)"> 
+                <md-icon  aria-label="icon" >do_not_disturb</md-icon>
+                <p>Unblocked  </p>
+           </md-list-item>
+
+            <md-list-item  class="active"  ng-if="isUserId && !blockYes"
+            ng-click="AddBlockUser(isUserId)"> 
+                <md-icon  aria-label="icon" >do_not_disturb</md-icon>
+                <p>Blocked 
+                 
+                </p>
+           </md-list-item>
+
+
             <md-divider></md-divider>
-            <md-list-item  class="active" href="#/my-profile"> 
+            <md-list-item  class="active" ng-click='null'> 
                 <md-icon  aria-label="icon" >sms</md-icon>
                 <p>Massage Messenger<sup>&trade;</sup></p>
            </md-list-item>

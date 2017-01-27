@@ -488,13 +488,21 @@ md-input-container input {
     color: #ec9015;
 }
 .profileTopBg {
-    padding: 15px 0;
+    padding: 15px 0; position: relative;
 }
 .typeLabel li {
     padding-bottom: 30px;
 }
 .reviewList .image-view {
     height: 157px;
+}
+.profile-Img {
+        border: 1px #d5d5d5 solid;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 190px;
+    width: 170px;
 }
 .tags,
 span.tags {
@@ -530,7 +538,7 @@ span.tags {
     font-size: 90%
 }
 .vedio-content p.title {
-    margin: 8px 10px;
+    margin: 8px 10px;     position: static !important;
     overflow: hidden;
     font-weight: 500;
     text-align: center;
@@ -823,6 +831,14 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
     background-size: cover;
 }
 
+.gallImgBx {    height: 186px;}
+.img-view {    position: absolute;}
+.form-sm{ max-width: 400px; }
+.btn-actions .md-button{ color: white !important;    color: white !important;padding: 0 19px;  }
+.md-raised.md-primary{ color: white !important; }
+
+.center-btn{margin: auto !important;
+    float: none !important;}
 @media(min-width:768px) {
     .nav-btn {
         display: none
