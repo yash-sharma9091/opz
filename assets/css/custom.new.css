@@ -840,6 +840,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 
 .center-btn{margin: auto !important;  float: none !important;}
 .listingImg { cursor: pointer; }
+black { color: #4e99d8; }
 @media(min-width:768px) {
     .nav-btn {
         display: none
