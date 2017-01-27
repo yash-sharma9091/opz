@@ -92,7 +92,7 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
   //dynamic page login require
-  .when('/home',
+  .when('/search-page',
     {
     templateUrl:"/partials/dashboard/user-home.html",
     controller:'userDashboardSearch',
@@ -212,7 +212,7 @@ angular.module('app.ngRoute',['ngRoute'])
     }
 
   })
-   .when('/my-vedio',
+   .when('/my-video',
     {
     templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
     controller:"myVedio",
@@ -223,7 +223,7 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
    //user profile view public
-   .when('/my-vedio/:_id',
+   .when('/my-video/:_id',
     {
     templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",
     controller:"userProfileView",

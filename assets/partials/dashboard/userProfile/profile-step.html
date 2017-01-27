@@ -5,7 +5,7 @@
 
      <md-button ng-if="step<=4"  class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
-          <md-tooltip>Skip (you can fill later)</md-tooltip>
+         
     </md-button>
 
      <div ng-if="step==5" class="md-dialog-content">
@@ -49,8 +49,9 @@
 <div class="stepFrmBx" ng-if="step==1" >
       
   <md-input-container >
-            <label>Username/ Full name</label>
+            <label>Username</label>
             <input  name="fullName" 
+                    readonly 
                     required 
                     type="text"
                     ng-model="user.fullName">
@@ -80,7 +81,7 @@
 
           
 </div>
-          <div class="steplbl">Birth Date <span>(used to calculate age-birthdae not revealed)*</span></div>
+          <div class="steplbl">Birth Date<p> <span>(used to calculate age and birth date  will not be revealed)*</span> </p></div>
           <div class="stepdobBx clearfix">
         <div class="Dob-L">
            <md-input-container>
@@ -171,7 +172,9 @@
         <md-input-container>
             <label>Seeking to Exchange With</label>
             
-            <md-select  ng-model="user.exchange" md-on-close="seeking_exchange(user.exchange)" placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
+            <md-select  ng-model="user.exchange" 
+            md-on-close="seeking_exchange(user.exchange)" 
+            placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
                 <md-option value="male">Male</md-option>
                 <md-option value="female">Female</md-option>
                 <md-option value="both">Both</md-option>
@@ -215,7 +218,7 @@
           <div class="clearfix"></div>
 
           <md-radio-group ng-model="user.professionalType" 
-          required    
+          ng-required="true"    
           ng-init="user.professionalType=!user.professionalType?'free':user.professionalType">
           <md-radio-button value="free"  > Exchange Massage </md-radio-button>
           <md-radio-button value="paid">  Paid Massage  </md-radio-button>
@@ -231,13 +234,13 @@
          
 
           <md-input-container>
-              <label>Full address</label>
+              <label>My Location*</label>
               <input 
                 type="text" 
                 required 
                 places-auto-complete 
                 name="address" 
-                placeholder="Enter location and select from the list below" 
+                placeholder="Type your location and select from the suggessted list" 
                 class="countryInp" 
                 ng-model="user.address" 
                 types="['geocode']" 
@@ -266,7 +269,7 @@
         <!--step4-->
         <div class="stepFrmBx" ng-if="step==4">
          <md-input-container class="md-block">
-          <label>Type of massage that I prefer to give</label>
+          <label>About Me</label>
           <textarea 
               name="message"
               ng-model="user.aboutme" 

@@ -70,9 +70,6 @@ html[dir=rtl] .ame-lightbox ._prev {
 
 }
 
-md-radio-button.md-default-theme .md-on, md-radio-button .md-on {    background-color: rgba(255, 255, 255, 0.87); }
-md-radio-button.md-default-theme.md-checked .md-off, md-radio-button.md-checked .md-off { border-color: rgba(255, 255, 255, 0.87);}
-
 .ame-lightbox #ame_lightbox_image img.ng-hide-remove,
 .ame-lightbox #ame_lightbox_image img.ng-hide-remove-active {
   transition: opacity 0.3s ease;

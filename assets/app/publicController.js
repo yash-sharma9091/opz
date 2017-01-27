@@ -116,7 +116,7 @@ e.userLogin =function(from,data)
                      if(response.profileCompleteStatus==1)
                     {
                       
-                      dashbaord_url='/home';
+                      dashbaord_url='/search-page';
                       mdDialog.cancel();
                       rootScope.getUserProfile(user);
                       
@@ -396,7 +396,9 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
         else if(e.step==2)
         {
 
-
+        if(e.user.levelTypeOne!='professional_cmt'){
+            delete e.user['professionalType'];
+        }
         e.step=3;
         //set map center if exist
         var loc={'lat':parseFloat(userprofile['latitude']), "lng":parseFloat(userprofile['longitude'])};
@@ -455,10 +457,11 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
 
       }
 
+
   //add seeking_exchange
   e.seeking_exchange = function(data)
   {
- 
+  
       if(data=='female')
       {
         e.user['seeking_female']=data;

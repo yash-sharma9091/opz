@@ -1,37 +1,64 @@
 <md-dialog aria-label="camposemail">
-  <form ng-cloak>
-    <!--<md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2 class="LoginHd">Member Signup Form</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon  aria-label="Close">close</md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>-->
-
+<form name="userEmail" novalidate>
+   
     <md-dialog-content>
+      
       <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
-        <h2 class="LoginHd">Compose E-mail</h2>
+      <h2 class="LoginHd">Compose E-mail</h2>
+
       <div class="md-dialog-content">
-          <div class="loginFrmTop" >
-              <input type="text" name="name" ng-model="user.email" placeholder="To" class="loginInp">
-              <input type="password" ng-model="user.password" name="password" placeholder="Subject" class="loginInp">
-              <textarea name="password" ng-model="user.message" placeholder="Type your message here" class="textareaInp"></textarea>
-              <div class="composeBtn clearfix">
+      <div class="loginFrmTop" >
+      
+          <md-input-container class="md-block">
+          <label>To</label>
+          <input readonly required md-no-asterisk name="to" ng-model="email.to">
+          
+          </md-input-container>
+
+           <md-input-container class="md-block">
+            <label>Subject</label>
+          <input required md-no-asterisk name="composeSubject" ng-model="email.composeSubject">
+          <div ng-messages="userEmail.composeSubject.$error">
+          <div ng-message="required">Enter your subject.</div>
+          
+          </div>
+          </md-input-container>
+
+
+         <md-input-container class="md-block">
+            <label>Type your message here</label>
+            <textarea name="composeMessage" 
+              ng-model="email.composeMessage" required 
+              class="textareaInp"></textarea>
+          <div ng-messages="userEmail.composeMessage.$error">
+            <div ng-message="required">Enter your Message.</div>
+          
+          </div>
+          </md-input-container>
+            <p ng-if="photoKey.photokey">Your photo key is - {{photoKey.photokey}}</p>
+            <div class="composeBtn clearfix">
                 <div class="attachfile">
-                 <!--  <span><i class="material-icons">attachment</i> Attach Files
-                    <input type="file" name="file" class="attachfileInp" value="Browse">
-                  </span> -->
-                  <span><md-checkbox  aria-label="Checkbox 1">Send Photo Key</md-checkbox></span>
+                <span>
+                  <md-checkbox ng-if="userData.user" ng-change="generateKey(user.photoKey)" 
+                    ng-model="user.photoKey" 
+                    aria-label="sendkey"> Send Photo Key
+                  </md-checkbox>
+                </span>
                 </div>
-                <md-button class="md-raised md-primary logpopup-Btn">Send</md-button></div>
-           </div>
-      </div>
+         
+                <md-button type="submit" ng-click="sendEmail(email)" 
+                  class="md-raised md-primary logpopup-Btn">Send
+                </md-button>
+            </div>
+         
+          </div>
+        </div>
+       
+    
     </md-dialog-content>
 
-    
-  </form>
+      </form>
+
 </md-dialog>

@@ -32,7 +32,9 @@
               ng-if="userprofile.professionalType=='paid' || userprofile.professionalType=='both'">
                 Paid Professional Massage
               </a>
-            <md-button ng-if="!isUserProfile" class="blueBg" ng-click="profileStep()">Edit/update Profile</md-button>
+            <md-button ng-if="!isUserProfile" class="blueBg" ng-click="profileStep()">
+            <md-icon>mode_edit</md-icon>
+            Edit  Profile</md-button>
             <md-button class="md-icon-button btn-exp pull-right"  
             ng-click="userHeaderExp(headerExp)" aria-label="exp">
                     <md-icon ng-if="!headerExp">keyboard_arrow_down</md-icon>
@@ -46,10 +48,15 @@
       <p ng-bind-html="userprofile.aboutme"></p>
 
         <!--subscriptionExpiredDate-->
-        <span ng-if="userprofile.subscriptionExpiredDate">
+        <!-- <span ng-if="userprofile.subscriptionExpiredDate" class="gray">
           <i class="material-icons">wifi</i> 
           Subscription Expires on : {{userprofile.subscriptionExpiredDate |date:'EEE MMM, dd, yyyy'}}   
-        <a class="blueClr">Renew Subscription</a></span>
+        <x >Renew Subscription</x></span> -->
+
+        <span ng-if="userprofile.subscriptionExpiredDate" class="gray">
+          <i class="material-icons">wifi</i> 
+          Subscription (Comming Soon)
+   </span>
       </div>
     </div>
   </div>

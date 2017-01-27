@@ -113,6 +113,9 @@ var API_URL=
 	"getPublicPhoto":api_base_url+'users/getPublicPhotos',
 	"checkPhotoKey":api_base_url+'users/getPrivatePhotos',
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
-	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile'
+	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
+	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
 
+	//email system
+	"saveMail":api_base_url+'/mail/saveMail'
 }

@@ -1274,22 +1274,42 @@ service.alert =function(alert){
 				);
 
 		};
-	service.modal=function(template, controller,ev)
+	service.modal=function(template, controller,ev,data)
 	{
-		$mdDialog.show({
+		
+		var modal;
+		modal=
+		{
 			controller: controller,
 			templateUrl:template ,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,
 			disableParentScroll:true
-		})
-		.then(function(answer) {
+		};
+
+		if(data)
+		{
+
+			modal=
+			{	
+				controller: controller,
+				templateUrl:template ,
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose:false,
+				disableParentScroll:true,
+				locals: { data:data }
+			}
+		}
+
+		$mdDialog.show(modal).then(function(answer) {
          // $scope.status = 'You said the information was "' + answer + '".';
      }, function() {
          // $scope.status = 'You cancelled the dialog.';
      });
 	};
+
 
 	service.post=function(url,data, callback)
 	{	

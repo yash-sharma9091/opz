@@ -837,10 +837,19 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .form-sm{ max-width: 400px; }
 .btn-actions .md-button{ color: white !important;    color: white !important;padding: 0 19px;  }
 .md-raised.md-primary{ color: white !important; }
-
 .center-btn{margin: auto !important;  float: none !important;}
 .listingImg { cursor: pointer; }
-black { color: #4e99d8; }
+ black{ color: #4e99d8; }
+.gray x{ color: gray !important; }
+.blueBg md-icon { color: white !important; }
+ textarea.textareaInp { height: 100px !important; }
+.yellowBg:hover{    background: #ffcc00 !important;}
+.listingBot .disabled{     background-color: #8a8a8a !important; border: 0; }
+.massageexchange > span {text-transform: none;  font-size: 40px;}
+.massageexchange small {    font-size: 25px; text-transform: none;}
+.massageexchange  strong {  font-weight: 400; }
+.massageexchange { }
+
 @media(min-width:768px) {
     .nav-btn {
         display: none

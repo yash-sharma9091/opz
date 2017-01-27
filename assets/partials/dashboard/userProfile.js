@@ -28,7 +28,6 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		{
      			e.userprofile=appServices.removeNull(response.data[0]);
      			e.userInfoCount=appServices.removeNull(response.data3[0]);
-     			
 
      		}
      		else

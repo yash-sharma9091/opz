@@ -33,9 +33,14 @@ angular.module('zenbrisa.app')
 	{
 			appServices.modal('partials/template/signup.html', loginCtrl, ev)
 	}
-	$rootScope.camposemail=function(ev)
-	{
-			appServices.modal('partials/template/campose-mail.html', composeEmailPublic, ev)
+	$rootScope.camposemail=function(ev,id,username)
+	{		
+			//public controller
+			var data={};
+			data.id=id;
+			data.username=username;
+			data.user=$rootScope.isUserLogin;
+			appServices.modal('partials/template/campose-mail.html', composeEmailPublic, ev,data);
 	}
 	
 	$rootScope.profileStep=function(ev)
@@ -358,19 +363,15 @@ $rootScope.menuOpen= function(id)
 	}
 }
 $rootScope.userNavbar={
-	"search":{"title":"Search", 
-	"submenu":{ "SearchByLocation":
-	{"title":'Search By Location',"href":"#/home"},
-	"SearchMembers":{"title":'Search Members',"href":"#/home"} }
-	},
+	"search":{"title":"Search", "href":"#/search-page"},
 	"mailbox":{"title":"Mailbox","href":"#/"},
 	"profile":{"title":"Profile",
 	"submenu":{ 
 		"myprofile":{"title":'My Profile',"href":"#/profile"},
 		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
 		"photogallery":{"title":'Photo Gallery',"href":"#/photo-gallery"},
-		"videogallery":{"title":'Video Gallery',"href":"#/home"},
-		// "packages":{"title":'Membership',"href":"#/home"},
+		"videogallery":{"title":'Video Gallery',"href":"#/my-video"},
+		// "packages":{"title":'Membership',"href":"#/search-page"},
 		"refer":{"title":'Refer Friend Bonus',"href":"#/refer-friend"},
 		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
 		"mylocations":{"title":'My Locations',"href":"#/my-locations"}
@@ -384,9 +385,9 @@ $rootScope.userNavbar={
 				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
 			 }
 	},
-	"advertise":{"title":"Advertize ", 
-	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/home"},
-				"adrequest":{"title":'Ad Request',"href":"#/home"} }
+	"advertise":{"title":"Advertise", 
+	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/search-page"},
+				"adrequest":{"title":'Ad Request',"href":"#/search-page"} }
 	}
 
 }
@@ -398,17 +399,17 @@ $rootScope.userDashboard=
 	'blockedUsers':{'title':'My Blocked List', 'href':"#/blocked-userlist"},
 	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"},
 	'reviewsreceived':{'title':'Reviews Received', 'href':"#/reviews-received"},
-    'myvedio':{'title':'My Vedio ', 'href':"#/my-vedio"},
+    'myvedio':{'title':'My Vedio ', 'href':"#/my-video"},
     'photoGallery':{'title':'Public Photo Gallery ', 'href':"#/photo-gallery"}
     
 }
 
-		  $rootScope.openNav= function(){
-				$mdSidenav("navbar").toggle()
-				.then(function(){
-			});
+  $rootScope.openNav= function()
+  {
+		$mdSidenav("navbar").toggle()
+		.then(function(){
+	});
 }
-
 
 
 }])
