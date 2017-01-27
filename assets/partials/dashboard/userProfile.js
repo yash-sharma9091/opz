@@ -22,6 +22,14 @@ e.isUserId=id;
 
 timeout(function(){
 //get basic information for public user
+
+//if(rootscope.isUserLogin)
+//{
+//    user['auth']=true;
+//}
+//else{
+// user['auth']=false;   
+//}
 appServices.post(API_URL.getOtherUserProfile,user, function(response)
      {		
      		if(response.status==1)
