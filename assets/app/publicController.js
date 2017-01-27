@@ -1,13 +1,17 @@
 /*
 	name : public controller
-	function : login, signup, modal , contact us
+	function : login, signup, modal , contact us ,composeEmailPublic
+
 
 */
 
 angular.module('zenbrisa.public.Controller',['service'])
 .controller('loginCtrl', loginCtrl)
 .controller('contactus', contactus)
-.controller('profileStepCtrl', profileStepCtrl);
+.controller('profileStepCtrl', profileStepCtrl)
+.controller('composeEmailPublic', composeEmailPublic);
+
+
 
 //controller injector
 loginCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
@@ -480,3 +484,17 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
     }//end seeking fun
 
  }
+
+//compose email public
+
+//controller injector
+composeEmailPublic.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
+
+function composeEmailPublic(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
+{ 
+
+  e.cancel = function() 
+  {
+     mdDialog.cancel();
+ };
+};

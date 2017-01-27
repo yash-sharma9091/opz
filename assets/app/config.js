@@ -112,6 +112,7 @@ var API_URL=
 	"unblockAUser" :api_base_url+ 'users/unblockAUser',
 	"getPublicPhoto":api_base_url+'users/getPublicPhotos',
 	"checkPhotoKey":api_base_url+'users/getPrivatePhotos',
-	"requestPhotoKey":api_base_url+'requests/sendRequest'
+	"requestPhotoKey":api_base_url+'requests/sendRequest',
+	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile'
 
 }

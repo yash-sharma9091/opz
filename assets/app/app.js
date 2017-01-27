@@ -35,14 +35,14 @@ angular.module('zenbrisa.app')
 	}
 	$rootScope.camposemail=function(ev)
 	{
-			appServices.modal('partials/template/campose-mail.html', loginCtrl, ev)
+			appServices.modal('partials/template/campose-mail.html', composeEmailPublic, ev)
 	}
 	
 	$rootScope.profileStep=function(ev)
 	{
 		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev)
 	};
-	
+
 	
 }])
 
@@ -73,12 +73,18 @@ angular.module('zenbrisa.app')
 				}
 		}
 
+	
 		$('body, html').animate({
 				scrollTop:0
 			},900);
 
 	});
 
+//open user profile 
+$rootScope.userProfileView= function(id)
+{	
+	$location.path('/profile/'+id);
+}
 //header profile expend
 
 $rootScope.headerExp=true;
@@ -98,7 +104,6 @@ $rootScope.closeAlert= function(alert){
 		appServices.logout();
 		$rootScope.isUserLogin=false;
 		$location.path('/');
-
 		});
 		
 	};
@@ -187,6 +192,24 @@ $rootScope.closeAlert= function(alert){
 											$rootScope.profileStep(); //open profile modal 
 										}
 										
+								//profile count alert
+								var promise={};
+								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
+						    		{
+						    			var data=response.data[0];
+						    			if(data)
+						    			{
+						    				var count={};
+						    				count.publicPhotoCount=data.publicPhotoCount;
+						    				count.privatePhotoCount=data.privatePhotoCount;
+						    				count.videoCount=data.videoCount;
+						    				count.reviewReceived=data.reviewsReceivedCount;
+						    				count.reviewPenned=data.reviewsPennedCount;
+						    				count.favouriteCount=data.favouriteCount;
+						    				count.blockedCount=data.blockedCount;
+						    				$rootScope.userInfoCount=count;
+						    			}
+						    		}); 
 
 							}); //end http post
 

@@ -20,6 +20,7 @@ var user={objectUserId:id}
 e.isUserProfile=true;
 e.isUserId=id;
 
+timeout(function(){
 //get basic information for public user
 appServices.post(API_URL.getOtherUserProfile,user, function(response)
      {		
@@ -27,7 +28,7 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		{
      			e.userprofile=appServices.removeNull(response.data[0]);
      			e.userInfoCount=appServices.removeNull(response.data3[0]);
-     			e.ChekUser(e.isUserId);
+     			
 
      		}
      		else
@@ -37,7 +38,7 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		e.loading=false;
      		
      });
-
+},100)
  //getting all counts common for otherProfileMenu sulthan
  e.ChekUser= function(id){
 
@@ -241,7 +242,7 @@ e.removeBlockuser= function(id)
 //open lightbox
 e.openLightbox= function(data)
 	{
-		alert("sdjfhs")
+
 	var imageList=[];
 	angular.forEach(data, function(value){
 		imageList.push(value.imageName);

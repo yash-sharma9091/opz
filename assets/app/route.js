@@ -107,7 +107,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //path:-- assets/app.js 
     access:
     {
-          login:true
+          login:false
     }
   })
   .when('/profile/:_id',
@@ -116,7 +116,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'userProfileView',
     access:
     {
-          login:true
+          login:false
     }
   })
 
@@ -252,7 +252,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userProfileView.js
     access:
     { 
-          login:true
+          login:false
     }
   })
      .when('/photo-gallery/',

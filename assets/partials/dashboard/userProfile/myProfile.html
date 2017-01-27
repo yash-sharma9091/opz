@@ -28,7 +28,8 @@
                       State: <span>{{userprofile.state}}</span>
                   </li>
                   
-                  <li ng-if="userprofile.address">Address:  <span>{{userprofile.address}}</span></li>
+                  <li >City:  <span>{{userprofile.city}}</span></li>
+
                   <li ng-if="userprofile.dobOne">Age:  
                       <span>{{userprofile.age || userprofile.ageOne}}Y </span>
                   </li>
@@ -51,8 +52,8 @@
                   </span>
 
                   </li>
-                  <li>Body Type:  
-                    <span split-str="userprofile.bodyTypeOne" ng-if="userprofile.bodyTypeOne">
+                  <li ng-if="userprofile.bodyTypeOne">Body Type:  
+                    <span split-str="userprofile.bodyTypeOne" >
 
                       </span></li>
                 </ul>

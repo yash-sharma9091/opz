@@ -503,6 +503,7 @@ md-input-container input {
     top: 0;
     height: 190px;
     width: 170px;
+    background-size: cover;
 }
 .tags,
 span.tags {
@@ -837,8 +838,8 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .btn-actions .md-button{ color: white !important;    color: white !important;padding: 0 19px;  }
 .md-raised.md-primary{ color: white !important; }
 
-.center-btn{margin: auto !important;
-    float: none !important;}
+.center-btn{margin: auto !important;  float: none !important;}
+.listingImg { cursor: pointer; }
 @media(min-width:768px) {
     .nav-btn {
         display: none

@@ -29,7 +29,7 @@
                   <div class="noData" ng-show="data.length==0"> <md-icon >do_not_disturb</md-icon>  You haven't added any blocked user yet!</div>
                 <div class="col-sm-3 col-xs-6" ng-repeat="x in data track by $index">
                   <div class="blocklistBx">
-                    <a>
+                    <a ng-click="userProfileView(x.userId)">
                       <i>
                       <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">
                         <md-icon class="star">do_not_disturb</md-icon>

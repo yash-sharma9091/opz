@@ -15,7 +15,6 @@
       <!--end user sidenavbar-->
 
       <div class="col-sm-9">
-          
           <!--review list data-->
         <div class="row blockList">
           <div class="publicHd">Reviews Penned ({{data.length}})</div>
@@ -31,7 +30,7 @@
                <div class="reviewList">
           <ul>
             <li ng-repeat="x in data track by $index">
-            <a >
+            <a ng-click="userProfileView(x.userId)">
               <div class="review-img">
                
                 <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">

@@ -17,14 +17,14 @@
       </div>
  
       <div class="prof-right-top">
-        <strong>  {{ userprofile.fullName || 'Welcome..' }}   </strong>
+        <strong>  {{ userprofile.fullName || userprofile.username || 'Welcome..'  }}   </strong>
 
         <small>
       
-            <span ng-if="userprofile.dob">
+            <span>
               <i class="material-icons blueClr personIcon">person</i> 
-              {{userprofile.age || userprofile.ageOne}} |  </span>
-              {{userprofile.address}}
+              {{userprofile.age || userprofile.ageOne}}  </span>
+               <span >| {{userprofile.city}} ,{{userprofile.state}}, {{userprofile.country}}</span>
         </small>
         
         <div class="professMsg" >

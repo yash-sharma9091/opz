@@ -144,7 +144,7 @@
                     ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
 
                 <div class="profpaidBx">
-                  <a class="vollatBg" 
+                  <a class="vollatBg"  
                     ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">
                     Paid Professional Massage
                   </a>
@@ -156,17 +156,25 @@
                 <div class="listingTop-Left">
                   <div class="listingImgBx">
                  
-                    <div class="listingImg">  
+                    <div class="listingImg" ng-click="userProfileView(user.userId)">  
                       <img ng-src="{{user.profilePic != '' && user.profilePic != null ? user.profilePicUrl : 'images/'+user.gender+'.png'}}">
                     </div>
-                    <strong><span>{{user.fullName != undefined ? user.fullName : user.username}}</span></strong>
+                    <strong ng-click="userProfileView(user.userId)">
+                     
+                      <span>
+                        {{user.fullName != undefined ? user.fullName : user.username}}
+                      </span>
+                    </strong>
                     <span>
 
                     <small class="material-icons pinkClr personIcon" 
                             ng-show="user.ageOne != null && user.ageOne != '' ">person</small>
                             {{user.ageOne}} 
-                    <b ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
-                    <small class="material-icons personIcon">room</small> 
+                    <b 
+                    ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
+                    <small 
+                    class="material-icons personIcon">room</small>
+
                     {{user.city+", "}} {{user.state+", "}} {{user.country}} I 
                     {{user.distance | number : 2}} Miles Away
                     </span>
@@ -263,7 +271,9 @@
                 <div class="listingBot-R">
                   <md-button class="md-raised md-primary viewBtn white">View Conversation</md-button>
                   <!-- ng-click="camposemail($event)" -->
-                  <md-button class="md-raised md-primary viewBtn white" >Email</md-button>
+                  <md-button 
+                      ng-click="camposemail($event)"  
+                      class="md-raised md-primary viewBtn white" >Email</md-button>
                 </div>
               </div>
             </li>
