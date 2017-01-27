@@ -377,13 +377,13 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 
      }
 
-    e.clrMassage = function(){
+    $scope.clrMassage = function(){
     	e.massage = {};
     	console.log("Operation Calcelled!");
     	appServices.alert("Operation Calcelled!");
     }
 
-    e.saveAvailTimeClick  = function(){
+    $scope.saveAvailTimeClick  = function(){
 
            //var currentDate = new Date();
            var availableTime  = "";
