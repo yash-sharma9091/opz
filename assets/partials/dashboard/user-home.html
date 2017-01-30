@@ -48,8 +48,7 @@
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
-                    <md-option value="">-Select within Miles-</md-option>
-                    <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
+                   <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
                   </md-select>
                 </div>
                 <div class="srchformBx" ng-init="mySavedLocations()">
@@ -58,7 +57,7 @@
                   placeholder="- Select Location -"
                   md-on-close="addLocation(searched.location, $event)"
                   class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
-                    <md-option value="">Select Location</md-option>
+                    <md-option value="">-Select Location-</md-option>
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
 
                     <md-option value="addCity">Add City</md-option>
