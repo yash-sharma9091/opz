@@ -1302,7 +1302,7 @@ service.alert =function(alert){
 				locals: { data:data }
 			}
 		}
-
+	
 		$mdDialog.show(modal).then(function(answer) {
          // $scope.status = 'You said the information was "' + answer + '".';
      }, function() {

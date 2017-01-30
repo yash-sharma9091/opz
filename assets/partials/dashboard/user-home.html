@@ -16,6 +16,7 @@
               </div>
               <div class="srchformBx">
                 <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
+                  <md-option>-Select Your Country Code-</md-option>
                   <md-option value="axe">+91</md-option>
                   <md-option value="sword">+92</md-option>
                   <md-option value="wand">+61</md-option>
@@ -47,6 +48,7 @@
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
+                    <md-option value="">-Select within Miles-</md-option>
                     <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
                   </md-select>
                 </div>
@@ -56,7 +58,7 @@
                   placeholder="- Select Location -"
                   md-on-close="addLocation(searched.location, $event)"
                   class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
-
+                    <md-option value="">Select Location</md-option>
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
 
                     <md-option value="addCity">Add City</md-option>
@@ -110,6 +112,7 @@
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
+                    <md-option value="">-Select Members-</md-option>
                     <md-option value="availability">Massage Now!<sup>TM</sup></md-option>
                     <md-option value="username">Username</md-option>
                     <md-option value="keyword">Keyword</md-option>

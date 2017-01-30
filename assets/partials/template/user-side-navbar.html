@@ -1,4 +1,4 @@
-<div class="profileNav">
+<div class="profileNav" ng-cloak>
 <md-list>
           <md-list-item  ng-if="!isUserProfile"
         
@@ -68,6 +68,16 @@
                 </p>
            </md-list-item>
             <md-divider></md-divider> 
+            <!--write a review-->
+      
+
+          <md-list-item   ng-if="isUserId"
+            ng-href="{{userDashboard.writeReviews.href}}/{{isUserId}}"> 
+                <md-icon  aria-label="icon" >person</md-icon>
+                <p>Write A Review </p>
+           </md-list-item>
+            <md-divider  ng-if="isUserId"></md-divider> 
+
    <!--user favourites-->
             <md-list-item  class="active" ng-if="!isUserId" 
             ng-href="{{userDashboard.favorites.href}}/{{isUserId}}"> 

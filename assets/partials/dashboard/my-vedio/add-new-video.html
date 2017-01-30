@@ -1,15 +1,25 @@
 <md-dialog aria-label="addvideo">
   <form name="videoFrom" novalidate>
- 
-    <md-dialog-content>
+     <md-dialog-content>
+    <div  ng-if="added"  class="md-padding">
+           <div class="alert text-center alert-success">
+              <p> Your video has been successfully added</p>
+           </div>
+         <md-button  
+            aria-label="finish"
+            ng-click="cancel()"
+            class="md-raised md-primary logpopup-Btn fr " 
+            > Finish 
+        </md-button>   
+    </div>
+
+    <div ng-if="!added">
       <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
         <h2 class="LoginHd">Add Video</h2>
       <div class="md-dialog-content modal-lg">
         
- 
-
           <div class="loginFrmTop">
           <div class="alert {{alert.type}}" ng-if="alert">
               <p>
@@ -61,6 +71,7 @@
                 <md-button class="md-raised md-primary btn-gray logpopup-Btn" ng-click="cancel()">Back</md-button>
                 </div>
             </md-dialog-actions>
+            </div>
     </md-dialog-content>
 
     
