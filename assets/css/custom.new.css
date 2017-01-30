@@ -849,7 +849,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .massageexchange small {    font-size: 25px; text-transform: none;}
 .massageexchange  strong {  font-weight: 400; }
 .massageexchange { }
-
+.loginFrmTop .md-char-counter{display:none !important;}
 @media(min-width:768px) {
     .nav-btn {
         display: none
