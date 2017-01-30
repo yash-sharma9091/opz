@@ -4,10 +4,7 @@ angular.module('zenbrisa.userProfile',[])
 
 //controller injector
 userProfileView.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','ameLightbox'];
-sendPhotoKeyCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','ameLightbox','$routeParams'];
-
-
-
+sendPhotoKeyCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','data'];
 
 function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
 {
@@ -23,13 +20,6 @@ e.isUserId=id;
 timeout(function(){
 //get basic information for public user
 
-//if(rootscope.isUserLogin)
-//{
-//    user['auth']=true;
-//}
-//else{
-// user['auth']=false;   
-//}
 appServices.post(API_URL.getOtherUserProfile,user, function(response)
      {		
      		if(response.status==1)
@@ -45,7 +35,7 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		e.loading=false;
      		
      });
-},100)
+},100);
  //getting all counts common for otherProfileMenu sulthan
  e.ChekUser= function(id){
 
@@ -180,7 +170,6 @@ e.removeFav= function(id)
 						appServices.alert(e.userprofile.username+" has been removed from your favorites list");
 						e.favYes=false;
 				}
-
 		});
 		});
 
@@ -321,7 +310,7 @@ e.sendPhotoKey= function(ev)
 };//end controller
 
 
-function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout,routeParams)
+function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout,routeParams,data)
 { 
 			e.cancel = function() 
 			{
@@ -329,6 +318,8 @@ function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,
 			};
 
 			e.message="I'd like to see your private photos. Would you send me a Photo Key, please??"
+			var id=routeParams._id?routeParams._id:data.id;
+			console.log(id);
 
 			e.sendkey= function(data){
 				e.loading=true;
@@ -336,7 +327,7 @@ function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,
 				var data={
 					title:"Request Photo Key",
 					message:data,
-					to_id:routeParams._id,
+					to_id:id,
 					request_type:"private_photo"
 				}
 
@@ -347,14 +338,11 @@ function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,
 						if(response.status==1)
 						{
 							e.alert={'message':"A request has been sent to the user.",'type':'alert-success'};
+							e.isSend=true;
 						}
 
 						e.loading=false;
 
-						timeout(function(){
-							mdDialog.cancel();
-						
-						},3000)
 								
 				});
 

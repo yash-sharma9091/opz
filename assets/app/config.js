@@ -21,6 +21,7 @@ angular.module('zenbrisa',
 'app.direcrives',
 'service',
 'ngMap',
+'zenbrisa.userProfile',
 'cl.paging',
 'userDashboardModule',
 'userDashboardSearchModule',
@@ -30,11 +31,12 @@ angular.module('zenbrisa',
 'ame.lightbox',
 'filevalidate',
 'zenbrisa.blog',
-'zenbrisa.userProfile',
 'angularUtils.directives.dirPagination'
 ]);
 
+angular.module('zenbrisa.userProfile',[]);
 angular.module('zenbrisa.app',[]);
+
 angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('userDashboardModule',[]);
@@ -43,7 +45,7 @@ angular.module('userPhotoGalleryModule',[]);
 angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
-angular.module('zenbrisa.userProfile',[]);
+
 
 var API_URL=
 {

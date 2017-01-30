@@ -138,7 +138,7 @@
 
           <ul>
               <!--class="greenBdr"-->
-             <li  ng-repeat="user in znUsers track by $index">
+             <li  ng-repeat="user in znUsers track by $index" ng-init="user.conversation=true">
              <!--  <pre>{{user | json}}</pre> -->
               <div class="listingTop" 
                     ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
@@ -180,11 +180,28 @@
                     {{user.distance | number : 2}} Miles Away
                     </span>
                     
-                    <span ng-if="isUserLogin">
+                    <span ng-if="isUserLogin" >
                         <a>Favorite</a> | 
-                        <a>Write a Review</a>  |  
-                        <a class="greyClr"> Review Penned</a> | 
-                        <a>Reviews Received ({{user.reviewReceivedCount}})</a>
+
+                          <!--if user conversation is null-->
+                        <a 
+                          ng-if="user.conversation"
+                          uib-popover-template="'writeWriview.html'"
+                          popover-trigger="'outsideClick'"
+                          popover-is-open="user.openPopover"
+                          popover-placement="top">Write a Review</a>|
+
+                        <!--review pinned--> 
+                        <a class="greyClr" 
+                        ng-class="{'greyClr':user.reviewPennedCount==0}" 
+                        ng-href="{{user.reviewReceivedCount>0?userDashboard.reviewsreceived.href+'/' +user.userId : null}}"> 
+                        Review Penned({{user.reviewPennedCount}})
+                        </a> | 
+                        
+                        <!--review received-->
+                        <a  ng-class="{'greyClr':user.reviewReceivedCount==0}"
+                            ng-href="{{user.reviewReceivedCount>0?userDashboard.reviewsreceived.href+'/' +user.userId : null}}">
+                            Reviews Received ({{user.reviewReceivedCount}})</a>
                     </span>
                     
                     <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
@@ -221,10 +238,11 @@
 
               <div class="listingBot clearfix">
                 <div class="listingBot-L">
-                    <md-button>
+              <md-button 
+                ng-href="{{user.publicPhotoCount>0?userNavbar.profile.submenu.photogallery.href +'/public/' +user.userId : null}}">
                         <md-icon>camera_alt</md-icon> Public Photos 
                         <span class="blueClr" >({{user.publicPhotoCount}})</span>
-                    </md-button>
+              </md-button>
                 <!--if uder not login-->
                 <span ng-if="!isUserLogin">
                     <md-button 
@@ -254,15 +272,17 @@
                   <!--if uder login-->
                   <span ng-if="isUserLogin">
 
-                    <md-button >
+                    <md-button  ng-href="{{user.publicPhotoCount>0?userNavbar.profile.submenu.photogallery.href +'/private/' +user.userId : null}}">
                       <md-icon>collections</md-icon> Private Photos 
                       <span class="blueClr" >({{user.privatePhotoCount}})</span>
                     </md-button> 
 
-                    <md-button >Request Photo Key <span class="toltip2">?<i>Photo Key</i></span>
+                    <md-button ng-click="sendPhotoKeySearch($event, user.userId)">
+                      Request Photo Key 
+                    <span class="toltip2">?<i>Photo Key</i></span>
                     </md-button>
 
-                    <md-button>
+                    <md-button ng-click="AddBlockUser(user.userId)">
                         <md-icon> do_not_disturb_on</md-icon> Block
                     </md-button>
                   </span>
@@ -287,7 +307,8 @@
 
                 <!--if user login-->
                 <div class="listingBot-R" ng-if="isUserLogin">
-                <md-button class="md-raised md-primary viewBtn white">
+                <md-button class="md-raised md-primary viewBtn white" 
+                    ng-click="userProfileView(user.userId)">
                 View Conversation
                 </md-button>
 
@@ -322,3 +343,19 @@
   </div>
    
 </script>
+
+<!--need to be login template -->
+<script type="text/ng-template" id="writeWriview.html">
+  <div class="needlogin text-center">
+        <p> You must recevied (and read) at least one e-mail form  within the past 30days to write a review</p>
+       
+    <md-button class="login-btn btn-sm" ng-click="user.openPopover=false;">  Close</md-button> 
+              
+        </div>
+             
+      </div>
+        </div>
+  </div>
+   
+</script>
+

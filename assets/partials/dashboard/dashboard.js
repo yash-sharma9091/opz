@@ -422,6 +422,7 @@ e.AddVideo = function(form,data)
 			{
 				$rootScope.videoList.push(response.data);
 				e.isProcess=false;
+				e.added=true;
 				e.video={};
 				e.alert={'message':"Your video has been successfully added",'type':'alert-success'};
 			}

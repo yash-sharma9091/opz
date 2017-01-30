@@ -66,6 +66,7 @@
                   <label>Search Area</label>
                   
                   <md-select ng-model="myLocation.searchLocation" class="md-no-underline">
+                  <md-option value="" >Search Area</md-option>
                     <md-option ng-repeat="miles in commonMilesArray" value="{{miles.hideValue}}" >{{miles.displayValue}}</md-option>
                     <!-- ng-selected="(typeof searchLocation != undefined && searchLocation != null && searchLocation !='' && searchLocation == miles.hideValue) ? true : false " -->
                   </md-select>
