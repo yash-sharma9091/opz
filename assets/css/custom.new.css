@@ -848,6 +848,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .massageexchange > span {text-transform: none;  font-size: 40px;}
 .massageexchange small {    font-size: 25px; text-transform: none;}
 .massageexchange  strong {  font-weight: 400; }
+
 .listingBot-L a{    line-height: 35px;}
 md-dialog-actions {    border-top-width: 0 !important;}
 .logo-info {     max-width: 198px;  float: left; margin-left: 15%; }
@@ -857,6 +858,10 @@ md-dialog-actions {    border-top-width: 0 !important;}
 }
 .btn-sm { min-height: 30p;x line-height: 30px; }
 .popover-content p{ padding-bottom: 5px; }
+
+.massageexchange { }
+.loginFrmTop .md-char-counter{display:none !important;}
+
 @media(min-width:768px) {
     .nav-btn {     display: none;    }
 }
