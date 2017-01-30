@@ -17,51 +17,35 @@
       <div class="col-sm-9">
           <!--review list data-->
         <div class="row blockList">
-          <div class="publicHd">Reviews Penned ({{data.length}})</div>
+          <div class="publicHd">Write A Review</div>
             <div class="loading" ng-show="loading">
                <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
                <span>Loading..</span>
             </div>
 
             <div>
-                  <div class="noData" ng-show="data.length==0"> <md-icon >star</md-icon>  
-                  You haven't added any Reviews Penned yet!</div>
-                  
-               <div class="reviewList">
-          <ul>
-            <li ng-repeat="x in data track by $index">
-            <a ng-click="userProfileView(x.userId)">
-              <div class="review-img">
-               
-                <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">
                  
-                </i>
+           <div class="reviewList">
+            <form  class="frmBx" name="writeReview" novalidate >
 
+            <md-input-container class="md-block">
+            <label>Title</label>
+            <input  name="email" 
+                    required 
+                    type="text"
+                    ng-model="user.email" 
+                    ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/" 
+                    >
+            <!--error template-->
+            <div ng-messages="forget.email.$error">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Enter valid email address</div>
             </div>
-            <div class="revDet">
-            <!--status with color-->
-            <span class="label label-success tags" 
-                  ng-if="x.approvalStatus=='Approved'">
-                  {{x.approvalStatus}}
-            </span>
-            <span class="label label-danger tags" 
-                  ng-if="x.approvalStatus=='Disapproved'">
-                  {{x.approvalStatus}}
-            </span>
-                        <span class="label tags label-primary" 
-                  ng-if="x.approvalStatus=='Pending'">
-                  {{x.approvalStatus}}
-            </span>
-             
-                <strong>{{x.fullName}} <small> {{getFormateddate(x.createdAt)}} </small></strong>
-                <i class="star" reating reating-data="x.rating"></i>
-                <p ng-bind-html="x.reviewNote"></p>
-                <span>Reviewed By: {{x.username}} </span>
-              </div>
-              </a>
-            </li>
-          </ul>
-        </div>
+            </md-input-container>
+
+
+            </form>
+          </div>
 
         <!--end reviewe pned list-->
            </div>
