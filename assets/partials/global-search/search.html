@@ -138,7 +138,7 @@
 
           <ul>
               <!--class="greenBdr"-->
-             <li  ng-repeat="user in znUsers track by $index" ng-init="user.conversation=true">
+             <li  ng-repeat="user in znUsers track by $index">
              <!--  <pre>{{user | json}}</pre> -->
               <div class="listingTop" 
                     ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
@@ -185,11 +185,16 @@
 
                           <!--if user conversation is null-->
                         <a 
-                          ng-if="user.conversation"
+                          ng-if="user.conversation==null || !user.conversation"
                           uib-popover-template="'writeWriview.html'"
                           popover-trigger="'outsideClick'"
                           popover-is-open="user.openPopover"
-                          popover-placement="top">Write a Review</a>|
+                          popover-placement="top">Write a Review</a>
+                              <!--if user conversation is null-->
+                        <a ng-if="user.conversation"
+                        ng-href="{{userDashboard.writeReviews.href+'/' +user.userId}}">Write a Review
+                        </a>
+                          |
 
                         <!--review pinned--> 
                         <a class="greyClr" 
@@ -216,7 +221,7 @@
                     <span ng-if="user.seeking_male == '' && user.seeking_female !=''">Female</span>
                     </i></span>
                     
-                    <span ng-show="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''"><span>Sensual</span>    : &nbsp; Seeks - 
+                    <span ng-show="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''"><span>Sensual</span> : &nbsp; Seeks - 
 
                     <small class="blueClr">{{user.seeking_male?'M':''}}</small>
                     <small class="pinkClr">{{user.seeking_female?'F':''}}</small>

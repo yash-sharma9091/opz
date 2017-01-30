@@ -861,7 +861,12 @@ md-dialog-actions {    border-top-width: 0 !important;}
 
 .massageexchange { }
 .loginFrmTop .md-char-counter{display:none !important;}
+.min-height { min-height: 40px; margin-top: 15px; }
 
+.rating-star{   
+    font-size: 20px;
+    color: rgb(245, 185, 0);
+}
 @media(min-width:768px) {
     .nav-btn {     display: none;    }
 }
