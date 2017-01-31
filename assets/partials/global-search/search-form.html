@@ -1,26 +1,26 @@
 <div class="container clearfix" ng-init="setFields()">
-    <div class="bannersrchBx clearfix">
-      <form method="get" ng-submit="get_searched_results(searchData)">
-        <div class="locationBx">
-          <i class="material-icons">location_on</i>
-          <div class="searchwithin">Search within
-            <span><input type="text" places-auto-complete name="name" 
-            placeholder="Type Your Location (eg. Madri)" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()" value="{{searchData.country}}"></span>
-          </div>      
-        </div>
-        <div class="msglistBx" ng-init="searchData.search_by='free_exchange'">
-          <md-select ng-model="searchData.search_by" placeholder="Free Exchange" 
-          class="md-no-underline selectmrgn">
-            <md-option value="free_exchange">Free Massage Exchange</md-option>
-            <md-option value="paid_exchange">Paid Massage</md-option>
-            <md-option value="both">Both</md-option>
-          </md-select>
-        </div>
-        <div class="srchfrmBx">
-          <md-button class="md-raised md-primary search-btn" aria-label="search" type="submit">
-            <md-icon>search</md-icon>
-          </md-button>
-        </div>
-      </form>
-    </div>
+	<div class="bannersrchBx clearfix">
+		<form method="get" ng-submit="get_searched_results(searchData)">
+			<div class="locationBx">
+				<i class="material-icons">location_on</i>
+				<div class="searchwithin">Search within
+					<span><input type="text" places-auto-complete name="name" 
+					placeholder="Type Your Location (eg. Madri)" class="countryInp" ng-model="searchData.address" types="['geocode']" on-place-changed="placeChanged()"></span>
+					</div>      
+				</div>
+				<div class="msglistBx" ng-init="searchData.search_by='free_exchange'">
+					<md-select ng-model="searchData.search_by" placeholder="Free Exchange" 
+					class="md-no-underline selectmrgn">
+					<md-option value="free_exchange">Free Massage Exchange</md-option>
+					<md-option value="paid_exchange">Paid Massage</md-option>
+					<md-option value="both">Both</md-option>
+				</md-select>
+			</div>
+			<div class="srchfrmBx">
+				<md-button class="md-raised md-primary search-btn" aria-label="search" type="submit">
+					<md-icon>search</md-icon>
+				</md-button>
+			</div>
+		</form>
+	</div>
 </div>

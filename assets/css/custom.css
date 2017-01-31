@@ -272,7 +272,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .value-L {border: 1px solid #e5e5e5; color: #666; float: left; font-size: 16px; font-weight: 600; height: 35px; text-align: center;
   width: 40px;}
 .value-R{border: 1px solid #e5e5e5; color: #666; float: right; font-size: 16px; font-weight: 600; height: 35px; text-align: center; width: 40px;}
-.rz-bubble {opacity: 0;}
+.rz-floor,.rz-ceil{opacity: 0;}
 .rz-bar {height: 10px !important; margin-top: -2px; top: 50%;}
 .seekingList md-checkbox{ margin-bottom: 5px;}
 

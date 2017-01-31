@@ -1,7 +1,50 @@
 angular.module('zenbrisa.controllers')
 .controller('homepage',['$scope','$location','NgMap','appServices','$rootScope', function($scope,$location,NgMap, appServices,$rootScope){
 	/*Init Objects*/
-	$scope.searchData = {}
+	$scope.searchData = {};
+	
+	$scope.slider = {min: 18, max: 100, options: {floor: 18, ceil: 100, step: 1, minLimit: 18 } };
+
+	// Bodytype defaults
+	$scope.bodytype = [];
+	$scope.bodyTypeItems = [
+		{value: 'slim_petite', text: 'Slim or Petite'},
+		{value: 'average', text: 'Average'},
+		{value: 'gym_fit', text: 'Gym Fit'},
+		{value: 'muscular', text: 'Muscular'},
+		{value: 'few_pounds_over_average', text: 'Few Pounds over Average'},
+		{value: 'large', text: 'Large'}
+	];
+
+	// Seeking defaults
+	$scope.seeking = [];
+	$scope.seekingItems = [
+		{value: 'free_exchange', text: 'Free Massage Exchange'},
+		{value: 'paid_exchange', text: 'Paid Professional Massage'}
+	];
+
+	// Massage Style defauts
+	$scope.massageStyle = [];
+	$scope.massageStyleItems = [
+		{value: 'therapeutic', text: 'Therapeutic'},
+		{value: 'sensual', text: 'Sensual'},
+	];
+
+	// Gender defaults
+	$scope.gender = [];
+	$scope.genderItems = [
+		{ value: 'male', text: 'Male' },
+		{ value: 'female', text: 'Female' },
+	];
+
+	// Level of experience defaults
+	$scope.level = [];
+	$scope.levelItems = [
+		{ value: 'professional', text: 'Professional' },
+		{ value: 'student', text: 'Student' },
+		{ value: 'aficionado', text: 'Aficionado' },
+		{ value: 'amateur', text: 'Amateur' },
+	];
     
     $scope.dynamicPopover = {
 	    content: 'Hello, World!',
@@ -19,7 +62,7 @@ angular.module('zenbrisa.controllers')
 
 	/*Get User Requested Data*/
 	$scope.get_searched_results = function(searchData){
-		
+
 		if(typeof searchData.search_by != undefined && searchData.search_by != null && searchData.search_by != ''){
 			var search_by = searchData.search_by;
 			if(search_by == 'free_exchange'){
@@ -36,14 +79,20 @@ angular.module('zenbrisa.controllers')
 		}
 
 		var address = searchData.address;
+
 		if(typeof address != undefined && address != null && address != ''){
 			var components = address.split(', ');
 		}
-		
+
+		// Reset the country, state, city
+		searchData['country'] = '';
+		searchData['state'] = '';
+		searchData['city'] = '';
+
 		if(typeof components != undefined && components != null && components.length > 0){
 			var length = components.length;
 			if(typeof components[length-1] != undefined && components[length-1] != null && components[length-1] != ''){
-				searchData['country'] = components[length-1]	
+				searchData['country'] = components[length-1];
 			}
 
 			if(typeof components[length-2] != undefined && components[length-2] != null && components[length-2] != ''){
@@ -54,8 +103,7 @@ angular.module('zenbrisa.controllers')
 				searchData['city'] = components[length-3]	
 			}
 		}
-		
-		delete searchData['address'];
+		// delete searchData['address'];
 		delete searchData['lat'];
 		delete searchData['lon'];
 		delete searchData['search_by'];
@@ -76,6 +124,9 @@ angular.module('zenbrisa.controllers')
 		var obj = $location.search();
 		obj.limit = 50;
 		obj.offset = 0;
+		if($rootScope.isUserLogin){
+			obj.user_id = $rootScope.isUserLogin.userId;
+		}
 		appServices.post(API_URL.search, obj, function(response){
 			if(response.status == 1){
 				$scope.znUsers = response.data;
@@ -92,10 +143,9 @@ angular.module('zenbrisa.controllers')
 			    };
 			}
 			$scope.loading = false;
-		})
+		});
 		var v = $location.search();
 		$scope.searchData = $location.search();
-
 		$scope.searchData = {
 			free_exchange : (typeof v.free_exchange != undefined && v.free_exchange != null && v.free_exchange != '') ? 1 : '',
 			both_exchange : (typeof v.both_exchange != undefined && v.both_exchange != null && v.both_exchange != '') ? 1 : '',
@@ -105,42 +155,48 @@ angular.module('zenbrisa.controllers')
 			both_service : (typeof v.both_service != undefined && v.both_service != null && v.both_service != '') ? 1 : '',
 			lat : (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
 			lon : (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
-			min : (typeof v.min != undefined && v.min != null) ? (v.min) : '',
-			max : (typeof v.max != undefined && v.max != null) ? (v.max) : '',
+			min : (typeof v.min != undefined && v.min != null) ? parseInt(v.min) : '',
+			max : (typeof v.max != undefined && v.max != null) ? parseInt(v.max) : '',
 			country : (typeof v.country != undefined && v.country != null && v.country != '') ? (v.country) : '',
 			state : (typeof v.state != undefined && v.state != null) ? (v.state) : '',
 			city : (typeof v.city != undefined && v.city != null) ? (v.city) : '',
 			seeking_male : (typeof v.seeking_male != undefined && v.seeking_male != null && v.seeking_male != '') ? 1 : '',
 			seeking_female : (typeof v.seeking_female != undefined && v.seeking_female != null && v.seeking_female != '') ? 1 : '',
 			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null && v.seeking_both != '') ? 1 : '',
-		}
-		
-		if(typeof v.level != undefined && v.level != null){
-			var level = v.level.split("|");
-			var l = {};
-			if(level.length > 0){
-				level.forEach(function(lvl, key){
-					l[key] = lvl
-				})
-
-				$scope.searchData.level = l
-			}
-
+			address : (typeof v.address != undefined && v.address != null && v.address != '') ? v.address : '',
 		}
 
+		// Code re-factored
 		if(typeof v.bodytype != undefined && v.bodytype != null){
-			var bodytype = v.bodytype.split("|");
-			var b = {};
-			if(bodytype.length > 0){
-				bodytype.forEach(function(bdy, key){
-					b[key] = bdy
-				})
-
-				$scope.searchData.bodytype = b
-			}
-
+			$scope.bodytype = v.bodytype.split("|");
 		}
-
+		if(typeof v.level != undefined && v.level != null){
+			$scope.level = v.level.split("|");
+		}
+		if( v.free_exchange ){
+			$scope.seeking.push('free_exchange');
+		}
+		if( v.paid_exchange ){
+			$scope.seeking.push('paid_exchange');
+		}
+		if( v.therapeutic ){
+			$scope.massageStyle.push('therapeutic');
+		}
+		if( v.sensual ){
+			$scope.massageStyle.push('sensual');
+		}
+		if( v.male ){
+			$scope.gender.push('male');
+		}
+		if( v.female ){
+			$scope.gender.push('female');
+		}
+		if( v.min ){
+			$scope.slider.min = parseInt( v.min );
+		}
+		if( v.max ){
+			$scope.slider.max = parseInt( v.max );
+		}
 	}
 
     
@@ -170,8 +226,8 @@ angular.module('zenbrisa.controllers')
 			both_service : (typeof v.both_service != undefined && v.both_service != null && v.both_service != '') ? 1 : '',
 			lat : (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
 			lon : (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
-			min : (typeof v.min != undefined && v.min != null) ? (v.min) : '',
-			max : (typeof v.max != undefined && v.max != null) ? (v.max) : '',
+			min : (typeof v.min != undefined && v.min != null) ? parseInt(v.min) : '',
+			max : (typeof v.max != undefined && v.max != null) ? parseInt(v.max) : '',
 			country : (typeof v.country != undefined && v.country != null && v.country != '') ? (v.country) : '',
 			state : (typeof v.state != undefined && v.state != null) ? (v.state) : '',
 			city : (typeof v.city != undefined && v.city != null) ? (v.city) : '',
@@ -180,65 +236,184 @@ angular.module('zenbrisa.controllers')
 			seeking_both : (typeof v.seeking_both != undefined && v.seeking_both != null && v.seeking_both != '') ? 1 : '',
 		}
 
-		if(typeof v.level != undefined && v.level != null){
-			var level = v.level.split("|");
-			var l = {};
-			if(level.length > 0){
-				level.forEach(function(lvl, key){
-					l[key] = lvl
-				})
-
-				$scope.searchData.level = l
-			}
-
-		}
-
+		// Code re-factored
 		if(typeof v.bodytype != undefined && v.bodytype != null){
-			var bodytype = v.bodytype.split("|");
-			var b = {};
-			if(bodytype.length > 0){
-				bodytype.forEach(function(bdy, key){
-					b[key] = bdy
-				})
-
-				$scope.searchData.bodytype = b
-			}
-
+			$scope.bodytype = v.bodytype.split("|");
+		} else {
+			$scope.bodytype = [];
 		}
-
+		if(typeof v.level != undefined && v.level != null){
+			$scope.level = v.level.split("|");
+		} else {
+			$scope.level = [];
+		}
     }
 
     $scope.updateSearch = function(searchData){
+    	
     	/*Update Search Criteria*/
-    	console.log(searchData)
     	var obj = $location.search();
     	var result={};
-    	if(typeof obj != undefined && obj != null){
+    	if(obj.country){
+    		result['country'] = obj.country;
+    	}if(obj.state){
+    		result['state'] = obj.state;
+    	}if(obj.city){
+    		result['city'] = obj.city;
+    	}if(obj.address){
+    		result['address'] = obj.address;
+    	}
+    	
+    	if($scope.slider.min){
+    		result['min'] = parseInt( $scope.slider.min );
+    	}
+    	if($scope.slider.max){
+    		result['max'] = parseInt( $scope.slider.max );
+    	}
+    	if(searchData.lat){
+    		result['lat'] = searchData.lat;
+    	}
+    	if(searchData.lon){
+    		result['lon'] = searchData.lon;
+    	}
+    	if( $scope.seeking.length > 0 ) {
+    		if($scope.seeking.length === 2){
+    			result['both_exchange'] = 1;
+    		} else {
+    			result['both_exchange'] = '';
+    		}
+    		$scope.seeking.forEach(function (key) {
+    			result[key] = 1;
+    		});
+    	}
+
+    	if( $scope.massageStyle.length > 0 ) {
+    		if($scope.massageStyle.length === 2){
+    			result['both_service'] = 1;
+    		} else {
+    			result['both_service'] = '';
+    		}
+    		$scope.massageStyle.forEach(function (key) {
+    			result[key] = 1;
+    		});
+    	}
+
+    	if( $scope.gender.length > 0 ) {
+    		if($scope.gender.length === 2){
+    			result['gender_both'] = 1;
+    		} else {
+    			result['gender_both'] = '';
+    		}
+    		$scope.gender.forEach(function (key) {
+    			result[key] = 1;
+    		});
+    	}
+
+    	/*if(typeof obj != undefined && obj != null){
 			Object.keys(obj).forEach((key) => result[key] = obj[key]);
 		}
 		if(typeof searchData != undefined && searchData != null){
 			Object.keys(searchData).forEach((key) => result[key] = searchData[key]);
-		}
-		if(typeof result.level != undefined && result.level != null && Object.keys(result.level).length > 0){
-			var l = [];
-			Object.keys(result.level).forEach(function(key){
-				l.push(result.level[key])
-			})
-			result['level'] = l.join("|")
+		}*/
+
+		if($scope.level.length > 0){
+			var b = [];
+			$scope.level.forEach(function(key){
+				b.push(key);
+			});
+			result['level'] = b.join("|");
+		} else {
+			result['level'] = '';
 		}
 
-		if(typeof result.bodytype != undefined && result.bodytype != null && Object.keys(result.bodytype).length > 0){
+		if($scope.bodytype.length > 0){
 			var b = [];
-			Object.keys(result.bodytype).forEach(function(key){
-				b.push(result.bodytype[key])
-			})
-			result['bodytype'] = b.join("|")
+			$scope.bodytype.forEach(function(key){
+				b.push(key);
+			});
+			result['bodytype'] = b.join("|");
+		} else {
+			result['bodytype'] = '';
 		}
 		/*Delete Unwanted Keys*/
 		delete result.limit;
 		delete result.offset;
 		$location.search(result);
     }
+
+    // For body type checkboxes
+    // source@ https://material.angularjs.org/latest/demo/checkbox
+    $scope.toggle = function (item, list) {
+		var idx = list.indexOf(item);
+		if (idx > -1) {
+			list.splice(idx, 1);
+		}
+		else {
+			list.push(item);
+		}
+	};
+
+	$scope.exists = function (item, list) {
+		return list.indexOf(item) > -1;
+	};
+
+	$scope.isCheckedBodyType = function(array, arrayItems) {
+		return $scope.bodytype.length === $scope.bodyTypeItems.length;
+	};
+
+	$scope.toggleAllBodyType = function(array, arrayItems) {
+		
+		if ($scope.bodytype.length === $scope.bodyTypeItems.length) {
+			$scope.bodytype = [];
+		} else if ($scope.bodytype.length === 0 || $scope.bodytype.length > 0) {
+			$scope.bodytype = $scope.bodyTypeItems.map(function(x){
+				return x.value;
+			}).slice(0);
+		}
+	};
+	$scope.isCheckedSeeking = function(array, arrayItems) {
+		return $scope.seeking.length === $scope.seekingItems.length;
+	};
+
+	$scope.toggleAllSeeking = function(array, arrayItems) {
+		
+		if ($scope.seeking.length === $scope.seekingItems.length) {
+			$scope.seeking = [];
+		} else if ($scope.seeking.length === 0 || $scope.seeking.length > 0) {
+			$scope.seeking = $scope.seekingItems.map(function(x){
+				return x.value;
+			}).slice(0);
+		}
+	};
+	$scope.isCheckedMassageStyle = function(array, arrayItems) {
+		return $scope.massageStyle.length === $scope.massageStyleItems.length;
+	};
+
+	$scope.toggleAllMassageStyle = function(array, arrayItems) {
+		
+		if ($scope.massageStyle.length === $scope.massageStyleItems.length) {
+			$scope.massageStyle = [];
+		} else if ($scope.massageStyle.length === 0 || $scope.massageStyle.length > 0) {
+			$scope.massageStyle = $scope.massageStyleItems.map(function(x){
+				return x.value;
+			}).slice(0);
+		}
+	};
+
+	$scope.isCheckedGender = function(array, arrayItems) {
+		return $scope.gender.length === $scope.genderItems.length;
+	};
+
+	$scope.toggleAllGender = function(array, arrayItems) {
+		
+		if ($scope.gender.length === $scope.genderItems.length) {
+			$scope.gender = [];
+		} else if ($scope.gender.length === 0 || $scope.gender.length > 0) {
+			$scope.gender = $scope.genderItems.map(function(x){
+				return x.value;
+			}).slice(0);
+		}
+	};
 
     /*$scope.setFields = function(){
     	var loc = [];

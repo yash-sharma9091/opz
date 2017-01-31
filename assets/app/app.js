@@ -201,9 +201,9 @@ $rootScope.closeAlert= function(alert){
 								var promise={};
 								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
 						    		{
-						    			var data=response.data[0];
-						    			if(data)
-						    			{
+						    			
+						    			if( response.data) {
+						    				var data=response.data[0];
 						    				var count={};
 						    				count.publicPhotoCount=data.publicPhotoCount;
 						    				count.privatePhotoCount=data.privatePhotoCount;
