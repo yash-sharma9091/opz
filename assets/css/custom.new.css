@@ -31,6 +31,9 @@ md-sidenav md-list .md-button:hover p {
 .navbar-toggle {
     display: none;
 }
+.margin-top10{
+    margin-top: 10px;
+}
 .margin-top20 {
     margin-top: 25px;
 }
@@ -879,4 +882,26 @@ md-dialog-actions {    border-top-width: 0 !important;}
     header div[class*='col-sm'] {
         padding: 0 5px;
     }
+}
+/* Editor styling */
+
+.ta-toolbar {
+    background-color: #F0F0F0;
+    padding: 10px 10px 5px;
+    margin-left: 0px; /* Override bootstrap */
+    border: 1px solid #EEE;
+}
+
+.ta-toolbar .btn-group {
+    margin-bottom: 5px;
+}
+
+.ta-editor, .white-box {
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #EEE;
+}
+
+textarea.ta-bind {
+    width: 100%;
 }
