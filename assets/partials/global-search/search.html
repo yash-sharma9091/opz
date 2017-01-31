@@ -24,15 +24,7 @@
                                     ng-checked="isCheckedSeeking()" 
                                     ng-click="toggleAllSeeking()" >Both</md-checkbox>
                             </li>
-                            <!-- <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="1" ng-model="searchData.free_exchange" ng-true-value="1" ng-false-value="{{''}}">Free Massage Exchange</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="2" ng-model="searchData.paid_exchange" ng-true-value="1" ng-false-value="{{''}}">Paid Professional Massage</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="3" ng-model="searchData.both_exchange" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
-                                </li> -->
+                          
                         </ul>
                     </div>
                     <div class="seekingHd">Massage Style</div>
@@ -48,15 +40,7 @@
                                     ng-checked="isCheckedMassageStyle()" 
                                     ng-click="toggleAllMassageStyle()" >Both</md-checkbox>
                             </li>
-                            <!-- <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="therapeutic" ng-model="searchData.therapeutic" ng-true-value="1" ng-false-value="{{''}}">Therapeutic</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="sensual" ng-model="searchData.sensual" ng-true-value="1" ng-false-value="{{''}}">Sensual</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.both_service" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
-                                </li> -->
+                          
                         </ul>
                     </div>
                     <div class="seekingHd">Level of Experience </div>
@@ -67,18 +51,7 @@
                                     ng-checked="exists(l.value, level)" 
                                     ng-click="toggle(l.value, level)" >{{l.text}}</md-checkbox>
                             </li>
-                            <!-- <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="professional" ng-model="searchData.level[0]" ng-true-value="'professional'" ng-false-value="{{''}}">Professional</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="student" ng-model="searchData.level[1]" ng-true-value="'student'" ng-false-value="{{''}}">Student</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="aficionado" ng-model="searchData.level[2]" ng-true-value="'aficionado'" ng-false-value="{{''}}">Aficionado</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="amateur" ng-model="searchData.level[3]" ng-true-value="'amateur'" ng-false-value="{{''}}">amateur</md-checkbox>
-                                </li> -->
+                           
                         </ul>
                     </div>
                     <div class="seekingHd">Gender</div>
@@ -94,15 +67,7 @@
                                     ng-checked="isCheckedGender()" 
                                     ng-click="toggleAllGender()" >Both</md-checkbox>
                             </li>
-                            <!-- <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="male" ng-model="searchData.seeking_male" ng-true-value="1" ng-false-value="{{''}}">Male</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="female" ng-model="searchData.seeking_female" ng-true-value="1" ng-false-value="{{''}}">Female</md-checkbox>
-                                </li>
-                                <li>
-                                <md-checkbox  aria-label="Checkbox 1" value="both" ng-model="searchData.seeking_both" ng-true-value="1" ng-false-value="{{''}}">Both</md-checkbox>
-                                </li> -->
+                           
                         </ul>
                     </div>
                     <div class="seekingHd">Age Range</div>
@@ -110,14 +75,9 @@
                         <article>
                             <div class="rangevalue~ clearfix">
                                 <rzslider rz-slider-model="slider.min" rz-slider-high="slider.max" rz-slider-options="slider.options"></rzslider>
-                                <!-- <input type="number" min="18" ng-value="{{searchData.min ? searchData.min : 18}}" max="100" ng-model="searchData.min" class="value-L appraence" />
-                                    <input type="number" min="18" ng-value="{{searchData.max ? searchData.max : 100}}" max="100" ng-model="searchData.max" class="value-R appraence" /> -->
+                              
                             </div>
-                            <!-- <rzslider 
-                                rz-slider-model="minRangeSlider.minValue" 
-                                rz-slider-high="minRangeSlider.maxValue" 
-                                rz-slider-options="minRangeSlider.options">
-                                </rzslider> -->
+                          
                         </article>
                     </div>
                     <div class="seekingHd">Body Type</div>
@@ -129,27 +89,7 @@
                             <li>
                                 <md-checkbox  aria-label="Checkbox all" ng-checked="isCheckedBodyType()" ng-click="toggleAllBodyType()">All</md-checkbox>
                             </li>
-                            <!-- 
-                                Old code without ngRepeat
-                                -
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="slim_petite" ng-model="searchData.bodytype[0]" ng-true-value="'slim_petite'" ng-false-value="{{''}}">Slim or Petite</md-checkbox>
-                                </li>
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="average" ng-model="searchData.bodytype[1]" ng-true-value="'average'" ng-false-value="{{''}}">Average</md-checkbox>
-                                </li>
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="gym_fit" ng-model="searchData.bodytype[2]" ng-true-value="'gym_fit'" ng-false-value="{{''}}">Gym Fit</md-checkbox>
-                                </li>
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="Muscular" ng-model="searchData.bodytype[3]" ng-true-value="'muscular'" ng-false-value="{{''}}">Muscular</md-checkbox>
-                                </li>
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="few_pounds_over_average" ng-model="searchData.bodytype[4]" ng-true-value="'few_pounds_over_average'" ng-false-value="{{''}}">Few Pounds over Average</md-checkbox>
-                                </li>
-                                <li>
-                                	<md-checkbox  aria-label="Checkbox 1" value="large" ng-model="searchData.bodytype[5]" ng-true-value="'large'" ng-false-value="{{''}}">Large</md-checkbox>
-                                </li> -->
+                           
                         </ul>
                     </div>
                     <div class="updatebtnBx">
@@ -162,12 +102,13 @@
                     <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
                     <span>Loading..</span>
                 </div>
-                <!-- <pre>{{searchData | json}}</pre> -->
+            
                 <div class="listingHd" ng-show="znUsers.length > 0">{{paging.start}}-{{paging.end}} of {{paging.total}} Free Massage Exchange & Paid Professional Massage</div>
                 <div class="listing" ng-if="znUsers.length > 0">
                     <ul>
                         <!--class="greenBdr"-->
-                        <li  ng-repeat="user in znUsers track by $index">
+                        <li  ng-repeat="user in znUsers track by $index" 
+                            ng-init="user.blocked= checkedBlocedUser(user.userId, 'blocked'); user.favUser= checkedBlocedUser(user.userId, 'fav'); user.isLodingFav=false;user.isLodingBlock=false">
                             <!--  <pre>{{user | json}}</pre> -->
                             <div class="listingTop" 
                                 ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
@@ -176,12 +117,10 @@
                                         ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">
                                     Paid Professional Massage
                                     </a>
-                                    <!-- <a class="greenBg">Online</a> -->
-                                    <!-- <a class="bluBG" ng-if="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''">Therapeutic</a>
-                                        <a class="bluBG" ng-if="user.prefer_sensualMassage != undefined && user.prefer_sensualMassage != null && user.prefer_sensualMassage != ''">Sensual</a> -->
+                                  
                                     <a class="yellowBg" ng-hide="user.lastActive > 30">Updated Member</a>
                                 </div>
-                                <div class="listingTop-Left">
+                                <div class="listingTop-Left" >
                                     <div class="listingImgBx">
                                         <div class="listingImg" ng-click="userProfileView(user.userId)">  
                                             <img ng-src="{{user.profilePic != '' && user.profilePic != null ? user.profilePicUrl : 'images/'+user.gender+'.png'}}">
@@ -192,18 +131,29 @@
                                         </span>
                                         </strong>
                                         <span>
-                                            <!-- ng-class="{'pinkClr':user.seeking_female, 'blueClr' :user.seeking_male}"-->
-                                            <small class="material-icons personIcon" ng-class="{'pinkClr':user.gender === 'female', 'blueClr':user.gender === 'male'}">person</small>
-                                            {{user.ageOne}} 
-                                            <b 
-                                                ng-show="user.ageOne != null && user.ageOne != '' ">&nbsp; |&nbsp;</b>
+                                          
+                                            <small class="material-icons personIcon" 
+                                            ng-class="{'pinkClr':user.gender === 'female', 'blueClr':user.gender === 'male'}">person</small>
+
+                                            {{calculateAge(user.dobOne) +' |'}}
+                                            
                                             <small 
                                                 class="material-icons personIcon">room</small>
                                             {{user.city+", "}} {{user.state+", "}} {{user.country}} I 
                                             {{user.distance | number : 2}} Miles Away
                                         </span>
+                                        <!-- favUser -->
                                         <span ng-if="isUserLogin" >
-                                            <a>Favorite</a> | 
+                                       <a ng-click="setFav(user.userId,$index,znUsers, user.email)"> 
+                                        <x ng-if="user.isLodingFav==false">
+                                            <x ng-if="user.favUser==false">Add to Favorite </x>
+                                             <x ng-if="user.favUser==true">Remove to Favorite </x>
+                                        </x>
+                                            <x ng-if="user.isLodingFav==true" class="loading-sm">
+                                            <md-progress-circular class="md-primary" md-diameter="15"></md-progress-circular>
+                                            Processing
+                                            </x>
+                                        </a>| 
                                             <!--if user conversation is null-->
                                             <a 
                                                 ng-if="user.conversation==null || !user.conversation"
@@ -212,15 +162,16 @@
                                                 popover-is-open="user.openPopover"
                                                 popover-placement="top">Write a Review</a>
                                             <!--if user conversation is null-->
+
                                             <a ng-if="user.conversation"
                                                 ng-href="{{userDashboard.writeReviews.href+'/' +user.userId}}">Write a Review
                                             </a>
                                             |
                                             <!--review pinned--> 
                                             <a class="greyClr" 
-                                                ng-class="{'greyClr':user.reviewPennedCount==0}" 
-                                                ng-href="{{user.reviewReceivedCount>0?userDashboard.reviewsreceived.href+'/' +user.userId : null}}"> 
-                                            Review Penned({{user.reviewPennedCount}})
+                                                ng-class="{'greyClr':user.reviewsPenned==0}" 
+                                                ng-href="{{user.reviewsPenned>0?userDashboard.reviewspenned.href+'/' +user.userId : null}}"> 
+                                            Review Penned({{user.reviewsPenned}})
                                             </a> | 
                                             <!--review received-->
                                             <a  ng-class="{'greyClr':user.reviewReceivedCount==0}"
@@ -294,10 +245,21 @@
                                             Request Photo Key 
                                             <span class="toltip2">?<i>Photo Key</i></span>
                                         </md-button>
-                                        <md-button ng-click="AddBlockUser(user.userId)">
-                                            <md-icon> do_not_disturb_on</md-icon>
-                                            Block
-                                        </md-button>
+
+
+                                    <md-button ng-click="setBlocked(user.userId, $index, znUsers)" aria-label="block">
+                                       <span ng-if="user.isLodingBlock==false">
+                                        <md-icon> do_not_disturb_on</md-icon>
+                                        <span ng-if="user.blocked"> Unblocked </span>
+                                        <span ng-if="!user.blocked"> Block </span>
+                                        </span>
+                                        <span ng-if="user.isLodingBlock==true" class="loading-sm">
+                                         <md-progress-circular class="md-primary" md-diameter="15"></md-progress-circular>
+                                         Processing
+                                        </span>
+                                    </md-button>
+                                  
+                                  
                                     </span>
                                 </div>
                                 <!--if user not login -->
@@ -336,6 +298,8 @@
     </div>
     </div>
 </section>
+
+
 <!--need to be login template -->
 <script type="text/ng-template" id="needLogin.html">
     <div class="needlogin text-center">

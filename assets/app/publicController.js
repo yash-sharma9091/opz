@@ -267,6 +267,8 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeou
     mdDialog.cancel();
   };
 
+
+
 e.setMapcenter= function(pos){
 
   NgMap.getMap().then(function(map)
@@ -277,10 +279,15 @@ e.setMapcenter= function(pos){
   });
 }
 
+             
+
  //set profile data if updated
  e.user={};
  e.step=1;
  e.fullAddress={};
+
+
+     
 
  if(rootScope.userprofile)
  {  
@@ -297,6 +304,13 @@ e.setMapcenter= function(pos){
     var loc={'lat':userprofile['latitude'], "lng":userprofile['longitude']};
    /// console.log(loc);
     e.setMapcenter(loc);
+
+//profile massage style
+if(rootScope.userprofile.massageStylesOne)
+  {
+      e.listType=splitStr(rootScope.userprofile.massageStylesOne);
+      e.user['massageStyles']=e.listType;
+  }
 
 }
 
@@ -485,6 +499,20 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
       }
       
     }//end seeking fun
+e.setMassageStyle = function(data){
+
+  var str='';
+  angular.forEach(data, function(value){
+    if(value.trim())
+    {
+      str=str+value +',';
+    }
+  });
+  
+  e.user['massageStylesOne']=str;
+
+
+}
 
  }
 
@@ -560,5 +588,6 @@ e.sendEmail= function(email, form){
             });
 }
 }
+
 
 };

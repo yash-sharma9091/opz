@@ -31,7 +31,7 @@
                   <li >City:  <span>{{userprofile.city}}</span></li>
 
                   <li ng-if="userprofile.dobOne">Age:  
-                      <span>{{userprofile.age || userprofile.ageOne}} </span>
+                      <span>{{calculateAge(userprofile.dobOne)}} </span>
                   </li>
             
                   <li>
@@ -81,7 +81,7 @@
 
               </span>
                   </li>
-                    <li ng-if="userprofile.massageStylesOne">
+                    <li ng-if="userprofile.massageStylesOne"  class="large-height">
                       Styles of massage that I prefer to give: 
                       <span ng-if="userprofile.massageStylesOne" split-str="userprofile.massageStylesOne" > </span>
                       <span ng-if="!userprofile.massageStylesOne">
@@ -92,7 +92,9 @@
                     <li>Types of Massage that interest me:
                       <span>  
                              
-                      <x ng-if="userprofile.therapeuticMassageOne!=''">{{userprofile.therapeuticMassageOne }} 
+                      <x ng-if="userprofile.therapeuticMassageOne!=''" 
+                      class="colorBlue">
+                      {{userprofile.therapeuticMassageOne }} 
                         <small class="pinkClr" 
                     ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
 
@@ -106,16 +108,17 @@
                       <i class="tooltipBx"  
                       uib-popover="M=Male, F=Female, MF=Male & Female" 
                       popover-trigger="'mouseenter'" 
+                      popover-placement="left"
                       popover-append-to-body="'true'"> ? </i>
 
                       </small>
                       </x>
-                      <!--apply color-->
-                      <x ng-if="userprofile.sensualMassageOne!=''">{{userprofile.sensualMassageOne}}
-                        <small class="pinkClr" 
+                     
+                    <x ng-if="userprofile.sensualMassageOne!=''">{{userprofile.sensualMassageOne}}
+                      <small class="pinkClr" 
                     ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
 
-                     <black>&nbsp;Seeks -</black>{{userprofile.seeking_both?'M':''}}
+                     <black>&nbsp;Seeks -</black> {{userprofile.seeking_both?'M':''}}
                     <span class="pinkClr" ng-if="userprofile.seeking_both==='both'">F</span>
                       <span ng-if="!userprofile.seeking_both">
                         {{userprofile.seeking_female?'F':''}} 
@@ -124,15 +127,13 @@
 
                       <i class="tooltipBx"  
                       uib-popover="M=Male, F=Female, MF=Male & Female" 
-                      popover-trigger="'mouseenter'" 
+                      popover-trigger="'mouseenter'"
+                      popover-placement="left" 
                       popover-append-to-body="'true'"> ? </i>
 
                       </small>
                       </x>
-                      
-                     
-                      
-                     
+                       
                       </span>
                     </li>
 

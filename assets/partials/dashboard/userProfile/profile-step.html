@@ -33,10 +33,12 @@
 
       </div>
        <hr>
+
+
  	<!--end step header-->
 
     <div class="md-dialog-content">
-
+    <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
   	 <div class="alert {{alert.type}}" ng-if="alert">
           <p>
           <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
@@ -44,8 +46,7 @@
            </p>
     </div>
 
-
-      <!--step-1-->
+<!--step-1-->
 <div class="stepFrmBx" ng-if="step==1" >
       
   <md-input-container >
@@ -60,10 +61,10 @@
             </div>
 </md-input-container>
 
-          <div class="steplbl">My Gender*</div>
+          <div class="steplbl">My Gender<red>*</red></div>
  <div class="steptopBx">
           <!--gender -->
-			  <md-radio-group ng-model="user.gender" required>
+			  <md-radio-group ng-model="user.gender" ng-required="true">
 
 				<md-radio-button value="male" class="md-primary">
 				<md-icon class="blueClr">person</md-icon>Male
@@ -72,16 +73,13 @@
 				<md-radio-button value="female" class="md-primary">
 				<md-icon class="pinkClr">person</md-icon> Female
 				</md-radio-button>
-<!-- 
-				<md-radio-button value="both" class="md-primary">
-				<md-icon class="blueClr">person</md-icon> Both
-				</md-radio-button> -->
+
 				
 			</md-radio-group>
 
           
 </div>
-          <div class="steplbl">Birth Date<p> <span>(used to calculate age and birth date  will not be revealed)*</span> </p></div>
+          <div class="steplbl">Birth Date<p> <span>(used to calculate age and birth date  will not be revealed)<red>*</red></span> </p></div>
           <div class="stepdobBx clearfix">
         <div class="Dob-L">
            <md-input-container>
@@ -164,14 +162,57 @@
                   <div ng-message="required">Year is required</div>
                 </div>
               </md-input-container>
+            </div>
+            </div>
 
+              <div class="clearfix"></div>
+              <md-input-container>
+            <label>Select Body Type</label>
+            
+            <md-select  ng-model="user.bodyTypeOne" 
+         
+            placeholder="Seeking to Exchange With" required name="bodyTypeOne" class="md-no-underline">
+                <md-option value="">-- Select Body Type --</md-option>
+                <md-option value="slim_petite">Slim Petite</md-option>
+                <md-option value="average">Average</md-option>
+                <md-option value="gym_fit">Gym Fit</md-option>
+                <md-option value="muscular">Muscular</md-option>
+                <md-option value="few_pounds_over_average">A Few Ppounds Over Average</md-option>
+                <md-option value="large">Large</md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.bodyTypeOne.$error">
+                  <div ng-message="required">Body Type is required</div>
             </div>
-            </div>
+
+        </md-input-container>
       
         </div>
         <!--step2-->
 
         <div class="stepFrmBx" ng-if="step==2">
+
+         <md-input-container>
+            <label>Styles of massage that I prefer to give</label>
+            
+            <md-select 
+                  multiple 
+                  data-md-container-class="multiDropdown"
+                  ng-model="user.massageStyles" 
+                  placeholder="Select Your Option" 
+                  md-on-close="setMassageStyle(user.massageStyles)"
+                  required name="massageStyles" class="md-no-underline">
+                <md-option ng-value="list" ng-repeat="list in listType">
+                  {{list}}
+                  </md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.massageStyles.$error">
+                  <div ng-message="required">Styles of massage is required</div>
+            </div>
+
+        </md-input-container>
+
+
+
         <md-input-container>
             <label>Seeking to Exchange With</label>
             
@@ -232,7 +273,6 @@
           </md-radio-group>
           </div>
           </div>
-
         </div>
 
         <!--step3-->
@@ -240,7 +280,7 @@
          
 
           <md-input-container>
-              <label>My Location*</label>
+              <label>My Location</label>
               <input 
                 type="text" 
                 required 

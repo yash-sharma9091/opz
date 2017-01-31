@@ -33,8 +33,9 @@
                       {{userInfoCount.privatePhotoCount || 0}}
                 </span>
                 </p>
+            <md-divider ></md-divider>
            </md-list-item>
-             <md-divider ng-if="isUserLogin"></md-divider>
+          
             <md-list-item  class="active" 
             ng-href="{{userDashboard.myvedio.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >videocam</md-icon>
@@ -44,8 +45,9 @@
                       {{userInfoCount.videoCount || 0}}
                 </span>
                 </p>
+             <md-divider></md-divider>
            </md-list-item>
-            <md-divider></md-divider>
+     
             <md-list-item  class="active" 
             ng-href="{{userDashboard.reviewsreceived.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >insert_drive_file</md-icon>
@@ -55,8 +57,9 @@
                       {{userInfoCount.reviewReceived || 0}}
                 </span>
                 </p>
-           </md-list-item>
             <md-divider></md-divider>
+           </md-list-item>
+    
             <md-list-item  class="active" 
             ng-href="{{userDashboard.reviewspenned.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
@@ -66,17 +69,19 @@
                       {{userInfoCount.reviewPenned  || 0}}
                 </span>
                 </p>
+             <md-divider></md-divider> 
            </md-list-item>
-            <md-divider></md-divider> 
+         
             <!--write a review-->
       
 
-          <md-list-item   ng-if="isUserId"
+          <md-list-item   ng-if="isUserLogin"
             ng-href="{{userDashboard.writeReviews.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
                 <p>Write A Review </p>
+            <md-divider ></md-divider> 
            </md-list-item>
-            <md-divider  ng-if="isUserId"></md-divider> 
+        
 
    <!--user favourites-->
             <md-list-item  class="active" ng-if="!isUserId" 
@@ -88,22 +93,25 @@
                       {{userInfoCount.favouriteCount  || 0}}
                 </span>
                 </p>
+                   <md-divider></md-divider>
            </md-list-item>
 
         <!--if other profile is loaded add to fav-->
-           <md-list-item  class="active" ng-if="isUserId && !favYes" 
+           <md-list-item  class="active" ng-if="isUserLogin && !favYes" 
               ng-click="AddFav(isUserId)"> 
                 <md-icon  aria-label="icon" >star</md-icon>
                 <p>Add to Favorites  </p>
+                   <md-divider></md-divider>
            </md-list-item>
 
             <!--if other profile is loaded add to fav-->
-           <md-list-item  class="active" ng-if="isUserId && favYes" 
+           <md-list-item  class="active" ng-if="isUserLogin && favYes" 
               ng-click="removeFav(isUserId)"> 
                 <md-icon  aria-label="icon" >star</md-icon>
                 <p>Remove to Favorites  </p>
+                  <md-divider></md-divider>
            </md-list-item>
-            <md-divider></md-divider>
+          
 
            <!--blocked user- blockYes-->
 
@@ -117,12 +125,14 @@
                       {{userInfoCount.blockedCount || 0}}
                 </span>
                 </p>
+                   <md-divider></md-divider>
            </md-list-item>
 
-             <md-list-item  class="active"  ng-if="isUserId && blockYes"
+             <md-list-item  class="active"  ng-if="isUserLogin && blockYes"
             ng-click="removeBlockuser(isUserId)"> 
                 <md-icon  aria-label="icon" >do_not_disturb</md-icon>
                 <p>Unblocked  </p>
+                   <md-divider></md-divider>
            </md-list-item>
 
             <md-list-item  class="active"  ng-if="isUserId && !blockYes"
@@ -131,13 +141,14 @@
                 <p>Blocked 
                  
                 </p>
+                   <md-divider></md-divider>
            </md-list-item>
 
-
-            <md-divider></md-divider>
+        
             <md-list-item  class="active" ng-click='null'> 
                 <md-icon  aria-label="icon" >sms</md-icon>
                 <p>Massage Messenger<sup>&trade;</sup></p>
+                   <md-divider></md-divider>
            </md-list-item>
 
 

@@ -9,10 +9,7 @@
   <div class="container">
     <div class="profileTopBx" ng-class="{'exp': !headerExp}">
       <div class="profile-Img" style="background-image:url({{userprofile.profilePic || 'images/default-user-icon-profile.png'}})">
-  <!--       <img ng-if="userprofile.profilePic" ng-src="{{userprofile.profilePic}}" 
-             alt="{{userprofile.fullName}}"> -->
-
-        <!-- <img ng-if="!userprofile.profilePic" src="images/default-user-icon-profile.png"> -->
+      
         <span ng-if="userprofile.avgRating" class="reating" reating reating-data="userprofile.avgRating" ng-show="headerExp"> </span>
       </div>
  
@@ -23,7 +20,8 @@
       
             <span>
               <i class="material-icons blueClr personIcon">person</i> 
-              {{userprofile.age || userprofile.ageOne}}  </span>
+            
+              {{calculateAge(userprofile.dobOne)}} </span>
                <span >| {{userprofile.city}} ,{{userprofile.state}}, {{userprofile.country}}</span>
         </small>
         
@@ -52,11 +50,11 @@
           <i class="material-icons">wifi</i> 
           Subscription Expires on : {{userprofile.subscriptionExpiredDate |date:'EEE MMM, dd, yyyy'}}   
         <x >Renew Subscription</x></span> -->
-
-        <span ng-if="userprofile.subscriptionExpiredDate" class="gray">
+<!-- 
+      <span ng-if="userprofile.subscriptionExpiredDate" class="gray">
           <i class="material-icons">wifi</i> 
-          Subscription (Comming Soon)
-   </span>
+          Subscription (Coming Soon)
+   </span> -->
       </div>
     </div>
   </div>

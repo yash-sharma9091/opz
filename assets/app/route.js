@@ -105,10 +105,11 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/dashboard/userProfile/myProfile.html",
     //path:-- assets/app.js 
+    controller:'profileview',
     access:
     {
           login:false
-    }
+    },
   })
   .when('/profile/:_id',
     {
@@ -316,6 +317,18 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+  
+.when('/advertise',
+  {
+    templateUrl:"/partials/dashboard/refer/refer.html",
+    controller:"refer",
+    //controller path file path : assest/dashboard/user-poll.js
+    access:
+    { 
+          login:true
+    }
+  })
+    
 .when('/refer-friend',
   {
     templateUrl:"/partials/dashboard/refer/refer.html",

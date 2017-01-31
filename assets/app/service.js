@@ -1592,3 +1592,32 @@ function setJsonData(data, node){
 		return data;
 	}
 }
+
+function splitStr(strData){
+
+	var str=(!angular.isUndefined(strData))?strData.split(','):null;
+			if(str)
+			{
+			var data=[];
+			angular.forEach(str, function(value){
+				if(value)
+				{
+				var str1=value.split('_');
+				
+				var strFinal='';
+				angular.forEach(str1, function(node){
+					strFinal=strFinal+' '+ node;
+				})
+				if(strFinal=='')
+				{
+						data.push(value);
+				}
+				else{
+						data.push(strFinal);
+				}
+				}
+				
+			});
+			return data;
+			}
+}
