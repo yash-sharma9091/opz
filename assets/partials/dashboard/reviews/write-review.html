@@ -1,0 +1,97 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+      
+    <!--userside navabar-->
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+        </div>
+      <!--end user sidenavbar-->
+
+      <div class="col-sm-9">
+          <!--review list data-->
+        <div class="row blockList">
+          <div class="publicHd">Write A Review</div>
+            <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
+
+            <div>
+               
+
+           <div class="reviewList">
+            
+        <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+                <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                <span ng-bind-html="alert.message"> </span>
+               </p>
+        </div>
+
+            <form  class="frmBx" name="writeReview" novalidate >
+            <md-input-container class="md-block min-height rating-star">
+
+            <span uib-rating 
+            ng-model="review.ratingValue" 
+            on-hover="hoveringOver(value)" 
+            on-leave="overStar = null" 
+            titles="['','','','','']"
+            aria-labelledby="default-rating">
+              
+            </span>
+            <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar">{{percent}}%</span>
+            </md-input-container>
+            <md-input-container class="md-block">
+            <label>Title</label>
+            <input  name="reviewTitle" 
+                    required 
+                    type="text"
+                    ng-model="review.reviewTitle" >
+            <!--error template-->
+            <div ng-messages="writeReview.reviewTitle.$error">
+            <div ng-message="required">Title is required.</div>
+       
+            </div>
+            </md-input-container>
+
+             <md-input-container class="md-block">
+            <label>Write review</label>
+            <textarea  
+                    name="reviewNote" 
+                    required 
+                    rows="5" 
+                    type="text"
+                    ng-model="review.reviewNote" ></textarea>
+            <!--error template-->
+            <div ng-messages="writeReview.reviewNote.$error">
+            <div ng-message="required">Review is required.</div>
+       
+            </div>
+            </md-input-container>
+
+              <md-button type="submit" aria-label="add"  ng-click="WriteReview(review,writeReview)" class="md-raised md-primary logpopup-Btn">
+                  <span ng-if="!isProcess">Submit</span>
+                  <span ng-if="isProcess" >Processing..</span>
+
+                  </md-button>
+            </form>
+          </div>
+
+        <!--end reviewe pned list-->
+           </div>
+
+       </div> <!--end row-->
+      </div> <!--end coloumn-->
+
+    </div>
+  </div>
+</section>
+
+</div>	 

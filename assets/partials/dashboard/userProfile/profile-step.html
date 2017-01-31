@@ -87,6 +87,7 @@
            <md-input-container>
               <md-select ng-model="user.dob.day" required name="day"
               			placeholder="Select Day" class="md-no-underline sechInp">
+                    <md-option value="">-- Select Day --</md-option>
 											<md-option value="1">01</md-option>
 											<md-option value="2">02</md-option>
 											<md-option value="3">03</md-option>
@@ -130,6 +131,7 @@
               ng-model="user.dob.month" name="month"
               placeholder="Select Month"  required
               class="md-no-underline sechInp">
+                  <md-option value="">-- Select Month --</md-option>
                   <md-option value="1">January</md-option>
                   <md-option value="2">February</md-option>
                   <md-option value="3">March</md-option>
@@ -154,6 +156,7 @@
               required 
               placeholder="Select Year" 
               class="md-no-underline sechInp">
+              <md-option value="">-- Select Year --</md-option>
                 <md-option ng-repeat="x in years" value="{{x}}">{{x}}</md-option>
                  
                 </md-select>
@@ -175,6 +178,7 @@
             <md-select  ng-model="user.exchange" 
             md-on-close="seeking_exchange(user.exchange)" 
             placeholder="Seeking to Exchange With" required name="exchange" class="md-no-underline">
+                <md-option value="">-- Seeking to Exchange With --</md-option>
                 <md-option value="male">Male</md-option>
                 <md-option value="female">Female</md-option>
                 <md-option value="both">Both</md-option>
@@ -189,6 +193,7 @@
             <label>Type of massage that interests me </label>
             
             <md-select md-on-close="interest(user.interests)"   ng-model="user.interests" required name="interests" class="md-no-underline">
+                <md-option value="">-- Type of massage that interests me --</md-option>
                 <md-option value="therapeutic">Therapeutic</md-option>
                 <md-option value="sensual">Sensual</md-option>
                 <md-option value="both">Both</md-option>
@@ -203,6 +208,7 @@
             <label>My Body Work Level</label>
            
             <md-select  ng-model="user.levelTypeOne" required name="workLevel" class="md-no-underline">
+                <md-option value="">-- My Body Work Level --</md-option>
                 <md-option value="professional_cmt">Professional/CMT</md-option>
                 <md-option value="student"> Student </md-option>
                 <md-option value="aficionado">Aficionado and/or Amateur</md-option>

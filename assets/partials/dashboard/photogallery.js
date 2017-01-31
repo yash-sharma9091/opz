@@ -122,7 +122,7 @@ e.changeTabs = function()
 		e.setProfilePicture = function(name,profilePhoto,id,index,data)
 		{
 			
-			var confirm=appServices.confirmAlert('Confirm?','Are you sure to make this picture as a profile picture', 'default','Yes', 'No');
+			var confirm=appServices.confirmAlert('Confirm','Are you sure you want to make this your profile picture?', 'default','Yes', 'No');
 
 								mdDialog.show(confirm).then(function(response) 
 								{
@@ -144,7 +144,7 @@ e.changeTabs = function()
 												}
 												else 
 												{
-															appServices.openAlertBox('Failed!',"We can't set your profile pictute please try again" ,'error' );
+															appServices.openAlertBox('Failed',"We couldn't set your profile picture. Please try again." ,'error' );
 														
 												}
 						

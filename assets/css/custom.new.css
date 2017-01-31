@@ -848,12 +848,27 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .massageexchange > span {text-transform: none;  font-size: 40px;}
 .massageexchange small {    font-size: 25px; text-transform: none;}
 .massageexchange  strong {  font-weight: 400; }
-.massageexchange { }
 
+.listingBot-L a{    line-height: 35px;}
+md-dialog-actions {    border-top-width: 0 !important;}
+.logo-info {     max-width: 198px;  float: left; margin-left: 15%; }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn-sm { min-height: 30p;x line-height: 30px; }
+.popover-content p{ padding-bottom: 5px; }
+
+.massageexchange { }
+.loginFrmTop .md-char-counter{display:none !important;}
+.min-height { min-height: 40px; margin-top: 15px; }
+
+.rating-star{   
+    font-size: 20px;
+    color: rgb(245, 185, 0);
+}
 @media(min-width:768px) {
-    .nav-btn {
-        display: none
-    }
+    .nav-btn {     display: none;    }
 }
 @media(max-width: 767px) {
     .loginBtnBx {

@@ -2,7 +2,6 @@
 	name : public controller
 	function : login, signup, modal , contact us ,composeEmailPublic
 
-
 */
 
 angular.module('zenbrisa.public.Controller',['service'])
@@ -33,8 +32,10 @@ var dashbaord_url;
 e.checkUsrname= function(query,form){
   var user={username:query};
 
-  timeout(function(){
-    e.checking=true;
+  timeout(function()
+  {
+
+  e.checking=true;
   appServices.post(API_URL.checkuserName,user, function(response)
      {
       if(response.message==='username_exists')
@@ -128,8 +129,7 @@ e.userLogin =function(from,data)
                         mdDialog.cancel();
                         $location.path(dashbaord_url);
           }
-
-                
+            
 
                 });
 
@@ -491,13 +491,74 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
 //compose email public
 
 //controller injector
-composeEmailPublic.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
+composeEmailPublic.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','data'];
 
-function composeEmailPublic(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
+function composeEmailPublic(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout,data)
 { 
 
   e.cancel = function() 
   {
      mdDialog.cancel();
  };
+ 
+e.user=data;
+  e.email={};
+
+ console.log(data);
+ e.email['to']=data.username;
+
+
+e.generateKey= function(key)
+{
+  if(key)
+  { 
+        var promise={objectUserId:e.user.id};
+         appServices.post(API_URL.generateKey,promise, function(response)
+         {
+            if(response.status==1)
+            {
+                e.email['photokey']= response.data.photokey;
+            }
+         });
+  }
+  else
+  {
+      delete e.email['photokey'];
+  }
+}//end function
+
+//send user message
+
+e.sendEmail= function(email, form){
+  if(form.$valid)
+  {
+  //in prevoius api data send using from data method 
+    var fd = new FormData();
+                fd.append('composeTo', email.composeTo);
+                fd.append('composeSubject', email.composeSubject);
+                fd.append('composeMessage', email.composeMessage);
+                fd.append('receiverId', e.user.id);
+                fd.append('replyMailStatus', 'send');
+                fd.append('sendMailPage', 'true');  // To identify other than draftmail
+            e.alert={'message':"Processing..",'type':'alert-success'}
+            e.isProcessing=true;
+            
+            appServices.post(API_URL.saveMail,fd, function(response)
+            {
+              e.isProcessing=false;
+              
+
+              if(response.status==1)
+              {
+                    e.alert={'message':response.message,'type':'alert-danger'};   
+                    e.send=true;
+              }
+              else
+              {
+                 e.alert={'message':response.message,'type':'alert-danger'};
+              }
+            });
+}
+}
+
 };

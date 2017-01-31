@@ -86,6 +86,7 @@
           class="md-no-underline" 
           md-on-open="loadCountry()"
           required name="country">
+          <md-option value="">-- Select Country --</md-option>
             <md-option ng-repeat="x in countries" ng-value="x">{{x}}</md-option >
                   
           </md-select>
@@ -100,6 +101,7 @@
          <md-input-container  class="md-block">
           <label>Subject</label>
           <md-select name="type" md-container-class="list-sm" ng-model="user.subject" required name="subject" class="md-no-underline">
+                  <md-option value="">-- Select --</md-option>
                   <md-option  value="Customer Care">Customer Care</md-option >
                   <md-option  value="Admin">Admin</md-option >
                   <md-option  value="Feedback">Feedback</md-option >

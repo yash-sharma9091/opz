@@ -212,6 +212,17 @@ angular.module('app.ngRoute',['ngRoute'])
     }
 
   })
+   .when('/write-reviews/:_id',
+    {
+    templateUrl:"/partials/dashboard/reviews/write-review.html",
+    controller:"userProfileView",
+    //controller path file path : assest/dashboard/userprofile.js
+    access:
+    { 
+          login:false
+    }
+
+  })
    .when('/my-video',
     {
     templateUrl:"/partials/dashboard/my-vedio/my-vedio.html",

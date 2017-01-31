@@ -43,6 +43,15 @@ angular.module('zenbrisa.app')
 			appServices.modal('partials/template/campose-mail.html', composeEmailPublic, ev,data);
 	}
 	
+	$rootScope.sendPhotoKeySearch= function(ev,id)
+		{
+		var data={};
+			data.id=id;
+		
+		appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev,data)
+		}
+
+
 	$rootScope.profileStep=function(ev)
 	{
 		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev)
@@ -65,7 +74,7 @@ angular.module('zenbrisa.app')
 	}
 
 	$rootScope.$on("$routeChangeSuccess", function(event,current ,prev){
-		
+		$rootScope.userInfoCount=false;
 		if(current.access.login==true)
 		{
 				
@@ -200,8 +209,7 @@ $rootScope.closeAlert= function(alert){
 								//profile count alert
 								var promise={};
 								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
-						    		{
-						    			
+						    		{						    			
 						    			if( response.data) {
 						    				var data=response.data[0];
 						    				var count={};
@@ -371,7 +379,7 @@ $rootScope.userNavbar={
 		"profileEdit":{"title":'Edit Profile Details','click':'updateProfile'} ,
 		"photogallery":{"title":'Photo Gallery',"href":"#/photo-gallery"},
 		"videogallery":{"title":'Video Gallery',"href":"#/my-video"},
-		// "packages":{"title":'Membership',"href":"#/search-page"},
+		
 		"refer":{"title":'Refer Friend Bonus',"href":"#/refer-friend"},
 		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
 		"mylocations":{"title":'My Locations',"href":"#/my-locations"}
@@ -400,7 +408,8 @@ $rootScope.userDashboard=
 	'reviewspenned':{'title':'Reviews Penned', 'href':"#/reviews-penned"},
 	'reviewsreceived':{'title':'Reviews Received', 'href':"#/reviews-received"},
     'myvedio':{'title':'My Vedio ', 'href':"#/my-video"},
-    'photoGallery':{'title':'Public Photo Gallery ', 'href':"#/photo-gallery"}
+    'photoGallery':{'title':'Public Photo Gallery ', 'href':"#/photo-gallery"},
+    "writeReviews":{"title":'Write Reviews',"href":"#/write-reviews"}
     
 }
 

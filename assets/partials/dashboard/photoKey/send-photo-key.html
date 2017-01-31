@@ -1,7 +1,7 @@
 <md-dialog aria-label="send photo key">
 
      <md-dialog-content>
-     <md-button class="md-icon-button closeIcon" ng-click="cancel()">
+     <md-button ng-hide="isSend" class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
       <h2  class="LoginHd">Request Photo Key</h2>
@@ -16,12 +16,14 @@
                </p>
         </div>
 
-           <div class="loginFrmTop">
+        <md-button ng-if="isSend"  aria-label="finish"  ng-click="cancel()" 
+        class="md-raised md-primary logpopup-Btn">OK 
+        </md-button> 
+
+           <div class="loginFrmTop" ng-if="!isSend">
               <!--forget password form-->
               
-           <!--login form-->
-
-            <form  class="frmBx" name="login" novalidate>
+             <form  class="frmBx" name="login" novalidate>
              <p>Note: You can change this note if you would like and put your own personal message.
           
            <md-input-container class="md-block">

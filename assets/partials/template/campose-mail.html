@@ -2,13 +2,28 @@
 <form name="userEmail" novalidate>
    
     <md-dialog-content>
-      
-      <md-button class="md-icon-button  closeIcon" ng-click="cancel()">
+      <md-button ng-hide="send" class="md-icon-button  closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
       <h2 class="LoginHd">Compose E-mail</h2>
+      <div class="md-dialog-content" ng-if="send">
+          <div class="alert alert-success">
+              <p> <span> Your email  has been send to {{user.username}} </span></p>
+        </div>
 
-      <div class="md-dialog-content">
+  <md-button  aria-label="finish"  ng-click="cancel()" 
+    class="md-raised md-primary logpopup-Btn">OK 
+  </md-button>   
+      </div>
+      <div class="md-dialog-content" ng-if="!send">
+         <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+              <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+               <span ng-bind-html="alert.message"> </span>
+               
+               </p>
+        </div>
+
       <div class="loginFrmTop" >
       
           <md-input-container class="md-block">
@@ -37,19 +52,24 @@
           
           </div>
           </md-input-container>
-            <p ng-if="photoKey.photokey">Your photo key is - {{photoKey.photokey}}</p>
+            <p ng-if="email.photokey">Your photo key is - {{email.photokey}}</p>
             <div class="composeBtn clearfix">
                 <div class="attachfile">
                 <span>
-                  <md-checkbox ng-if="userData.user" ng-change="generateKey(user.photoKey)" 
+                  <md-checkbox  ng-change="generateKey(user.photoKey)" 
                     ng-model="user.photoKey" 
                     aria-label="sendkey"> Send Photo Key
                   </md-checkbox>
                 </span>
                 </div>
          
-                <md-button type="submit" ng-click="sendEmail(email)" 
-                  class="md-raised md-primary logpopup-Btn">Send
+                <md-button type="submit" 
+                  aria-label="send"
+                  ng-click="sendEmail(email, userEmail)" 
+                  class="md-raised md-primary logpopup-Btn">
+                    <span ng-if="!isProcessing">Send</span>
+                    <span ng-if="isProcessing">Sending..</span>
+
                 </md-button>
             </div>
          
