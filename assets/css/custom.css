@@ -499,8 +499,8 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .sendmailHd strong{ display:block; font-size:24px; font-weight:700;  text-transform:uppercase; color:#000;}
 .padTop{ padding-top: 10px;}
 .postBlogBx {background: #fff; border: #ebecee solid 1px; padding: 30px 20px;}
-.InpFile {cursor:pointer; height: 40px; opacity: 0; position: absolute; right: 16px; top: 1px; width: 105px;}
-.fileButton {background: #a5a5a5; border: 0 none; color: #fff; height: 40px; position: absolute;right: 16px; top: 1px; width: 105px; font-size: 14px;}
+.InpFile {cursor:pointer; height: 40px; opacity: 0; position: absolute; right: 18px; top: 10px; width: 105px;}
+.fileButton {background: #a5a5a5; border: 0 none; color: #fff; height: 40px; position: absolute;right: 18px; top: 8px; width: 105px; font-size: 14px;}
 .blogImgurl > span {color: #bfbfbf; font-size: 13px;}
 .textaditer{ padding-bottom: 20px;}
 .suggpoll {background: #fff none repeat scroll 0 0; border: 1px solid #ebecee; padding: 20px;}

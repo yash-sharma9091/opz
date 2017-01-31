@@ -31,7 +31,10 @@ angular.module('zenbrisa',
 'ame.lightbox',
 'filevalidate',
 'zenbrisa.blog',
-'angularUtils.directives.dirPagination'
+'zenbrisa.blogComment',
+'angularUtils.directives.dirPagination',
+'textAngular',
+'ngAria'
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
@@ -45,6 +48,7 @@ angular.module('userPhotoGalleryModule',[]);
 angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
+angular.module('zenbrisa.blogComment',[]);
 
 
 var API_URL=
@@ -120,5 +124,9 @@ var API_URL=
 
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',
-	"addReview":api_base_url+'users/addReview'
+	"addReview":api_base_url+'users/addReview',
+
+	// blog commnet
+	"addBlogComment": api_base_url+'blog/addBlogComment',
+	"getBlogcommentList": api_base_url+'blog/getBlogcommentList'
 }

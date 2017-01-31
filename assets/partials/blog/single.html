@@ -1,23 +1,82 @@
-<section class="referBg" ng-init="getSingleBlog()">
-  <div class="container">
-  <div class="loading" ng-show="loading">
-               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
-               <span>Loading..</span>
-            </div>
-    <div class="pollsHd">{{blogData.title}} <span><a ng-click="goTo('blog/post-a-blog')">Post a Blog</a></span></div>
-    <div class="pollBx">
-        <div class="blogdetail">
-          <i ng-if="(blogData.featuredImage != null && blogData.featuredImage != '')"><img src="http://cdn.zenbrisa.com/blog/{{blogData.featuredImage}}" alt="" class="w100"></i>
-          <span><small class="material-icons">access_time</small> {{blogData.blogDate}} </span>
-          <div ng-bind-html="blogData.description"></div>
-          
-        </div>
-    </div>
-    <div class="pollsHd">Leave a Comment:</div>
-    <div class="pollBx">
-      <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp ng-pristine ng-untouched ng-valid ng-empty" aria-invalid="false"></textarea>
-      <button class="md-raised md-primary logpopup-Btn md-button md-ink-ripple" type="button" ng-transclude="" style="margin-left:0 !important;"><span class="ng-scope">Submit</span></button>
-    </div>
-    </div>
+<section class="referBg" >
+	<div class="container">
+		<div class="loading" ng-show="loading">
+			<md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+			<span>Loading..</span>
+		</div>
+		<div class="pollsHd">{{blogData.title}} <span><a ng-href="#/blogs">Back</a></span></div>
+		<div class="pollBx">
+			<div class="blogdetail">
+				<i ng-if="(blogData.featuredImage != null && blogData.featuredImage != '')"><img src="http://cdn.zenbrisa.com/blog/{{blogData.featuredImage}}" alt="" class="w100"></i>
+				<span><small class="material-icons">access_time</small> {{blogData.blogDate}} </span>
+				<div ng-bind-html="blogData.description"></div>
 
-  </section>
+			</div>
+		</div>
+		<div class="pollsHd">Leave a Comment:</div>
+		<div class="pollBx">
+
+			<div class="alert {{alert.type}}" ng-if="alert">
+			      <p>
+			      <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+			       <span ng-bind-html="alert.message"> </span>
+			       
+			       </p>
+			</div>
+			<form ng-submit="leaveComment(blogCommentForm.$valid)" name="blogCommentForm" novalidate>
+				<md-input-container class="md-block">
+					<textarea name="comment" ng-model="blogcomment" aria-label="commentbox" placeholder="Post your comment"  rows="5" md-select-on-focus ng-required="true"> </textarea>
+					<div class="errors" ng-messages="blogCommentForm.comment.$error">
+						<div ng-message="required">Blog comment is required</div>
+					</div>
+				</md-input-container>
+				<!-- <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp" aria-invalid="false"></textarea> -->
+				<div class="row">
+					<div class="col-md-2">
+						<md-button ng-if="!isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left">Submit</md-button>
+						<md-button ng-if="isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left" type="submit">Submit</md-button>
+					</div>	
+					<div class="col-md-10 margin-top10">
+						<p ng-if="!isUserLogin"><a ng-click="signup($event)" class="blueClr">Signup</a> or <a class="blueClr" ng-click="login($event)">login</a> to post a comment</p>
+					</div>
+				<div class="clearfix"></div>
+				</div>
+			</form>
+		</div>
+		<div class="clearfix"></div>
+		<div class="reviewList">
+          <ul>
+            <li ng-repeat="x in comments track by $index">
+            <a ng-click="userProfileView(x.userId)">
+              <div class="review-img">
+               
+                <i class="image-view" style="background-image:url('{{x.profilePic ? x.profilePic : 'images/default-user-icon-profile.png';}}')">
+                 
+                </i>
+
+            </div>
+            <div class="revDet">
+            <!--status with color-->
+            <span class="label label-success tags" 
+                  ng-if="x.approvalStatus=='Approved'">
+                  {{x.approvalStatus}}
+            </span>
+            <span class="label label-danger tags" 
+                  ng-if="x.approvalStatus=='Disapproved'">
+                  {{x.approvalStatus}}
+            </span>
+                        <span class="label tags label-primary" 
+                  ng-if="x.approvalStatus=='Pending'">
+                  {{x.approvalStatus}}
+            </span>
+             
+                <strong>{{x.username}} <small> {{x.commentDate}} at {{x.commentTime}}</small></strong>
+                <p ng-bind-html="x.comment"></p>
+              </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+	</div>
+
+</section>

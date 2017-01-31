@@ -362,7 +362,7 @@ angular.module('app.ngRoute',['ngRoute'])
 .when('/blog/:blogId/:slug',
   {
     templateUrl:"/partials/blog/single.html",
-    controller:"blog",
+    controller:"blogCommentCtrl",
     //controller path file path : assest/blog/blog.js
     access:
     { 
