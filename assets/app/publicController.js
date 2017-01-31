@@ -32,8 +32,10 @@ var dashbaord_url;
 e.checkUsrname= function(query,form){
   var user={username:query};
 
-  timeout(function(){
-    e.checking=true;
+  timeout(function()
+  {
+
+  e.checking=true;
   appServices.post(API_URL.checkuserName,user, function(response)
      {
       if(response.message==='username_exists')
@@ -127,8 +129,7 @@ e.userLogin =function(from,data)
                         mdDialog.cancel();
                         $location.path(dashbaord_url);
           }
-
-                
+            
 
                 });
 
@@ -545,24 +546,7 @@ e.sendEmail= function(email, form){
             appServices.post(API_URL.saveMail,fd, function(response)
             {
               e.isProcessing=false;
-              console.log(response);
-                var response={
-                "status": 1,
-                "message": "success",
-                "data": {
-                "subject": "test",
-                "message": "test1",
-                "conversationId": 40597,
-                "senderId": 577,
-                "receiverId": 251,
-                "senderStatus": "sent",
-                "receiverStatus": "inbox",
-                "viewStatus": "unread",
-                "createdAt": "2017-01-30T05:28:06.689Z",
-                "updatedAt": "2017-01-30T05:28:06.689Z",
-                "id": 52380
-                }
-                };
+              
 
               if(response.status==1)
               {

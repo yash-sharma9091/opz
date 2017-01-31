@@ -119,5 +119,6 @@ var API_URL=
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
 
 	//email system
-	"saveMail":api_base_url+'/mail/saveMail'
+	"saveMail":api_base_url+'mail/saveMail',
+	"addReview":api_base_url+'users/addReview'
 }

@@ -307,6 +307,52 @@ e.sendPhotoKey= function(ev)
 {
 	appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev)
 }
+
+//write a review for user
+e.rate = 5;
+e.max = 5;
+e.hoveringOver = function(value) {
+
+    e.overStar = value;
+    e.percent = 100 * (parseInt(value) / e.max);
+  };
+
+
+e.review={};
+//write a review
+e.WriteReview= function(data, form){
+	if(form.$valid)
+	{
+			data['reviewedOnId']=routeParams._id;
+
+			
+
+			appServices.post(API_URL.addReview ,data, function(response)
+			{
+				if(response.status==1)
+				{
+					 e.alert={'message':'Your review has been submitted successfully. You will be notified when Moderator approves your review.','type':'alert-success'};   
+
+				}
+				else{
+					if(response.message)
+					{
+					 e.alert={'message':response.message,'type':'alert-danger'};   
+					}
+					else
+						{e.alert={'message':"Please try again?",'type':'alert-danger'};   }
+
+				}
+
+				form.$setPristine();
+				form.$setUntouched();
+				e.review={};
+			});
+
+	}
+
+}
+
 };//end controller
 
 
