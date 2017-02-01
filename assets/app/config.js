@@ -34,7 +34,8 @@ angular.module('zenbrisa',
 'zenbrisa.blogComment',
 'angularUtils.directives.dirPagination',
 'textAngular',
-'ngAria'
+'ngAria',
+'ngImgCrop'
 ]);
 
 angular.module('zenbrisa.userProfile',[]);

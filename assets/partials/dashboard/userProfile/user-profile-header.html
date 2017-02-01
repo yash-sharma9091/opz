@@ -9,7 +9,7 @@
   <div class="container">
     <div class="profileTopBx" ng-class="{'exp': !headerExp}">
       <div class="profile-Img" style="background-image:url({{userprofile.profilePic || 'images/default-user-icon-profile.png'}})">
-      
+        <md-button ng-if="isUserLogin" ng-click="cropImage($event,userprofile.userId)" class="md-button-icon md-fab md-mini profile-edit"><md-icon>mode_edit</md-icon></md-button>
         <span ng-if="userprofile.avgRating" class="reating" reating reating-data="userprofile.avgRating" ng-show="headerExp"> </span>
       </div>
  
@@ -50,7 +50,7 @@
           <i class="material-icons">wifi</i> 
           Subscription Expires on : {{userprofile.subscriptionExpiredDate |date:'EEE MMM, dd, yyyy'}}   
         <x >Renew Subscription</x></span> -->
-<!-- 
+  <!-- 
       <span ng-if="userprofile.subscriptionExpiredDate" class="gray">
           <i class="material-icons">wifi</i> 
           Subscription (Coming Soon)
