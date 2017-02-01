@@ -561,6 +561,9 @@ e.sendEmail= function(email, form){
   if(form.$valid)
   {
   //in prevoius api data send using from data method 
+
+  email['receiverId']= e.user.id;
+
     var fd = new FormData();
                 fd.append('composeTo', email.composeTo);
                 fd.append('composeSubject', email.composeSubject);
@@ -571,7 +574,7 @@ e.sendEmail= function(email, form){
             e.alert={'message':"Processing..",'type':'alert-success'}
             e.isProcessing=true;
             
-            appServices.post(API_URL.saveMail,fd, function(response)
+            appServices.post(API_URL.saveMail,email, function(response)
             {
               e.isProcessing=false;
               
