@@ -32,8 +32,9 @@
  
 
 module.exports = {
-  
- paths: {
+
+  paths: {
+
      public: __dirname+'/../assets' // or wherever
    },
 
