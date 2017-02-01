@@ -1,10 +1,22 @@
 angular.module('zenbrisa.userProfile',[])
 .controller('userProfileView', userProfileView)
-.controller('sendPhotoKeyCtrl', sendPhotoKeyCtrl);
+.controller('sendPhotoKeyCtrl', sendPhotoKeyCtrl)
+.controller('profileview', profileview);
+
 
 //controller injector
 userProfileView.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','ameLightbox'];
 sendPhotoKeyCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','data'];
+
+profileview.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams'];
+
+function profileview(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
+	{
+	if(!rootscope.isUserLogin)
+	{
+		location.path('/');
+	}
+};
 
 function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
 {
@@ -37,7 +49,8 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      });
 },100);
  //getting all counts common for otherProfileMenu sulthan
- e.ChekUser= function(id){
+ e.ChekUser= function(id)
+ {
 
 
 var promise={userId:id};
@@ -126,8 +139,8 @@ e.AddFav= function(id)
 {
 	
 	var data = {
-					favId: id,
-					favEmail:e.userprofile.email
+			favId: id,
+			favEmail:e.userprofile.email
 				};
 
 

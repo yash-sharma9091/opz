@@ -264,7 +264,7 @@ e.setUnBlock=function(id, index,data){
 												if(response.status==1)
 												{
 													
-														appServices.alert("Successfully removed from your block list")
+													appServices.alert("Successfully removed from your block list")
 								
 												
 												}	

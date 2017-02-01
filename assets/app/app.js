@@ -57,7 +57,15 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev)
 	};
 
-	
+	// $rootScope.checkPages = function(){
+	// 	var url=$location.path();
+	// 	var list=['/profile'];
+
+	// 	if(list.indexOf(url)>=0)
+	// 	{
+
+	// 	}
+	// }	
 }])
 
 //check login session 
@@ -85,6 +93,7 @@ angular.module('zenbrisa.app')
 					$rootScope.login();
 					$location.path('/');
 				}
+				//check pages
 		}
 
 	
@@ -185,7 +194,7 @@ $rootScope.closeAlert= function(alert){
 										{
 											profileData['exchange']='both';
 										}
-										// //therapeuticMassageOne : "therapeutic"
+										
 										if(!profileData['interests'])
 										{
 										
@@ -195,11 +204,10 @@ $rootScope.closeAlert= function(alert){
 
 											}
 										}
-									
+
 										$rootScope.userprofile=profileData;
 										
 										}
-
 
 										if(profile)
 										{
@@ -250,8 +258,16 @@ $rootScope.closeAlert= function(alert){
 	var d=new Date(date);
 	return d.toDateString();
 	}
+	
+	//calulate age 	
+	$rootScope.calculateAge=function(dob)
+	{
 
-	$rootScope.getAge=function(age)
+	return getAge(dob).age;
+	}
+		
+
+		$rootScope.getAge=function(age)
 		{
 		
 		if(age)
@@ -381,7 +397,7 @@ $rootScope.userNavbar={
 		"videogallery":{"title":'Video Gallery',"href":"#/my-video"},
 		
 		"refer":{"title":'Refer Friend Bonus',"href":"#/refer-friend"},
-		"bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
+		// "bonushistory":{"title":'Bonus History',"href":"#/bonus-history"},
 		"mylocations":{"title":'My Locations',"href":"#/my-locations"}
 	}
 },
@@ -393,10 +409,14 @@ $rootScope.userNavbar={
 				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
 			 }
 	},
-	"advertise":{"title":"Advertise", 
-	"submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/search-page"},
-				"adrequest":{"title":'Ad Request',"href":"#/search-page"} }
+	"advertise":{"title":"Advertise" , 'href':"#/advertise"
+	// "submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/search-page"},
+	// 			"adrequest":{"title":'Ad Request',"href":"#/search-page"} }
 	}
+	// "advertise":{"title":"Advertise", 
+	// "submenu":{ "subscription":{"title":'Ad Subscription',"href":"#/search-page"},
+	// 			"adrequest":{"title":'Ad Request',"href":"#/search-page"} }
+	// }
 
 }
 

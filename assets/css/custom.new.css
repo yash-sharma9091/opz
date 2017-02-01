@@ -28,12 +28,21 @@ md-sidenav md-list .md-button:hover md-icon,
 md-sidenav md-list .md-button:hover p {
     color: rgb(3, 169, 244) !important;
 }
+<<<<<<< HEAD
+.navbar-toggle {     display: none;}
+.margin-top20 {  margin-top: 25px;}
+
+=======
 .navbar-toggle {
     display: none;
+}
+.margin-top10{
+    margin-top: 10px;
 }
 .margin-top20 {
     margin-top: 25px;
 }
+>>>>>>> 0cadf6c6607191e11fd5bdd6e5324ab102598a10
 .heading {
     display: table;
     text-transform: uppercase;
@@ -485,7 +494,7 @@ md-input-container input {
 }
 .star,
 .star md-icon {
-    color: #ec9015;
+    color: #ffd203;
 }
 .profileTopBg {
     padding: 15px 0; position: relative;
@@ -850,7 +859,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .massageexchange  strong {  font-weight: 400; }
 
 .listingBot-L a{    line-height: 35px;}
-md-dialog-actions {    border-top-width: 0 !important;}
+    md-dialog-actions {    border-top-width: 0 !important;}
 .logo-info {     max-width: 198px;  float: left; margin-left: 15%; }
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
     outline: 0px auto -webkit-focus-ring-color;
@@ -859,14 +868,46 @@ md-dialog-actions {    border-top-width: 0 !important;}
 .btn-sm { min-height: 30p;x line-height: 30px; }
 .popover-content p{ padding-bottom: 5px; }
 
-.massageexchange { }
 .loginFrmTop .md-char-counter{display:none !important;}
 .min-height { min-height: 40px; margin-top: 15px; }
 
-.rating-star{   
+.rating-star
+{   
     font-size: 20px;
     color: rgb(245, 185, 0);
 }
+
+.vollatBg:hover {
+    background: #9c00ff !important;
+}
+
+md-option:nth-child(4n),md-option:nth-child(2n) , md-option:first-child
+{
+    color: rgba(33,33,33,0.87) !important;
+}
+
+md-option {    font-size: inherit !important;}
+.colorBlue, .colorBlue black {   color: #ec1d1d; }
+.typeLabel li > span { width: 180px; }
+.typeLabel li,.typeLabel li small, .myProfList li {     font-size: 14px; }
+.listing{ min-height: 400px }
+.large-height { height: 80px; }
+ md-option .md-text { text-transform: capitalize; }
+
+.md-dialog-content {  padding: 10px 24px !important; }
+.md-select-value { text-transform: capitalize; }
+
+.multiDropdown .md-icon::after
+{     border-color: rgba(255, 255, 255, 0.87) !important; }
+
+.aboutTrans { background: transparent; }
+.infoAlert { font-size: 13px;  }
+.md-required:after ,red{    color: red !important;}
+.loading-sm md-progress-circular { float: left;    margin-top: 10px; }
+.loading-sm { font-size: 80%; }
+.viewBtn.md-button { min-width: 50px; }
+.listingBot-L .md-button {color: #7d7b7b !important;  font-size: 13px}
+
 @media(min-width:768px) {
     .nav-btn {     display: none;    }
 }
@@ -879,4 +920,26 @@ md-dialog-actions {    border-top-width: 0 !important;}
     header div[class*='col-sm'] {
         padding: 0 5px;
     }
+}
+/* Editor styling */
+
+.ta-toolbar {
+    background-color: #F0F0F0;
+    padding: 10px 10px 5px;
+    margin-left: 0px; /* Override bootstrap */
+    border: 1px solid #EEE;
+}
+
+.ta-toolbar .btn-group {
+    margin-bottom: 5px;
+}
+
+.ta-editor, .white-box {
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #EEE;
+}
+
+textarea.ta-bind {
+    width: 100%;
 }

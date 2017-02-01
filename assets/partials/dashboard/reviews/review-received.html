@@ -18,7 +18,7 @@
           
           <!--review list data-->
         <div class="row blockList">
-          <div class="publicHd">Received Reviews ({{data.length}})</div>
+          <div class="publicHd"> Reviews Received ({{data.length}})</div>
             <div class="loading" ng-show="loading">
                <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
                <span>Loading..</span>
@@ -53,8 +53,8 @@
                   ng-if="x.approvalStatus=='Pending'">
                   {{x.approvalStatus}}
             </span>
-             
-                <strong>{{x.fullName}} <small> {{getFormateddate(x.createdAt)}} </small></strong>
+                
+                <strong>{{x.title}} <small> {{getFormateddate(x.createdAt)}} </small></strong>
                 <i class="star" reating reating-data="x.rating"></i>
                 <p ng-bind-html="x.reviewNote"></p>
                 <span>Reviewed By: {{x.username}} </span>

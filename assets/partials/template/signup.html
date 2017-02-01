@@ -23,7 +23,7 @@
                    
                    md-diameter="15px">
                    </md-progress-circular>
-            <label>User Name </label>
+            <label>User Name (Allowed 6 - 10 characters ) </label>
             <input  name="username" 
                     required 
                     type="text"
@@ -38,13 +38,14 @@
           <div ng-message="md-maxlength">Enter username between 6 to 10 chnarcter.</div>
           <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
 
-         <!--  <div ng-message="username">
+          <div ng-message="username">
            {{user.username}} is already taken, 
               please choose a different name
-          </div> -->
+          </div>
          
             
       </div>
+  
         <div class="clearfix"></div>
   </md-input-container>
   <md-input-container class="md-block">
@@ -64,7 +65,7 @@
 
 
 <md-input-container class="md-block margin-top25">
-            <label>Email</label>
+            <label>Email (not revealed to other members)</label>
             <input  name="email" 
                     required 
                     type="text"
@@ -136,7 +137,7 @@
            <img src="images/fb-icon.png" alt="facebook"></i> Login with Facebook</a>
            <a class="linkedBtn fbCont"><i><img src="images/linkedin-icon.png" alt="linkedin"></i> Login with Linkedin</a>
            <a class="twitterBtn fbCont"><i><img src="images/twitter-icon.png" alt="twitter"></i> Login with Twitter</a>
-           <div class="notregCont">Not a Zenbrisa member? <a>Get Started</a></div>
+          
       </div>
     </md-dialog-content>
   </form>

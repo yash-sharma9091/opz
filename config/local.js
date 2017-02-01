@@ -27,8 +27,14 @@
  * http://sailsjs.org/#!/documentation/anatomy/myApp/config/local.js.html
  */
 
+
+
+ 
+
 module.exports = {
+
   paths: {
+
      public: __dirname+'/../assets' // or wherever
    },
 

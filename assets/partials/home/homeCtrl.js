@@ -1,5 +1,43 @@
 angular.module('zenbrisa.controllers')
-.controller('homepage',['$scope','$location','NgMap','appServices','$rootScope', function($scope,$location,NgMap, appServices,$rootScope){
+.controller('homepage',['$scope','$location','NgMap','appServices','$rootScope','$mdDialog', function($scope,$location,NgMap, appServices,$rootScope,$mdDialog){
+		$rootScope.usersAddInfo=[];
+
+    if($rootScope.isUserLogin)
+    {
+    	
+    	var data={};
+
+    	
+		appServices.post(API_URL.getblockUser,data, function(response)
+
+		{	
+				var result=response.data;	
+				if(response.status==1)
+				{
+					$rootScope.usersAddInfo['blocked']=result;
+
+				}	
+
+
+		});
+
+		appServices.post(API_URL.getfavourite,data, function(response)
+
+		{	
+			var result=response.result;	
+			if(response.status==1)
+			{
+				$rootScope.usersAddInfo['fav']=result;
+			}	
+
+
+		});
+
+
+    }
+
+
+
 	/*Init Objects*/
 	$scope.searchData = {};
 	
@@ -103,11 +141,11 @@ angular.module('zenbrisa.controllers')
 				searchData['city'] = components[length-3]	
 			}
 		}
-		// delete searchData['address'];
+	
 		delete searchData['lat'];
 		delete searchData['lon'];
 		delete searchData['search_by'];
-		//console.log(searchData)
+
 		$location.path('/search').search(searchData)
 	}
 
@@ -434,4 +472,152 @@ angular.module('zenbrisa.controllers')
     		address : loc.join(", ")
     	}
     }*/
-}])
+
+    //load blocked and Favorite list if user login on system 
+
+    
+    //check blocked user
+    $scope.checkedBlocedUser= function(id,type)
+    {	
+    	if(type=='blocked'){
+    		data=$rootScope.usersAddInfo.blocked;
+
+    	}
+
+    	if(type=='fav')
+    	{
+    			data=$rootScope.usersAddInfo.fav;
+    	}
+
+    	if(id)
+    	{
+	    	if(data)
+	    	{
+	    		var flag=false;
+	    		
+	    		angular.forEach(data, function(value)
+	    		{
+	    				if(value.userId==id){
+	    					flag=true;
+	    				}
+	    		});
+
+	    		if(flag==true){
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+
+	    	}
+
+    	}
+    };
+
+    //set blocked un blocked user 
+    $scope.setBlocked = function(id, index, data)
+    {
+    	
+    	var message;
+    
+    	var url, flag;
+    	if(data[index].blocked==true)
+    	{
+    		message="Are you sure , you want to  unblocked this user";
+    		url=API_URL.removeBlockuser;
+    		flag=false;
+    	}
+    	else
+    	{
+    		message="Are you sure , you want to blocked this user";
+    		
+    		url=API_URL.blockuser;
+    		flag=true;
+    	}
+
+    	var confirm=appServices.confirmAlert('Confirm?',message, 'default','Yes', 'No');
+    						
+
+								$mdDialog.show(confirm).then(function(response) 
+								{
+									data[index].isLodingBlock=true;
+									//remove form server
+									var user={'blockedUserId':id};
+									appServices.post(url,user, function(response)
+
+									{
+											if(response.status==1)
+											{
+
+													data[index].blocked=flag;
+													
+
+													appServices.alert("Your request has been successfully accepted");
+
+							
+											
+											}	
+											data[index].isLodingBlock=false;
+									});
+
+								});
+    }
+
+
+    //set fav unfav user
+
+    $scope.setFav= function(id, index, data,email)
+    {
+    	
+    	var message;
+    	var user={};
+    	
+    	var url, flag;
+
+    	if(data[index].favUser==true)
+    	{
+    		message="Are you sure , you want to make Unfavorite this user";
+    		url=API_URL.removeTofav;
+    		flag=false;
+    		user={"favUserId":id};
+    	}
+
+    	else
+    	{
+    		message="Are you sure , you want to make Favorite this user";
+    		
+    		url=API_URL.addTofav;
+    		flag=true;
+    		user={"favId":id,"favEmail":email};
+    	}
+
+    	var confirm=appServices.confirmAlert('Confirm?',message, 'default','Yes', 'No');
+    						
+
+								$mdDialog.show(confirm).then(function(response) 
+								{
+									data[index].isLodingFav=true;
+									//remove form server
+									
+									appServices.post(url,user, function(response)
+
+									{
+											if(response.status==1)
+											{
+
+													data[index].favUser=flag;
+													
+
+													appServices.alert("Your request has been successfully accepted");
+
+							
+											
+											}	
+											data[index].isLodingFav=false;
+									});
+
+								});
+    }
+
+}]);
