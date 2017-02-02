@@ -9,6 +9,7 @@ angular.module('zenbrisa',
 'ngMaterial',
 'ngMessages',
 'app.ngRoute',
+'app.mailBoxRoute',
 'ngSanitize',
 'rzModule',
 'ngAnimate',
@@ -34,7 +35,8 @@ angular.module('zenbrisa',
 'zenbrisa.blogComment',
 'angularUtils.directives.dirPagination',
 'textAngular',
-'ngAria'
+'ngAria',
+'zenbrisa.mailbox'
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
@@ -49,6 +51,7 @@ angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
 angular.module('zenbrisa.blogComment',[]);
+angular.module('zenbrisa.mailbox',[]);
 
 
 var API_URL=
@@ -128,5 +131,9 @@ var API_URL=
 
 	// blog commnet
 	"addBlogComment": api_base_url+'blog/addBlogComment',
-	"getBlogcommentList": api_base_url+'blog/getBlogcommentList'
+	"getBlogcommentList": api_base_url+'blog/getBlogcommentList',
+
+	// mailbox
+	"mailbox": api_base_url + 'mail/mailbox',
+	"getUserFolders": api_base_url + 'mail/getUserFolders'
 }
