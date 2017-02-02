@@ -1035,3 +1035,7 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .profInfoHd .md-button { margin-top: -8px; }
 .privateNoteBody { margin-top: 20px; }
 .view { min-height: 500px; }
+
+.btn.btn-lg.btn-info{     padding: 5px 9px;
+    color: white !important;
+    background-color: #0fb1ff }
