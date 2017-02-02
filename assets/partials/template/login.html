@@ -9,7 +9,8 @@
 
 
       <div class="md-dialog-content">
-
+        <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
+        
         <div class="alert {{alert.type}}" ng-if="alert">
               <p>
               <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
@@ -82,7 +83,7 @@
 
               <div class="rembBx">
               <md-checkbox  aria-label="remember" ng-model="user.remember"> Remember Me </md-checkbox>
-                <i><a ng-click="$parent.forgetpassword=true; $parent.alert=false"> Forget Password ?</a></i>
+                <i><a ng-click="$parent.forgetpassword=true; $parent.alert=false"> Forgot Password ?</a></i>
               </div>
               <md-button type="submit" ng-click="userLogin(login,user)" class="md-raised md-primary logpopup-Btn">Login</md-button>
            </div>

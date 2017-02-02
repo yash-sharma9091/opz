@@ -15,12 +15,13 @@
                   </span>
               </div>
               <div class="srchformBx">
+              <!--country with iso dial code-->
                 <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
                   <md-option>-Select Your Country Code-</md-option>
-                  <md-option value="axe">+91</md-option>
-                  <md-option value="sword">+92</md-option>
-                  <md-option value="wand">+61</md-option>
-                  <md-option value="pen">+62</md-option>
+                  <md-option ng-repeat="x in countryCode" ng-value="x">
+                    {{x.name}} ({{x.dial_code}})
+                  </md-option>
+                
                 </md-select>
               </div>
               <div class="srchformBx">
@@ -60,7 +61,7 @@
                     <md-option value="">-Select Location-</md-option>
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
 
-                    <md-option value="addCity">Add City</md-option>
+                    <md-option value="addCity" >Add City</md-option>
                     <md-option value="addCountry">Add Country</md-option>
                      <md-option value="editList">Edit List</md-option>
 
@@ -94,7 +95,7 @@
                                   md-require-match="true"
                                   md-highlight-flags="i"
                                   filter-selected="filterSelected"
-                                  placeholder="Type country name">
+                                  placeholder="Type country name (In English)">
                   </md-contact-chips>
                 </md-content>
                 </div>
@@ -113,9 +114,10 @@
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
                     <md-option value="">-Select Members-</md-option>
                     <md-option value="availability">Massage Now!<sup>TM</sup></md-option>
+                     <md-option value="Online">Online Members</md-option>
                     <md-option value="username">Username</md-option>
                     <md-option value="keyword">Keyword</md-option>
-                    <md-option value="professional">Professional Masseur</md-option>
+                    <md-option value="professional">Professional Massage Therapist </md-option>
                   </md-select>
                 </div>
                 <div class="srchformBx" ng-if="searched.type == 'username' || searched.type == 'keyword'">

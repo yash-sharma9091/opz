@@ -48,13 +48,26 @@ angular.module('zenbrisa.app')
 		var data={};
 			data.id=id;
 		
-		appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev,data)
+		appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev,data);
 		}
 
 
 	$rootScope.profileStep=function(ev)
 	{
-		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev)
+		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev);
+	};
+
+	$rootScope.cropImage=function(ev,user)
+	{	
+		console.log(user);
+
+		var data={};
+			data['userId']=user.userId;
+			data['username']=user.username;
+			data["image"]=user.profilePic;
+			
+
+		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
 
 	// $rootScope.checkPages = function(){
@@ -214,23 +227,7 @@ $rootScope.closeAlert= function(alert){
 											$rootScope.profileStep(); //open profile modal 
 										}
 										
-								//profile count alert
-								var promise={};
-								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
-						    		{						    			
-						    			if( response.data) {
-						    				var data=response.data[0];
-						    				var count={};
-						    				count.publicPhotoCount=data.publicPhotoCount;
-						    				count.privatePhotoCount=data.privatePhotoCount;
-						    				count.videoCount=data.videoCount;
-						    				count.reviewReceived=data.reviewsReceivedCount;
-						    				count.reviewPenned=data.reviewsPennedCount;
-						    				count.favouriteCount=data.favouriteCount;
-						    				count.blockedCount=data.blockedCount;
-						    				$rootScope.userInfoCount=count;
-						    			}
-						    		}); 
+								
 
 							}); //end http post
 
@@ -288,7 +285,7 @@ $rootScope.closeAlert= function(alert){
 			'search':'partials/global-search/search-form.html',
 			'priceview':'partials/template/price.html',
 			'usersideNavbar':'partials/template/user-side-navbar.html',
-			'userProfileHeader':'partials/dashboard/user-profile-header.html',
+			'userProfileHeader':'partials/dashboard/userProfile/user-profile-header.html',
 			'photoGalleryContent' :'partials/dashboard/photoGallery/photo-gallery-content.html'
 		}
 }])
@@ -388,7 +385,7 @@ $rootScope.menuOpen= function(id)
 }
 $rootScope.userNavbar={
 	"search":{"title":"Search", "href":"#/search-page"},
-	"mailbox":{"title":"Mailbox","href":"#/"},
+	"mailbox":{"title":"Mailbox","href":"#/mailbox"},
 	"profile":{"title":"Profile",
 	"submenu":{ 
 		"myprofile":{"title":'My Profile',"href":"#/profile"},
@@ -405,8 +402,8 @@ $rootScope.userNavbar={
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll"},
-				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
+				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
+				"allPoll":{"title":'All Poll',"href":"#/all-poll", 'hide':true}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"

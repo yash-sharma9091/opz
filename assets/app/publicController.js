@@ -1,6 +1,6 @@
 /*
 	name : public controller
-	function : login, signup, modal , contact us ,composeEmailPublic
+	function : login, signup, modal , contact us ,composeEmailPublic, logout
 
 */
 
@@ -8,7 +8,8 @@ angular.module('zenbrisa.public.Controller',['service'])
 .controller('loginCtrl', loginCtrl)
 .controller('contactus', contactus)
 .controller('profileStepCtrl', profileStepCtrl)
-.controller('composeEmailPublic', composeEmailPublic);
+.controller('composeEmailPublic', composeEmailPublic)
+.controller('logout', logout);
 
 
 
@@ -20,6 +21,10 @@ function loginCtrl(e,mdDialog, appServices,localStorageService,rootScope,$locati
 { 
   e.navabar=rootScope.navbar;
 
+  e.signup=function(ev)
+  {
+      appServices.modal('partials/template/signup.html', loginCtrl, ev)
+  }
 
 	e.cancel = function() 
 	{
@@ -158,7 +163,7 @@ e.userLogin =function(from,data)
             {   
                 if(response.status==2)
                 {
-                   e.alert={'message':data.message,'type':'alert-danger'};
+                   e.alert={'message':response.message,'type':'alert-danger'};
                }
                else
                {
@@ -594,3 +599,12 @@ e.sendEmail= function(email, form){
 
 
 };
+
+//logout
+logout.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
+
+
+function logout(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
+{ 
+
+}

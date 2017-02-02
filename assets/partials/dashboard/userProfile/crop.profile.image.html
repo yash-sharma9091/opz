@@ -1,0 +1,31 @@
+<md-dialog aria-label="copProfile">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="colorWhite">Update/Crop Profile Picture</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close" class="colorWhite">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+            <!-- images/default-user-icon-profile.png -->
+
+          <div class="imageview">
+            <img-crop image="myImage" area-type="square" result-image="myCroppedImage"></img-crop>
+
+          </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" class="btn-reset">
+    <md-button class="md-primary md-raised "><md-icon>mode_edit</md-icon> 
+      <input type="file"  id="uploadImage1" class="file"/> Browse image </md-button>
+    <span flex></span>
+    
+      <md-button class="md-primary md-raised " ng-click="cancel()"> Save </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

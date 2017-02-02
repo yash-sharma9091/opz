@@ -1,5 +1,5 @@
-//var api_base_url="http://158.85.67.166:9003/";
-var api_base_url="http://100.100.7.165:9002/";
+var api_base_url="http://158.85.67.166:9003/";
+//var api_base_url="http://100.100.7.165:9002/";
 var api_image_url="http://zenbrisa.com:9002/";
 //var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
@@ -9,6 +9,7 @@ angular.module('zenbrisa',
 'ngMaterial',
 'ngMessages',
 'app.ngRoute',
+'app.mailBoxRoute',
 'ngSanitize',
 'rzModule',
 'ngAnimate',
@@ -34,7 +35,12 @@ angular.module('zenbrisa',
 'zenbrisa.blogComment',
 'angularUtils.directives.dirPagination',
 'textAngular',
-'ngAria'
+'ngAria',
+
+'ngImgCrop',
+'ngFileUpload',
+'zenbrisa.mailbox'
+
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
@@ -49,6 +55,7 @@ angular.module('userLocationsModule',[]);
 angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
 angular.module('zenbrisa.blogComment',[]);
+angular.module('zenbrisa.mailbox',[]);
 
 
 var API_URL=
@@ -121,6 +128,7 @@ var API_URL=
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
 	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
+	"reportAbuse":api_base_url+'users/addReport',
 
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',
@@ -128,5 +136,9 @@ var API_URL=
 
 	// blog commnet
 	"addBlogComment": api_base_url+'blog/addBlogComment',
-	"getBlogcommentList": api_base_url+'blog/getBlogcommentList'
+	"getBlogcommentList": api_base_url+'blog/getBlogcommentList',
+
+	// mailbox
+	"mailbox": api_base_url + 'mail/mailbox',
+	"getUserFolders": api_base_url + 'mail/getUserFolders'
 }

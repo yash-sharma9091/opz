@@ -95,9 +95,9 @@
                       <x ng-if="userprofile.therapeuticMassageOne!=''" 
                       class="colorBlue">
                       {{userprofile.therapeuticMassageOne }} 
-                        <small class="pinkClr" 
+                        <small class="red" 
                     ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
-
+                    
                      <black>&nbsp;Seeks -</black>{{userprofile.seeking_both?'M':''}}
                     <span class="pinkClr" ng-if="userprofile.seeking_both==='both'">F</span>
                       <span ng-if="!userprofile.seeking_both">
@@ -114,8 +114,8 @@
                       </small>
                       </x>
                      
-                    <x ng-if="userprofile.sensualMassageOne!=''">{{userprofile.sensualMassageOne}}
-                      <small class="pinkClr" 
+                    <x ng-if="userprofile.sensualMassageOne!=''" class="cyan" >{{userprofile.sensualMassageOne}}
+                      <small 
                     ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
 
                      <black>&nbsp;Seeks -</black> {{userprofile.seeking_both?'M':''}}
@@ -143,9 +143,57 @@
           </div>
         </div>
         
-      </div>
+  
+
+      <div class="clearfix"></div>
+        <!--private node-->
+        <div class="profileInfoBx privatenote" ng-if="isUserId" ng-init="privateNote=false">
+        <form name="private" novalidate>
+            <div class="profInfoHd" 
+              ng-click="privateNote=!privateNote">Private Notes (Visible to me only!)  
+                  <md-button class="md-icon-button pull-right"> 
+                        <md-icon>mode_edit</md-icon>
+                   </button>
+            </div>  
+          <div class="privateNoteBody" ng-show="privateNote">
+          <md-input-container class="md-block">
+          <label>Message</label>
+          <textarea 
+              class="textArea"
+              required
+              name="message"
+              ng-model="privatemessage" 
+              rows="5" md-select-on-focus>
+           </textarea>
+
+            <div class="errors" ng-messages="private.message.$error">
+                    <div ng-message="required">Message is required</div>
+                </div>
+          </md-input-container>
+
+          <!--button action-->
+          <div layout="row">
+          <span flex>
+          <md-button aria-label="submit" 
+            ng-click="reportAbuse(message, abuse)" 
+            class="md-raised md-primary logpopup-Btn" type="submit"> 
+          <span >Save</span>
+
+         </md-button>
+         </span>
+         <div flex>&nbsp;</div>
+         <span  flex >
+          <md-button aria-label="cancle"  
+          class="md-raised md-primary logpopup-Btn">  Cancel  </md-button>
+          </span>
+          </div>
+          </div> <!--end body private note-->
+          </form>
+        </div>
     </div>
   </div>
+
+      </div>
 </section>
 
 </div>	 

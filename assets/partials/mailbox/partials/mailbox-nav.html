@@ -1,0 +1,26 @@
+<div class="topBtn">
+	<md-nav-bar
+		md-selected-nav-item="vm.currentNavItem"
+      	nav-bar-aria-label="navigation links">
+  		<md-nav-item md-nav-click="vm.goto('mailbox')" name="mailbox"> Inbox </md-nav-item>
+  		<md-nav-item md-nav-click="vm.goto('sentmail')" name="sentmail"> Sent </md-nav-item>
+  		<md-nav-item md-nav-click="vm.goto('draft')" name="draft"> Draft </md-nav-item>
+  		<md-nav-item md-nav-click="vm.goto('trash')" name="trash"> Trash </md-nav-item>
+  		<md-nav-item md-nav-click="vm.goto('myfolder')" name="myfolder"> My Folder </md-nav-item>
+	</md-nav-bar>
+    <md-button class="md-icon-button composemail" aria-label="compose mail">
+    	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    </md-button>
+</div>
+
+<div class="searchBox" ng-init="foldericon=true">
+	<div class="innerSrchBox" ng-hide="vm.currentNavItem === 'myfolder'">
+		<input type="text" ng-model="$parent.q" placeholder="Type to search" class="srchInput">
+		<button type="button" class="srchBtn"></button>
+	</div>
+	<md-icon ng-show="foldericon && vm.currentNavItem === 'myfolder'" ng-click="newFolder=true;foldericon=false">create_new_folder</md-icon>
+	<div class="innerSrchBox" ng-show="newFolder">
+		<input type="text" ng-model="$parent.q" placeholder="Create new folder" class="srchInput">
+		<md-icon ng-click="foldericon=true;newFolder=false" class="positionicon">add_box</md-icon>
+	</div>
+</div>

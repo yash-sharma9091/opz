@@ -62,7 +62,7 @@
     
             <md-list-item  class="active" 
             ng-href="{{userDashboard.reviewspenned.href}}/{{isUserId}}"> 
-                <md-icon  aria-label="icon" >person</md-icon>
+                <md-icon  aria-label="icon" >speaker_notes</md-icon>
                 <p>Reviews Penned 
                    <span ng-if="userInfoCount.reviewPenned" 
                       class="badge pull-right">
@@ -71,11 +71,28 @@
                 </p>
              <md-divider></md-divider> 
            </md-list-item>
-         
+          <!--send a photo key-->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="sendPhotoKeySearch($event,isUserId)"> 
+                <md-icon  aria-label="icon" >vpn_key</md-icon>
+                <p>Request Photo Key  </p>
+                  <md-divider></md-divider>
+           </md-list-item>
+
+           <!--send a photo key-->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="RequestPhotoKeySearch(isUserId);"> 
+                <md-icon  aria-label="icon" >picture_in_picture</md-icon>
+                <p ng-if="process==false">Request Profile Photo </p>
+                <p ng-if="process==true">Processing.. </p>
+                  <md-divider></md-divider>
+           </md-list-item>
             <!--write a review-->
       
 
-          <md-list-item   ng-if="isUserLogin"
+          <md-list-item   ng-if="isUserLogin &&  isUserId"
             ng-href="{{userDashboard.writeReviews.href}}/{{isUserId}}"> 
                 <md-icon  aria-label="icon" >person</md-icon>
                 <p>Write A Review </p>
@@ -97,7 +114,7 @@
            </md-list-item>
 
         <!--if other profile is loaded add to fav-->
-           <md-list-item  class="active" ng-if="isUserLogin && !favYes" 
+           <md-list-item  class="active" ng-if="isUserLogin && !favYes && isUserId" 
               ng-click="AddFav(isUserId)"> 
                 <md-icon  aria-label="icon" >star</md-icon>
                 <p>Add to Favorites  </p>
@@ -105,16 +122,15 @@
            </md-list-item>
 
             <!--if other profile is loaded add to fav-->
-           <md-list-item  class="active" ng-if="isUserLogin && favYes" 
+           <md-list-item  class="active" ng-if="isUserLogin && favYes &&  isUserId" 
               ng-click="removeFav(isUserId)"> 
                 <md-icon  aria-label="icon" >star</md-icon>
                 <p>Remove to Favorites  </p>
                   <md-divider></md-divider>
            </md-list-item>
-          
+         
 
            <!--blocked user- blockYes-->
-
           
             <md-list-item  class="active"  ng-if="!isUserId"
             ng-href="{{userDashboard.blockedUsers.href}}/{{isUserId}}"> 
@@ -138,31 +154,30 @@
             <md-list-item  class="active"  ng-if="isUserId && !blockYes"
             ng-click="AddBlockUser(isUserId)"> 
                 <md-icon  aria-label="icon" >do_not_disturb</md-icon>
-                <p>Blocked 
+                <p>Block
                  
                 </p>
                    <md-divider></md-divider>
            </md-list-item>
 
-        
+       
+
             <md-list-item  class="active" ng-click='null'> 
                 <md-icon  aria-label="icon" >sms</md-icon>
                 <p>Massage Messenger<sup>&trade;</sup></p>
                    <md-divider></md-divider>
            </md-list-item>
 
+            <!---Report reportAbuse -->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="reportAbuse($event,userprofile, isUserId);"> 
+                <md-icon  aria-label="icon" >dvr</md-icon>
+                <p >Report Abuse </p>
+              
+                  <md-divider></md-divider>
+           </md-list-item>
+
 
 </md-list>
-
-          <!-- <ul>
-            <li><a class="active"><i class="material-icons">person</i>My Profile</a></li>
-            <li><a><i class="material-icons">camera_alt</i>Public photo Gallery</a></li>
-            <li><a><i class="material-icons">photo</i>Private Photo Gallery</a></li>
-            <li><a><i class="material-icons">videocam</i>Video Gallery</a></li>
-            <li><a><i class="material-icons">insert_drive_file</i>Reviews Received</a></li>
-            <li><a><i class="material-icons">person</i>Reviews Penned <span><img src="images/quesmark-icon.png"></span></a></li>
-            <li><a><i class="material-icons">star</i>My Favorites</a></li>
-            <li><a><i class="material-icons">do_not_disturb</i> My Blocked List</a></li>
-            <li><a class="greenClr"><i class="material-icons">sms</i>Massage Messenger<sup>&trade;</sup></a></li>
-          </ul> -->
-        </div>
+</div>
