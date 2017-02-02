@@ -15,12 +15,13 @@
                   </span>
               </div>
               <div class="srchformBx">
+              <!--country with iso dial code-->
                 <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
                   <md-option>-Select Your Country Code-</md-option>
-                  <md-option value="axe">+91</md-option>
-                  <md-option value="sword">+92</md-option>
-                  <md-option value="wand">+61</md-option>
-                  <md-option value="pen">+62</md-option>
+                  <md-option ng-repeat="x in countryCode" ng-value="x">
+                    {{x.name}} ({{x.dial_code}})
+                  </md-option>
+                
                 </md-select>
               </div>
               <div class="srchformBx">
@@ -60,7 +61,7 @@
                     <md-option value="">-Select Location-</md-option>
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
 
-                    <md-option value="addCity">Add City</md-option>
+                    <md-option value="addCity" >Add City</md-option>
                     <md-option value="addCountry">Add Country</md-option>
                      <md-option value="editList">Edit List</md-option>
 

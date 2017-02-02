@@ -79,6 +79,16 @@
                 <p>Request Photo Key  </p>
                   <md-divider></md-divider>
            </md-list-item>
+
+           <!--send a photo key-->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="RequestPhotoKeySearch(isUserId);"> 
+                <md-icon  aria-label="icon" >picture_in_picture</md-icon>
+                <p ng-if="process==false">Request Profile Photo </p>
+                <p ng-if="process==true">Processing.. </p>
+                  <md-divider></md-divider>
+           </md-list-item>
             <!--write a review-->
       
 
@@ -150,11 +160,22 @@
                    <md-divider></md-divider>
            </md-list-item>
 
-        
+       
+
             <md-list-item  class="active" ng-click='null'> 
                 <md-icon  aria-label="icon" >sms</md-icon>
                 <p>Massage Messenger<sup>&trade;</sup></p>
                    <md-divider></md-divider>
+           </md-list-item>
+
+            <!---Report reportAbuse -->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="reportAbuse($event,userprofile, isUserId);"> 
+                <md-icon  aria-label="icon" >dvr</md-icon>
+                <p >Report Abuse </p>
+              
+                  <md-divider></md-divider>
            </md-list-item>
 
 

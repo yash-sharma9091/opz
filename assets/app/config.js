@@ -38,7 +38,7 @@ angular.module('zenbrisa',
 'ngAria',
 
 'ngImgCrop',
-'ngFileUpload'
+'ngFileUpload',
 'zenbrisa.mailbox'
 
 ]);
@@ -128,6 +128,7 @@ var API_URL=
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
 	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
+	"reportAbuse":api_base_url+'users/addReport',
 
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',

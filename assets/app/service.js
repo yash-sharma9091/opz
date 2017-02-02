@@ -1396,6 +1396,23 @@ service.alert =function(alert){
 		}
 
 	};
+
+	service.getCountryCode= function(callback){
+
+		var $request={
+			method:'GET',
+			url:local_api_url+'isoCountyCode.json',
+			cache:$templateCache
+		
+		};
+
+		$http($request).then(success);
+		function success(reponse)
+		{
+			callback(reponse.data);
+		}
+
+	};
 	service.openAlertBox= function(title,message,theme){
 	
      var alert=$mdDialog.alert()

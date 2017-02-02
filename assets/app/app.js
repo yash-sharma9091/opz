@@ -402,8 +402,8 @@ $rootScope.userNavbar={
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll"},
-				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
+				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
+				"allPoll":{"title":'All Poll',"href":"#/all-poll", 'hide':true}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"
