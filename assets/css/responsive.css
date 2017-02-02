@@ -1,3 +1,9 @@
+@media(max-width:1320px){
+.navbar-nav a.md-button{ margin: 6px 1px !important;}
+.container{ width: 100%;}
+
+}
+
 @media(max-width:1099px){
 .profpaidBx a{ font-size: 12px; line-height: 18px; padding:2px 12px }
 .listingBot-L a{ font-size: 13px;}
@@ -11,11 +17,17 @@
 .revDet p{ line-height: 20px; padding-bottom: 10px;}
 .revDet strong {font-size: 18px;}
 .videotrans img{ width: 60px;}
-
+.massageexchange > span {font-size: 32px; line-height: 50px;}
+/*-------------Signout------------*/
+.signoutBann { left: 10px; margin: 0 auto;  position: absolute; right: 10px; width: auto !important;}
+.signoutInnTxt > p{ font-size: 15px;}
+.sighout-BotBg .container {padding: 0 10px;}
 }
 
 @media(max-width: 1023px){
-.massageexchange > span{ font-size: 36px;}
+.massageexchange{ margin-top: -60px;}
+.logo-info{ left: 0; position: relative; margin-right: 50px; width: 150px;}
+.massageexchange > span{ font-size: 32px; line-height: 40px;}
 .massageexchange small {font-size: 20px;}
 .welcontent p{ padding: 0 0 20px;}
 .howitDir-Bx {padding: 0 10px;}
@@ -72,7 +84,7 @@ nav{ margin: 10px 0 0 0 !important;}
 .myProfList li > span{ width: 65px; margin-left: 3px;}
 .typeLabel li > span{ width: 152px;}
 .typeLabel{ font-size: 13px;}
-.typeLabel li{ padding-right: 155px;}
+.typeLabel li{ padding-right: 185px;}
 .bodyWork{ padding:10px;}
 
 /*------------------02/01/2017--------------*/
@@ -82,12 +94,38 @@ nav{ margin: 10px 0 0 0 !important;}
 .leftChat{ width: 40%;}
 .rightChat{ width: 58%;}
 
+/*--------------30/01/2017-------------------*/
+.profileTopBx{ padding-left: 200px !important;}
+.navbar-nav > li a {padding: 0 8px !important; font-size: 14px; line-height: 20px; display: block; text-align:left;}
+.navbar-nav > li:last-child a{ padding: 0 8px !important;}
+/*------------------31/01/2017-----------------*/
+.navbar-nav a.md-button{min-width: 0 !important; border-bottom: 0 !important; padding: 3px 0 !important; font-size: 12px; font-size: 12px; line-height: 21px;}
+nav .navbar-collapse{ padding: 0 !important;}
+.userBx {margin: 9px 0 0;}
+nav.navbar{ margin-top: 15px !important;}
+.navbar-nav a.md-button {margin: 0px !important; padding: 0 5px !important; height: auto;}
+.navbar-nav a.md-button span{ vertical-align: top; line-height: 21px; display: inline-block;}
+.navbar-nav a.md-button:hover{ background: none !important;}
+.msgBg {min-height: 320px;}
+.availablTxt > span{ margin-top: -26px !important;}
+.blogList li i {height: 130px; left: 0; position: absolute; top: 0; width: 180px; background-size: 100% 100%;}
+.referBg {padding: 30px 0;}
+.profileNav .md-list-item-inner md-icon{ margin-right:5px !important; margin-left: -5px; }
+.profileNav .md-button{ padding: 0 10px;}
+.profileNav .md-list-item-inner p{ font-size: 13px;}
+.prof-right-top strong{ font-size: 20px;}
+
+/*-------------Signout------------*/
+.signoutInnTxt{ padding: 20px;}
+.logoutTopHd{ font-size: 18px; line-height: 25px;}
+.logoutMidSec p {min-height: 200px;}
 
 }
 
 @media(max-width: 767px){
 nav {position: absolute !important; right: 10px; top: -10px;width: 45px; min-height: 0 !important;}
-.loginBtnBx {margin: 5px 50px 0 0;}
+.loginBtnBx {margin: 0 35px; position: absolute; top: 8px; right: 20px;}
+.logo-info{ margin-right: 160px;}
 .navbar-toggle{ border: #000 solid 1px; margin: 0;}
 .navbar-toggle .icon-bar{ background: #000;}
 .navbar-collapse {background: #f5f5f5 none repeat scroll 0 0; border: 1px solid #eee; border-radius: 5px; display: block; position: absolute;
@@ -146,9 +184,9 @@ header{ padding:5px 0;}
 .referfrdHd{ font-size: 30px;} 
 .referList li{ font-size: 16px;}
 /*------------------28/11/2016---------------*/
-.profile-Img {height: auto; left: 0; margin: 0 auto 10px auto; position: relative; top: 0; width: 220px;}
+.profile-Img {height:190px; left: 0; margin: 0 auto 20px auto; border: #ccc solid 1px; position: relative; top: 0; width: 220px;}
 .profile-Img > img{ height: auto;}
-.profileTopBx{ padding-left: 0;}
+.profileTopBx{ padding-left: 0 !important;}
 .profileNav{ display: none;}
 .profHd > span{ display: inline-block; padding-top: 5px; cursor: pointer;}
 .publicHd{ margin-top: 20px;}
@@ -158,7 +196,8 @@ header{ padding:5px 0;}
 .srchtrans{ padding: 40px 0;}
 /*------------01/12/2016------------*/
 .pollrangeMain {display: block; width: 100%;}
-.blogList li {padding: 0 0 25px; text-align: center;}
+.blogList li {padding: 0 0 15px; text-align: center; margin-bottom: 15px; border-bottom: #eee solid 1px;}
+.blogList li:last-child{ border-bottom: 0; margin-bottom: 0;} 
 .blogList li i {display: block; margin: 0 auto 10px; position: relative; width: 250px;}
 .blogList li i img{width: 100%;}
 .pagerBx {text-align: center;}
@@ -177,8 +216,8 @@ header{ padding:5px 0;}
 /*-----------21/12/2016--------------*/
 .myProfList {font-size: 14px;}
 .profileInfoBx {height: auto; padding: 10px;}
-.myProfList li {padding-right: 80px;}
-.myProfList li > span { width: 80px;}
+.myProfList li {padding-right: 120px;}
+.myProfList li > span { width: 120px;}
 .profmapBx{ height: auto;}
 .profmapBx img {height: auto;}
 
@@ -193,8 +232,26 @@ header{ padding:5px 0;}
 .leftChat{ width: 100%; float: none; margin-bottom: 20px;}
 .rightChat{ width: 100%; float: none;}
 .topBtn ul li a{ padding: 15px 10px; font-size: 13px; line-height: 14px;}
+/*------------31/01/2017---------------*/
+nav.navbar{ display: none;}
+button.nav-btn {position: absolute; right: 5px;top: 7px;}
+button.nav-btn .material-icons{ font-size: 24px;}
 
-
+.massageexchange{ margin-top: -45px;}
+.massageexchange > span {font-size: 24px; line-height: 30px;}
+.massageexchange small {font-size: 20px;}
+.md-button.md-default-theme.md-focused:not([disabled]), .md-button.md-focused:not([disabled]) {
+  background-color: rgba(158, 158, 158, 0) !important;}
+ .accordion-toggle span {font-size: 14px; font-weight: 600; line-height: 20px;}
+ .bodyWork{ height: auto;}
+/*--------------Signout-------------*/
+.signout-Left {border: 1px solid #dee6e6; float: none; margin-bottom: 20px; width: 100%;}
+.signout-Right{border: 1px solid #dee6e6; float: none; width: 100%;}
+.logoutMidSec p {min-height: 0;}
+.signoutBann{ width: auto !important;}
+.signoutInnTxt h2 {font-size: 20px; padding-bottom: 10px;}
+.signoutInnTxt {padding: 20px 0;}
+.sigoutBg{ height: 300px;}
 }
 
 @media(max-width: 639px){
@@ -245,11 +302,22 @@ form.frmBx{ width: 100%;}
 .settBx-R{ width: 50%;}
 .Dob-L{float: none; margin-right: 0; width: 100%;}
 .Dob-R{float: none; width: 100%;}
+/*---------31/01/2017---------*/
+.msgNowHd {padding-bottom:25px;}
+.profileTopBx {padding-left: 0px !important;}
+.profile-Img{ position: relative !important;}
+.profileTopBx .btn-exp {padding-left: 0; position: absolute; text-align: center; top: -251px; padding: 6px; right: 0;}
+.profileTopBx.exp .btn-exp{ top: -98px;}
 
+.bannerBot{ padding: 10px 0;}
+.countryInp{ font-size: 12px;}
+.loginBtnBx a {font-size: 12px; line-height: 20px; padding: 7px 6px;}
+.logo-info {left: -120px; margin-right: 0; position: relative;}
+.srchtrans {padding: 30px 0;}
+h1.heading{ font-size: 25px; padding: 0 0 5px 0;}
+/*--------------Signout-------------*/
+.signoutBann{ height: 220px;}
 }
-
-
-
 @media(max-width: 479px){
 .bannerBg > img {min-height: 180px;}
 .massageexchange{ display: none;}
@@ -300,7 +368,7 @@ form.frmBx{ width: 100%;}
 .pollrangeMain li{ font-size: 12px;}
 .pollrangeMain li span{ padding-bottom: 5px;}
 .pollrangeMain li span i{ padding-left: 20px;}
-.pollBx{ padding: 15px;}
+.pollBx{ padding: 15px 10px;}
 .usercommitBx li {padding: 10px 0 10px 60px;}
 .usercommitBx li i {height: 50px; width: 50px;}
 .usercommitBx li strong{ padding: 0;}
@@ -338,4 +406,31 @@ form.frmBx{ width: 100%;}
 .nextback .logpopup-Btn{ width: 100px !important; font-size: 14px; min-height: 30px; line-height: 30px;}
 .stepmapBx{ margin-top: 15px;}
 .stepmapBx iframe {height: 200px; width: 100%;}
+
+/*-------31/01/2017--------------*/
+.availablTxt .uib-time input {width: 38px; padding: 6px 4px;}
+.availablTxt .btn{ padding: 6px 4px; margin-left: 2px;}
+.availablTxt .md-label span{ font-size: 13px;}
+.nav-btn.md-icon-button{ width: 34px; margin: 0; font-size: 12px;}
+.usermenu{ font-size: 12px; margin: 0; padding: 0;}
+.notification .md-icon-button{ width: 25px; padding: 2px; margin: 0;}
+.userBx {margin: 0px 30px 0 0;}
+.logo-info{ display: none;}
+.loginBtnBx a {font-size: 12px; padding: 7px 6px;}
+.loginBtnBx {right: 7px;}
+.accordion .panel-heading a{ padding: 12px 15px;}
+.margin-top20 {margin-top: 15px !important;}
+h1.heading{ font-size: 18px;}
+.profile-Img {height: 160px; width: 170px;}
+.profileTopBx .btn-exp {right: -10px; top: -226px;}
+.blueBg{ width: 100%;}
+.typeLabel li {padding-bottom: 15px; padding-right: 0;}
+.typeLabel li > span {display: block !important; position: relative !important; width: 100% !important;}
+/*-------------------signout ----------------*/
+.signoutInnTxt > p {font-size: 13px; line-height: 20px;}
+.logoutMidSec {font-size: 14px; padding: 10px;}
+.logoutMidSec p{ font-size: 13px; line-height: 20px;}
+.signoutInnTxt h2 {font-size: 18px;}
+.logoutBtns{ font-size: 13px; padding: 6px 15px;}
+.sigoutBg {height: 250px;}
 }
