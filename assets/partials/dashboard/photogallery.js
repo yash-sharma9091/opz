@@ -129,8 +129,11 @@ e.changeTabs = function()
 
 										//request to server form server
 										var user={'userId':rootScope.isUserLogin['userId'],
-                                                                                           'userName':rootScope.userprofile.username,
-                                                                                    'justName':name,'photoName': profilePhoto ,'photoId': id ,profilePicStatus:rootScope.userprofile.profilePic};
+												 'userName':rootScope.userprofile.username,
+												'justName':name,'photoName': profilePhoto ,
+												'photoId': id ,
+												profilePicStatus:rootScope.userprofile.profilePic};
+
 										data[index].isLoading=true;
 										appServices.post(API_URL.setProfilePic,user, function(response)
 

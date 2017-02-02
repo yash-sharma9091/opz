@@ -33,9 +33,11 @@ md-sidenav md-list .md-button:hover p {
 .margin-top20 {  margin-top: 25px;}
 
 
+
 .navbar-toggle {
     display: none;
 }
+
 .margin-top10{
     margin-top: 10px;
 }
@@ -584,6 +586,7 @@ span.tags {
 .modal-lg textarea {
     height: 70px !important;
 }
+.textArea { height: 110px !important; }
 .userList md-icon {
     font-size: 21px !important;
 }
@@ -908,6 +911,16 @@ md-option {    font-size: inherit !important;}
 .viewBtn.md-button { min-width: 50px; }
 .listingBot-L .md-button {color: #7d7b7b !important;  font-size: 13px}
 
+.profile-edit.md-fab.md-mini {    min-height: 30px; position: absolute; top:-3px; left:-3px;  box-shadow: none !important;
+    background: rgba(0, 0, 0, 0.57) !important;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;}
+    .profile-edit.md-fab.md-mini  md-icon {    font-size: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    height: 20px;
+    width: 20px; }
 @media(min-width:768px) {
     .nav-btn {     display: none;    }
 }
@@ -960,6 +973,7 @@ textarea.ta-bind {width: 100%; }
     color: #12afff;
 }
 
+
 /* Mail box design */
 .icon-rotate{ transform: rotate(-45deg); }
 .icon-rotate md-icon { color: #cdcdcd;}
@@ -968,3 +982,8 @@ textarea.ta-bind {width: 100%; }
 .tabs { position: relative; }
 md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar { border-radius: 0; }
 .positionicon{position: relative;top: -28px;left: 345px;}
+
+textarea.ta-bind {
+    width: 100%;
+}
+

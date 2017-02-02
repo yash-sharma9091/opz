@@ -32,8 +32,9 @@
  
 
 module.exports = {
-  
- paths: {
+
+  paths: {
+
      public: __dirname+'/../assets' // or wherever
    },
 
@@ -68,7 +69,7 @@ module.exports = {
    * to 80 (http://) or 443 (https://) if you have an SSL certificate        *
    ***************************************************************************/
 
-   port: process.env.PORT || 9004,
+   port: process.env.PORT || 3002,
 
   /***************************************************************************
    * The runtime "environment" of your Sails app is either typically         *

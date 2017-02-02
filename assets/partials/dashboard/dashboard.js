@@ -4,7 +4,9 @@ angular.module('userDashboardModule',['ngMessages']).controller('userDashboard',
 .controller('userReviewPined', userReviewPined)
 .controller('userReviewReceived', userReviewReceived)
 .controller('myVedio', myVedio)
-.controller('addNewVideo', addNewVideo);;
+.controller('addNewVideo', addNewVideo)
+.controller('cropImage', cropImage);
+
 
 userDashboard.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location'];
 MyFavourites.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
@@ -14,7 +16,12 @@ userReviewReceived.$inject=['$scope', '$rootScope','appServices','$mdDialog','$t
 myVedio.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast','$sce'];
 addNewVideo.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
+cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
+function cropImage(e, rootscope,appServices,$mdDialog,$timeout,location)
+{
+	
+};
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 {

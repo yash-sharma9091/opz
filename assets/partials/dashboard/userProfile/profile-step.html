@@ -2,11 +2,9 @@
   <form ng-cloak class="frmBx" name="profileupdate" novalidate>
 
     <md-dialog-content >
-
      <md-button ng-if="step<=4"  class="md-icon-button closeIcon" ng-click="cancel()">
-          <md-icon  aria-label="Close">close</md-icon>
-         
-    </md-button>
+        <md-icon  aria-label="Close">close</md-icon>
+     </md-button>
 
      <div ng-if="step==5" class="md-dialog-content">
            <div class="alert text-center alert-success">
@@ -165,53 +163,14 @@
             </div>
             </div>
 
-              <div class="clearfix"></div>
-              <md-input-container>
-            <label>Select Body Type</label>
             
-            <md-select  ng-model="user.bodyTypeOne" 
-         
-            placeholder="Seeking to Exchange With" required name="bodyTypeOne" class="md-no-underline">
-                <md-option value="">-- Select Body Type --</md-option>
-                <md-option value="slim_petite">Slim Petite</md-option>
-                <md-option value="average">Average</md-option>
-                <md-option value="gym_fit">Gym Fit</md-option>
-                <md-option value="muscular">Muscular</md-option>
-                <md-option value="few_pounds_over_average">A Few Ppounds Over Average</md-option>
-                <md-option value="large">Large</md-option>
-            </md-select>
-            <div class="errors" ng-messages="profileupdate.bodyTypeOne.$error">
-                  <div ng-message="required">Body Type is required</div>
-            </div>
-
-        </md-input-container>
       
         </div>
         <!--step2-->
 
         <div class="stepFrmBx" ng-if="step==2">
 
-         <md-input-container>
-            <label>Styles of massage that I prefer to give</label>
-            
-            <md-select 
-                  multiple 
-                  data-md-container-class="multiDropdown"
-                  ng-model="user.massageStyles" 
-                  placeholder="Select Your Option" 
-                  md-on-close="setMassageStyle(user.massageStyles)"
-                  required name="massageStyles" class="md-no-underline">
-                <md-option ng-value="list" ng-repeat="list in listType">
-                  {{list}}
-                  </md-option>
-            </md-select>
-            <div class="errors" ng-messages="profileupdate.massageStyles.$error">
-                  <div ng-message="required">Styles of massage is required</div>
-            </div>
-
-        </md-input-container>
-
-
+         
 
         <md-input-container>
             <label>Seeking to Exchange With</label>
@@ -314,9 +273,49 @@
 
         <!--step4-->
         <div class="stepFrmBx" ng-if="step==4">
+      <md-input-container>
+            <label>Styles of massage that I prefer to give</label>
+            
+            <md-select 
+                  multiple 
+                  data-md-container-class="multiDropdown"
+                  ng-model="user.massageStyles" 
+                  placeholder="Select Your Option" 
+                  md-on-close="setMassageStyle(user.massageStyles)"
+                  required name="massageStyles" class="md-no-underline">
+                <md-option ng-value="list" ng-repeat="list in listType">
+                  {{list}}
+                  </md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.massageStyles.$error">
+                  <div ng-message="required">Styles of massage is required</div>
+            </div>
+
+        </md-input-container>
+            <md-input-container>
+            <label>Select Body Type</label>
+
+            <md-select  ng-model="user.bodyTypeOne" 
+
+            placeholder="Seeking to Exchange With" required name="bodyTypeOne" class="md-no-underline">
+              <md-option value="">-- Select Body Type --</md-option>
+              <md-option value="slim_petite">Slim Petite</md-option>
+              <md-option value="average">Average</md-option>
+              <md-option value="gym_fit">Gym Fit</md-option>
+              <md-option value="muscular">Muscular</md-option>
+              <md-option value="few_pounds_over_average">A Few Ppounds Over Average</md-option>
+              <md-option value="large">Large</md-option>
+            </md-select>
+            <div class="errors" ng-messages="profileupdate.bodyTypeOne.$error">
+                <div ng-message="required">Body Type is required</div>
+            </div>
+
+            </md-input-container>
+
          <md-input-container class="md-block">
           <label>About Me</label>
           <textarea 
+          class="textArea"
               name="message"
               ng-model="user.aboutme" 
                rows="5" md-select-on-focus>

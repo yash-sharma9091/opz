@@ -36,7 +36,8 @@ angular.module('zenbrisa',
 'angularUtils.directives.dirPagination',
 'textAngular',
 'ngAria',
-'zenbrisa.mailbox'
+'zenbrisa.mailbox',
+'ngImgCrop'
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
