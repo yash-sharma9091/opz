@@ -385,7 +385,7 @@ $rootScope.menuOpen= function(id)
 }
 $rootScope.userNavbar={
 	"search":{"title":"Search", "href":"#/search-page"},
-	"mailbox":{"title":"Mailbox","href":"#/"},
+	"mailbox":{"title":"Mailbox","href":"#/mailbox"},
 	"profile":{"title":"Profile",
 	"submenu":{ 
 		"myprofile":{"title":'My Profile',"href":"#/profile"},

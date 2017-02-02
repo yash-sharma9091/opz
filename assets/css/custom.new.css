@@ -33,6 +33,11 @@ md-sidenav md-list .md-button:hover p {
 .margin-top20 {  margin-top: 25px;}
 
 
+
+.navbar-toggle {
+    display: none;
+}
+
 .margin-top10{
     margin-top: 10px;
 }
@@ -963,7 +968,38 @@ img-crop {  max-width: 400px; max-height:250px !important ; position: static !im
     background-color: #FFF;
     border: 1px solid #EEE;
 }
+textarea.ta-bind {width: 100%; }
+.topBtn{height: 48px;}
+.topBtn nav{ margin: auto!important;position: relative; border-bottom:0;    }
+.md-button._md-nav-button{    
+    line-height:20px;
+    margin: auto;
+    padding: 14px 14px 14px;
+    border: 0px!important;
+    border-right: 1px solid #dedede!important;
+    border-radius: 0px!important;
+    min-height: 25px; min-width: 50px; text-transform: none!important;
+}
+.md-nav-item:first-of-type{ margin-left: 0px;}
+.composemail{    
+    position: absolute;
+    right: -6px;
+    top: 4px;
+    font-size: 20px;
+    color: #12afff;
+}
+
+
+/* Mail box design */
+.icon-rotate{ transform: rotate(-45deg); }
+.icon-rotate md-icon { color: #cdcdcd;}
+.md-icon-button md-icon { font-size: 20px; }
+.bgwhite { background-color: #ffffff;}
+.tabs { position: relative; }
+md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar { border-radius: 0; }
+.positionicon{position: relative;top: -28px;left: 345px;}
 
 textarea.ta-bind {
     width: 100%;
 }
+
