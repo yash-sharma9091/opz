@@ -12,6 +12,33 @@ profileview.$inject=['$scope','$mdDialog','appServices','localStorageService','$
 
 function profileview(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
 	{
+			timeout(function(){
+		//crop image
+	
+		var handleFileSelect=function(evt) {
+
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            e.$apply(function(e){
+              e.myImage=evt.target.result;
+              //open modal
+              var data={};
+              data["image"]=e.myImage;
+              data["user"]=rootscope.isUserLogin.userId;
+              
+              appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, evt,data);	
+            });
+          };
+          reader.readAsDataURL(file);
+
+        };
+
+
+      angular.element(document.querySelector('#uploadImage')).on('change',handleFileSelect);
+   
+  },650);
+
 	if(!rootscope.isUserLogin)
 	{
 		location.path('/');

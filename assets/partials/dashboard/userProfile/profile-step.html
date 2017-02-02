@@ -36,7 +36,8 @@
  	<!--end step header-->
 
     <div class="md-dialog-content">
-    <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
+    <p class="infoAlert" ng-hide="step==4"> All Fields marked with <red>*</red> are mandatory. </p>
+    <p class="infoAlert" ng-show="step==4">Below field are<b>  optional </b></p>
   	 <div class="alert {{alert.type}}" ng-if="alert">
           <p>
           <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
@@ -282,7 +283,7 @@
                   ng-model="user.massageStyles" 
                   placeholder="Select Your Option" 
                   md-on-close="setMassageStyle(user.massageStyles)"
-                  required name="massageStyles" class="md-no-underline">
+                  name="massageStyles" class="md-no-underline">
                 <md-option ng-value="list" ng-repeat="list in listType">
                   {{list}}
                   </md-option>
@@ -297,7 +298,7 @@
 
             <md-select  ng-model="user.bodyTypeOne" 
 
-            placeholder="Seeking to Exchange With" required name="bodyTypeOne" class="md-no-underline">
+            placeholder="Seeking to Exchange With"  name="bodyTypeOne" class="md-no-underline">
               <md-option value="">-- Select Body Type --</md-option>
               <md-option value="slim_petite">Slim Petite</md-option>
               <md-option value="average">Average</md-option>
@@ -323,7 +324,7 @@
          
           </md-input-container>
        
-          <div class="optionalTxt">(Optional)</div>
+
         </div>
 
 

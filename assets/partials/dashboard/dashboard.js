@@ -16,11 +16,42 @@ userReviewReceived.$inject=['$scope', '$rootScope','appServices','$mdDialog','$t
 myVedio.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast','$sce'];
 addNewVideo.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
-cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
+cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','data'];
 
-function cropImage(e, rootscope,appServices,$mdDialog,$timeout,location)
+//crop and upload profile picture
+
+function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data)
 {
+	 var user=data;
+		e.myCroppedImage='';
+		e.myImage=user.image;
 	
+	var handleFileSelect=function(evt) {
+
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            e.$apply(function(e){
+            e.myImage=evt.target.result;
+              
+            });
+          };
+          reader.readAsDataURL(file);
+
+        };
+
+        timeout(function(){
+
+      		angular.element(document.querySelector('#uploadImage1')).on('change',handleFileSelect);
+      },650)
+
+	
+	e.cancel = function() 
+	{
+     mdDialog.cancel();
+ 	};
+
+
 };
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)

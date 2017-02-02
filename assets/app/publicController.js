@@ -158,7 +158,7 @@ e.userLogin =function(from,data)
             {   
                 if(response.status==2)
                 {
-                   e.alert={'message':data.message,'type':'alert-danger'};
+                   e.alert={'message':response.message,'type':'alert-danger'};
                }
                else
                {

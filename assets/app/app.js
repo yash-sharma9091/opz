@@ -57,9 +57,17 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev);
 	};
 
-	$rootScope.cropImage=function(ev)
-	{
-		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev);
+	$rootScope.cropImage=function(ev,user)
+	{	
+		console.log(user);
+
+		var data={};
+			data['userId']=user.userId;
+			data['username']=user.username;
+			data["image"]=user.profilePic;
+			
+
+		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
 
 	// $rootScope.checkPages = function(){

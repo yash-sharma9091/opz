@@ -71,7 +71,14 @@
                 </p>
              <md-divider></md-divider> 
            </md-list-item>
-         
+          <!--send a photo key-->
+            <md-list-item  class="active" 
+              ng-if="isUserLogin  &&  isUserId" 
+              ng-click="sendPhotoKeySearch($event,isUserId)"> 
+                <md-icon  aria-label="icon" >vpn_key</md-icon>
+                <p>Request Photo Key  </p>
+                  <md-divider></md-divider>
+           </md-list-item>
             <!--write a review-->
       
 
@@ -111,14 +118,7 @@
                 <p>Remove to Favorites  </p>
                   <md-divider></md-divider>
            </md-list-item>
-          <!--send a photo key-->
-            <md-list-item  class="active" 
-              ng-if="isUserLogin  &&  isUserId" 
-              ng-click="sendPhotoKeySearch($event,isUserId)"> 
-                <md-icon  aria-label="icon" >vpn_key</md-icon>
-                <p>Request Photo Key  </p>
-                  <md-divider></md-divider>
-           </md-list-item>
+         
 
            <!--blocked user- blockYes-->
           

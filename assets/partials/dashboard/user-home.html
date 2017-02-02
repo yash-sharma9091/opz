@@ -94,7 +94,7 @@
                                   md-require-match="true"
                                   md-highlight-flags="i"
                                   filter-selected="filterSelected"
-                                  placeholder="Type country name">
+                                  placeholder="Type country name (In English)">
                   </md-contact-chips>
                 </md-content>
                 </div>
@@ -113,9 +113,10 @@
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
                     <md-option value="">-Select Members-</md-option>
                     <md-option value="availability">Massage Now!<sup>TM</sup></md-option>
+                     <md-option value="Online">Online Members</md-option>
                     <md-option value="username">Username</md-option>
                     <md-option value="keyword">Keyword</md-option>
-                    <md-option value="professional">Professional Masseur</md-option>
+                    <md-option value="professional">Professional Massage Therapist </md-option>
                   </md-select>
                 </div>
                 <div class="srchformBx" ng-if="searched.type == 'username' || searched.type == 'keyword'">
