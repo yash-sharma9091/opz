@@ -125,9 +125,8 @@ appServices.post(API_URL.getAllCountOtherprofile,promise, function(response)
 var path=location.path();
 	
 //get video 
-if(path.indexOf('vedio')>=0){
+if(path.indexOf('video')>=0){
 
-	console.log("video");
 
 	var data={'userId':id};
 	e.loading=true;
@@ -294,14 +293,14 @@ e.removeBlockuser= function(id)
 }
 
 //open lightbox
-e.openLightbox= function(data)
+e.openLightbox= function(data, index)
 	{
 
 	var imageList=[];
 	angular.forEach(data, function(value){
 		imageList.push(value.imageName);
 	})
-	var options = { keyboard: true,showDots: false};
+	var options = { keyboard: true,showDots: false, initialIndex:index};
     lightbox.show(imageList, options)
 }
 
@@ -514,13 +513,13 @@ function reportAbuse(e,mdDialog, appServices,localStorageService,rootScope,$loca
 
 	if(form.$valid)
 	{
-			e.loading=true;
+		e.loading=true;
 	appServices.post(API_URL.reportAbuse,promise, function(response)
 				{			
 						
 						if(response.status==1)
 						{
-							e.alert={'message':"Thanks for reporting! Zenbrisa admin will take care of it",'type':'alert-success'};
+							e.alert={'message':"Thanks for reporting! Zenbrisa will take care of it",'type':'alert-success'};
 							e.isSend=true;
 						}
 						else{

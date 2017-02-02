@@ -148,6 +148,7 @@ e.toggle = function (item, list) {
         if(answers==0)
         {
         	e.alert={'message':"Select your answer",'type':'alert-danger'};
+
         }
         else
         {
@@ -170,6 +171,7 @@ e.toggle = function (item, list) {
 				//after submit get poll comment 
 				e.alert={'message':response.message,'type':'alert-success'};
 				
+					$('body, html').animate({scrollTop:0},900);
 
 			});
 

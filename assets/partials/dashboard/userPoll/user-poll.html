@@ -39,6 +39,7 @@
 
       <!--poll list-->
       <div class="choosingOpt">
+     
         <span ng-if="data.ansOptionType=='radiobutton'">Choose Single Option</span>
          <span ng-if="data.ansOptionType=='checkbox'">Choose multiple options</span>
          
@@ -69,13 +70,22 @@
 
     <div class="pollsHd">Leave a Comment:</div>
     <div class="pollBx">
-        <textarea 
-          name="textarea" 
-          ng-model="data.poll_answer_comment" 
-          placeholder="Type your comments here" 
-          class="textareaInp">
-            
-          </textarea>
+
+         <md-input-container class="md-block">
+          <label>ype your comments here</label>
+          <textarea 
+          class="textArea"
+              name="message"
+              class="textareaInp"
+              ng-model="data.poll_answer_comment" 
+               rows="5" md-select-on-focus>
+           </textarea>
+          
+            <div class="errors" ng-messages="profileupdate.massageStyles.$error">
+                  <div ng-message="required">Styles of massage is required</div>
+            </div>
+          </md-input-container>
+
       <md-button 
         class="md-raised md-primary logpopup-Btn" 
         style="margin-left:0 !important;" ng-click="answerLatestPoll(data)">Vote
@@ -112,9 +122,7 @@
           <ul>
             <li ng-repeat="x in userComments">
               <i style="background-image:url({{x.profilePic?x.profilePic:'images/default-user-icon-profile.png'}})">
-           <!--    <img ng-if="x.profilePic" ng-src="{{x.profilePic}}">
-              <img ng-if="!x.profilePic" src="images/default-user-icon-profile.png">
-           -->    </i>
+               </i>
               <strong>{{x.username}}</strong>
               <p>{{x.comment}}</p>
             </li>

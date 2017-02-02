@@ -18,7 +18,7 @@
           
           <!--review list data-->
         <div class="row blockList">
-          <div class="publicHd">My Favorites ({{data.length}})</div>
+          <div class="publicHd">My Favorites <span ng-if="data.length>0"> ({{data.length}})</span></div>
             <div class="loading" ng-show="loading">
                <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
                <span>Loading..</span>

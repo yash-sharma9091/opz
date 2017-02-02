@@ -123,15 +123,17 @@
        
       
        <div class="publicHd">
-          <span ng-if="selectedTabs==0"> Public Photo Gallery ({{publicPhotoList.length}})</span>
-          <span ng-if="selectedTabs==1"> Private Photo Gallery ({{privatePhotoList.length}})</span>
-          <span ng-if="selectedTabs==2"> All Photo Gallery ({{photoList.length}})</span>
+          <span ng-if="selectedTabs==0"> Public Photo Gallery <span ng-if="publicPhotoList.length>0"> ({{publicPhotoList.length}})</span></span>
+          <span ng-if="selectedTabs==1"> Private Photo Gallery  
+          <span ng-if="privatePhotoList.length>1">({{privatePhotoList.length}}) </span></span>
+          <span ng-if="selectedTabs==2"> All Photo Gallery  
+          <span ng-if="photoList.length>0">({{photoList.length}}) </span></span>
        </div>
 
         <!--tabs  for private and public photo-->
            <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" md-selected="selectedTabs" >
            <!--public photo-->
-               <md-tab label="Public Photo Gallery ({{publicPhotoList.length}})" md-on-select="changeTabs()">
+               <md-tab label="Public Photo Gallery" md-on-select="changeTabs()">
                   <md-content class="md-padding">
                       
                         <div ng-hide="publicPhotoList.length==0" class="profpicTxt"> To Make Any of These Images Your PROFILE PHOTO, Please Click 
@@ -171,7 +173,7 @@
                         <!--   <img ng-src="{{x.thumbImageName}}"> -->
                         <!--image hover -->
                         <i class="transition">
-                        <a ng-click="openLightbox(publicPhotoList)" class="transition">
+                        <a ng-click="openLightbox(publicPhotoList, $index)" class="transition">
                         <img src="images/zoom-icon.png" alt=""></a>
                         </i>
                         <span class="clearfix addelIcon">
@@ -199,7 +201,7 @@
                </md-tab>
 
                 <!--private  photo-->
-               <md-tab md-on-select="changeTabs()" label="Private Photo Gallery ({{privatePhotoList.length}})">
+               <md-tab md-on-select="changeTabs()" label="Private Photo Gallery">
                   <md-content class="md-padding">
                        
                         <div ng-hide="privatePhotoList.length==0" class="profpicTxt"> 
@@ -228,7 +230,7 @@
                         <!--   <img ng-src="{{x.thumbImageName}}"> -->
                         <!--image hover -->
                         <i class="transition">
-                        <a ng-click="openLightbox(privatePhotoList)" class="transition">
+                        <a ng-click="openLightbox(privatePhotoList, $index)" class="transition">
                         <img src="images/zoom-icon.png" alt=""></a>
                         </i>
                         <!--image action-->
@@ -251,7 +253,7 @@
                </md-tab>
 
                 <!--all -->
-               <md-tab md-on-select="changeTabs()" ng-if="!isUserId" label="All Photo Gallery ({{photoList.length}})">
+               <md-tab md-on-select="changeTabs()" ng-if="!isUserId" label="All Photo Gallery ">
                   <md-content class="md-padding">
                       
                         <div ng-hide="photoList.length==0" class="profpicTxt"> To Make Any of These Images Your PROFILE PHOTO, Please Click 
@@ -279,7 +281,7 @@
                         <!--   <img ng-src="{{x.thumbImageName}}"> -->
                         <!--image hover -->
                         <i class="transition">
-                        <a ng-click="openLightbox(photoList)" class="transition">
+                        <a ng-click="openLightbox(photoList, $index)" class="transition">
                         <img src="images/zoom-icon.png" alt=""></a>
                         </i>
                          <span class="clearfix addelIcon">

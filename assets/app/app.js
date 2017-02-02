@@ -70,15 +70,7 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
 
-	// $rootScope.checkPages = function(){
-	// 	var url=$location.path();
-	// 	var list=['/profile'];
 
-	// 	if(list.indexOf(url)>=0)
-	// 	{
-
-	// 	}
-	// }	
 }])
 
 //check login session 
@@ -116,6 +108,9 @@ angular.module('zenbrisa.app')
 
 	});
 
+$rootScope.goToPage= function(url){
+	$location.path(url);
+}
 //open user profile 
 $rootScope.userProfileView= function(id)
 {	

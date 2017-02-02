@@ -92,7 +92,7 @@
                     <li>Types of Massage that interest me:
                       <span>  
                              
-                      <x ng-if="userprofile.therapeuticMassageOne!=''" 
+                      <x ng-if="userprofile.therapeuticMassageOne" 
                       class="colorBlue">
                       {{userprofile.therapeuticMassageOne }} 
                         <small class="red" 
@@ -114,7 +114,7 @@
                       </small>
                       </x>
                      
-                    <x ng-if="userprofile.sensualMassageOne!=''" class="cyan" >{{userprofile.sensualMassageOne}}
+                    <x ng-if="userprofile.sensualMassageOne" class="cyan" >{{userprofile.sensualMassageOne}}
                       <small 
                     ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
 
