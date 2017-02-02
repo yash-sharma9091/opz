@@ -4,13 +4,18 @@ userDashboardSearch.$inject=['$scope', '$rootScope','appServices','$location','$
 
 function userDashboardSearch(e, rootscope, appServices, $location, $filter)
 {
+	//load country ISO Code
+	appServices.getCountryCode(function(response){
+		e.countryCode=response;
+	});
+
 	e.commonMilesArray = appServices.milesList();
 	e.commonCountryPhoneCodeArray = appServices.phoneCodeArray;
 	e.searched = {
 		mile : '',
 		location : '',
 		type: ''
-	}
+	};
 	e.mySavedLocations = function(){
 		var data = {};
 		appServices.post(API_URL.getTravelCities, data, function(response)

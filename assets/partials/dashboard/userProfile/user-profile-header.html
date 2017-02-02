@@ -9,7 +9,9 @@
   <div class="container">
     <div class="profileTopBx" ng-class="{'exp': !headerExp}">
       <div class="profile-Img" style="background-image:url({{userprofile.profilePic || 'images/default-user-icon-profile.png'}})">
-        <md-button ng-if="isUserLogin" ng-click="cropImage($event,userprofile.userId)" class="md-button-icon md-fab md-mini profile-edit"><md-icon>mode_edit</md-icon></md-button>
+        <md-button ng-if="isUserLogin && !isUserId" class="md-button-icon md-fab md-mini profile-edit"><md-icon>mode_edit</md-icon>
+        <input type="file" id="uploadImage" class="file">
+        </md-button>
         <span ng-if="userprofile.avgRating" class="reating" reating reating-data="userprofile.avgRating" ng-show="headerExp"> </span>
       </div>
  

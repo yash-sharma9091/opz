@@ -75,6 +75,9 @@
     <!--image crop-->
     <link rel="stylesheet" type="text/css" href="/lib/image-crop/ng-img-crop.css">
      <script src="/lib/image-crop/ng-img-crop.js"></script>
+    <script src="/lib/ng.file.upload/ng-file-upload-shim.min.js"></script>
+    <script src="/lib/ng.file.upload/ng-file-upload.js"></script>
+
     <!--app configurations-->
     <script src="/app/service.js"></script>
     <script src="/app/directives.js"></script>
@@ -99,9 +102,14 @@
     <script src="partials/blog/blogCommentCtrl.js"></script>
     <script src="partials/dashboard/userProfile.js"></script>
 
-
-
-
+    <!-- Entrie seprate module mailbox -->
+    <script src="partials/mailbox/routes/mailBoxRoutes.js"></script>
+    <script src="partials/mailbox/controllers/mailboxCtrl.js"></script>
+    <script src="partials/mailbox/controllers/sentmailCtrl.js"></script>
+    <script src="partials/mailbox/controllers/draftCtrl.js"></script>
+    <script src="partials/mailbox/controllers/trashCtrl.js"></script>
+    <script src="partials/mailbox/controllers/mailFolderCtrl.js"></script>
+    <script src="partials/mailbox/factories/mailboxSvr.js"></script>
 </body>
 
 </html>
