@@ -1039,3 +1039,4 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .btn.btn-lg.btn-info{     padding: 5px 9px;
     color: white !important;
     background-color: #0fb1ff }
+.blocklistBx i{ font-style: normal ; }

@@ -18,7 +18,7 @@
               <!--country with iso dial code-->
                 <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
                   <md-option>-Select Your Country Code-</md-option>
-                  <md-option ng-repeat="x in countryCode" ng-value="x">
+                  <md-option ng-repeat="x in countryCode | orderBy:'name'" ng-value="x">
                     {{x.name}} ({{x.dial_code}})
                   </md-option>
                 
