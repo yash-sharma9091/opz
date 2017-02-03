@@ -1060,3 +1060,4 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .reviewList ul li {    min-height: 120px;}
 .reviewList-sm .review-img {    height: 119px;}
 .left-icon { padding-left: 0 !important }
+.chips input{    font-size: 13px !important}
