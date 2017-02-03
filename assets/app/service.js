@@ -1638,3 +1638,17 @@ function splitStr(strData){
 			return data;
 			}
 }
+
+function arrayToStr(data){
+	var str='';
+	angular.forEach(data, function(value,index){
+		if(index==0){
+			str=value
+		}
+			else{
+					str=str+','+ value
+			}
+		
+	});
+	return str;
+}

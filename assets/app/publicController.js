@@ -463,10 +463,13 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
             data=setJsonData(data,e.fulladdress);
           }
 
-           e.step=5;
-           console.log(data);
+          data['massageStylesOne']=arrayToStr(e.user['massageStyles']);
+          
+          e.step=5;
+          
         }
         
+
         //send data on server
         userData=rootScope.isUserLogin;
         userData["data"]=data;
