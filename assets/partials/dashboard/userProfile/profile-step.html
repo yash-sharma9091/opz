@@ -265,10 +265,14 @@
               <div class="col-sm-4"> <span>City: </span>  {{fulladdress.city || 'N/A'}}</div>
           </div>
           <div class="clearfix"></div> 
-
+          
           <p ng-bind-html="place.adr_address"  class="hideEle"></p>
           <div class="map-modal" >
-            <ng-map  center="[{{user.fulladress.location.lat}},{{user.fulladress.location.lng}}]"></ng-map>
+               <ng-map 
+                        ng-if="getmap(user.latitude,user.longitude)" zoom="11"
+                          center="{{getmap(user.latitude,user.longitude)}}">
+                        <marker position="{{getmap(user.latitude,user.longitude)}}"> </marker>
+                    </ng-map>
            </div>
         </div>
 
