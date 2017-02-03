@@ -313,8 +313,10 @@ e.setMapcenter= function(pos){
 //profile massage style
 if(rootScope.userprofile.massageStylesOne)
   {
-      e.listType=splitStr(rootScope.userprofile.massageStylesOne);
-      e.user['massageStyles']=e.listType;
+      e.listType=['swedish','reflexology','thai','deep tissue/strong','chinese'];
+      console.log(splitStr(rootScope.userprofile.massageStylesOne));
+      e.user['massageStyles']=splitStr(rootScope.userprofile.massageStylesOne);
+      
   }
 
 }

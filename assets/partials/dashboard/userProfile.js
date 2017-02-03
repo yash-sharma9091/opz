@@ -21,6 +21,7 @@ function profileview(e,mdDialog, appServices,localStorageService,rootscope,locat
 		var handleFileSelect=function(evt) {
 
           var file=evt.currentTarget.files[0];
+              evt.target.value='';
           var reader = new FileReader();
           reader.onload = function (evt) {
             e.$apply(function(e){
@@ -29,8 +30,12 @@ function profileview(e,mdDialog, appServices,localStorageService,rootscope,locat
               var data={};
               data["image"]=e.myImage;
               data["user"]=rootscope.isUserLogin.userId;
-              
+              data["name"]=file.name;
+
+
+           	   
               appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, evt,data);	
+           
             });
           };
 
@@ -106,7 +111,47 @@ appServices.post(API_URL.getAllCountOtherprofile,promise, function(response)
      		
      });
 }
-	
+
+if(e.isUserId)
+{
+	var promise={"objectUserId":e.isUserId};
+
+			appServices.post(API_URL.addPrivateNote,promise, function(response)
+    		 {		
+	 			if(response.status==1)
+	 			{
+ 					e.privateMessage=response.data.note;
+
+	 			}
+
+    		 });
+
+
+}
+e.privateNote=false;
+//add private note;
+e.AddPrivateNote = function(data, form, id)
+{
+
+	if(form.$valid)
+	{			
+
+			e.processing=true;
+		
+			var promise={"objectUserId":id, "privateNote":data};
+
+			appServices.post(API_URL.writePrivateNote,promise, function(response)
+    		 {		
+	 			if(response.status==1)
+	 			{
+ 					appServices.alert("Successfully saved your private  message");	
+	 			}
+
+				e.processing=false;
+    		 });
+
+	}
+}	
 
 var path=location.path();
 	

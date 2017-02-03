@@ -92,17 +92,22 @@
                     <li>Types of Massage that interest me:
                       <span>  
                              
-                      <x ng-if="userprofile.therapeuticMassageOne" 
-                      class="colorBlue">
+                      <x ng-if="userprofile.therapeuticMassageOne" class="colorBlue">
                       {{userprofile.therapeuticMassageOne }} 
-                        <small class="red" 
-                    ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
-                    
-                     <black>&nbsp;Seeks -</black>{{userprofile.seeking_both?'M':''}}
-                    <span class="pinkClr" ng-if="userprofile.seeking_both==='both'">F</span>
-                      <span ng-if="!userprofile.seeking_both">
+
+                    <small class="red"> 
+                     <black>&nbsp;Seeks-</black>
+                                      
+                      <span ng-if="userprofile.seeking_both">
+                        {{userprofile.seeking_male?'M':''}}
                         {{userprofile.seeking_female?'F':''}} 
-                        {{userprofile.seeking_male?'M':''}} 
+                      </span>
+                      
+                       <span ng-if="userprofile.seeking_male" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_male?'M':''}}
+                      </span>
+                       <span ng-if="userprofile.seeking_female" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_female?'F':''}}
                       </span>
 
                       <i class="tooltipBx"  
@@ -115,23 +120,28 @@
                       </x>
                      
                     <x ng-if="userprofile.sensualMassageOne" class="cyan" >{{userprofile.sensualMassageOne}}
-                      <small 
-                    ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
-
-                     <black>&nbsp;Seeks -</black> {{userprofile.seeking_both?'M':''}}
-                    <span class="pinkClr" ng-if="userprofile.seeking_both==='both'">F</span>
-                      <span ng-if="!userprofile.seeking_both">
+                     <small> 
+                     <black>&nbsp;Seeks-</black>
+                                      
+                      <span ng-if="userprofile.seeking_both">
+                        {{userprofile.seeking_male?'M':''}}
                         {{userprofile.seeking_female?'F':''}} 
-                        {{userprofile.seeking_male?'M':''}} 
+                      </span>
+                     
+                       <span ng-if="userprofile.seeking_male" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_male?'M':''}}
+                      </span>
+                       <span ng-if="userprofile.seeking_female" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_female?'F':''}}
                       </span>
 
                       <i class="tooltipBx"  
                       uib-popover="M=Male, F=Female, MF=Male & Female" 
-                      popover-trigger="'mouseenter'"
-                      popover-placement="left" 
+                      popover-trigger="'mouseenter'" 
+                      popover-placement="left"
                       popover-append-to-body="'true'"> ? </i>
 
-                      </small>
+                      </small>                     
                       </x>
                        
                       </span>
@@ -147,10 +157,10 @@
 
       <div class="clearfix"></div>
         <!--private node-->
-        <div class="profileInfoBx privatenote" ng-if="isUserId" ng-init="privateNote=false">
+        <div class="profileInfoBx privatenote" ng-if="isUserId" >
         <form name="private" novalidate>
             <div class="profInfoHd" 
-              ng-click="privateNote=!privateNote">Private Notes (Visible to me only!)  
+              ng-click="privateNote=!privateNote">Private Notes (Visible to me only!)
                   <md-button class="md-icon-button pull-right"> 
                         <md-icon>mode_edit</md-icon>
                    </button>
@@ -162,7 +172,7 @@
               class="textArea"
               required
               name="message"
-              ng-model="privatemessage" 
+              ng-model="privateMessage" 
               rows="5" md-select-on-focus>
            </textarea>
 
@@ -175,15 +185,16 @@
           <div layout="row">
           <span flex>
           <md-button aria-label="submit" 
-            ng-click="reportAbuse(message, abuse)" 
+            ng-click="AddPrivateNote(privateMessage, private,isUserId)" 
             class="md-raised md-primary logpopup-Btn" type="submit"> 
-          <span >Save</span>
+          <span ng-if="!processing">Save</span>
+          <span ng-if="processing">Processing..</span>
 
          </md-button>
          </span>
          <div flex>&nbsp;</div>
          <span  flex >
-          <md-button aria-label="cancle"  
+          <md-button aria-label="cancle"  ng-click="privateNote=false" 
           class="md-raised md-primary logpopup-Btn">  Cancel  </md-button>
           </span>
           </div>

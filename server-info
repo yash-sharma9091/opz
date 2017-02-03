@@ -63,23 +63,19 @@ Email address: TestFlex2@seologistics.com
 Password: 123456
 
 TODO:
-lagout same as previous
 
 ---on search page---
 on search page add new member label 
 and show  result top  listing 
 new member -recent active(online) 
+on search button remove (0) and chnage color 
+
 --------------------
 
-static page text bold on banner
+Static page Text Bold on banner
 
 crop tool 
 
-add private note on user profile on other profile user page 
 
-on search button remove (0) and chnage color 
-
-API error 
-check poll /userpoll/answerpoll
 
 
