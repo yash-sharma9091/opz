@@ -1056,8 +1056,8 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
         border-bottom: 1px #d2d2d2 solid;
         margin-bottom: 10px;
 } 
-.reviewList-sm  .image-view{    height: 118px;}
+/*.reviewList-sm  .image-view{    height: 118px;}
 .reviewList ul li {    min-height: 120px;}
-.reviewList-sm .review-img {    height: 119px;}
+.reviewList-sm .review-img {    height: 119px;}*/
 .left-icon { padding-left: 0 !important }
 .chips input{    font-size: 13px !important}
