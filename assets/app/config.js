@@ -36,7 +36,7 @@ angular.module('zenbrisa',
 'angularUtils.directives.dirPagination',
 'textAngular',
 'ngAria',
-
+'youtube-embed',
 'ngImgCrop',
 'ngFileUpload',
 'zenbrisa.mailbox'

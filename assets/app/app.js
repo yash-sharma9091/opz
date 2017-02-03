@@ -20,7 +20,7 @@ angular.module('zenbrisa.app')
   }})
 
 //open modal and popupwindow function
-.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
+.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar','$timeout',function($rootScope, $mdDialog,appServices,cfpLoadingBar, timeout){
 	cfpLoadingBar.start();
 
 	//login modal
@@ -74,7 +74,7 @@ angular.module('zenbrisa.app')
 }])
 
 //check login session 
-.run(['$rootScope','appServices','$location','localStorageService','$sce', function($rootScope,appServices,$location,localStorageService,$sce){
+.run(['$rootScope','appServices','$location','localStorageService','$sce','$timeout', function($rootScope,appServices,$location,localStorageService,$sce, timeout){
 	
 	if(appServices.checkStorage('user'))
 	{
@@ -261,10 +261,7 @@ $rootScope.ProfileCount= function(){
 
 		return lat+','+lng;
 	}
-	$rootScope.getUrl = function(url)
-	{
-		 return  $sce.trustAsResourceUrl(url);
-	}
+	
 
 	$rootScope.getFormateddate=function(date)
 	{
