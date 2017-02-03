@@ -212,7 +212,10 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 //MyFavourites controller
 function MyFavourites(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
 {
+		rootscope.ProfileCount();
+
 		e.loading=true;
+
 		var data={};
 		appServices.post(API_URL.getfavourite,data, function(response)
 
@@ -267,6 +270,7 @@ e.setUnfavorite =function(id, index,data){
 //blocked user controller
 function blockedusers(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
 {
+		rootscope.ProfileCount();
 		e.loading=true;
 		var data={};
 		appServices.post(API_URL.getblockUser,data, function(response)
@@ -318,7 +322,7 @@ e.setUnBlock=function(id, index,data){
 
 // user userReviewPined controller 
 function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
-{
+{		rootscope.ProfileCount();
 		//http request for get review form server 
 		e.loading=true;
 		var data={};
@@ -337,7 +341,7 @@ function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,md
 
 // user userReviewPined controller 
 function userReviewReceived(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
-{
+{			rootscope.ProfileCount();
 		//http request for get review form server 
 		e.loading=true;
 		var data={};
@@ -357,7 +361,7 @@ function userReviewReceived(e, rootscope,appServices,$mdDialog,$timeout,location
 // user userReviewPined controller 
 function myVedio(e, rootscope,appServices,mdDialog,$timeout,location,mdToast,$sce)
 {
-
+		rootscope.ProfileCount();
 		//http request for get video list form server 
 		e.loading=true;
 
@@ -389,7 +393,7 @@ e.deleteVideoById = function(id,data,index)
 										data.splice(index,1);
 										//remove form server
 										var user={'videoId':id};
-										appServices.post(API_URL.deleteMyPhoto,user, function(response)
+										appServices.post(API_URL.removeVideoById,user, function(response)
 
 										{
 												appServices.alert("Successfully removed from your video list")

@@ -33,6 +33,7 @@ function profileview(e,mdDialog, appServices,localStorageService,rootscope,locat
               appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, evt,data);	
             });
           };
+
           reader.readAsDataURL(file);
 
         };
@@ -47,23 +48,8 @@ function profileview(e,mdDialog, appServices,localStorageService,rootscope,locat
 		location.path('/');
 	}
 
-								//profile  alert count
-								var promise={};
-								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
-						    		{						    			
-						    			if( response.data) {
-						    				var data=response.data[0];
-						    				var count={};
-						    				count.publicPhotoCount=data.publicPhotoCount;
-						    				count.privatePhotoCount=data.privatePhotoCount;
-						    				count.videoCount=data.videoCount;
-						    				count.reviewReceived=data.reviewsReceivedCount;
-						    				count.reviewPenned=data.reviewsPennedCount;
-						    				count.favouriteCount=data.favouriteCount;
-						    				count.blockedCount=data.blockedCount;
-						    				rootscope.userInfoCount=count;
-						    			}
-						    		}); 
+								
+	rootscope.ProfileCount();
 };
 
 function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)

@@ -176,7 +176,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:false
+          login:true
     }
   })
    .when('/reviews-penned/:_id',
@@ -198,7 +198,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:false
+          login:true
     }
 
   })

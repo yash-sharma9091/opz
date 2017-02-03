@@ -229,6 +229,27 @@ $rootScope.closeAlert= function(alert){
 			}
 	}
 
+	
+//get user details count :: 
+$rootScope.ProfileCount= function(){
+
+								var promise={};
+								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
+						    		{						    			
+						    			if( response.data) {
+						    				var data=response.data[0];
+						    				var count={};
+						    				count.publicPhotoCount=data.publicPhotoCount;
+						    				count.privatePhotoCount=data.privatePhotoCount;
+						    				count.videoCount=data.videoCount;
+						    				count.reviewReceived=data.reviewsReceivedCount;
+						    				count.reviewPenned=data.reviewsPennedCount;
+						    				count.favouriteCount=data.favouriteCount;
+						    				count.blockedCount=data.blockedCount;
+						    				$rootScope.userInfoCount=count;
+						    			}
+						    		}); 
+}
 	if($rootScope.isUserLogin)
 	{
 		var user={"email":$rootScope.isUserLogin.email};
