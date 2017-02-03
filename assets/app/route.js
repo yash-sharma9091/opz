@@ -134,6 +134,7 @@ angular.module('app.ngRoute',['ngRoute'])
     {
     templateUrl:"/partials/global-search/search.html",
     controller:"homepage",
+    // controller:"searchpage",
     access:
     { 
           login:false

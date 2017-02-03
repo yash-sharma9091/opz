@@ -17,12 +17,12 @@
                             <li ng-repeat="s in seekingItems">
                                 <md-checkbox  aria-label="Checkbox{{$index}}" 
                                     ng-checked="exists(s.value, seeking)" 
-                                    ng-click="toggle(s.value, seeking)" >{{s.text}}</md-checkbox>
+                                    ng-click="toggle(s.value, seeking);seekingChange(s.value)" >{{s.text}}</md-checkbox>
                             </li>
                             <li>
                                 <md-checkbox  aria-label="CheckboxSeekingBoth" 
-                                    ng-checked="isCheckedSeeking()" 
-                                    ng-click="toggleAllSeeking()" >Both</md-checkbox>
+                                    ng-checked="isChecked(seeking, seekingItems)" 
+                                    ng-click="toggleAll(seeking, seekingItems);seekingChange('both')" >Both</md-checkbox>
                             </li>
                           
                         </ul>
@@ -37,13 +37,13 @@
                             </li>
                             <li>
                                 <md-checkbox  aria-label="CheckboxSeekingBoth" 
-                                    ng-checked="isCheckedMassageStyle()" 
-                                    ng-click="toggleAllMassageStyle()" >Both</md-checkbox>
+                                    ng-checked="isChecked(massageStyle, massageStyleItems)" 
+                                    ng-click="toggleAll(massageStyle, massageStyleItems)" >Both</md-checkbox>
                             </li>
                           
                         </ul>
                     </div>
-                    <div class="seekingHd">Level of Experience </div>
+                    <div class="seekingHd">Level of Experience</div>
                     <div class="seekingList">
                         <ul>
                             <li ng-repeat="l in levelItems">
@@ -64,8 +64,8 @@
                             </li>
                             <li>
                                 <md-checkbox  aria-label="CheckboxSeekingBoth" 
-                                    ng-checked="isCheckedGender()" 
-                                    ng-click="toggleAllGender()" >Both</md-checkbox>
+                                    ng-checked="isChecked(gender, genderItems)" 
+                                    ng-click="toggleAll(gender, genderItems)" >Both</md-checkbox>
                             </li>
                            
                         </ul>
@@ -87,7 +87,7 @@
                                 <md-checkbox  aria-label="Checkbox{{$index}}" ng-checked="exists(type.value, bodytype)" ng-click="toggle(type.value, bodytype)">{{type.text}}</md-checkbox>
                             </li>
                             <li>
-                                <md-checkbox  aria-label="Checkbox all" ng-checked="isCheckedBodyType()" ng-click="toggleAllBodyType()">All</md-checkbox>
+                                <md-checkbox  aria-label="Checkbox all" ng-checked="isChecked(bodytype, bodyTypeItems)" ng-click="toggleAll(bodytype, bodyTypeItems)">All</md-checkbox>
                             </li>
                            
                         </ul>
@@ -108,11 +108,12 @@
                     <ul>
                         <!--class="greenBdr"-->
                         <li  ng-repeat="user in znUsers track by $index" 
-                            ng-init="user.blocked= checkedBlocedUser(user.userId, 'blocked'); user.favUser= checkedBlocedUser(user.userId, 'fav'); user.isLodingFav=false;user.isLodingBlock=false">
+                            ng-init="user.blocked= checkedBlocedUser(user.userId, 'blocked'); user.favUser= checkedBlocedUser(user.userId, 'fav'); user.isLodingFav=false;user.isLodingBlock=false" ng-class="{'greenBdr':user.available}">
                             <!--  <pre>{{user | json}}</pre> -->
                             <div class="listingTop" 
                                 ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
                                 <div class="profpaidBx">
+                                    <a ng-if="user.available" class="greenBg">Online</a>
                                     <a class="vollatBg"  
                                         ng-if="user.professionalType == 'both' || user.professionalType == 'paid'">
                                     Paid Professional Massage
@@ -175,8 +176,8 @@
                                             </a> | 
                                             <!--review received-->
                                             <a  ng-class="{'greyClr':user.reviewReceivedCount==0}"
-                                                ng-href="{{user.reviewReceivedCount>0?userDashboard.reviewsreceived.href+'/' +user.userId : null}}">
-                                            Reviews Received ({{user.reviewReceivedCount}})</a>
+                                                ng-href="{{user.reviewReceivedCount>0?userDashboard.reviewsreceived.href+'/' +user.userId : null}}" >Reviews Received  <span ng-if="user.reviewReceivedCount > 0">
+                                            ({{user.reviewReceivedCount}})</span></a>
                                         </span>
                                         <span ng-show="user.prefer_therapeuticMassage != undefined && user.prefer_therapeuticMassage != null && user.prefer_therapeuticMassage != ''"><span>Therapeutic</span> : &nbsp; Seeks - 
                                         <small class="blueClr">{{user.seeking_male?'M':''}}</small>
@@ -208,7 +209,7 @@
                                         ng-href="{{user.publicPhotoCount>0?userNavbar.profile.submenu.photogallery.href +'/public/' +user.userId : null}}">
                                         <md-icon>camera_alt</md-icon>
                                         Public Photos 
-                                        <span class="blueClr" >({{user.publicPhotoCount}})</span>
+                                        <span class="blueClr" ng-if="user.publicPhotoCount > 0">({{user.publicPhotoCount}})</span>
                                     </md-button>
                                     <!--if uder not login-->
                                     <span ng-if="!isUserLogin">
@@ -219,7 +220,7 @@
                                             >
                                             <md-icon>collections</md-icon>
                                             Private Photos 
-                                            <span class="blueClr" >({{user.privatePhotoCount}})</span>
+                                            <span class="blueClr" ng-if="user.privatePhotoCount > 0">({{user.privatePhotoCount}})</span>
                                         </md-button>
                                         <md-button   
                                             uib-popover-template="'needLogin.html'"
@@ -239,7 +240,7 @@
                                         <md-button  ng-href="{{user.publicPhotoCount>0?userNavbar.profile.submenu.photogallery.href +'/private/' +user.userId : null}}">
                                             <md-icon>collections</md-icon>
                                             Private Photos 
-                                            <span class="blueClr" >({{user.privatePhotoCount}})</span>
+                                            <span class="blueClr"  ng-if="user.privatePhotoCount > 0">({{user.privatePhotoCount}})</span>
                                         </md-button>
                                         <md-button ng-click="sendPhotoKeySearch($event, user.userId)">
                                             Request Photo Key 
