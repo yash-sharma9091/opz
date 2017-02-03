@@ -16,47 +16,79 @@ userReviewReceived.$inject=['$scope', '$rootScope','appServices','$mdDialog','$t
 myVedio.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast','$sce'];
 addNewVideo.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
-cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','data'];
+cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','data','Upload'];
 
 //crop and upload profile picture
 
-function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data)
+function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Upload)
 {
-	 var user=data;
+	 	var user=data;
+
 		e.myCroppedImage='';
 		e.myImage=user.image;
+		e.filename=user.name;
 	
-	var handleFileSelect=function(evt) {
+	var handleFileSelect=function(evt) 
+		{
 
           var file=evt.currentTarget.files[0];
+          e.filename=file.name;
+          evt.target.value='';
           var reader = new FileReader();
           reader.onload = function (evt) {
             e.$apply(function(e){
             e.myImage=evt.target.result;
-              
             });
           };
-          reader.readAsDataURL(file);
 
+          reader.readAsDataURL(file);
         };
 
-        timeout(function(){
-
+        timeout(function()
+        {
       		angular.element(document.querySelector('#uploadImage1')).on('change',handleFileSelect);
-      },650)
+      		
+      	},650);
 
 	
 	e.cancel = function() 
-	{
-     mdDialog.cancel();
+	{		
+     	mdDialog.cancel();
  	};
+
+ 	//upload and save profile picture 
+
+ 	e.saveProfilePicture= function()
+ 	{				e.loading=true;
+
+ 					timeout(function(){
+ 					
+          		       	e.loading=false;
+          		       	rootscope.userprofile['profilePic']=null;
+          		       	mdDialog.cancel();
+ 					},1000)
+ 						Upload.upload({
+          		        url: API_URL.setProfilePic,
+          		        data: {
+          		        	profile_image: Upload.dataUrltoBlob(e.myImage, e.filename)
+          		        }
+          		    }).then(function (response){
+
+          		       	console.log(response);
+          		       	e.loading=false;
+          		       	rootscope.userprofile['profilePic']=response.image;
+          		       	mdDialog.cancel();
+
+
+          		    });
+		
+ 	}
 
 
 };
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 {
-	//e.user={"provisitMailStatus":"disable","sensualAds":"disable","searchProfileStatus":"disable","newMailStatus":"disable","pollMailStatus":"disable"};
 	e.user={};
 	e.userPassword={};
 	e.delete={}

@@ -130,7 +130,10 @@ var API_URL=
 	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
 	"reportAbuse":api_base_url+'users/addReport',
-
+	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
+	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
+	"setProfilePic" : api_base_url+'updateProfile',
+	
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',
 	"addReview":api_base_url+'users/addReview',

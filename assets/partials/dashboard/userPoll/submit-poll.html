@@ -51,8 +51,8 @@
 
 <!--Answer Option Type-->
 
-  <md-input-container class="md-block">
-      
+  <md-input-container class=" md-block left-icon">
+    
            <md-select 
              class="md-no-underline" 
              aria-label="answers" 
@@ -60,14 +60,17 @@
              name="ansOptionType" 
              ng-model="newPoll.ansOptionType" 
              required>
-             <md-option value="">-- Select --</md-option>
-             <md-option value="radiobutton">Single  Selection or Single Answer(RadioButton)
-             </md-option>
 
-               <md-option value="checkbox">Multiple Selection or More than one Answer(CheckBox)
-               </md-option>
+             <md-option value="">-- Select --</md-option>
+             <md-option value="radiobutton">Single Answer (Eg. Yes or No)</md-option>
+             <md-option value="checkbox">Multiple Answer (Choose all that apply)</md-option>
            </md-select>
-      
+
+          
+             <md-icon  
+            uib-popover="For Poll questions that require a Single Answer, (eg. yes or no), please choose Single Answer. For questions that may use Multiple Answers, please choose Multiple Answers." 
+            popover-trigger="'mouseenter'" 
+            popover-append-to-body="'true'"> help </md-icon>
          <div class="errors" ng-messages="createPoll.ansOptionType.$error">
           <div ng-message="required">Select your Answer type</div>
         </div>
@@ -79,7 +82,7 @@
               
                 <input  name="options" 
                         ng-model="x.newAnswer" 
-                        placeholder="Enter Options"
+                        placeholder="Enter Answer Options"
                         required >
                   <md-button class="add-btn btn-right" ng-if="$last" ng-click="addNew(newPoll.answer_options)">
                     <md-icon>add</md-icon>

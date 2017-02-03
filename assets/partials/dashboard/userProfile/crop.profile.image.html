@@ -10,22 +10,26 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content>
+    <md-dialog-content class="crop-pictute">
             <!-- images/default-user-icon-profile.png -->
 
           <div class="imageview">
-            <img-crop image="myImage" area-type="square" result-image="myCroppedImage"></img-crop>
+             <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Uploading..</span>
+            </div>
+            <img-crop  image="myImage" area-type="square" result-image="myCroppedImage"></img-crop>
 
           </div>
 
     </md-dialog-content>
 
     <md-dialog-actions layout="row" class="btn-reset">
-    <md-button class="md-primary md-raised "><md-icon>mode_edit</md-icon> 
+    <md-button class="md-primary md-raised  logpopup-Btn"><md-icon>photo_camera</md-icon> 
       <input type="file"  id="uploadImage1" class="file"/> Browse image </md-button>
     <span flex></span>
     
-      <md-button class="md-primary md-raised " ng-click="cancel()"> Save </md-button>
+      <md-button class="md-primary md-raised logpopup-Btn" ng-click="saveProfilePicture()"> Save </md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

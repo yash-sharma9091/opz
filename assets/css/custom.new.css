@@ -493,6 +493,7 @@ md-toast {
 md-input-container input {
     padding: 2px 15px !important
 }
+.profile-Img {background-size: cover; height: 185px;}
 .profile-Img > img {
     max-width: 182px;
 }
@@ -958,6 +959,7 @@ img-crop {  max-width: 400px; max-height:250px !important ; position: static !im
 
 @media(min-width:768px) {
     .nav-btn {     display: none;    }
+    .crop-pictute {      min-width: 459px; }
 }
 @media(max-width: 767px) {
    /* .loginBtnBx {
@@ -1040,3 +1042,21 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
     color: white !important;
     background-color: #0fb1ff }
 .blocklistBx i{ font-style: normal ; }
+.pointer { cursor: pointer; }
+.listingTop-Right i img{ max-width: 85px; }
+.btn-reset .md-primary md-icon{ color: white !important;  }
+.blogList li i {    height: 100%;
+    background-size: cover;}
+
+.blogList li {
+        display: block;
+        padding: 0 0 30px 240px;
+        min-height: 168px;
+        position: relative;
+        border-bottom: 1px #d2d2d2 solid;
+        margin-bottom: 10px;
+} 
+.reviewList-sm  .image-view{    height: 118px;}
+.reviewList ul li {    min-height: 120px;}
+.reviewList-sm .review-img {    height: 119px;}
+.left-icon { padding-left: 0 !important }
