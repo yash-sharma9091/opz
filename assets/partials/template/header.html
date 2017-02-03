@@ -41,7 +41,7 @@
 
                       <md-button 
                         aria-label="menu" 
-                        ng-href="{{menu.hreef}}"
+                        ng-href="{{menu.href}}"
                         ng-click="$mdOpenMenu($event)">
                         
                         {{menu.title}}
@@ -51,7 +51,7 @@
                       <md-menu-content width="3">
                       <ul >
                       <li role="menuitem" ng-repeat="x in menu.submenu">
-                        <md-button ng-href="{{x.href}}" aria-label="menu" 
+                        <md-button ng-href="{{x.href}}" aria-label="menu"  ng-hide="x.hide"
                           ng-click="menuOpen(x.click)"
                         > {{x.title}}</md-button>
                       
@@ -123,8 +123,8 @@
                       <a ng-href="{{userDashboard.setting.href}}">
                         <md-icon>settings</md-icon> Settings</a>
                       </li>
-                      <li role="menuitem" ng-click="logout()">
-                      <a > <md-icon>exit_to_app</md-icon>Logout</a></li>
+                      <li role="menuitem" ">
+                      <a  href="#/logout"> <md-icon>exit_to_app</md-icon>Logout</a></li>
                     </ul>
               </md-menu-content>
             </md-menu>
@@ -134,14 +134,14 @@
         <div class="loginBtnBx" ng-if="!isUserLogin">
           <a class="loginBtn transition" ng-click="login($event)">Login</a>
           <a class="signupBtn transition active" ng-click="signup($event)"> Sign up</a>
-          <md-button  class="md-icon-button nav-btn" ng-click="openNav()">
-            <md-icon>menu</md-icon></md-button>
+         
         </div>
 
           </div>
         </div>
       </div>
-
+ <md-button  class="md-icon-button nav-btn" ng-click="openNav()">
+            <md-icon>menu</md-icon></md-button>
 <!--mobile navbar-->
 <md-sidenav
     class="md-sidenav-right md-whiteframe-4dp"

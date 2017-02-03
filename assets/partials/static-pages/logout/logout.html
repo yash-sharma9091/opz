@@ -1,0 +1,33 @@
+<section class="sigoutBg" style="background:url('./images/signout-banner.jpg') center top no-repeat; background-size:cover;">
+<div class="signoutBann container">
+<div class="signoutInnTxt">
+<h2>Sign out of or remove a person from Zenbrisa</h2>
+<p>When you sign out of Zenbrisa, your data will stop syncing to your Account. The data you created while signed in will remain stored on the device by default, but any new data or changes you make in browser on your device won't sync going forward.</p>
+</div>
+</div>
+</section>
+<div class="sighout-BotBg">
+<div class="container clearfix">
+<div class="signout-Left">
+<div class="logoutTopHd darkblueBg">Basic Logout</div>
+<div class="logoutMidSec lightblueBg">
+<p>If you are using your own private computer that no one else uses, “Basic Logout” will close the current session and allow you to automatically log back in the next time that you enter Zenbrisa website.</p>
+<span><button ng-click="goToPage('/')" class="logoutBtns darkblueBg"><i class="material-icons">exit_to_app</i> Basic Logout</button> </span>
+</div>
+</div>
+<div class="signout-Right">
+<div class="logoutTopHd darkyellowBg">Public Computer Secure Logout</div>
+<div class="logoutMidSec lightyellowBg">
+<p>If you are using a public computer or if you want to make sure that you have a very secure logout on your private computer, it is always best to choose “Public Computer Secure Logout” . This will not only close your current session, but will completely disable any future automatic logins on that computer.</p>
+<span>
+<button ng-click="logout()" 
+	type="button" 
+	class="logoutBtns darkyellowBg">
+	<i class="material-icons">exit_to_app</i> 
+	Public Computer Secure Logout
+
+</button>
+</div>
+</div>
+</div>
+</div> 

@@ -36,8 +36,11 @@ angular.module('zenbrisa',
 'angularUtils.directives.dirPagination',
 'textAngular',
 'ngAria',
-'zenbrisa.mailbox',
-'ngImgCrop'
+
+'ngImgCrop',
+'ngFileUpload',
+'zenbrisa.mailbox'
+
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
@@ -126,6 +129,7 @@ var API_URL=
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
 	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
+	"reportAbuse":api_base_url+'users/addReport',
 
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',

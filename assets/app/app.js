@@ -57,20 +57,20 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev);
 	};
 
-	$rootScope.cropImage=function(ev)
-	{
-		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev);
+	$rootScope.cropImage=function(ev,user)
+	{	
+		console.log(user);
+
+		var data={};
+			data['userId']=user.userId;
+			data['username']=user.username;
+			data["image"]=user.profilePic;
+			
+
+		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
 
-	// $rootScope.checkPages = function(){
-	// 	var url=$location.path();
-	// 	var list=['/profile'];
 
-	// 	if(list.indexOf(url)>=0)
-	// 	{
-
-	// 	}
-	// }	
 }])
 
 //check login session 
@@ -108,6 +108,9 @@ angular.module('zenbrisa.app')
 
 	});
 
+$rootScope.goToPage= function(url){
+	$location.path(url);
+}
 //open user profile 
 $rootScope.userProfileView= function(id)
 {	
@@ -226,6 +229,27 @@ $rootScope.closeAlert= function(alert){
 			}
 	}
 
+	
+//get user details count :: 
+$rootScope.ProfileCount= function(){
+
+								var promise={};
+								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
+						    		{						    			
+						    			if( response.data) {
+						    				var data=response.data[0];
+						    				var count={};
+						    				count.publicPhotoCount=data.publicPhotoCount;
+						    				count.privatePhotoCount=data.privatePhotoCount;
+						    				count.videoCount=data.videoCount;
+						    				count.reviewReceived=data.reviewsReceivedCount;
+						    				count.reviewPenned=data.reviewsPennedCount;
+						    				count.favouriteCount=data.favouriteCount;
+						    				count.blockedCount=data.blockedCount;
+						    				$rootScope.userInfoCount=count;
+						    			}
+						    		}); 
+}
 	if($rootScope.isUserLogin)
 	{
 		var user={"email":$rootScope.isUserLogin.email};
@@ -394,8 +418,8 @@ $rootScope.userNavbar={
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll"},
-				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll"},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
+				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
+				"allPoll":{"title":'All Poll',"href":"#/all-poll", 'hide':true}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"

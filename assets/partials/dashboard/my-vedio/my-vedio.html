@@ -18,7 +18,9 @@
           
           <!--review list data-->
         <div class="row blockList">
-          <div class="publicHd">Video Gallery ({{videoList.length}})</div>
+          <div class="publicHd">Video Gallery 
+            <span ng-if="videoList.length>0">({{videoList.length}}) </span>
+          </div>
           <!--header content-->
         
 

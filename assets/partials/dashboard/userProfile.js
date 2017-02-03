@@ -1,39 +1,55 @@
 angular.module('zenbrisa.userProfile',[])
 .controller('userProfileView', userProfileView)
 .controller('sendPhotoKeyCtrl', sendPhotoKeyCtrl)
-.controller('profileview', profileview);
+.controller('profileview', profileview)
+.controller('reportAbuse', reportAbuse);
 
 
 //controller injector
 userProfileView.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','ameLightbox'];
 sendPhotoKeyCtrl.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','data'];
+reportAbuse.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams','data'];
+
 
 profileview.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout','$routeParams'];
 
 function profileview(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
 	{
+			timeout(function(){
+		//crop image
+	
+		var handleFileSelect=function(evt) {
+
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            e.$apply(function(e){
+              e.myImage=evt.target.result;
+              //open modal
+              var data={};
+              data["image"]=e.myImage;
+              data["user"]=rootscope.isUserLogin.userId;
+              
+              appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, evt,data);	
+            });
+          };
+
+          reader.readAsDataURL(file);
+
+        };
+
+
+      angular.element(document.querySelector('#uploadImage')).on('change',handleFileSelect);
+   
+  },650);
+
 	if(!rootscope.isUserLogin)
 	{
 		location.path('/');
 	}
 
-								//profile  alert count
-								var promise={};
-								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
-						    		{						    			
-						    			if( response.data) {
-						    				var data=response.data[0];
-						    				var count={};
-						    				count.publicPhotoCount=data.publicPhotoCount;
-						    				count.privatePhotoCount=data.privatePhotoCount;
-						    				count.videoCount=data.videoCount;
-						    				count.reviewReceived=data.reviewsReceivedCount;
-						    				count.reviewPenned=data.reviewsPennedCount;
-						    				count.favouriteCount=data.favouriteCount;
-						    				count.blockedCount=data.blockedCount;
-						    				rootscope.userInfoCount=count;
-						    			}
-						    		}); 
+								
+	rootscope.ProfileCount();
 };
 
 function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
@@ -95,9 +111,8 @@ appServices.post(API_URL.getAllCountOtherprofile,promise, function(response)
 var path=location.path();
 	
 //get video 
-if(path.indexOf('vedio')>=0){
+if(path.indexOf('video')>=0){
 
-	console.log("video");
 
 	var data={'userId':id};
 	e.loading=true;
@@ -246,7 +261,6 @@ e.removeBlockuser= function(id)
 
 		var data = { blockedUserId: id };
 
-
 		appServices.post(API_URL.unblockAUser,data, function(response)
 
 		{	
@@ -265,14 +279,14 @@ e.removeBlockuser= function(id)
 }
 
 //open lightbox
-e.openLightbox= function(data)
+e.openLightbox= function(data, index)
 	{
 
 	var imageList=[];
 	angular.forEach(data, function(value){
 		imageList.push(value.imageName);
 	})
-	var options = { keyboard: true,showDots: false};
+	var options = { keyboard: true,showDots: false, initialIndex:index};
     lightbox.show(imageList, options)
 }
 
@@ -382,6 +396,47 @@ e.WriteReview= function(data, form){
 
 }
 
+e.process=false;
+//request a photo key
+e.RequestPhotoKeySearch=function(id,process)
+{	
+		
+		var data={
+				"receiverId":id,
+				"composeSubject":"Primary Photo request",
+				"composeMessage":"Hi, "+ rootscope.isUserLogin.username+" would like to see your picture. Would you upload a Primary Photo please?",
+				"entryId":"undefined","replyMailStatus":"sent"};
+
+		e.process=true;
+		appServices.post(API_URL.saveMail ,data, function(response)
+			{
+				if(response.status==1)
+				{
+					appServices.openAlertBox('',"Your Message has been sent",'success' );
+
+				}
+				else
+				{
+					appServices.openAlertBox('',response.message,'error' );
+					
+				}
+				e.process=false;
+
+			
+			});
+
+}
+
+
+//report reportAbuse
+e.reportAbuse= function(ev,user, id){
+		var data={};
+			data["id"]=user.id;
+			data["username"]=user.username;
+			data['reportTo']=id;
+
+		appServices.modal('partials/dashboard/reportAbuse/reportAbuse.html', reportAbuse, ev,data)
+}
 };//end controller
 
 
@@ -422,5 +477,46 @@ function sendPhotoKeyCtrl(e,mdDialog, appServices,localStorageService,rootScope,
 				});
 
 			}
+
+}
+
+//reportAbuse
+
+function reportAbuse(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout,routeParams,data)
+{ 
+			e.cancel = function() 
+			{
+				mdDialog.cancel();
+			};
+
+	e.user=data;
+	e.isSend=false;
+
+	e.reportAbuse = function(message, form)
+	{
+	var promise={"userId":e.user.id,"reporterId":e.user.reportTo,"reportNote":message};
+	console.log(promise)
+
+	if(form.$valid)
+	{
+		e.loading=true;
+	appServices.post(API_URL.reportAbuse,promise, function(response)
+				{			
+						
+						if(response.status==1)
+						{
+							e.alert={'message':"Thanks for reporting! Zenbrisa will take care of it",'type':'alert-success'};
+							e.isSend=true;
+						}
+						else{
+							e.alert={'message':response.message,'type':'alert-danger'};
+							}
+
+						e.loading=false;
+
+								
+				});
+	}
+	}
 
 }

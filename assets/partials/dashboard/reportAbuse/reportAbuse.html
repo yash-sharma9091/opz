@@ -1,0 +1,58 @@
+<md-dialog aria-label="reportAbuse">
+  <form ng-cloak name="abuse" novalidate>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="colorWhite"> Report Abuse for {{user.username}}</h2>
+        <span flex></span>
+        <md-button ng-hide="isSend" class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close" class="colorWhite">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-padding">
+
+      <p class="infoAlert" ng-hide="isSend"> All Fields marked with <red>*</red> are mandatory. </p>
+      
+
+    
+      <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+                <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                 <span ng-bind-html="alert.message"> </span>
+               </p>
+        </div> 
+
+     <md-button aria-label="submit"  ng-show="isSend"   ng-click="cancel()" 
+      class="md-raised md-primary logpopup-Btn">
+        Close
+     </md-button>
+
+    <div ng-if="!isSend">  
+     <md-input-container class="md-block">
+          <label>Message</label>
+          <textarea 
+          class="textArea"
+              required
+              name="message"
+              ng-model="message" 
+               rows="5" md-select-on-focus>
+           </textarea>
+
+            <div class="errors" ng-messages="abuse.message.$error">
+                    <div ng-message="required">Message is required</div>
+                </div>
+          </md-input-container>
+
+        <md-button aria-label="submit" ng-click="reportAbuse(message, abuse)" class="md-raised md-primary logpopup-Btn" type="submit"> 
+        <span ng-if="!loading">Submit</span>
+        <span ng-if="loading">Processing..</span>
+
+         </md-button>
+
+      </div>
+
+    </md-dialog-content>
+
+  </form>
+</md-dialog>

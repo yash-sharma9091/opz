@@ -32,10 +32,11 @@
                     <a ng-click="userProfileView(x.userId)">
                       <i>
                       <i class="image-view" style="background-image:url('{{x.profilePic?x.profilePic: 'images/default-user-icon-profile.png';}}')">
-                        <md-icon class="star">do_not_disturb</md-icon>
+                        
                     
                       </i>
-                        <span>{{x.fullName || x.username}}<small class="loc"> <md-icon>location_on</md-icon> {{x.country}}</small></span>
+                        <span>{{x.fullName || x.username}}<small class="loc"> {{x.country}}</small>
+                        </span>
                       </a>
                         <md-button ng-click="setUnBlock(x.id, $index,data)" class="md-block btn blueBg">Unblock</md-button>
                     </div>

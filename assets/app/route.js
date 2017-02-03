@@ -177,7 +177,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:false
+          login:true
     }
   })
    .when('/reviews-penned/:_id',
@@ -199,7 +199,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:false
+          login:true
     }
 
   })
@@ -380,11 +380,30 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
+.when('/testimonial',
+  {
+    templateUrl:"/partials/static-pages/testimonial/testimonial.html",
+    controller:"blog",
+     access:
+    { 
+          login:false
+    }
+  })
+.when('/logout',
+  {
+    templateUrl:"/partials/static-pages/logout/logout.html",
+    controller:"logout",//app->public controller
+     access:
+    { 
+          login:true 
+    }
+  })
 
     .when('/404',{
     templateUrl: function(){
       location.assign('/404');
     }
   })
+
   .otherwise({redirectTo:"/404"});
 }]);

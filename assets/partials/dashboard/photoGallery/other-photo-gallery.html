@@ -24,7 +24,7 @@
            <md-content class="md-padding" ng-if="private" ng-hide="isValidGallery">
             <div class="publicHd">
               <span ng-if="selectedTabs==0"> Private Photo Gallery 
-                <span ng-if="isValidGallery">({{photoList.length}})</span>
+                <span ng-if="isValidGallery" ng-shoe="photoList.length>0">({{photoList.length}})</span>
               </span>
               <!--load private gallery-->
               </div>
@@ -110,7 +110,7 @@
 
 
               <i class="transition">
-              <a ng-click="openLightbox(photoList)" class="transition">
+              <a ng-click="openLightbox(photoList, $index)" class="transition">
               <img src="images/zoom-icon.png" alt=""></a>
               </i>
 

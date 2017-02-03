@@ -44,7 +44,7 @@ ssh zenbrisa@158.85.67.166
 F)#26(,zdi4]
 
 #super user password 
-	
+	zenflsuper!@#@!@#
 
 ----------admin panel-------
 zenflsuper2010#@!
@@ -62,25 +62,24 @@ b) TestFlex2
 Email address: TestFlex2@seologistics.com  
 Password: 123456
 
-todo:
-
-
-
-add memeber image on header
-
-in search page result change male/female icon 
-http://localhost:9004/#/search?free_exchange=1&both_exchange=&paid_exchange=&sensual=&therapeutic=&both_service=&min=&max=&country=United%20States&state=CA&city=Los%20Angeles&seeking_male=&seeking_female=&seeking_both=
-
-
-conversation
-reviewPennedCount
-
-
 TODO:
 lagout same as previous
 
-corp profile picture 
+---on search page---
+on search page add new member label 
+and show  result top  listing 
+new member -recent active(online) 
+--------------------
 
+static page text bold on banner
 
+crop tool 
+
+add private note on user profile on other profile user page 
+
+on search button remove (0) and chnage color 
+
+API error 
+check poll /userpoll/answerpoll
 
 

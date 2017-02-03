@@ -1396,6 +1396,23 @@ service.alert =function(alert){
 		}
 
 	};
+
+	service.getCountryCode= function(callback){
+
+		var $request={
+			method:'GET',
+			url:local_api_url+'isoCountyCode.json',
+			cache:$templateCache
+		
+		};
+
+		$http($request).then(success);
+		function success(reponse)
+		{
+			callback(reponse.data);
+		}
+
+	};
 	service.openAlertBox= function(title,message,theme){
 	
      var alert=$mdDialog.alert()
@@ -1620,4 +1637,18 @@ function splitStr(strData){
 			});
 			return data;
 			}
+}
+
+function arrayToStr(data){
+	var str='';
+	angular.forEach(data, function(value,index){
+		if(index==0){
+			str=value
+		}
+			else{
+					str=str+','+ value
+			}
+		
+	});
+	return str;
 }
