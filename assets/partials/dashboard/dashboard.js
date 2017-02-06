@@ -68,19 +68,14 @@ function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Uploa
           		        }
           		    }).then(function (response){
 
-          		       	console.log(response);
-                                console.log(response.data.image);
           		       	e.loading=false;
           		       	rootscope.userprofile['profilePic']=response.data.image;
-                                	console.log(rootscope.userprofile)
-          		       	mdDialog.cancel();
+                         	mdDialog.cancel();
 
 
           		    });
 		
  	}
-
-
 };
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
