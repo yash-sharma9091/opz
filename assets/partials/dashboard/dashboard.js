@@ -61,13 +61,7 @@ function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Uploa
  	e.saveProfilePicture= function()
  	{				e.loading=true;
 
- 					timeout(function(){
- 					
-          		       	e.loading=false;
-          		       	rootscope.userprofile['profilePic']=null;
-          		       	mdDialog.cancel();
- 					},1000)
- 						Upload.upload({
+ 			Upload.upload({
           		        url: API_URL.setProfilePic,
           		        data: {
           		        	profile_image: Upload.dataUrltoBlob(e.myImage, e.filename)
@@ -75,8 +69,10 @@ function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Uploa
           		    }).then(function (response){
 
           		       	console.log(response);
+                                console.log(response.data.image);
           		       	e.loading=false;
-          		       	rootscope.userprofile['profilePic']=response.image;
+          		       	rootscope.userprofile['profilePic']=response.data.image;
+                                	console.log(rootscope.userprofile)
           		       	mdDialog.cancel();
 
 

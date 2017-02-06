@@ -133,7 +133,7 @@ var API_URL=
 	"reportAbuse":api_base_url+'users/addReport',
 	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
 	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
-	"setProfilePic" : api_base_url+'updateProfile',
+	"setProfilePic" : api_base_url+'users/cropProfileImage',
 	
 	//social login/signup
 	"socialLoginUrl": api_base_url+'phase2/socialLoginSignup',
