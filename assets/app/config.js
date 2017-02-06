@@ -1,5 +1,5 @@
-//var api_base_url="http://158.85.67.166:9003/";
-var api_base_url="http://100.100.7.165:9002/";
+var api_base_url="http://158.85.67.166:9003/";
+//var api_base_url="http://100.100.7.165:9002/";
 var api_image_url="http://zenbrisa.com:9002/";
 //var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
@@ -131,7 +131,7 @@ var API_URL=
 	"reportAbuse":api_base_url+'users/addReport',
 	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
 	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
-	"setProfilePic" : api_base_url+'updateProfile',
+	"setProfilePic" : api_base_url+'users/cropProfileImage',
 	
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',
