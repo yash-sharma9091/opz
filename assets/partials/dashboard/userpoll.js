@@ -141,7 +141,7 @@ e.toggle = function (item, list) {
         var answers=[];
         	//convert object to array
         angular.forEach(e.poll_answer, function(value){
-        	answers.push(value)
+        	answers.push(value.id)
         });
 
 
@@ -152,7 +152,7 @@ e.toggle = function (item, list) {
         }
         else
         {
-   	
+   		console.log(answers);
         var promise =
          {
             poll_id: data.id,
@@ -161,6 +161,7 @@ e.toggle = function (item, list) {
             token: rootScope.isUserLogin.userToken,
             userRole:'user'
         };
+        console.log(promise);
 
         if(answers.length>0)
         {
@@ -170,8 +171,15 @@ e.toggle = function (item, list) {
 				
 				//after submit get poll comment 
 				e.alert={'message':response.message,'type':'alert-success'};
-				
-					$('body, html').animate({scrollTop:0},900);
+				appServices.alert(response.message);
+				$('body, html').animate({scrollTop:0},900);
+
+				timeout(function(){
+					if(reponse.status==true)
+					{
+						e.data={};
+					}
+				},500);
 
 			});
 
@@ -197,6 +205,7 @@ e.remove= function(data,index){
 
 //submit poll request
 
+
 e.submitPoll= function(data,form){
 	if(form.$valid)
 	{
@@ -218,6 +227,11 @@ e.submitPoll= function(data,form){
 							e.alert={'message':"You have successfully create new poll",'type':'alert-success'};
 						}
 					}
+				
+				form.$setUntouched();
+				form.$setPristine();
+				e.newPoll={};
+
 
      		});
 

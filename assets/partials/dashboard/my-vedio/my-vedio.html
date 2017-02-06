@@ -43,14 +43,16 @@
 
         <!--video template list -->
         <div class="videoBx">
-        
+       
           <div class="col-xs-6" ng-repeat="x in videoList track by $index">
+
             <div class="vedio-content">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe ng-if="x.videoUrl" class="embed-responsive-item" 
-                      ng-src="{{getUrl(x.videoUrl)}}"></iframe>
-                </div>
-                <p class="title">{{x.title}}</p>
+        
+          <div  class="embed-responsive embed-responsive-16by9">
+               <youtube-video video-url="x.videoUrl"></youtube-video>
+             </div>
+
+          <p class="title">{{x.title}}</p>
                 
                 <div class="btn-action"  layout="row"  layout-align="center center">
 

@@ -86,7 +86,7 @@
 
                 <md-content class="md-padding autocomplete" layout="column">
                    <h2 class="md-title">Country</h2>
-                <md-contact-chips
+                <md-contact-chips class="chips"
                                   ng-model="asyncContacts"
                                   md-contacts="countries($query)"
                                   md-contact-name="title"
@@ -110,7 +110,8 @@
         <md-tab-body>
 
               <div class="msglocat">
-                <div class="srchformBx">
+                <div>
+                <md-input-container class="md-icon-float md-icon-right md-block">
                   <md-select ng-model="searched.type" placeholder="- Select Members -" class="md-no-underline sechInp">
                     <md-option value="">-Select Members-</md-option>
                     <md-option value="availability">Massage Now!<sup>TM</sup></md-option>
@@ -119,7 +120,16 @@
                     <md-option value="keyword">Keyword</md-option>
                     <md-option value="professional">Professional Massage Therapist </md-option>
                   </md-select>
+                  <!-- Searches for Massage Now, Online Members and Professionals are within 60 mile / 96 km of home/travel location. -->
+                  <md-icon  
+                   uib-popover="Searches for Massage Now, Online Members and Professionals are within 60 mile / 96 km of home/travel location"
+                  popover-trigger="'mouseenter'"
+                  popover-is-open="user.openPopover"
+                  popover-append-to-body="true"
+                  popover-placement="left" class="pointer">
+                  help</md-icon>
                 </div>
+              </md-input-container>
                 <div class="srchformBx" ng-if="searched.type == 'username' || searched.type == 'keyword'">
                   <input type="text" name="mobilenumber" ng-model="searched.q" class="sechInp" placeholder="Enter Details">
                 </div>

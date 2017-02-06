@@ -16,7 +16,7 @@ photoGallery.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout
 //private photo gallery
 function photoGallery(e,rootScope,appServices,mdDialog,timeout,location,routeParams,route,lightbox,$http)
 { 
-	
+	rootScope.ProfileCount();
 	//set activate tabs
 	var params=['public','private','all'];
 	var id=routeParams.id;

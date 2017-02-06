@@ -1623,19 +1623,19 @@ function splitStr(strData){
 				
 				var strFinal='';
 				angular.forEach(str1, function(node){
-					strFinal=strFinal+' '+ node;
+					strFinal=strFinal+' '+ node.trim();
 				})
 				if(strFinal=='')
 				{
-						data.push(value);
+						data.push(value.trim());
 				}
 				else{
-						data.push(strFinal);
+						data.push(strFinal.trim());
 				}
 				}
 				
 			});
-			return data;
+				return data;
 			}
 }
 

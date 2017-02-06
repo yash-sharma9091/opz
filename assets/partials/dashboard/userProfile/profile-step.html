@@ -265,10 +265,14 @@
               <div class="col-sm-4"> <span>City: </span>  {{fulladdress.city || 'N/A'}}</div>
           </div>
           <div class="clearfix"></div> 
-
+          
           <p ng-bind-html="place.adr_address"  class="hideEle"></p>
           <div class="map-modal" >
-            <ng-map  center="[{{user.fulladress.location.lat}},{{user.fulladress.location.lng}}]"></ng-map>
+               <ng-map 
+                        ng-if="getmap(user.latitude,user.longitude)" zoom="11"
+                          center="{{getmap(user.latitude,user.longitude)}}">
+                        <marker position="{{getmap(user.latitude,user.longitude)}}"> </marker>
+                    </ng-map>
            </div>
         </div>
 
@@ -304,7 +308,7 @@
               <md-option value="average">Average</md-option>
               <md-option value="gym_fit">Gym Fit</md-option>
               <md-option value="muscular">Muscular</md-option>
-              <md-option value="few_pounds_over_average">A Few Ppounds Over Average</md-option>
+              <md-option value="few_pounds_over_average">A Few Pounds Over Average</md-option>
               <md-option value="large">Large</md-option>
             </md-select>
             <div class="errors" ng-messages="profileupdate.bodyTypeOne.$error">

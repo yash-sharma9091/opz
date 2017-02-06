@@ -273,6 +273,10 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeou
   };
 
 
+e.getmap= function(lat,lng){
+
+    return lat+','+lng;
+  }
 
 e.setMapcenter= function(pos){
 
@@ -303,7 +307,7 @@ e.setMapcenter= function(pos){
   
     var location={'latitude':userprofile['latitude'],"longitude":userprofile['longitude']};
     e.fulladdress=strToAddress(userprofile['country'],userprofile['streetAddress'],userprofile['extendedAddress'],userprofile['state'],userprofile['city'],userprofile['zipcode'],location);
-  
+    console.log(rootScope.userprofile);
 
     //set map center
     var loc={'lat':userprofile['latitude'], "lng":userprofile['longitude']};
@@ -313,8 +317,10 @@ e.setMapcenter= function(pos){
 //profile massage style
 if(rootScope.userprofile.massageStylesOne)
   {
-      e.listType=splitStr(rootScope.userprofile.massageStylesOne);
-      e.user['massageStyles']=e.listType;
+      e.listType=['swedish','reflexology','thai','deep tissue/strong','chinese'];
+      console.log(splitStr(rootScope.userprofile.massageStylesOne));
+      e.user['massageStyles']=splitStr(rootScope.userprofile.massageStylesOne);
+      
   }
 
 }
@@ -359,6 +365,9 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
       e.map = map;
     
       e.map.setCenter(e.place.geometry.location);
+      var loc=JSON.parse(JSON.stringify(e.place.geometry.location));
+       e.user.latitude=loc.lat;
+      e.user.longitude=loc.lng;
     
   });
 

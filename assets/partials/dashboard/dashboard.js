@@ -16,47 +16,79 @@ userReviewReceived.$inject=['$scope', '$rootScope','appServices','$mdDialog','$t
 myVedio.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast','$sce'];
 addNewVideo.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','$mdToast'];
 
-cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','data'];
+cropImage.$inject=['$scope', '$rootScope','appServices','$mdDialog','$timeout','$location','data','Upload'];
 
 //crop and upload profile picture
 
-function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data)
+function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Upload)
 {
-	 var user=data;
+	 	var user=data;
+
 		e.myCroppedImage='';
 		e.myImage=user.image;
+		e.filename=user.name;
 	
-	var handleFileSelect=function(evt) {
+	var handleFileSelect=function(evt) 
+		{
 
           var file=evt.currentTarget.files[0];
+          e.filename=file.name;
+          evt.target.value='';
           var reader = new FileReader();
           reader.onload = function (evt) {
             e.$apply(function(e){
             e.myImage=evt.target.result;
-              
             });
           };
-          reader.readAsDataURL(file);
 
+          reader.readAsDataURL(file);
         };
 
-        timeout(function(){
-
+        timeout(function()
+        {
       		angular.element(document.querySelector('#uploadImage1')).on('change',handleFileSelect);
-      },650)
+      		
+      	},650);
 
 	
 	e.cancel = function() 
-	{
-     mdDialog.cancel();
+	{		
+     	mdDialog.cancel();
  	};
+
+ 	//upload and save profile picture 
+
+ 	e.saveProfilePicture= function()
+ 	{				e.loading=true;
+
+ 					timeout(function(){
+ 					
+          		       	e.loading=false;
+          		       	rootscope.userprofile['profilePic']=null;
+          		       	mdDialog.cancel();
+ 					},1000)
+ 						Upload.upload({
+          		        url: API_URL.setProfilePic,
+          		        data: {
+          		        	profile_image: Upload.dataUrltoBlob(e.myImage, e.filename)
+          		        }
+          		    }).then(function (response){
+
+          		       	console.log(response);
+          		       	e.loading=false;
+          		       	rootscope.userprofile['profilePic']=response.image;
+          		       	mdDialog.cancel();
+
+
+          		    });
+		
+ 	}
 
 
 };
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 {
-	//e.user={"provisitMailStatus":"disable","sensualAds":"disable","searchProfileStatus":"disable","newMailStatus":"disable","pollMailStatus":"disable"};
 	e.user={};
 	e.userPassword={};
 	e.delete={}
@@ -212,7 +244,10 @@ function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)
 //MyFavourites controller
 function MyFavourites(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
 {
+		rootscope.ProfileCount();
+
 		e.loading=true;
+
 		var data={};
 		appServices.post(API_URL.getfavourite,data, function(response)
 
@@ -267,6 +302,7 @@ e.setUnfavorite =function(id, index,data){
 //blocked user controller
 function blockedusers(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
 {
+		rootscope.ProfileCount();
 		e.loading=true;
 		var data={};
 		appServices.post(API_URL.getblockUser,data, function(response)
@@ -318,7 +354,7 @@ e.setUnBlock=function(id, index,data){
 
 // user userReviewPined controller 
 function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
-{
+{		rootscope.ProfileCount();
 		//http request for get review form server 
 		e.loading=true;
 		var data={};
@@ -337,7 +373,7 @@ function userReviewPined(e, rootscope,appServices,$mdDialog,$timeout,location,md
 
 // user userReviewPined controller 
 function userReviewReceived(e, rootscope,appServices,$mdDialog,$timeout,location,mdToast)
-{
+{			rootscope.ProfileCount();
 		//http request for get review form server 
 		e.loading=true;
 		var data={};
@@ -357,7 +393,7 @@ function userReviewReceived(e, rootscope,appServices,$mdDialog,$timeout,location
 // user userReviewPined controller 
 function myVedio(e, rootscope,appServices,mdDialog,$timeout,location,mdToast,$sce)
 {
-
+		rootscope.ProfileCount();
 		//http request for get video list form server 
 		e.loading=true;
 
@@ -389,7 +425,7 @@ e.deleteVideoById = function(id,data,index)
 										data.splice(index,1);
 										//remove form server
 										var user={'videoId':id};
-										appServices.post(API_URL.deleteMyPhoto,user, function(response)
+										appServices.post(API_URL.removeVideoById,user, function(response)
 
 										{
 												appServices.alert("Successfully removed from your video list")

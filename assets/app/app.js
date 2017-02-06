@@ -20,7 +20,7 @@ angular.module('zenbrisa.app')
   }})
 
 //open modal and popupwindow function
-.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
+.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar','$timeout',function($rootScope, $mdDialog,appServices,cfpLoadingBar, timeout){
 	cfpLoadingBar.start();
 
 	//login modal
@@ -74,7 +74,7 @@ angular.module('zenbrisa.app')
 }])
 
 //check login session 
-.run(['$rootScope','appServices','$location','localStorageService','$sce', function($rootScope,appServices,$location,localStorageService,$sce){
+.run(['$rootScope','appServices','$location','localStorageService','$sce','$timeout', function($rootScope,appServices,$location,localStorageService,$sce, timeout){
 	
 	if(appServices.checkStorage('user'))
 	{
@@ -229,6 +229,27 @@ $rootScope.closeAlert= function(alert){
 			}
 	}
 
+	
+//get user details count :: 
+$rootScope.ProfileCount= function(){
+
+								var promise={};
+								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
+						    		{						    			
+						    			if( response.data) {
+						    				var data=response.data[0];
+						    				var count={};
+						    				count.publicPhotoCount=data.publicPhotoCount;
+						    				count.privatePhotoCount=data.privatePhotoCount;
+						    				count.videoCount=data.videoCount;
+						    				count.reviewReceived=data.reviewsReceivedCount;
+						    				count.reviewPenned=data.reviewsPennedCount;
+						    				count.favouriteCount=data.favouriteCount;
+						    				count.blockedCount=data.blockedCount;
+						    				$rootScope.userInfoCount=count;
+						    			}
+						    		}); 
+}
 	if($rootScope.isUserLogin)
 	{
 		var user={"email":$rootScope.isUserLogin.email};
@@ -240,10 +261,7 @@ $rootScope.closeAlert= function(alert){
 
 		return lat+','+lng;
 	}
-	$rootScope.getUrl = function(url)
-	{
-		 return  $sce.trustAsResourceUrl(url);
-	}
+	
 
 	$rootScope.getFormateddate=function(date)
 	{
@@ -396,9 +414,9 @@ $rootScope.userNavbar={
 	
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
-				"polls":{"title":'Polls',"href":"#/my-poll"},
+				"polls":{"title":'Polls',"href":"#/my-poll", 'hide':true},
 				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll", 'hide':true}
+				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"
