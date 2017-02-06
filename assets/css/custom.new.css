@@ -29,7 +29,7 @@ md-sidenav md-list .md-button:hover p {
     color: rgb(3, 169, 244) !important;
 }
 
-
+.username {max-width: 251px !important; line-height: 30px !important;}
 
 .margin-top20 {  margin-top: 25px;}
 
@@ -325,8 +325,8 @@ hr {
 .elipssis {
     display: inline-block;
     max-width: 106px;
-    overflow: hidden;
-    line-height: 11px;
+    overflow: hidden;    margin-bottom: -5px;
+    line-height: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -883,7 +883,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .btn-sm { min-height: 30p;x line-height: 30px; }
 .popover-content p{ padding-bottom: 5px; }
 
-.loginFrmTop .md-char-counter{display:none !important;}
+.loginFrmTop .md-char-counter, .md-char-counter, .verifyLogin  .md-char-counter{display:none !important;}
 .min-height { min-height: 40px; margin-top: 15px; }
 
 .rating-star
@@ -1061,3 +1061,15 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .reviewList-sm .review-img {    height: 119px;}*/
 .left-icon { padding-left: 0 !important }
 .chips input{    font-size: 13px !important}
+
+.fbCont i img { max-width: 25px; }
+.googleBtn {  background-color: #de5245; }
+.verifyLogin .infoAlert{ padding-bottom: 0; }
+.banner-text-sm .text-sm small{  font-size: 25px; }
+
+.banner-text-sm .massageexchange > span {
+
+    font-size: 50px;
+    line-height: 50px;
+  
+}

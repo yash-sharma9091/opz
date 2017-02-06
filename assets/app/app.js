@@ -2,7 +2,6 @@
 angular.module('zenbrisa.app')
 .run(function($log,$location){
 	$log.info("zenbrisa Application, Beta Version 1.2 @ flexsin Technology India")
-	// console.log($location.absUrl());
 })
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
@@ -53,13 +52,14 @@ angular.module('zenbrisa.app')
 
 
 	$rootScope.profileStep=function(ev)
-	{
-		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev);
+	{	var data={};
+
+		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev,data);
 	};
 
 	$rootScope.cropImage=function(ev,user)
 	{	
-		console.log(user);
+	
 
 		var data={};
 			data['userId']=user.userId;
@@ -139,6 +139,29 @@ $rootScope.closeAlert= function(alert){
 		
 	};
 
+	$rootScope.signOut=function(){
+	
+		var token=localStorageService.get("user",'sessionStorage');
+		var data= {'token':$rootScope.isUserLogin.token};
+		appServices.post(API_URL.logout, data, function(response){
+	
+		appServices.logout();
+		$rootScope.isUserLogin=false;
+		if(token.type=='google')
+			{
+				document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+baseurl;
+			}
+
+			$location.path('/');
+		});
+
+			
+	
+
+	}
+
+
+
 	//get user profile
 	$rootScope.getUserProfile= function(data,profile){
 
@@ -148,7 +171,7 @@ $rootScope.closeAlert= function(alert){
 						
 						 appServices.post(API_URL.userprofileStepNew,data, function(response)
 						    { 
-						     	
+						  
 						      var profileData=response.data;
 						    						 
 		
@@ -161,7 +184,7 @@ $rootScope.closeAlert= function(alert){
 										profileData['dob']=getDateStr(profileData['dobOne']);
 										
 										var age=getAge(profileData['dobOne']);
-										//console.log(profileData['dob'])
+										
 										profileData['age']=age.age
 										
 
@@ -179,7 +202,7 @@ $rootScope.closeAlert= function(alert){
 												profileData['address']=profileData['city'] +', ' + profileData['state'] + ', '+ profileData['country'];
 												
 												var add=profileData['address'];
-												console.log(add);
+											
 													add.search('undefined');
 													
 										}
@@ -214,7 +237,6 @@ $rootScope.closeAlert= function(alert){
 										}
 
 										$rootScope.userprofile=profileData;
-										
 										}
 
 										if(profile)

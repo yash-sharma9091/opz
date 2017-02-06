@@ -20,13 +20,23 @@
 <div class="logoutMidSec lightyellowBg">
 <p>If you are using a public computer or if you want to make sure that you have a very secure logout on your private computer, it is always best to choose “Public Computer Secure Logout” . This will not only close your current session, but will completely disable any future automatic logins on that computer.</p>
 <span>
-<button ng-click="logout()" 
+<button ng-if="isUserLogin.type" ng-click="signOut();" 
 	type="button" 
 	class="logoutBtns darkyellowBg">
 	<i class="material-icons">exit_to_app</i> 
 	Public Computer Secure Logout
 
 </button>
+
+<button ng-if="!isUserLogin.type" ng-click="logout();" 
+	type="button" 
+	class="logoutBtns darkyellowBg">
+	<i class="material-icons">exit_to_app</i> 
+	Public Computer Secure Logout
+
+</button>
+
+
 </div>
 </div>
 </div>
