@@ -1073,3 +1073,14 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
     line-height: 50px;
   
 }
+.icon-sm { font-size: 19px; }
+.addnewLoc {     font-weight: 600;
+    position: absolute;
+    right: 0;
+    color: #03a9f4; }
+    .addnewLoc md-icon { color: #03a9f4;   }
+    .link-group {    width: 100%; text-align: center; }
+.link-group  a{ display: inline-block;
+    padding: 5px 3px;
+    font-weight: 500;
+    color: #161617; }

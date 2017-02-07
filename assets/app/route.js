@@ -277,7 +277,7 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-  .when('/my-poll',
+  .when('/all-poll',
   {
     templateUrl:"/partials/dashboard/userPoll/user-poll.html",
     controller:"userPoll",
@@ -297,7 +297,7 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true
     }
   })
-  .when('/all-poll',
+  .when('/my-poll',
   {
     templateUrl:"/partials/dashboard/userPoll/all-poll.html",
     controller:"allPoll",

@@ -3,11 +3,11 @@
     <div class="mylocationHd">My Locations</div>
     <div class="mylocatInn">
       <div class="specifyHd">
-        <span>Specify Your Home & Travel cities, and Common Search Locations.</span>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standar mmy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <span>SPECIFY YOUR HOME AND TRAVEL CITIES, AND COMMON SEARCH LOCATIONS.</span>
+       
       </div>
       <div class="addcountryCity" ng-controller="userDashboardSearch">
-        <a href="">Add Country</a>
+        <a ng-click="addLocation('addCountry')">Add Country</a>
         <a ng-click="addLocation('addCity')">Add City</a>
       </div>
       <div class="row">
@@ -65,7 +65,7 @@
                 <md-input-container>
                   <label>Search Area</label>
                   
-                  <md-select ng-model="myLocation.searchLocation" class="md-no-underline">
+                  <md-select placeholder="Search Area" ng-model="myLocation.searchLocation" class="md-no-underline">
                   <!-- <md-option value="" >Search Area</md-option> -->
                     <md-option ng-repeat="miles in commonMilesArray" value="{{miles.hideValue}}" >{{miles.displayValue}}</md-option>
                     <!-- ng-selected="(typeof searchLocation != undefined && searchLocation != null && searchLocation !='' && searchLocation == miles.hideValue) ? true : false " -->

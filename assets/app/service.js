@@ -1274,7 +1274,7 @@ service.alert =function(alert){
 				);
 
 		};
-	service.modal=function(template, controller,ev,data)
+service.modal=function(template, controller,ev,data)
 	{
 		
 		var modal;
@@ -1303,17 +1303,13 @@ service.alert =function(alert){
 			}
 		}
 	
-		$mdDialog.show(modal).then(function(answer) {
-         // $scope.status = 'You said the information was "' + answer + '".';
-     }, function() {
-         // $scope.status = 'You cancelled the dialog.';
-     });
+		return $mdDialog.show(modal)
 	};
 
 
 	service.post=function(url,data, callback)
 	{	
-
+		
 		var $request={
 			method:'POST',
 			url:url,

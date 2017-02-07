@@ -148,5 +148,9 @@ var API_URL=
 
 	// mailbox
 	"mailbox": api_base_url + 'mail/mailbox',
-	"getUserFolders": api_base_url + 'mail/getUserFolders'
+	"getUserFolders": api_base_url + 'mail/getUserFolders',
+
+	//add massage
+	"addMassage":api_base_url+"massagenow/addMassageNow",
+	"getMassage": api_base_url+"massagenow/getMassageNowDetails"
 }
