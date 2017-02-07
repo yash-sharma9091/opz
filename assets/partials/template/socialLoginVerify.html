@@ -1,0 +1,90 @@
+<md-dialog aria-label="socialLogin">
+  <form ng-cloak name="signup" novalidate class="verifyLogin">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="colorWhite">Verify your Details</h2>
+        <span flex></span>
+       
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content class="md-padding">
+
+    <p class="infoAlert" ng-hide="isSend"> All Fields marked with <red>*</red> are mandatory. </p>
+    
+      <div class="alert {{alert.type}}" ng-if="alert">
+              <p>
+                <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+                 <span ng-bind-html="alert.message"> </span>
+               </p>
+        </div> 
+
+     <md-button aria-label="submit"  ng-show="isSend"   ng-click="cancel()" 
+      class="md-raised md-primary logpopup-Btn">
+        Close
+     </md-button>
+
+    <div ng-if="!isSend">  
+    <p class="infoAlert" > Hello, {{user.name}} , You need to verfiy below details to continue</p>
+
+    <!--username-->
+     <md-input-container class="md-block margin-top25 loaderText">
+        <md-progress-circular  ng-if="checking"
+                   md-mode="indeterminate" 
+                   
+                   md-diameter="15px">
+                   </md-progress-circular>
+            <label>User Name (6 - 10 characters ) </label>
+            <input  name="username" 
+                    required 
+                    type="text"
+                    minlength="6"
+                    md-maxlength="10"
+                    ng-keyup="checkUsrname(user.username,signup)"
+                    ng-model="user.username" 
+                   >
+          <div ng-messages="signup.username.$error">
+          <div ng-message="required">Username is required.</div>
+          <div ng-message="minlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="md-maxlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
+
+          <div ng-message="username">
+           {{user.username}} is already taken, 
+              please choose a different name
+          </div>
+         
+            
+      </div>
+  
+        <div class="clearfix"></div>
+  </md-input-container>
+
+<!--gender-->
+  <md-input-container class="md-block">
+    <label>Gender  </label>
+    <md-select ng-model="user.gender" name="gender" placeholder="Gender" required class="md-no-underline">
+         <md-option value="">-- Select Gender --</md-option>
+        <md-option value="male">Male</md-option>
+        <md-option value="female">Female</md-option>
+    
+    </md-select>
+     <div ng-messages="signup.gender.$error">
+          <div ng-message="required">Gender is required.</div>
+      </div>
+
+  </md-input-container>
+<!--login-->
+
+  <md-button aria-label="submit" ng-click="verfiyLogin(message, abuse)" class="md-raised md-primary logpopup-Btn" type="submit"> 
+    <span ng-if="!loading">Submit</span>
+    <span ng-if="loading">Processing..</span>
+
+   </md-button>
+
+      </div>
+
+    </md-dialog-content>
+
+  </form>
+</md-dialog>
