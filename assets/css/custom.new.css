@@ -945,9 +945,9 @@ md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea soli
  .colorWhite{ color: white !important; }
  .imageview { padding:20px;  margin: auto; }
 
-img-crop {  max-width: 400px; max-height:250px !important ; position: static !important;}
+img-crop {  max-width: 400px;height:250px !important ; position: static !important;}
 .file{    position: absolute;
-    z-index: 1;
+    z-index: 99;
     top: 0;
     bottom: 0;
     left: 0;
@@ -1089,4 +1089,6 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
     padding: 5px 3px;
     font-weight: 500;
     color: #161617; }
->>>>>>> ee95f69cd9352aac1d8d29c09b4f47e1e4af0ee2
+
+.crop { position: relative;height: 35px; width: 35px; }
+.crop-btn { position: relative ; }

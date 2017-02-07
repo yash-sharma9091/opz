@@ -46,7 +46,6 @@ angular.module('zenbrisa',
 
 angular.module('zenbrisa.userProfile',[]);
 angular.module('zenbrisa.app',[]);
-
 angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('userDashboardModule',[]);
