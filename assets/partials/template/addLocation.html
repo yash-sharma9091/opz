@@ -3,7 +3,7 @@
      <md-button class="md-icon-button closeIcon" ng-click="cancel()">
           <md-icon  aria-label="Close">close</md-icon>
         </md-button>
-     <h2 class="LoginHd">Add New City</h2>
+     <h2 class="LoginHd">{{title}}</h2>
       <div class="md-dialog-content">
       <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
 
@@ -31,7 +31,7 @@
                     >
             <!--error template-->
             <div ng-messages="addcity.city.$error">
-            <div ng-message="required">City Name is required.</div>
+            <div ng-message="required">Location  is required.</div>
             </div>
             </md-input-container>
 

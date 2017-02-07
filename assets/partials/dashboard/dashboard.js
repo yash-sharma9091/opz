@@ -61,30 +61,21 @@ function cropImage(e, rootscope,appServices,mdDialog,timeout,location,data,Uploa
  	e.saveProfilePicture= function()
  	{				e.loading=true;
 
- 					timeout(function(){
- 					
-          		       	e.loading=false;
-          		       	rootscope.userprofile['profilePic']=null;
-          		       	mdDialog.cancel();
- 					},1000)
- 						Upload.upload({
+ 			Upload.upload({
           		        url: API_URL.setProfilePic,
           		        data: {
           		        	profile_image: Upload.dataUrltoBlob(e.myImage, e.filename)
           		        }
           		    }).then(function (response){
 
-          		       	console.log(response);
           		       	e.loading=false;
-          		       	rootscope.userprofile['profilePic']=response.image;
-          		       	mdDialog.cancel();
+          		       	rootscope.userprofile['profilePic']=response.data.image;
+                         	mdDialog.cancel();
 
 
           		    });
 		
  	}
-
-
 };
 
 function userDashboard(e, rootscope,appServices,$mdDialog,$timeout,location)

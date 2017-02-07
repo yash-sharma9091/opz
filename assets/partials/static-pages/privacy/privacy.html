@@ -103,9 +103,13 @@
 				</p>
 				<p >If you have an online account with us, you have the ability to review and update your personal information online by logging into your account and clicking on your account settings. More information about how to contact us is provided below. If you have an online account with us, you also may close your account at any time by visiting the
 
-					<!-- <a href="/deleteaccount" class="bld blue-b"> Settings</a> -->
-					<!-- <blue>Settings</blue> -->
-					<a  class="bld blue-b">Settings</a> 
+					<a ng-if="isUserLogin" ng-href="{{userDashboard.setting.href}}" class="bld blue-b">
+					<blue>Settings</blue>
+					</a>
+						<a ng-if="!isUserLogin" ng-click="login($event)" class="bld blue-b">
+					<blue>Settings</blue>
+					</a>
+				
     page for your account and clicking on  Cancel Membership. After you close your account, you will not be able to sign in to our website or access any of your personal information. However, you can open a new, separate account at any time or re-activate your previous account by following instructions we will give you at the time you close your account. If you close your account, we may still retain certain information associated with your account for analytical purposes and record keeping integrity, as well as to prevent fraud, collect any fees owed, enforce our terms and conditions, take actions we deem necessary to protect the integrity of our website or our users, or take other actions otherwise permitted by law. In addition, if certain information has already been provided to third parties as described in this Privacy Policy, retention of that information will be subject to those third parties' policies.
 				</p>
 				<p >

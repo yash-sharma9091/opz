@@ -133,10 +133,28 @@
            <div class="ordevider">
               <span>OR</span>
            </div>
-           <a class="facebookBtn fbCont"><i>
-           <img src="images/fb-icon.png" alt="facebook"></i> Login with Facebook</a>
-           <a class="linkedBtn fbCont"><i><img src="images/linkedin-icon.png" alt="linkedin"></i> Login with Linkedin</a>
-           <a class="twitterBtn fbCont"><i><img src="images/twitter-icon.png" alt="twitter"></i> Login with Twitter</a>
+
+            <!--soical login-->
+           <span ng-controller="socialLoginCtrl">
+           <!--facebook-->
+              <a class="googleBtn fbCont" ng-click="googleLogin($event)"><i>
+                <img src="images/google-plus-symbol.png" alt="facebook"></i> 
+                <span ng-if="!isLading"> Login with Google</span>
+                <span ng-if="isLading"> Processing..</span>
+
+            </a>
+
+            <a class="facebookBtn fbCont" ng-click="facebookLogin()"><i>
+              <img src="images/fb-icon.png" alt="facebook"></i> 
+              Login with Facebook
+            </a>
+            <!--linkedin-->
+           <!-- <a class="linkedBtn fbCont"><i><img src="images/linkedin-icon.png" alt="linkedin"></i> Login with Linkedin</a> -->
+           <!--twitter-->
+           <!-- <a class="twitterBtn fbCont"><i><img src="images/twitter-icon.png" alt="twitter"></i> Login with Twitter</a> -->
+           <!--end social login -->
+           </span>
+           
           
       </div>
     </md-dialog-content>

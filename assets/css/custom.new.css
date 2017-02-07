@@ -29,7 +29,7 @@ md-sidenav md-list .md-button:hover p {
     color: rgb(3, 169, 244) !important;
 }
 
-
+.username {max-width: 251px !important; line-height: 30px !important;}
 
 .margin-top20 {  margin-top: 25px;}
 
@@ -325,8 +325,8 @@ hr {
 .elipssis {
     display: inline-block;
     max-width: 106px;
-    overflow: hidden;
-    line-height: 11px;
+    overflow: hidden;    margin-bottom: -5px;
+    line-height: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -883,7 +883,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .btn-sm { min-height: 30p;x line-height: 30px; }
 .popover-content p{ padding-bottom: 5px; }
 
-.loginFrmTop .md-char-counter{display:none !important;}
+.loginFrmTop .md-char-counter, .md-char-counter, .verifyLogin  .md-char-counter{display:none !important;}
 .min-height { min-height: 40px; margin-top: 15px; }
 
 .rating-star
@@ -1056,10 +1056,37 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
         border-bottom: 1px #d2d2d2 solid;
         margin-bottom: 10px;
 } 
-.reviewList-sm  .image-view{    height: 118px;}
+/*.reviewList-sm  .image-view{    height: 118px;}
 .reviewList ul li {    min-height: 120px;}
-.reviewList-sm .review-img {    height: 119px;}
+.reviewList-sm .review-img {    height: 119px;}*/
 .left-icon { padding-left: 0 !important }
+
 .redBdr {     border: #fd1515 solid 1px!important;   }
  .redBdr .whiteBg{   background: #ffe1e1 !important; }
  .newMemBg { background-color: #f17774; }
+
+.chips input{    font-size: 13px !important}
+
+.fbCont i img { max-width: 25px; }
+.googleBtn {  background-color: #de5245; }
+.verifyLogin .infoAlert{ padding-bottom: 0; }
+.banner-text-sm .text-sm small{  font-size: 25px; }
+
+.banner-text-sm .massageexchange > span {
+
+    font-size: 50px;
+    line-height: 50px;
+  
+}
+.icon-sm { font-size: 19px; }
+.addnewLoc {     font-weight: 600;
+    position: absolute;
+    right: 0;
+    color: #03a9f4; }
+    .addnewLoc md-icon { color: #03a9f4;   }
+    .link-group {    width: 100%; text-align: center; }
+.link-group  a{ display: inline-block;
+    padding: 5px 3px;
+    font-weight: 500;
+    color: #161617; }
+>>>>>>> ee95f69cd9352aac1d8d29c09b4f47e1e4af0ee2

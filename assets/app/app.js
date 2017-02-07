@@ -2,7 +2,6 @@
 angular.module('zenbrisa.app')
 .run(function($log,$location){
 	$log.info("zenbrisa Application, Beta Version 1.2 @ flexsin Technology India")
-	// console.log($location.absUrl());
 })
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
@@ -20,7 +19,7 @@ angular.module('zenbrisa.app')
   }})
 
 //open modal and popupwindow function
-.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar',function($rootScope, $mdDialog,appServices,cfpLoadingBar){
+.run(['$rootScope','$mdDialog','appServices','cfpLoadingBar','$timeout',function($rootScope, $mdDialog,appServices,cfpLoadingBar, timeout){
 	cfpLoadingBar.start();
 
 	//login modal
@@ -33,6 +32,7 @@ angular.module('zenbrisa.app')
 	{
 			appServices.modal('partials/template/signup.html', loginCtrl, ev)
 	}
+
 	$rootScope.camposemail=function(ev,id,username)
 	{		
 			//public controller
@@ -51,30 +51,26 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev,data);
 		}
 
-
 	$rootScope.profileStep=function(ev)
-	{
-		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev);
+	{	var data={};
+
+		appServices.modal('partials/dashboard/userProfile/profile-step.html', profileStepCtrl, ev,data);
 	};
 
 	$rootScope.cropImage=function(ev,user)
 	{	
-		console.log(user);
-
 		var data={};
 			data['userId']=user.userId;
 			data['username']=user.username;
 			data["image"]=user.profilePic;
-			
 
 		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
 
-
 }])
 
 //check login session 
-.run(['$rootScope','appServices','$location','localStorageService','$sce', function($rootScope,appServices,$location,localStorageService,$sce){
+.run(['$rootScope','appServices','$location','localStorageService','$sce','$timeout', function($rootScope,appServices,$location,localStorageService,$sce, timeout){
 	
 	if(appServices.checkStorage('user'))
 	{
@@ -139,16 +135,38 @@ $rootScope.closeAlert= function(alert){
 		
 	};
 
+	$rootScope.signOut=function(){
+	
+		var token=localStorageService.get("user",'sessionStorage');
+		var data= {'token':$rootScope.isUserLogin.token};
+		appServices.post(API_URL.logout, data, function(response){
+	
+		appServices.logout();
+		$rootScope.isUserLogin=false;
+		if(token.type=='google')
+			{
+				document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue="+baseurl;
+			}
+
+			$location.path('/');
+		});
+
+			
+	
+
+	}
+
+
+
 	//get user profile
 	$rootScope.getUserProfile= function(data,profile){
 
 			if($rootScope.isUserLogin)
 			{
-
 						
 						 appServices.post(API_URL.userprofileStepNew,data, function(response)
 						    { 
-						     	
+						  
 						      var profileData=response.data;
 						    						 
 		
@@ -161,7 +179,7 @@ $rootScope.closeAlert= function(alert){
 										profileData['dob']=getDateStr(profileData['dobOne']);
 										
 										var age=getAge(profileData['dobOne']);
-										//console.log(profileData['dob'])
+										
 										profileData['age']=age.age
 										
 
@@ -179,7 +197,7 @@ $rootScope.closeAlert= function(alert){
 												profileData['address']=profileData['city'] +', ' + profileData['state'] + ', '+ profileData['country'];
 												
 												var add=profileData['address'];
-												console.log(add);
+											
 													add.search('undefined');
 													
 										}
@@ -214,7 +232,7 @@ $rootScope.closeAlert= function(alert){
 										}
 
 										$rootScope.userprofile=profileData;
-										
+
 										}
 
 										if(profile)
@@ -261,10 +279,7 @@ $rootScope.ProfileCount= function(){
 
 		return lat+','+lng;
 	}
-	$rootScope.getUrl = function(url)
-	{
-		 return  $sce.trustAsResourceUrl(url);
-	}
+	
 
 	$rootScope.getFormateddate=function(date)
 	{
@@ -292,7 +307,8 @@ $rootScope.ProfileCount= function(){
 }])
 
 //define template
-.run(['$rootScope', function($rootScope){
+.run(['$rootScope',function($rootScope)
+		{
 		$rootScope.template={
 			'header':'partials/template/header.html',
 			'footer':'partials/template/footer.html',
@@ -305,7 +321,6 @@ $rootScope.ProfileCount= function(){
 			'photoGalleryContent' :'partials/dashboard/photoGallery/photo-gallery-content.html'
 		}
 }])
-
 //navbar links
 .run(['$rootScope','$location','$mdSidenav', function($rootScope,$location,$mdSidenav){
 	$rootScope.navabar=
@@ -417,9 +432,9 @@ $rootScope.userNavbar={
 	
 	"community":{"title":"Community", 
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
-				"polls":{"title":'Polls',"href":"#/my-poll"},
+				"polls":{"title":'Polls',"href":"#/my-poll", 'hide':true},
 				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll", 'hide':true}
+				"allPoll":{"title":'Polls',"href":"#/all-poll"}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"

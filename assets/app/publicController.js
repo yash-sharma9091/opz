@@ -223,10 +223,6 @@ function contactus(e,appServices,rootScope,location, timeout)
   e.keyDown= function(ev){
       ev.stopPropagation();
   }
-   // element.find('input').on('keydown', function(ev) {
-   //        ev.stopPropagation();
-   //    });
-
 
     e.loadCountry = function(){
       return timeout(function() {
@@ -240,7 +236,7 @@ function contactus(e,appServices,rootScope,location, timeout)
         {
            e.alert={'message':"Processing..",'type':'alert-success'}
 
-           console.log(data);
+        
            data["url"]="https://www.zenbrisa.com/images/";
 
            appServices.post(API_URL.contactusMail,data, function(response)
@@ -263,9 +259,9 @@ function contactus(e,appServices,rootScope,location, timeout)
 };
 
 //profile step complete 
-profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog','NgMap','$timeout'];
+profileStepCtrl.$inject=['$scope','appServices','$rootScope','$location','$mdDialog','NgMap','$timeout','data'];
 
-function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeout)
+function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeout,data)
 {
   e.cancel = function() 
   {
@@ -273,6 +269,10 @@ function profileStepCtrl(e,appServices,rootScope,location,mdDialog,NgMap,$timeou
   };
 
 
+e.getmap= function(lat,lng){
+
+    return lat+','+lng;
+  }
 
 e.setMapcenter= function(pos){
 
@@ -284,15 +284,10 @@ e.setMapcenter= function(pos){
   });
 }
 
-             
-
  //set profile data if updated
  e.user={};
  e.step=1;
  e.fullAddress={};
-
-
-     
 
  if(rootScope.userprofile)
  {  
@@ -307,14 +302,14 @@ e.setMapcenter= function(pos){
 
     //set map center
     var loc={'lat':userprofile['latitude'], "lng":userprofile['longitude']};
-   /// console.log(loc);
+  
     e.setMapcenter(loc);
 
 //profile massage style
+e.listType=['swedish','reflexology','thai','deep tissue/strong','chinese'];
+
 if(rootScope.userprofile.massageStylesOne)
   {
-      e.listType=['swedish','reflexology','thai','deep tissue/strong','chinese'];
-      console.log(splitStr(rootScope.userprofile.massageStylesOne));
       e.user['massageStyles']=splitStr(rootScope.userprofile.massageStylesOne);
       
   }
@@ -359,8 +354,10 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
  NgMap.getMap().then(function(map)
   {
       e.map = map;
-    
       e.map.setCenter(e.place.geometry.location);
+       var loc=JSON.parse(JSON.stringify(e.place.geometry.location));
+       e.user.latitude=loc.lat;
+      e.user.longitude=loc.lng;
     
   });
 
@@ -385,6 +382,21 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
           e.step=e.step-1;
         
       }
+
+
+//if users comes via social login 
+var socialUser=data;
+
+if(Object.keys(socialUser).length>0)
+{ 
+
+  e.socialUser=socialUser;
+}
+else
+{
+ e.socialUser=false; 
+}
+
       //submit profile form  step 
       e.updateProfile = function(form,data)
       {
@@ -422,9 +434,14 @@ e.fulladdress=strToAddress(country,streetAddress,extendedAddress,state,city,post
         }
         e.step=3;
         //set map center if exist
-        var loc={'lat':parseFloat(userprofile['latitude']), "lng":parseFloat(userprofile['longitude'])};
-        e.setMapcenter(loc);
-           
+        console.log(userprofile.latitude);
+        if(userprofile){
+          if(!angular.isUndefined(userprofile.latitude) && !angular.isUndefined(userprofile.longitude))
+          {
+            var loc={'lat':parseFloat(userprofile['latitude']), "lng":parseFloat(userprofile['longitude'])};
+            e.setMapcenter(loc);
+          }
+          }
         }
          //profile step 3
         else if(e.step==3)
@@ -524,6 +541,36 @@ e.setMassageStyle = function(data){
 
 }
 
+e.checkUsrname= function(query,form){
+  var user={username:query};
+  $timeout(function()
+  {
+
+  e.checking=true;
+  appServices.post(API_URL.checkuserName,user, function(response)
+     {
+      if(response.message==='username_exists')
+      {
+           form.username.$setValidity("username", false);
+           
+      }
+      else if(response.message==='no_username')
+      {
+        form.username.$setValidity("username", true);
+         
+      }
+      else
+      {
+         
+        form.username.$setValidity("username", true);
+      }
+      
+       e.checking=false;
+     });
+  },650)
+}
+
+
  }
 
 //compose email public
@@ -540,10 +587,8 @@ function composeEmailPublic(e,mdDialog, appServices,localStorageService,rootScop
  };
  
 e.user=data;
-  e.email={};
-
- console.log(data);
- e.email['to']=data.username;
+e.email={};
+e.email['to']=data.username;
 
 
 e.generateKey= function(key)

@@ -3,7 +3,7 @@ var api_base_url="http://158.85.67.166:9003/";
 var api_image_url="http://zenbrisa.com:9002/";
 //var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
-
+var baseurl='http://localhost:3002/';
 angular.module('zenbrisa',
 [
 'ngMaterial',
@@ -36,10 +36,11 @@ angular.module('zenbrisa',
 'angularUtils.directives.dirPagination',
 'textAngular',
 'ngAria',
-
+'youtube-embed',
 'ngImgCrop',
 'ngFileUpload',
-'zenbrisa.mailbox'
+'zenbrisa.mailbox',
+"socialLogin"
 
 ]);
 
@@ -56,6 +57,7 @@ angular.module('userPollModule',[]);
 angular.module('zenbrisa.blog',[]);
 angular.module('zenbrisa.blogComment',[]);
 angular.module('zenbrisa.mailbox',[]);
+angular.module('socialLogin',[]);
 
 
 var API_URL=
@@ -133,8 +135,11 @@ var API_URL=
 	"reportAbuse":api_base_url+'users/addReport',
 	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
 	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
-	"setProfilePic" : api_base_url+'updateProfile',
+	"setProfilePic" : api_base_url+'users/cropProfileImage',
 	
+	//social login/signup
+	"socialLoginUrl": api_base_url+'phase2/socialLoginSignup',
+
 	//email system
 	"saveMail":api_base_url+'mail/saveMail',
 	"addReview":api_base_url+'users/addReview',
@@ -145,5 +150,9 @@ var API_URL=
 
 	// mailbox
 	"mailbox": api_base_url + 'mail/mailbox',
-	"getUserFolders": api_base_url + 'mail/getUserFolders'
+	"getUserFolders": api_base_url + 'mail/getUserFolders',
+
+	//add massage
+	"addMassage":api_base_url+"massagenow/addMassageNow",
+	"getMassage": api_base_url+"massagenow/getMassageNowDetails"
 }

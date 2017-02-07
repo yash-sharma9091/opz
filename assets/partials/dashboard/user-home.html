@@ -4,33 +4,78 @@
         <div class="row clearfix">
           <div class="col-sm-6">
             <div class="msgBg">
+            <form novalidate name="saveTime" ng-controller="getSaveMassage">
               <div class="msgNowHd">Massage Now!<sup>&trade;</sup></div>
+         
               <div class="availablTxt clearfix">
-                  <md-checkbox  aria-label="Checkbox 1">I am available till</md-checkbox>
+                  <md-checkbox  
+                        aria-label="check" 
+                        ng-model="available.availabletime">I am available till
+                  </md-checkbox>
+
                   <span style="margin-top: -40px;">
-                    <div uib-timepicker
-                  ng-model="mytime"
-                  ng-change="changed()"
-                  hour-step="1" minute-step="10" ></div>
+                      <div uib-timepicker
+                            ng-disabled="!available.availabletime"
+                            ng-model="available.massageTime"
+                            ng-change="changed()"
+                           
+                            show-meridian="false"
+                            hour-step="1" minute-step="10" >
+                      </div>
+
                   </span>
               </div>
+
               <div class="srchformBx">
               <!--country with iso dial code-->
-                <md-select ng-model="weapon" placeholder="- Select Your Country Code -" class="md-no-underline sechInp">
+           
+                <md-select ng-model="available.commonCountryPhoneCodeArrayFirst" 
+                            ng-disabled="!available.availabletime"  required 
+                            name="commonCountryPhoneCodeArrayFirst"
+                            placeholder="- Select Your Country Code -" 
+                            class="md-no-underline sechInp">
+
                   <md-option>-Select Your Country Code-</md-option>
                   <md-option ng-repeat="x in countryCode | orderBy:'name'" ng-value="x">
                     {{x.name}} ({{x.dial_code}})
                   </md-option>
                 
                 </md-select>
+      
               </div>
+
               <div class="srchformBx">
-                <input type="text" name="mobilenumber" class="sechInp" placeholder="Enter Your Mobile Number">
+               <md-input-container >
+                <input type="text" 
+                      ng-disabled="!available.availabletime" 
+                      name="contact" 
+                      class="sechInp" 
+                      required 
+                      ng-model="available.currentPhoneNo"
+                      placeholder="Enter Your Mobile Number">
+                  <div ng-messages="saveTime.contact.$error">
+                  <div ng-message="required">Mobile Number is required.</div>
+                  </div>
+                 <md-input-container >
+
               </div>
+
               <div class="srchsave">
-                <md-button class="md-raised md-primary logpopup-Btn">Save</md-button>
-                <md-button class="md-raised md-primary logpopup-Btn">Cancel</md-button>
+                <md-button type="submit" aria-label="save" ng-click="saveAvailableTime(available,saveTime)" 
+                  class="md-raised md-primary logpopup-Btn">
+                  <span ng-if="!saveLoading">Save</span>
+                  <span ng-if="saveLoading">Processing..</span>
+                </md-button>
+
+                <md-button 
+                    ng-click="cancle(available, saveTime)" 
+                    aria-label="cancle" 
+                    class="md-raised md-primary logpopup-Btn">
+                    <span>Cancel</span>
+                </md-button>
+
               </div>
+              </form>
             </div>
           </div>
           <div class="col-sm-6">
@@ -44,12 +89,15 @@
         md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
 
         <md-tab id="tab1">
+
         <md-tab-label>My Location</md-tab-label>
         <md-tab-body ng-init="searched.mile=''">
+
               <div class="msglocat">
                 <div class="srchformBx">
                   <md-select ng-model="searched.mile" placeholder="- Select within Miles -" class="md-no-underline sechInp">
-                   <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}</md-option>
+                   <md-option ng-repeat="mile in commonMilesArray" value="{{mile.hideValue}}">{{mile.displayValue}}
+                   </md-option>
                   </md-select>
                 </div>
                 <div class="srchformBx" ng-init="mySavedLocations()">
@@ -57,7 +105,8 @@
                   <md-select ng-model="searched.location"
                   placeholder="- Select Location -"
                   md-on-close="addLocation(searched.location, $event)"
-                  class="md-no-underline sechInp" ng-change="checkLocationType(searched.location)">
+                  class="md-no-underline sechInp" 
+                  ng-change="checkLocationType(searched.location)">
                     <md-option value="">-Select Location-</md-option>
                     <md-option ng-repeat="x in myLocations | orderBy : '+travelLocationName'" value="{{x.travelLocationName+'|'+x.latitude+'|'+x.longitude+'|'+x.locationType}}" >{{x.travelLocationName}}</md-option>
 
@@ -67,6 +116,30 @@
 
 
                   </md-select>
+                  <div  class="addnewLoc">
+                  <a class="pull-right"
+                          uib-popover-template="'addnewLocation.html'"
+                          popover-trigger="'outsideClick'"
+                          popover-placement="top"
+                          popover-is-open="user.addLocPop"
+                          popover-append-to-body="'true'"
+                  >
+                   <md-icon>add</md-icon> Add new Location
+                  </a>
+                  </div>
+          <script type="text/ng-template" id="addnewLocation.html">
+          <div class="needlogin link-group text-center" layout="row">
+            <a ng-click=" user.addLocPop=false;addLocation('addCity');" >Add City</a> <a>|</a>
+            <a ng-click=" user.addLocPop=false;addLocation('addCountry');">Add Country</a><a> |</a> 
+            <a ng-click=" user.addLocPop=false;addLocation('editList');">Edit List</a> 
+
+          </div>
+
+          </div>
+          </div>
+          </div>
+
+          </script>
                 </div>
 
                 <div class="srchsave">
@@ -86,7 +159,7 @@
 
                 <md-content class="md-padding autocomplete" layout="column">
                    <h2 class="md-title">Country</h2>
-                <md-contact-chips
+                <md-contact-chips class="chips"
                                   ng-model="asyncContacts"
                                   md-contacts="countries($query)"
                                   md-contact-name="title"
@@ -121,7 +194,7 @@
                     <md-option value="professional">Professional Massage Therapist </md-option>
                   </md-select>
                   <!-- Searches for Massage Now, Online Members and Professionals are within 60 mile / 96 km of home/travel location. -->
-                  <md-icon  
+                  <md-icon   class="icon-sm"
                    uib-popover="Searches for Massage Now, Online Members and Professionals are within 60 mile / 96 km of home/travel location"
                   popover-trigger="'mouseenter'"
                   popover-is-open="user.openPopover"

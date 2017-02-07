@@ -123,8 +123,8 @@
                       <a ng-href="{{userDashboard.setting.href}}">
                         <md-icon>settings</md-icon> Settings</a>
                       </li>
-                      <li role="menuitem" ">
-                      <a  href="#/logout"> <md-icon>exit_to_app</md-icon>Logout</a></li>
+                      <li role="menuitem" >
+                      <a  href="#/logout" ng-click="$mdMenu.open($event);"> <md-icon>exit_to_app</md-icon>Logout</a></li>
                     </ul>
               </md-menu-content>
             </md-menu>
