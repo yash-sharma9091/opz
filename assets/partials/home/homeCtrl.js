@@ -1,8 +1,9 @@
 angular.module('zenbrisa.controllers')
 .controller('homepage', ['$scope', '$location', 'NgMap', 'appServices', '$rootScope', '$mdDialog', function($scope, $location, NgMap, appServices, $rootScope, $mdDialog) {
 	$rootScope.usersAddInfo = [];
-
-	if ($rootScope.isUserLogin) {
+	var path = $location.path();
+	
+	if ($rootScope.isUserLogin && path === '/search') {
 		var data = {};
 		appServices.post(API_URL.getblockUser, data, function(response)
 		{
@@ -142,7 +143,9 @@ angular.module('zenbrisa.controllers')
 
    		$location.path('/search').search(searchData)
 	};
-
+	$scope.forceEllipses = true;
+	$scope.maxSize = 10;
+	$scope.paging = { page:  1 };
 	$scope.zn_SearchedResults = function() {
 	   /*navigator.geolocation.getCurrentPosition(function(position, html5Error) {
 	        //geo_loc = processGeolocationResult(position);
@@ -157,26 +160,46 @@ angular.module('zenbrisa.controllers')
 	    obj.limit = 50;
 	    obj.offset = 0;
 	    if ($rootScope.isUserLogin) {
+	    	
 	    	obj.user_id = $rootScope.isUserLogin.userId;
 	    }
-	    appServices.post(API_URL.search, {'request':obj}, function(response) {
+	   
+	    appServices.post(API_URL.search + '?page='+$scope.paging.page, {'request':obj}, function(response) {
 	    	if (response.status == 1) {
 	    		$scope.znUsers = response.data;
-	    		console.log($scope.znUsers.length);
-	    		$scope.paging = {
-	    			total: response.total,
-	    			pages: Math.ceil((response.total) / obj.limit),
-	    			limit: obj.limit,
-	    			start: (obj.offset * obj.limit) + 1,
-	    			end: (response.total < ((obj.offset + 1) * obj.limit)) ? response.total : ((obj.offset + 1) * obj.limit),
-	    			offset: obj.offset,
-	    			current: 1,
-	    			steps: 5,
-	    			onPageChanged: loadPages,
-	    		};
+	    		$scope.paging = response.paging;
 	    	}
 	    	$scope.loading = false;
 	    });
+	    
+	    set();
+	};
+
+	
+
+	$scope.pageChanged = function() {
+		$scope.zn_SearchedResults();
+	}	
+	/*function loadPages() {
+		$scope.paging['start'] = ((($scope.paging.current - 1) * $scope.paging.limit) + 1);
+		$scope.paging['end'] = ($scope.paging['total'] < ($scope.paging.current * $scope.paging.limit)) ? $scope.paging['total'] : ($scope.paging.current * $scope.paging.limit);
+		// TODO : Load current page Data here
+		$scope.paging['page'] = $scope.paging.current;
+		Search Results
+		var obj = $location.search();
+		obj.offset = (($scope.paging.current - 1) * $scope.paging.limit);
+		appServices.post(API_URL.search,{'request': obj}, function(response) {
+			if (response.status == 1) {
+				$scope.znUsers = response.data;
+				$('body, html').animate({
+					scrollTop: 0
+				}, 900);
+			}
+		});
+		set();
+	}*/
+
+	function set() {
 	    var v = $location.search();
 	    $scope.searchData = $location.search();
 	    //console.log($scope.searchData);
@@ -239,122 +262,70 @@ angular.module('zenbrisa.controllers')
 		}
 	}
 
+	$scope.updateSearch = function(searchData) {
 
-function loadPages() {
-	$scope.paging['start'] = ((($scope.paging.current - 1) * $scope.paging.limit) + 1);
-	$scope.paging['end'] = ($scope.paging['total'] < ($scope.paging.current * $scope.paging.limit)) ? $scope.paging['total'] : ($scope.paging.current * $scope.paging.limit);
-   // TODO : Load current page Data here
-   $scope.paging['page'] = $scope.paging.current;
-   /*Search Results*/
-   var obj = $location.search();
-   obj.offset = (($scope.paging.current - 1) * $scope.paging.limit);
-   appServices.post(API_URL.search,{'request': obj}, function(response) {
-   	if (response.status == 1) {
-   		$scope.znUsers = response.data;
-   		console.log($scope.znUsers.length);
-   		$('body, html').animate({
-   			scrollTop: 0
-   		}, 900);
-   	}
-   })
-   var v = $location.search();
-   $scope.searchData = {
-   	free_exchange: (typeof v.free_exchange != undefined && v.free_exchange != null && v.free_exchange != '') ? 1 : '',
-   	both_exchange: (typeof v.both_exchange != undefined && v.both_exchange != null && v.both_exchange != '') ? 1 : '',
-   	paid_exchange: (typeof v.paid_exchange != undefined && v.paid_exchange != null && v.paid_exchange != '') ? 1 : '',
-   	sensual: (typeof v.sensual != undefined && v.sensual != null && v.sensual != '') ? 1 : '',
-   	therapeutic: (typeof v.therapeutic != undefined && v.therapeutic != null && v.therapeutic != '') ? 1 : '',
-   	both_service: (typeof v.both_service != undefined && v.both_service != null && v.both_service != '') ? 1 : '',
-   	lat: (typeof v.lat != undefined && v.lat != null) ? (v.lat) : '',
-   	lon: (typeof v.lon != undefined && v.lon != null) ? (v.lon) : '',
-   	min: (typeof v.min != undefined && v.min != null) ? parseInt(v.min) : '',
-   	max: (typeof v.max != undefined && v.max != null) ? parseInt(v.max) : '',
-   	country: (typeof v.country != undefined && v.country != null && v.country != '') ? (v.country) : '',
-   	state: (typeof v.state != undefined && v.state != null) ? (v.state) : '',
-   	city: (typeof v.city != undefined && v.city != null) ? (v.city) : '',
-   	seeking_male: (typeof v.seeking_male != undefined && v.seeking_male != null && v.seeking_male != '') ? 1 : '',
-   	seeking_female: (typeof v.seeking_female != undefined && v.seeking_female != null && v.seeking_female != '') ? 1 : '',
-   	seeking_both: (typeof v.seeking_both != undefined && v.seeking_both != null && v.seeking_both != '') ? 1 : '',
-   	searchBy:  (typeof v.searchBy != undefined && v.searchBy != null && v.searchBy != '') ? v.searchBy : '',
-   }
-
-   // Code re-factored
-   if (typeof v.bodytype != undefined && v.bodytype != null) {
-   	$scope.bodytype = v.bodytype.split("|");
-   } else {
-   	$scope.bodytype = [];
-   }
-   if (typeof v.level != undefined && v.level != null) {
-   	$scope.level = v.level.split("|");
-   } else {
-   	$scope.level = [];
-   }
-}
-
-$scope.updateSearch = function(searchData) {
-
-	/*Update Search Criteria*/
-	var obj = $location.search();
-	var result = {};
-	if (obj.country) {
-		result['country'] = obj.country;
-	}
-	if (obj.state) {
-		result['state'] = obj.state;
-	}
-	if (obj.city) {
-		result['city'] = obj.city;
-	}
-	if (obj.address) {
-		result['address'] = obj.address;
-	}
-
-	if ($scope.slider.min) {
-		result['min'] = parseInt($scope.slider.min);
-	}
-	if ($scope.slider.max) {
-		result['max'] = parseInt($scope.slider.max);
-	}
-	if (searchData.lat) {
-		result['lat'] = searchData.lat;
-	}
-	if (searchData.lon) {
-		result['lon'] = searchData.lon;
-	}
-	if ($scope.seeking.length > 0) {
-		if ($scope.seeking.length === 2) {
-			result['both_exchange'] = 1;
-		} else {
-			result['both_exchange'] = '';
+		/*Update Search Criteria*/
+		var obj = $location.search();
+		var result = {};
+		if (obj.country) {
+			result['country'] = obj.country;
 		}
-		$scope.seeking.forEach(function(key) {
-			result[key] = 1;
-		});
-	}
-
-	if ($scope.massageStyle.length > 0) {
-		if ($scope.massageStyle.length === 2) {
-			result['both_service'] = 1;
-		} else {
-			result['both_service'] = '';
+		if (obj.state) {
+			result['state'] = obj.state;
 		}
-		$scope.massageStyle.forEach(function(key) {
-			result[key] = 1;
-		});
-	}
-
-	if ($scope.gender.length > 0) {
-		if ($scope.gender.length === 2) {
-			result['gender_both'] = 1;
-		} else {
-			result['gender_both'] = '';
+		if (obj.city) {
+			result['city'] = obj.city;
 		}
-		$scope.gender.forEach(function(key) {
-			result[key] = 1;
-		});
-	}
+		if (obj.address) {
+			result['address'] = obj.address;
+		}
 
-   /*if(typeof obj != undefined && obj != null){
+		if ($scope.slider.min) {
+			result['min'] = parseInt($scope.slider.min);
+		}
+		if ($scope.slider.max) {
+			result['max'] = parseInt($scope.slider.max);
+		}
+		if (searchData.lat) {
+			result['lat'] = searchData.lat;
+		}
+		if (searchData.lon) {
+			result['lon'] = searchData.lon;
+		}
+		if ($scope.seeking.length > 0) {
+			if ($scope.seeking.length === 2) {
+				result['both_exchange'] = 1;
+			} else {
+				result['both_exchange'] = '';
+			}
+			$scope.seeking.forEach(function(key) {
+				result[key] = 1;
+			});
+		}
+
+		if ($scope.massageStyle.length > 0) {
+			if ($scope.massageStyle.length === 2) {
+				result['both_service'] = 1;
+			} else {
+				result['both_service'] = '';
+			}
+			$scope.massageStyle.forEach(function(key) {
+				result[key] = 1;
+			});
+		}
+
+		if ($scope.gender.length > 0) {
+			if ($scope.gender.length === 2) {
+				result['gender_both'] = 1;
+			} else {
+				result['gender_both'] = '';
+			}
+			$scope.gender.forEach(function(key) {
+				result[key] = 1;
+			});
+		}
+
+   		/*if(typeof obj != undefined && obj != null){
 			Object.keys(obj).forEach((key) => result[key] = obj[key]);
 		}
 		if(typeof searchData != undefined && searchData != null){
@@ -362,21 +333,22 @@ $scope.updateSearch = function(searchData) {
 		}*/
 
 		if ($scope.level.length > 0) {
+			/*
 			var b = [];
 			$scope.level.forEach(function(key) {
 				b.push(key);
-			});
-			result['level'] = b.join("|");
+			});*/
+			result['level'] = $scope.level.join("|");
 		} else {
 			result['level'] = '';
 		}
 
 		if ($scope.bodytype.length > 0) {
-			var b = [];
+			/*var b = [];
 			$scope.bodytype.forEach(function(key) {
 				b.push(key);
-			});
-			result['bodytype'] = b.join("|");
+			});*/
+			result['bodytype'] = $scope.bodytype.join("|");
 		} else {
 			result['bodytype'] = '';
 		}
@@ -590,5 +562,12 @@ $scope.updateSearch = function(searchData) {
 
 });
   }
+
+  // Get last active
+  $scope.getLastActive = function (date) {
+  	var start = moment(date);
+  	var end = moment();
+  	return end.to(start);
+  };
 
 }]);
