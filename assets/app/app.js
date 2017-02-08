@@ -89,6 +89,10 @@ angular.module('zenbrisa.app')
 
 	$rootScope.$on("$routeChangeSuccess", function(event,current ,prev){
 		$rootScope.userInfoCount=false;
+		
+		$rootScope.chatStart=current.access.chat?true:false
+		
+
 		if(current.access.login==true)
 		{
 				
@@ -98,6 +102,7 @@ angular.module('zenbrisa.app')
 				{
 					$rootScope.login();
 					$location.path('/');
+
 				}
 				//check pages
 		}
@@ -156,15 +161,13 @@ $rootScope.closeAlert= function(alert){
 			$location.path('/');
 		});
 
-			
-	
-
-	}
+		}
 
 
 
 	//get user profile
-	$rootScope.getUserProfile= function(data,profile){
+	$rootScope.getUserProfile= function(data,profile)
+	{
 
 			if($rootScope.isUserLogin)
 			{

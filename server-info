@@ -85,3 +85,7 @@ crop tool
 TODO on server
 chnage base url
 update image CDN path
+
+livetesting
+
+http://158.85.67.166:9003/users/getOtherUserDetails

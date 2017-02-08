@@ -206,7 +206,7 @@ md-progress-circular {
 }
 .scroll-top {
     position: fixed;
-    right: 15px;
+    right: 5px;
     bottom: 10px;
     background-color: rgba(0, 173, 255, 0.94) !important;
     color: white !important;
@@ -1132,3 +1132,28 @@ text-align: center;
     .sm{height: 45px;}
     
     .inactive{    color: gray !important;   background-color: #cacaca;}
+
+iframe { border: 0; height: 0 !important }
+
+.md-button.md-primary.chat-btn{position: fixed;
+    z-index: 1; font-size: 12px;
+    text-align: center;
+    bottom: 0;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
+    border: 0;
+    right: 67px;
+    background-color: #04a6f4;
+    color: white;
+    text-transform: capitalize;}
+    
+    .md-button.md-primary.chat-btn md-icon { color: white !important }
+    .md-button.md-primary.chat-btn .icon-sm {    
+    font-size: 18px !important;
+    float: right;
+    margin-top: 11px;
+    }
+    .popover-sm .popover-content{ font-size: 11px; padding-top: 5px;  }
+  
+     .popover-sm  .arrow {     display: none !important; }
+     .professional-profile .profileInfoBx {    height: 323px; }

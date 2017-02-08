@@ -1,0 +1,268 @@
+<div class="mainCont">
+<!--user profile header-->
+<section ng-include="template.userProfileHeader"></section>
+
+
+<section class="profilepage-Bot">
+  <div class="container">
+    <div class="row clearfix">
+
+      <div class="col-sm-3">
+        <div class="profHd clearfix">Profile <span><img src="images/profile-arrow.png"></span></div>
+        <span ng-include="template.usersideNavbar"> Loading..</span>
+
+      </div>
+      <div class="col-sm-9">
+        <div class="row professional-profile">
+       <div class="col-sm-5">
+            <div class="profileInfoBx">
+              <div class="profInfoHd">Personal Information</div>
+              <div class="myProfList">
+                <ul>
+                  <li ng-if="userprofile.gender">Gender: <span> {{userprofile.gender}}</span></li>
+                  <li ng-if="userprofile.country">Country:  
+                      <span>{{userprofile.country}}</span>
+                  </li>
+                  <li ng-if="userprofile.state">
+                      State: <span>{{userprofile.state}}</span>
+                  </li>
+                  
+                  <li >City:  <span>{{userprofile.city}}</span></li>
+
+                  <li ng-if="userprofile.dobOne">Age:  
+                      <span>{{calculateAge(userprofile.dobOne)}} </span>
+                  </li>
+            
+                  <li>
+                    Seeking to <br>exchange with:  
+                    <span class="pinkClr" 
+                    ng-class="{'pinkClr':userprofile.seeking_female,'blueClr':userprofile.seeking_male }"> 
+                      {{userprofile.seeking_both?'M':''}}<span class="pinkClr" ng-if="userprofile.seeking_both==='both'">F</span>
+                      
+                      <span ng-if="!userprofile.seeking_both">
+                      {{userprofile.seeking_male?'M':'' || userprofile.seeking_female?'F':''}}
+                      </span>
+
+                    <i class="tooltipBx"  
+                      uib-popover="M=Male, F=Female, MF=Male & Female" 
+                      popover-trigger="'mouseenter'" 
+                      popover-append-to-body="'true'"> ? </i>
+                 
+                  </span>
+
+                  </li>
+                  <li ng-if="userprofile.bodyTypeOne">Body Type:  
+                    <span split-str="userprofile.bodyTypeOne" >
+
+                      </span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-7"  >
+       
+              <div class="bodyWork">
+                <div class="profInfoHd">Massage Information</div>
+                <div class="typeLabel">
+                  <ul>
+                    <li>Type of level: 
+              <span>
+
+            {{(userprofile.levelTypeOne=='professional_cmt' ? 'Professional/CMT' : userprofile.levelTypeOne=='aficionado'?'Aficionado or Amateur':userprofile.levelTypeOne ) || 'Not Specified'}}
+
+              </span>
+                  </li>
+                    <li ng-if="userprofile.massageStylesOne"  class="large-height">
+                      Styles of massage that I prefer to give: 
+                      <span ng-if="userprofile.massageStylesOne" split-str="userprofile.massageStylesOne" > </span>
+                      <span ng-if="userprofile.massageStylesOne==','">
+                            Not Specified
+                      </span>
+                    </li>
+
+                    <li>Types of Massage that interest me:
+                      <span>  
+                             
+                      <x ng-if="userprofile.therapeuticMassageOne" class="colorBlue">
+                      <text>{{userprofile.therapeuticMassageOne }}</text> 
+
+                    <small class="red"> 
+                     <black>&nbsp;Seeks-</black>
+                                      
+                      <span ng-if="userprofile.seeking_both">
+                        {{userprofile.seeking_male?'M':''}}
+                        {{userprofile.seeking_female?'F':''}} 
+                      </span>
+                      
+                       <span ng-if="userprofile.seeking_male" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_male?'M':''}}
+                      </span>
+                       <span ng-if="userprofile.seeking_female" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_female?'F':''}}
+                      </span>
+
+                      <i class="tooltipBx"  
+                      uib-popover="M=Male, F=Female, MF=Male & Female" 
+                      popover-trigger="'mouseenter'" 
+                      popover-placement="left"
+                      popover-append-to-body="'true'"> ? </i>
+
+                      </small>
+                      </x>
+                     
+                    <x ng-if="userprofile.sensualMassageOne" class="cyan" >
+                    <text>{{userprofile.sensualMassageOne}}</text>
+                     <small> 
+                     <black>&nbsp;Seeks-</black>
+                                      
+                      <span ng-if="userprofile.seeking_both">
+                        {{userprofile.seeking_male?'M':''}}
+                        {{userprofile.seeking_female?'F':''}} 
+                      </span>
+                     
+                       <span ng-if="userprofile.seeking_male" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_male?'M':''}}
+                      </span>
+                       <span ng-if="userprofile.seeking_female" ng-class="{'hide':userprofile.seeking_both}">
+                        {{userprofile.seeking_female?'F':''}}
+                      </span>
+
+                      <i class="tooltipBx"  
+                      uib-popover="M=Male, F=Female, MF=Male & Female" 
+                      popover-trigger="'mouseenter'" 
+                      popover-placement="left"
+                      popover-append-to-body="'true'"> ? </i>
+
+                      </small>                     
+                      </x>
+                       
+                      </span>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row profilechangeform">
+           <form novalidate name="account">
+
+          <div class="clearfix">  
+             <div class="col-md-12 steptopBx">
+              <div class="radiotxt">Please Select which acount you entered to keep exiting?</div>
+               <md-radio-group 
+               ng-required=true 
+               ng-model="user.type" 
+               ng-init="user.type='normal'">
+                <md-radio-button value="normal"  class="md-primary">Massage exchange</md-radio-button>
+                <md-radio-button value="professional" class="md-primary"> Paid professional massage </md-radio-button>
+             
+                </md-radio-group>
+            </div>
+          </div> 
+          <!--account form-->
+       
+          <div class="clearfix">  
+
+              <div class="col-md-12"><p>Please enter ypur new username and email for professional account!</p></div>
+              <div class="col-md-6">
+
+ <md-input-container class="md-block margin-top25 loaderText">
+        <md-progress-circular  ng-if="checking"
+                   md-mode="indeterminate" 
+                   
+                   md-diameter="15px">
+                   </md-progress-circular>
+            <label>User Name (6 - 10 characters ) </label>
+            <input  name="username" 
+                    required 
+                    type="text"
+                    minlength="6"
+                    md-maxlength="10"
+                    ng-keyup="checkUsrname(user.username,account)"
+                    ng-model="user.username" 
+                   >
+          <div ng-messages="account.username.$error">
+          <div ng-message="required">Username is required.</div>
+          <div ng-message="minlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="md-maxlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
+
+          <div ng-message="username">
+           {{user.username}} is already taken, 
+              please choose a different name
+          </div>
+         
+            
+      </div>
+  
+        <div class="clearfix"></div>
+  </md-input-container>
+             </div>
+              <div class="col-md-6">
+                 
+<md-input-container class="md-block margin-top25">
+            <label>Email (not revealed to other members)</label>
+            <input  name="email" 
+                    required 
+                    type="text"
+                    ng-model="user.email" 
+                    ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/">
+            <div ng-messages="account.email.$error">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Enter valid email address</div>
+            </div>
+</md-input-container>
+
+             </div>
+          </div>
+          <div class="clearfix">  
+              <div class="col-md-6">
+               <md-input-container class="md-block">
+            <label>Password</label>
+            <input  
+                    name="password" 
+                    required 
+                    type="password"
+                    ng-model="user.password" 
+            >
+           
+            <div ng-messages="account.password.$error">
+            <div ng-message="required">Password is required.</div>
+            </div>
+      </md-input-container>
+             </div>
+              <div class="col-md-6">
+                  <md-input-container class="md-block">
+              <label>Confirm Password</label>
+              <input  
+                      name="confirmpassword" 
+                      required 
+                      type="password"
+                      ng-model="user.confirmpassword" 
+              >
+              <div ng-messages="account.confirmpassword.$error">
+                <div ng-message="required">Confirm Password is required.</div>
+              </div>
+
+            </md-input-container>
+             </div>
+          </div>
+          <div class="clearfix">  
+             <div class="col-md-12">
+              <md-button class="md-raised md-primary logpopup-Btn" type="submit" style="margin-left:0 !important;">Save</md-button>
+            </div>
+            <div class="col-md-12">
+            <p class="noteitalic">Note*: your new account will be created with the above mentioned information! you can manage your account once it is ready.</p>
+            </div>
+          </div> 
+          </form>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>

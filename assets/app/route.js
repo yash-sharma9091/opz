@@ -8,34 +8,34 @@ angular.module('app.ngRoute',['ngRoute'])
 		templateUrl:"/partials/home/home.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
 	}).when('/about-us',{
   	templateUrl:"/partials/static-pages/about-us/about-us.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/faqs',{
   	templateUrl:"/partials/static-pages/faqs/faqs.html",
     access:
     {
-          login:false
+          login:false , chat:false
     }
   })
   .when('/term-of-use',{
     templateUrl:"/partials/static-pages/term-of-use/term-of-use.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/privacy',{
     templateUrl:"/partials/static-pages/privacy/privacy.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/free-massage-exchange',{
@@ -43,28 +43,28 @@ angular.module('app.ngRoute',['ngRoute'])
     templateUrl:"/partials/static-pages/free-massage-exchange/free-massage-exchange.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   }).when('/gay-massage',{
     controller:"homepage",
     templateUrl:"/partials/static-pages/gay-massage/gay-massage.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   }).when('/paid-professional-massage',{
     controller:"homepage",
     templateUrl:"/partials/static-pages/paid-professional-massage/paid-professional-massage.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   }).when('/sensual-massage',{
     controller:"homepage",
     templateUrl:"/partials/static-pages/sensual-massage/sensual-massage.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/therapeutic-massage',{
@@ -72,7 +72,7 @@ angular.module('app.ngRoute',['ngRoute'])
     templateUrl:"/partials/static-pages/therapeutic-massage/therapeutic-massage.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/advertise',{
@@ -80,7 +80,7 @@ angular.module('app.ngRoute',['ngRoute'])
     templateUrl:"/partials/static-pages/advertise/advertise.html",
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   .when('/contactus',{
@@ -88,7 +88,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'contactus',
     access:
     {
-          login:false
+          login:false, chat:false
     }
   })
   //dynamic page login require
@@ -98,7 +98,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'userDashboardSearch',
     access:
     {
-          login:true
+          login:true, chat:true
     }
   })
   .when('/profile',
@@ -108,7 +108,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'profileview',
     access:
     {
-          login:false
+          login:false, chat:true
     },
   })
   .when('/profile/:_id',
@@ -117,7 +117,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'userProfileView',
     access:
     {
-          login:false
+          login:false, chat:true
     }
   })
 
@@ -127,7 +127,7 @@ angular.module('app.ngRoute',['ngRoute'])
     controller:'userLocations',
     access:
     {
-          login:true
+          login:true, chat:true
     }
   })
   .when('/search',
@@ -137,7 +137,7 @@ angular.module('app.ngRoute',['ngRoute'])
     // controller:"searchpage",
     access:
     { 
-          login:false
+          login:false, chat:true
     }
   })
   .when('/setting',
@@ -147,7 +147,7 @@ angular.module('app.ngRoute',['ngRoute'])
     
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
    .when('/my-favourites',
@@ -157,7 +157,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
     .when('/blocked-userlist',
@@ -167,7 +167,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   .when('/reviews-penned',
@@ -177,7 +177,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
    .when('/reviews-penned/:_id',
@@ -187,7 +187,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
 
   })
@@ -199,7 +199,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
 
   })
@@ -210,7 +210,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
 
   })
@@ -221,7 +221,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userprofile.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
 
   })
@@ -232,7 +232,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/dashboard.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
    //user profile view public
@@ -243,7 +243,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userProfileView.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
   })
 
@@ -255,7 +255,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/photogallery.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
     .when('/photo-gallery/:id/:_id',
@@ -265,7 +265,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/userProfileView.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
   })
      .when('/photo-gallery/',
@@ -275,7 +275,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/photogallery.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   .when('/all-poll',
@@ -285,7 +285,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   .when('/create-poll',
@@ -295,7 +295,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   .when('/my-poll',
@@ -305,7 +305,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   .when('/poll-details/:id',
@@ -315,7 +315,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
   
@@ -326,7 +326,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:false
     }
   })
     
@@ -337,7 +337,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:false
     }
   })
 .when('/bonus-history',
@@ -347,7 +347,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/dashboard/user-poll.js
     access:
     { 
-          login:true
+          login:true, chat:false
     }
   })
 .when('/blogs',
@@ -357,7 +357,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/blog/blog.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
   })
 .when('/blog/:blogId/:slug',
@@ -367,9 +367,19 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/blog/blog.js
     access:
     { 
-          login:false
+          login:false, chat:true
     }
   })
+.when('/professional-pfofile',
+  {
+    templateUrl:"/partials/dashboard/professional-user-profile/professional-profile.html",
+   // controller:"blogCommentCtrl",
+    access:
+    { 
+          login:false, chat:false
+    }
+  })
+
 .when('/blog/post-a-blog',
   {
     templateUrl:"/partials/blog/post.html",
@@ -377,7 +387,7 @@ angular.module('app.ngRoute',['ngRoute'])
     //controller path file path : assest/blog/blog.js
     access:
     { 
-          login:true
+          login:true, chat:true
     }
   })
 .when('/testimonial',

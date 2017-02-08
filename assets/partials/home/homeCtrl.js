@@ -110,8 +110,10 @@ angular.module('zenbrisa.controllers')
   	/*Get Places from Google Map*/
   	$scope.placeChanged = function() {
   		$scope.place = this.getPlace();
-  		$scope.searchData['lat'] = JSON.parse(JSON.stringify($scope.place.geometry.location)).lat;
-  		$scope.searchData['lon'] = JSON.parse(JSON.stringify($scope.place.geometry.location)).lng;
+  		if($scope.place.geometry){
+  			$scope.searchData['lat'] = JSON.parse(JSON.stringify($scope.place.geometry.location)).lat;
+  			$scope.searchData['lon'] = JSON.parse(JSON.stringify($scope.place.geometry.location)).lng;
+  		}
   	};
 
   	/*Get User Requested Data*/

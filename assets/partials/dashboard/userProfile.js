@@ -55,6 +55,7 @@ function profileview(e,mdDialog, appServices,localStorageService,rootscope,locat
 
 								
 	rootscope.ProfileCount();
+	console.log("sjkfhsjd");
 };
 
 function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,location,timeout,routeParams,lightbox)
@@ -68,6 +69,8 @@ var user={objectUserId:id}
 e.isUserProfile=true;
 e.isUserId=id;
 
+function getOtherUserDeatils1()
+{
 timeout(function(){
 //get basic information for public user
 
@@ -88,6 +91,12 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		
      });
 },100);
+}
+
+getOtherUserDeatils1();
+
+function getOtherUserDeatils(){
+}
  //getting all counts common for otherProfileMenu sulthan
  e.ChekUser= function(id)
  {
@@ -159,8 +168,10 @@ e.AddPrivateNote = function(data, form, id)
 var path=location.path();
 	
 //get video 
-if(path.indexOf('video')>=0){
+if(path.indexOf('video')>=0)
+{
 
+getOtherUserDeatils();
 
 	var data={'userId':id};
 	e.loading=true;
@@ -179,6 +190,8 @@ if(path.indexOf('video')>=0){
 //reviews-received
 if(path.indexOf('reviews-received')>=0)
 {
+	getOtherUserDeatils();
+
 	console.log("reviews-received");
 	var data={'otherprofileId':id};
 	e.loading=true;
@@ -198,6 +211,8 @@ if(path.indexOf('reviews-received')>=0)
 //reviews-penned
 if(path.indexOf('reviews-penned')>=0)
 {
+	getOtherUserDeatils();
+
 
 	console.log("reviews-penned");
 	var data={'otherprofileId':id};
@@ -344,6 +359,7 @@ e.openLightbox= function(data, index)
 
 if(routeParams.id=='public')
 {		
+	
 	e.loading=true;
 	e.public=true;
 	var data={userId:routeParams._id}
@@ -363,6 +379,7 @@ if(routeParams.id=='private')
 	e.private=true;
 	e.isValidGallery=false;
 
+getOtherUserDeatils();
 
 	e.ChekPrivateKey= function(data, form){
 		var data={key:data.photokey,objectUserId:routeParams._id};

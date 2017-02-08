@@ -25,6 +25,9 @@ function userDashboardSearch(e, rootscope, appServices, $location, $filter,local
 		appServices.post(API_URL.getMassage, promise, function(response)
 		     			{
 		     					var data=appServices.removeNull(response.data);	
+		     					if(data)
+		     					{
+
 		     					var phone=data.currentPhoneNo.split('|');
 		     					e.available["currentPhoneNo"]=phone[1];
 		     					
@@ -42,6 +45,7 @@ function userDashboardSearch(e, rootscope, appServices, $location, $filter,local
 		     						}
 		     					});
 		     					}
+		     				}
 		     			});
 		}
 		
