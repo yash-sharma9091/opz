@@ -207,12 +207,11 @@ e.cancle = function(data, form)
 		if(id==="addCountry")
 		{
 			
-				var data="ADD NEW Country";
+			var data="ADD NEW Country";
 			appServices.modal('partials/template/addLocation.html', addLocation, ev, data)
 				.then(function(answer) {
 					
 				}, function() {
-
 				
 					var data=localStorageService.get("activeLoc");
 					if(data)
@@ -225,8 +224,6 @@ e.cancle = function(data, form)
 					
 					},200);
 					 }
-					
-
 				});
 		
 		}
@@ -265,7 +262,7 @@ e.cancle = function(data, form)
 
 
 
-function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $routeParams, data,localStorageService)
+function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $routeParams, data,localStorageService, $timeout)
 {
 	$scope.cancel = function() 
 	{
@@ -276,18 +273,21 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 
  	$scope.title=data;
 
- 	$scope.placeChanged = function() {
+ 	$scope.placeChanged = function() 
+ 	{
 		$scope.place = this.getPlace();
-		
+		if($scope.place.geometry){
 		var lat = JSON.parse(JSON.stringify($scope.place.geometry.location)).lat;
 		var lon = JSON.parse(JSON.stringify($scope.place.geometry.location)).lng;	
 		var long_name = $scope.place.address_components;
 		long_name = long_name[long_name.length-1].long_name;
-
-		$scope.addCity(lat, lon, $scope.place.formatted_address, $scope.place.address_components)
+	
+		}
+			$scope.addCity(lat, lon, $scope.place.formatted_address, $scope.place.address_components)
 	}
 
 	$scope.searched={};
+
 	$scope.addCity  = function (lat, lng, formattedAddress, components)
 		{
      	$scope.exception_country_city =['Singapore'];
@@ -306,7 +306,7 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
         	  
         		angular.forEach(components, function(value, key) 
         		{
-			
+				
 				  	if( value.types.indexOf('administrative_area_level_1')!==-1)
 				  	{
 				  		$scope.city2 = true;
@@ -343,7 +343,7 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 						                cityAddress: formattedAddress,
 						                locationType: "city"
 						            };
-						            console.log(request);
+						      ;
 						            $http.post($rootScope.STATIC_URL + 'travelLocations/updateTravelLocation', {
 						                request: request
 						            }).success(function(response) {
@@ -381,8 +381,9 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 						            		{
 						                    $scope.alert={'message':"New City has been added.",'type':'alert-success'};
 						                   /// e.mySavedLocations();
-						                    $mdDialog.cancel();
-						                   console.log(response2.data);
+						                    $timeout(function(){
+						                    	$mdDialog.cancel();
+						                    },500)
 						                   
 						                  
 						                    localStorageService.set("activeLoc",response2.data);
@@ -394,24 +395,6 @@ function addLocation($scope, $rootScope, appServices, $location,$mdDialog, $rout
 						                	return;
 						                }
 						            })
-
-						            /*$http.post($rootScope.STATIC_URL + 'travelLocations/addTravelLocation', {
-						                request: request
-						            }).success(function(response) {
-						                if (response.status == 1) {
-						                    console.log("Add travel City Response");
-						                    console.log(response);
-						                    $location.path('/landingpage');
-						                    //$window.location.href = $rootScope.hashbang + "landingpage";
-						                }
-						            }).error(function() {
-						                $scope.errorMessage = "Please Try Again";
-						                $timeout(function() {
-						                    $scope.errorMessage = false;
-						                }, 3000);
-						            });*/
-
-
 
 						        }
 

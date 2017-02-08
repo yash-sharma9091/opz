@@ -82,8 +82,8 @@
                     <li ng-if="userprofile.massageStylesOne"  class="large-height">
                       Styles of massage that I prefer to give: 
                       <span ng-if="userprofile.massageStylesOne" split-str="userprofile.massageStylesOne" > </span>
-                      <span ng-if="!userprofile.massageStylesOne">
-                            'Not Specified'
+                      <span ng-if="userprofile.massageStylesOne==','">
+                            Not Specified
                       </span>
                     </li>
 
@@ -91,7 +91,7 @@
                       <span>  
                              
                       <x ng-if="userprofile.therapeuticMassageOne" class="colorBlue">
-                      {{userprofile.therapeuticMassageOne }} 
+                      <text>{{userprofile.therapeuticMassageOne }}</text> 
 
                     <small class="red"> 
                      <black>&nbsp;Seeks-</black>
@@ -117,7 +117,8 @@
                       </small>
                       </x>
                      
-                    <x ng-if="userprofile.sensualMassageOne" class="cyan" >{{userprofile.sensualMassageOne}}
+                    <x ng-if="userprofile.sensualMassageOne" class="cyan" >
+                    <text>{{userprofile.sensualMassageOne}}</text>
                      <small> 
                      <black>&nbsp;Seeks-</black>
                                       

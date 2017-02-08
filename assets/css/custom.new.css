@@ -903,7 +903,7 @@ md-option:nth-child(4n),md-option:nth-child(2n) , md-option:first-child
 
 md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea solid;}
 .colorBlue, .colorBlue black {   color: #ec1d1d; }
-.typeLabel li > span { width: 180px; }
+.typeLabel li > span { width: 190px; }
 .typeLabel li,.typeLabel li small, .myProfList li {     font-size: 14px; }
 .listing{ min-height: 400px }
 .large-height { height: 80px; }
@@ -1092,3 +1092,43 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 
 .crop { position: relative;height: 35px; width: 35px; }
 .crop-btn { position: relative ; }
+.pagination li 
+{
+    border: 0 !important;
+    display: inline-block !important;
+    margin: auto !important;
+}
+.pagination 
+{
+display: block;
+margin: 20px 0;
+border-radius: 4px;
+margin: auto;
+text-align: center;
+}
+
+.typeLabel text 
+{    
+    display: inline-block;
+    min-width: 85px;
+}
+.locatTabMain {    min-height: 320px;}
+.srchAreaBx  { min-height: 195px; }
+.posRelative { position: relative; min-height: 250px; }
+.datePicker .md-datepicker-button{  position: absolute;    padding: 0;
+    left: -8px;
+    top: 4px; }
+.datePicker  {    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    width: 100%;}
+ .datePicker   .md-datepicker-input-container{    margin: 0 !important;
+    width: 100%;
+    padding: 0;}
+   .datePicker   .md-datepicker-input-container input  {    padding-left: 34px !important;
+    margin: auto !important;
+    width: 100% !important;}
+    .md-datepicker-triangle-button.md-button.md-icon-button{    top: 12px; right: 6px;}
+    .sm{height: 45px;}
+    
+    .inactive{    color: gray !important;   background-color: #cacaca;}

@@ -3,7 +3,8 @@ angular.module('zenbrisa.controllers')
 	$rootScope.usersAddInfo = [];
 	var path = $location.path();
 	
-	if ($rootScope.isUserLogin && path === '/search') {
+	if ($rootScope.isUserLogin && path === '/search')
+	{
 		var data = {};
 		appServices.post(API_URL.getblockUser, data, function(response)
 		{
@@ -20,6 +21,27 @@ angular.module('zenbrisa.controllers')
 				$rootScope.usersAddInfo['fav'] = result;
 			}
 		});
+	}
+
+	//check write review if conversation allowd redirect to write review page 
+	$scope.writeReview = function(id, index, data)
+	{
+		data[index].openPopove=true;
+		data[index].writeReviewLoading=false;
+		var promise={"reviewerId":$rootScope.isUserLogin.userId,"reviewedOnId":id} 
+		appServices.post(API_URL.checkReviewWrite, promise, function(response)
+		{
+			
+			
+				data[index].openPopove=false;
+				data[index].writeReviewLoading=true;
+		
+				if(response.status==1)
+				{
+					$location.path($rootScope.userDashboard.writeReviews.href+'/'+id);
+				}
+		});
+
 	}
 
 	/*Init Objects*/

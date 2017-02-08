@@ -76,7 +76,8 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      		if(response.status==1)
      		{
      			e.userprofile=appServices.removeNull(response.data[0]);
-     			e.userInfoCount=appServices.removeNull(response.data3[0]);
+     			rootscope.ProfileCount(e.isUserId);
+
 
      		}
      		else
@@ -119,8 +120,10 @@ if(e.isUserId)
 			appServices.post(API_URL.addPrivateNote,promise, function(response)
     		 {		
 	 			if(response.status==1)
-	 			{
+	 			{	if(response.data)
+	 				{
  					e.privateMessage=response.data.note;
+	 				}
 
 	 			}
 

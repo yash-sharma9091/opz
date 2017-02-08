@@ -151,7 +151,44 @@
       <div class="md-toolbar-tools" >Menu </div>
       <md-button class="md-icon-button pull-right" ng-click="openNav()"><md-icon>close</md-icon></md-button>
       </md-toolbar>
-     <md-content >
+     
+      <md-content  ng-if="isUserLogin">
+        <ul class="nav navbar-nav">
+                    
+                    <li ng-repeat="menu in userNavbar">
+               
+                      <md-button 
+                              ng-if="!menu.submenu" 
+                              ng-href="{{menu.href}}" aria-label="menu" > 
+                              {{menu.title}}
+                    </md-button>
+                      <!--if menu has sub cchils--> 
+                    <md-menu md-offset="0 45" ng-if="menu.submenu">
+
+                      <md-button 
+                        aria-label="menu" 
+                        ng-href="{{menu.href}}"
+                        ng-click="$mdOpenMenu($event)">
+                        
+                        {{menu.title}}
+                         <md-icon>arrow_drop_down</md-icon>
+                      </md-button>
+
+                      <md-menu-content width="3">
+                      <ul >
+                      <li role="menuitem" ng-repeat="x in menu.submenu">
+                        <md-button ng-href="{{x.href}}" aria-label="menu"  ng-hide="x.hide"
+                          ng-click="menuOpen(x.click)"
+                        > {{x.title}}</md-button>
+                      
+                      </li> </ul>
+                      </md-menu>
+                    </li>
+                </ul>
+      </md-content>
+     <md-content  ng-if="!isUserLogin">
+
+
         <md-list>
              <md-list-item ng-repeat="item in navabar" ng-href="{{item.url}}">
                <md-icon >{{item.icon}}</md-icon>
