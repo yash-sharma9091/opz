@@ -945,9 +945,9 @@ md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea soli
  .colorWhite{ color: white !important; }
  .imageview { padding:20px;  margin: auto; }
 
-img-crop {  max-width: 400px; max-height:250px !important ; position: static !important;}
+img-crop {  max-width: 400px;height:250px !important ; position: static !important;}
 .file{    position: absolute;
-    z-index: 1;
+    z-index: 99;
     top: 0;
     bottom: 0;
     left: 0;
@@ -1060,6 +1060,11 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .reviewList ul li {    min-height: 120px;}
 .reviewList-sm .review-img {    height: 119px;}*/
 .left-icon { padding-left: 0 !important }
+
+.redBdr {     border: #fd1515 solid 1px!important;   }
+ .redBdr .whiteBg{   background: #ffe1e1 !important; }
+ .newMemBg { background-color: #f17774; }
+
 .chips input{    font-size: 13px !important}
 
 .fbCont i img { max-width: 25px; }
@@ -1073,3 +1078,17 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
     line-height: 50px;
   
 }
+.icon-sm { font-size: 19px; }
+.addnewLoc {     font-weight: 600;
+    position: absolute;
+    right: 0;
+    color: #03a9f4; }
+    .addnewLoc md-icon { color: #03a9f4;   }
+    .link-group {    width: 100%; text-align: center; }
+.link-group  a{ display: inline-block;
+    padding: 5px 3px;
+    font-weight: 500;
+    color: #161617; }
+
+.crop { position: relative;height: 35px; width: 35px; }
+.crop-btn { position: relative ; }

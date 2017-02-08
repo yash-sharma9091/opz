@@ -32,6 +32,7 @@ angular.module('zenbrisa.app')
 	{
 			appServices.modal('partials/template/signup.html', loginCtrl, ev)
 	}
+
 	$rootScope.camposemail=function(ev,id,username)
 	{		
 			//public controller
@@ -50,7 +51,6 @@ angular.module('zenbrisa.app')
 		appServices.modal('partials/dashboard/photoKey/send-photo-key.html', sendPhotoKeyCtrl, ev,data);
 		}
 
-
 	$rootScope.profileStep=function(ev)
 	{	var data={};
 
@@ -59,17 +59,13 @@ angular.module('zenbrisa.app')
 
 	$rootScope.cropImage=function(ev,user)
 	{	
-	
-
 		var data={};
 			data['userId']=user.userId;
 			data['username']=user.username;
 			data["image"]=user.profilePic;
-			
 
 		appServices.modal('partials/dashboard/userProfile/crop.profile.image.html',cropImage, ev,data);
 	};
-
 
 }])
 
@@ -167,7 +163,6 @@ $rootScope.closeAlert= function(alert){
 
 			if($rootScope.isUserLogin)
 			{
-
 						
 						 appServices.post(API_URL.userprofileStepNew,data, function(response)
 						    { 
@@ -237,6 +232,7 @@ $rootScope.closeAlert= function(alert){
 										}
 
 										$rootScope.userprofile=profileData;
+
 										}
 
 										if(profile)
@@ -311,7 +307,8 @@ $rootScope.ProfileCount= function(){
 }])
 
 //define template
-.run(['$rootScope', function($rootScope){
+.run(['$rootScope',function($rootScope)
+		{
 		$rootScope.template={
 			'header':'partials/template/header.html',
 			'footer':'partials/template/footer.html',
@@ -324,7 +321,6 @@ $rootScope.ProfileCount= function(){
 			'photoGalleryContent' :'partials/dashboard/photoGallery/photo-gallery-content.html'
 		}
 }])
-
 //navbar links
 .run(['$rootScope','$location','$mdSidenav', function($rootScope,$location,$mdSidenav){
 	$rootScope.navabar=
@@ -438,7 +434,7 @@ $rootScope.userNavbar={
 	"submenu":{ "Blogs":{"title":'Blogs',"href":"#/blogs"},
 				"polls":{"title":'Polls',"href":"#/my-poll", 'hide':true},
 				"submitPoll":{"title":'Create new Polls',"href":"#/create-poll" ,'hide':true},
-				"allPoll":{"title":'All Poll',"href":"#/all-poll"}
+				"allPoll":{"title":'Polls',"href":"#/all-poll"}
 			 }
 	},
 	"advertise":{"title":"Advertise" , 'href':"#/advertise"

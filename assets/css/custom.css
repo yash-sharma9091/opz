@@ -218,7 +218,7 @@ md-checkbox{ vertical-align: top;}
 .greenBg:hover{ background: #0d7a02;}
 .greyBg{ background: #8a8a8a !important;}
 .greyBg:hover{ background: #424242 !important;}
-.listingTop-Left{ position: relative; padding-right:130px; }
+.listingTop-Left{ position: relative; padding-right:93px; }
 .listingTop-Right {font-size: 13px; position: absolute; right: 0; top: 12px;}
 .listingTop-Right > span {display: block;font-family: 'uniformregular';}
 .listingTop-Right > i {display: block; padding: 20px 0 0 0; text-align: center;}
@@ -272,7 +272,9 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .value-L {border: 1px solid #e5e5e5; color: #666; float: left; font-size: 16px; font-weight: 600; height: 35px; text-align: center;
   width: 40px;}
 .value-R{border: 1px solid #e5e5e5; color: #666; float: right; font-size: 16px; font-weight: 600; height: 35px; text-align: center; width: 40px;}
-.rz-bubble {opacity: 0;}
+/*.rz-bubble {opacity: 0;}*/
+.rz-bubble.rz-limit.rz-floor { opacity: 0; }
+.rz-bubble.rz-limit.rz-ceil { opacity: 0; }
 .rz-bar {height: 10px !important; margin-top: -2px; top: 50%;}
 .seekingList md-checkbox{ margin-bottom: 5px;}
 
