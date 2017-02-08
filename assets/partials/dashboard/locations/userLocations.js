@@ -1,8 +1,8 @@
 angular.module('userLocationsModule',[]).controller('userLocations', userLocations);
 
-userLocations.$inject=['$scope', '$rootScope','appServices','$location'];
+userLocations.$inject=['$scope', '$rootScope','appServices','$location','$mdDialog'];
 
-function userLocations(e, rootscope, appServices, $location)
+function userLocations(e, rootscope, appServices, $location,$mdDialog)
 {	
 	e.commonMilesArray = appServices.milesList();
 
@@ -19,10 +19,24 @@ function userLocations(e, rootscope, appServices, $location)
 	     	/*Get Current User Saved Locations*/
 	     	if(response.status == 1){
 	     		/*If Response is not empty*/
-	     		e.myLocations = response.data;
+          var data=response.data;
+          data.filter(function(value,key){
+              if(value.travelStart)
+                    {
+                     value.travelStart=new Date(value.travelStart)             
+                    }
+              if(value.travelEnd)
+                    {
+                     value.travelEnd=new Date(value.travelEnd)             
+                   }
+
+          });
+	     		e.myLocations = data;
+
 	     	}
 		});
 	}
+
 
 	e.locationCategoryChange  = function (myLocationId, locationCategory, event){
            e.primaryDisable = false;
@@ -216,32 +230,47 @@ function userLocations(e, rootscope, appServices, $location)
 
         e.deleteLocation  = function (myLocationId, myLocationName, locationPrimary){
             request = {myLocationId: myLocationId, myLocationName: myLocationName};
-            if(locationPrimary == "primary"){
+            if(locationPrimary == "primary")
+            {
                      appServices.alert('You don\'t have the permission to delete a primary location');
                      return false;
             }
             else{
-                    if (!confirm('Are you sure to delete this location'))
-                    {   
-                        $event.preventDefault();
-                        return;
-                    }
-                    else
-                    {
-                        //console.log(" After Alert locationPrimary ======================");
-                        //console.log(locationPrimary);
-                        //$rootScope.showloader = false;
-                        	appServices.post(API_URL.deleteTravelLocation,{request : request}, function(response){
-                        		if(response.status == 1){
-                        			var alertErrMsg = "Successfully deleted the location "+myLocationName;
+                //delete location
+                var confirm=appServices.confirmAlert('Confirm?','Are you sure to delete this location', 'default','Yes', 'No');
+                $mdDialog.show(confirm).then(function(response) 
+                {
+                      appServices.post(API_URL.deleteTravelLocation,{request : request}, function(response){
+                            if(response.status == 1){
+                              var alertErrMsg = "Successfully deleted the location "+myLocationName;
                                     appServices.alert(alertErrMsg);
                                     e.getSavedLocations();
-                        		}else{
-                        			appServices.alert("Please Try Again")
-                        			return;
-                        		}
-                        	})
-                    }
+                            }else{
+                              appServices.alert("Please Try Again")
+                              return;
+                            }
+                          }) 
+                });
+                    
+                    // if (!confirm('Are you sure to delete this location'))
+                    // {   
+                    //     $event.preventDefault();
+                    //     return;
+                    // }
+                    // else
+                    // {
+                   
+                    //     	appServices.post(API_URL.deleteTravelLocation,{request : request}, function(response){
+                    //     		if(response.status == 1){
+                    //     			var alertErrMsg = "Successfully deleted the location "+myLocationName;
+                    //                 appServices.alert(alertErrMsg);
+                    //                 e.getSavedLocations();
+                    //     		}else{
+                    //     			appServices.alert("Please Try Again")
+                    //     			return;
+                    //     		}
+                    //     	})
+                    // }
                 }
     	}
 

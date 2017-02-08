@@ -206,7 +206,7 @@ md-progress-circular {
 }
 .scroll-top {
     position: fixed;
-    right: 15px;
+    right: 5px;
     bottom: 10px;
     background-color: rgba(0, 173, 255, 0.94) !important;
     color: white !important;
@@ -638,7 +638,7 @@ span.tags {
     font-size: 18px;
 }
 .img-view {
-    height: 180px;
+    height:100%;
     width: 100%;
     background-size: cover;
 }
@@ -821,12 +821,12 @@ span.tags {
 }
 .referBg .container { min-height: 400px; }
 .remove-btn md-icon{    color: rgb(243, 49, 67)!important;}
-.usercommitBx li {
+/*.usercommitBx li {
     padding: 10px 0 10px 80px;
     position: relative;
     min-height: 77px;
     border-bottom: 1px #ececec solid;
-}
+}*/
 .usercommitBx i{ background-size: cover }
 md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .vote {       
@@ -856,7 +856,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
     background-size: cover;
 }*/
 
-.gallImgBx {    height: 186px;}
+/*.gallImgBx {    height: 186px;}*/
 .img-view {    position: absolute;}
 .form-sm{ max-width: 400px; }
 .btn-actions .md-button{ color: white !important;    color: white !important;padding: 0 19px;  }
@@ -903,7 +903,7 @@ md-option:nth-child(4n),md-option:nth-child(2n) , md-option:first-child
 
 md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea solid;}
 .colorBlue, .colorBlue black {   color: #ec1d1d; }
-.typeLabel li > span { width: 180px; }
+.typeLabel li > span { width: 190px; }
 .typeLabel li,.typeLabel li small, .myProfList li {     font-size: 14px; }
 .listing{ min-height: 400px }
 .large-height { height: 80px; }
@@ -1045,17 +1045,17 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .pointer { cursor: pointer; }
 .listingTop-Right i img{ max-width: 85px; }
 .btn-reset .md-primary md-icon{ color: white !important;  }
-.blogList li i {    height: 100%;
+.blogList li i {
     background-size: cover;}
 
-.blogList li {
+/*.blogList li {
         display: block;
         padding: 0 0 30px 240px;
         min-height: 168px;
         position: relative;
         border-bottom: 1px #d2d2d2 solid;
         margin-bottom: 10px;
-} 
+} */
 /*.reviewList-sm  .image-view{    height: 118px;}
 .reviewList ul li {    min-height: 120px;}
 .reviewList-sm .review-img {    height: 119px;}*/
@@ -1092,3 +1092,68 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 
 .crop { position: relative;height: 35px; width: 35px; }
 .crop-btn { position: relative ; }
+.pagination li 
+{
+    border: 0 !important;
+    display: inline-block !important;
+    margin: auto !important;
+}
+.pagination 
+{
+display: block;
+margin: 20px 0;
+border-radius: 4px;
+margin: auto;
+text-align: center;
+}
+
+.typeLabel text 
+{    
+    display: inline-block;
+    min-width: 85px;
+}
+.locatTabMain {    min-height: 320px;}
+.srchAreaBx  { min-height: 195px; }
+.posRelative { position: relative; min-height: 250px; }
+.datePicker .md-datepicker-button{  position: absolute;    padding: 0;
+    left: -8px;
+    top: 4px; }
+.datePicker  {    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    width: 100%;}
+ .datePicker   .md-datepicker-input-container{    margin: 0 !important;
+    width: 100%;
+    padding: 0;}
+   .datePicker   .md-datepicker-input-container input  {    padding-left: 34px !important;
+    margin: auto !important;
+    width: 100% !important;}
+    .md-datepicker-triangle-button.md-button.md-icon-button{    top: 12px; right: 6px;}
+    .sm{height: 45px;}
+    
+    .inactive{    color: gray !important;   background-color: #cacaca;}
+
+iframe { border: 0; height: 0 !important }
+
+.md-button.md-primary.chat-btn{position: fixed;
+    z-index: 1; font-size: 12px;
+    text-align: center;
+    bottom: 0;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
+    border: 0;
+    right: 67px;
+    background-color: #04a6f4;
+    color: white;
+    text-transform: capitalize;}
+    
+    .md-button.md-primary.chat-btn md-icon { color: white !important }
+    .md-button.md-primary.chat-btn .icon-sm {    
+    font-size: 18px !important;
+    float: right;
+    margin-top: 11px;
+    }
+    .popover-sm .popover-content{ font-size: 11px; padding-top: 5px;  }
+  
+     .popover-sm  .arrow {     display: none !important; }
+     .professional-profile .profileInfoBx {    height: 323px; }

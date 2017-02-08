@@ -374,7 +374,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .profpicTxt{ font-size: 14px; color: #9f9f9f; padding-bottom: 7px;}
 
 /*-----------------28/11/2016------------------------------*/
-.gallImgBx{ position: relative; border: #cdd3dd solid 3px;}
+.gallImgBx{ position: relative; border: #cdd3dd solid 3px; width: 100%; height: 200px;}
 .gallImgBx > img{ display: inline-block;width: 100%;}
 .gallImgBx:hover{border: #00aeff solid 3px;}
 .gallImgBx > i{ left: 0px; top: 0px; bottom: 0px; right: 0px; background: rgba(0, 0, 0, 0.7); position: absolute; opacity:0;}
@@ -383,7 +383,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 .gallImgBx .addelIcon{ position: absolute; left: 0px; width: 40px; bottom: 0px; padding: 5px; z-index: 999; width: 100%;}
 .gallMain{ margin:10px -15px 15px -15px;}
 .profPicDesc{ padding: 15px 0 0 0; border-top:#d5d5d5 solid 1px;}
-.profdesc{ padding-bottom: 20px;}
+.profdesc{ padding-bottom: 0px;}
 .profdesc strong{ display: block; color: #00aeff; font-size: 17px; padding-bottom: 5px; text-transform: uppercase; font-weight: 400;}
 .profdesc p{ font-size:15px; line-height: 24px; color: #9f9f9f; padding-bottom: 15px;}
 .profdesc i{ font-size: 14px; font-weight: 600; display: inline-block; color: #0284c0;}
@@ -413,7 +413,7 @@ input[type="checkbox"], input[type="radio"]{ margin: 0;}
 
 .searchBg{ position: relative; background: url(../images/search-bg.jpg) center top no-repeat; background-size: cover;}
 .srchtrans{ background: rgba(0, 0, 0, 0.8); padding: 80px 0;}
-.msgBg{ padding: 20px; margin-bottom: 20px; background: #fff; border-radius: 5px;}
+.msgBg{ padding: 20px; margin-bottom: 20px; background: #fff; border-radius: 5px; position: relative;}
 .msgNowHd {color: #00aeff; font-family: 'uniform_condensedmedium'; font-size: 20px;padding-bottom: 15px; text-align: center; text-transform: uppercase;}
 .availablTxt > span { display: inline-block; float: right; font-style: normal; margin-top: -30px !important;}
 .TimeiNp { border: 1px solid #333; height: 24px; text-align: center; width: 50px; }
@@ -435,8 +435,8 @@ h1.heading {display: table; text-transform: uppercase;margin: auto; padding: 6px
     color: #00AAFF;font-size: 33px; font-weight: 700;}
 
 /*--------------------01/12/2016-------------------*/
-.pollsHd {color: #000; font-size: 28px; font-weight: 700; padding-bottom: 10px; text-transform: uppercase;}
-.pollsHd > span {display: inline-block; float: right;}
+.pollsHd {color: #000; font-size: 25px; font-weight: 700; position: relative; padding-right: 90px; padding-bottom: 10px; text-transform: uppercase;}
+.pollsHd > span {display: inline-block; float: right; position: absolute; right: 0; top: 5px;}
 .pollsHd span a {background: #00aeff; color: #fff; display: inline-block; font-size: 14px;font-weight: 400; line-height: 30px; margin-left: 5px; padding: 0 15px; text-transform: capitalize;font-family: "uniformregular";}
 .pollsHd span a:hover{background: #0689c6;}
 .pollBx{ background: #fff; border: #ebecee solid 1px; padding: 20px; margin-bottom: 30px;}
@@ -448,9 +448,10 @@ h1.heading {display: table; text-transform: uppercase;margin: auto; padding: 6px
 .choosingOpt li {display: block; padding:0 0 15px 0;}
 .choosingOpt li label {color: #a4a4a4; font-size: 16px; font-weight: 400; margin: 0; padding-left: 5px;  vertical-align: middle;}
 .usercommitBx {color: #7a7a7a;font-size: 14px;font-family: "uniformregular";}
-.usercommitBx li {padding: 10px 0 10px 80px; position: relative;}
-.usercommitBx li i {border: 1px solid #e5e5e5; display: block; height: 67px; left: 0; position: absolute;  top: 10px; width: 67px;}
+.usercommitBx li {padding: 0px 0 10px 80px; position: relative; border-bottom: #ececec solid 1px; min-height: 77px; margin-bottom: 10px;}
+.usercommitBx li i {border: 1px solid #e5e5e5; display: block; height: 67px; left: 0; position: absolute;  top: 0px; width: 67px;}
 .usercommitBx li strong {color: #000; display: block;font-size: 18px; font-weight: 600; padding-bottom: 5px;}
+.usercommitBx li:last-child{margin-bottom: 0; border-bottom: 0;}
 .usercommitBx li p {color: #7a7a7a; font-size: 14px; padding-bottom: 0;}
 .pollrangeMain {display: block; width: 70%;}
 .pollrangeMain li {color: #595959; display: block; font-size: 14px; padding-bottom: 20px;}
@@ -459,7 +460,7 @@ h1.heading {display: table; text-transform: uppercase;margin: auto; padding: 6px
 .rangeBg {background: #dedede none repeat scroll 0 0; height: 15px; position: relative; width: 100%;}
 .rangeClr{ background: #66ccff; height: 15px;}
 .blogList {padding: 0;}
-.blogList li {display: block; padding: 0 0 30px 240px; min-height: 168px; position: relative;}
+.blogList li {display: block; padding: 0 0 20px 240px; min-height: 157px; border-bottom: #e5e5e5 solid 1px; margin-bottom: 20px; position: relative;}
 .blogList li i {border: 1px solid #e5e5e5; left: 0; position: absolute; top: 0; width: 220px; }
 .blogList li strong {color: #5b5b5b; display: block; font-size: 18px; padding-bottom: 5px;}
 .blogList li strong a{color: #5b5b5b;}
@@ -467,15 +468,17 @@ h1.heading {display: table; text-transform: uppercase;margin: auto; padding: 6px
 .blogList li p {color: #848484; font-size: 15px; padding: 0;font-family: "uniformregular";}
 .blogList li p a {color: #00aeff;}
 .blogList li p a:hover{ text-decoration: underline !important;}
+.blogList li:last-child{border-bottom: 0; margin-bottom: 0;}
 .pagerBx {text-align: right;}
 .pagerBx .pager {display: inline-block; margin: 0;}
 .pagerBx .pager li > a, .pagerBx .pager li > span {background-color: #ededed; border: 0 none; border-radius: 0; display: inline-block; padding: 5px 15px; font-size: 13px;font-family: "uniformregular";}
 .pagerBx .pager li > a:hover, .pagerBx .pager li > a.active{ background: #00aeff; color: #fff;}
-.blogdetail {padding: 0;}
+.blogdetail {padding: 0; font-size: 14px; color: #666; line-height: 22px;}
 .blogdetail > i {border: 1px solid #e5e5e5; display: block; margin-bottom: 20px;}
 .blogdetail > span {color: #000; display: block; font-size: 14px; padding-bottom: 15px; font-weight: 600; }
 .blogdetail > span small {display: inline-block; font-size: 14px; font-weight: 600;}
 .blogdetail > p {color: #7a7a7a; font-size: 15px; line-height: 24px; padding-bottom: 30px;}
+.blogdetail b{ color: #000; font-size: 16px;}
 .aboutBg{ padding: 0;}
 .aboutTrans{ background:rgba(0, 0, 0, 0.6); padding:150px 0; text-align: center; }
 .aboutBanTxt {color: #fff; text-align: center; text-shadow: 0 3px 3px #333; width: 100%;}
@@ -574,7 +577,7 @@ h1.heading {display: table; text-transform: uppercase;margin: auto; padding: 6px
 .locatHd{ background: #949494; padding: 10px 0; text-align: center; font-size: 14px; color: #fff; line-height: 23px;}
 .locatHd strong{ display: block; font-size: 18px; text-transform: uppercase;}
 .locatHd span{ display: block;}
-.locatTabMain {border: 1px solid #e5e5e5; padding: 20px;min-height: 356px; margin-bottom: 35px;}
+.locatTabMain {border: 1px solid #e5e5e5; padding: 20px;min-height: 300px; margin-bottom: 35px;}
 .locatTab {padding-bottom: 15px;}
 .locatTab li {float: left; width: 33.33%;}
 .locatTab li label {color: #a4a4a4; font-size: 13px; font-weight: 400; line-height: 20px; padding-left: 5px;
@@ -705,13 +708,13 @@ md-menu-content{ padding: 0; position: relative; overflow: inherit;}
 .stepNumb li:last-child{ width: 22px;}
 
 md-input-container{ display: block;}
-md-input-container md-select, md-input-container input {border: 1px solid #cad5dd !important; height: 42px !important; line-height: 42px !important; margin-bottom: 15px !important; width: 100% !important;}
+md-input-container md-select, md-input-container input {border: 1px solid #cad5dd !important; height: 42px !important; line-height: 42px !important; width: 100% !important;}
 md-input-container label {display: block; font-size: 14px; font-weight: 400 !important; height: 35px;  left: 5px !important; padding-top: 0; top: -16px !important;}
 .md-input-focused > label, .md-input-has-value > label{ top:-24px !important; font-size: 17px !important; font-weight: 400 !important; left: 0 !important; color: #666 !important;}
 md-tab-content{overflow-x:hidden; overflow-y:auto;  }
 md-menu-content > ul > li > a {border-bottom: 1px solid #eee !important; display: block !important; margin: 0 !important; text-align: left !important;}
 
-.nav > li:last-child > a {padding: 7px 0 7px 15px !important;}
+.nav > li:last-child > a {padding: 7px 15px !important;}
 md-input-container .md-input { margin-bottom:0 !important }
 md-input-container md-select, md-input-container input {border: 1px solid #cad5dd !important; height: 42px !important;
   line-height: 42px !important; margin-bottom: 0; width: 100% !important;}
@@ -769,4 +772,18 @@ md-menu-content .md-button, md-menu-content .md-button:focus, md-menu-content .m
 .signout-Right{float: right; width: 50%; border: #dee6e6 solid 1px; border-left: 0;}
 .logoutBtns i {vertical-align: middle;}
 
-
+/*---------------------07/02/2017-------------------*/
+nav .navbar-collapse{ padding-right: 0; margin-right: -15px;}
+.profileNav md-list-item .md-list-item-inner md-icon { margin-right: 15px !important;}
+.md-sidenav-right md-list-item .md-list-item-inner md-icon { margin-right: 15px !important;}
+.contDetTxt > a {display: inline-block; margin: 0 3px;}
+.blocklistBx > a > span{ padding-top: 5px;}
+.stepFrmBx md-select{margin-bottom: 20px !important;}
+.srchformBx md-select{margin-bottom: 12px !important;}
+.stepFrmBx .md-required {top: -26px !important; font-size: 17px !important;}
+.fullAdd {margin-top: -7px !important;}
+p.infoAlert{ padding-bottom: 0;}
+.postBlogBx .fileButton{ top: 8px;}
+.postBlogBx .InpFile{ top: 8px;}
+.srchfrmBx .search-btn{ border: 0 !important;}
+.addnewLoc{ bottom: 40px;}

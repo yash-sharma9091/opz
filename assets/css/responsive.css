@@ -38,7 +38,9 @@
 .listingHd{ font-size: 16px;}
 .listingTop {padding: 26px 10px 10px 10px; position: relative;}
 .listingImg{ width: 80px;}
-.listingImgBx{ padding-left: 90px; font-size: 13px;}
+.listingImgBx{ padding-left: 90px; font-size: 13px; min-height: 100px; height: auto;}
+.listingTop-Right{ top: 5px;}
+.listingImg > img{ width: 80px; height: 80px;}
 .updateHd{ font-size: 16px;}
 .advertiseHd{ font-size: 30px; padding: 100px 0;}
 .moreclintHd{ font-size: 24px;}
@@ -106,7 +108,7 @@ nav.navbar{ margin-top: 15px !important;}
 .navbar-nav a.md-button {margin: 0px !important; padding: 0 5px !important; height: auto;}
 .navbar-nav a.md-button span{ vertical-align: top; line-height: 21px; display: inline-block;}
 .navbar-nav a.md-button:hover{ background: none !important;}
-.msgBg {min-height: 320px;}
+.msgBg {min-height: 350px;}
 .availablTxt > span{ margin-top: -26px !important;}
 .blogList li i {height: 130px; left: 0; position: absolute; top: 0; width: 180px; background-size: 100% 100%;}
 .referBg {padding: 30px 0;}
@@ -119,12 +121,24 @@ nav.navbar{ margin-top: 15px !important;}
 .signoutInnTxt{ padding: 20px;}
 .logoutTopHd{ font-size: 18px; line-height: 25px;}
 .logoutMidSec p {min-height: 200px;}
-
+/*----------------07/02/2017----------------*/
+nav .navbar-collapse {margin-right: 0; padding-right: 0;}
+.loginBtnBx {margin: 9px 0 0;}
+.nav > li > a:focus, .nav > li > a:hover{ background: none !important;}
+.testimonial-bg .viewmore{ margin-left: auto !important; margin-right: auto !important;}
+.navbar-nav {float: left; margin: 1px 0;}
+.usermenu {margin-top: -6px;}
+.notification button {top: 5px; position: relative;}
+.topBtn ul li button {font-size: 13px !important; padding: 14px 5px !important; min-width: 0 !important;}
+.usersCon .tabs md-list-item .md-list-item-text{ padding-top: 15px; padding-bottom: 15px;}
+.gallMain {margin: 10px 0 15px;}
+.gallImgBx{ width: 100%; height: 160px;}
+.col-sm-9 .row.blockList{ margin-right: 0;}
 }
 
 @media(max-width: 767px){
 nav {position: absolute !important; right: 10px; top: -10px;width: 45px; min-height: 0 !important;}
-.loginBtnBx {margin: 0 35px; position: absolute; top: 8px; right: 20px;}
+.loginBtnBx {margin: 0 35px; position: absolute; top: 5px; right: 20px;}
 .logo-info{ margin-right: 160px;}
 .navbar-toggle{ border: #000 solid 1px; margin: 0;}
 .navbar-toggle .icon-bar{ background: #000;}
@@ -157,7 +171,7 @@ header{ padding:5px 0;}
 .foot-List a{ padding:3px 0; }
 .listingBot-L {display: block; padding: 5px 0 3px;}
 .listingBot-R {display: block; float: none; padding-top: 5px;}
-.listingTop-Right {position: relative; right: 0;text-align: center; top: 10px;}
+.listingTop-Right {position: relative; right: 0;text-align: center; top:0px;}
 .listingTop-Left {padding-right: 0; position: relative; text-align: center;}
 .listingImgBx { padding-left: 0;}
 .listingImg {left: 0; margin: 5px auto; position: relative; top: 0;}
@@ -202,7 +216,8 @@ header{ padding:5px 0;}
 .blogList li i img{width: 100%;}
 .pagerBx {text-align: center;}
 .pagerBx .pager {margin: 0 auto;}
-.pollsHd > span {display: block; float: none; margin-top: 5px;}
+.pollsHd{ padding-right: 0;}
+.pollsHd > span {display: block; float: none; position: relative; top: 0; right: auto; left: 0;}
 .aboutList li {background-position:left 11px; display: block; font-size: 15px; padding: 4px 20px; width: 100%;}
 /*-------------12/12/2016---------------*/
 .contFrm .sechInp{ margin-bottom: 10px;}
@@ -252,6 +267,16 @@ button.nav-btn .material-icons{ font-size: 24px;}
 .signoutInnTxt h2 {font-size: 20px; padding-bottom: 10px;}
 .signoutInnTxt {padding: 20px 0;}
 .sigoutBg{ height: 300px;}
+.usermenu {margin-top: 0px;}
+
+.leftChat .topBtn nav { min-height: 0 !important; position: relative!important; right: auto; top: 0;
+  width: auto; left: 0; width: 100% !important; padding-right: 50px;}
+.leftChat .topBtn ul li{ width: 20%; float: left;}
+.leftChat .topBtn nav button{ width: 100% !important;}
+.row.blockList {padding: 10px 15px;}
+.gallImgBx{ height: 200px;}
+.profileInfoBx{ margin-top: 10px;}
+.locatTabMain{ height: auto; min-height: 0;}
 }
 
 @media(max-width: 639px){
@@ -307,8 +332,7 @@ form.frmBx{ width: 100%;}
 .profileTopBx {padding-left: 0px !important;}
 .profile-Img{ position: relative !important;}
 .profileTopBx .btn-exp {padding-left: 0; position: absolute; text-align: center; top: -251px; padding: 6px; right: 0;}
-.profileTopBx.exp .btn-exp{ top: -98px;}
-
+.profileTopBx.exp .btn-exp{ top: -115px; right: 0;  margin: 0;}
 .bannerBot{ padding: 10px 0;}
 .countryInp{ font-size: 12px;}
 .loginBtnBx a {font-size: 12px; line-height: 20px; padding: 7px 6px;}
@@ -317,6 +341,12 @@ form.frmBx{ width: 100%;}
 h1.heading{ font-size: 25px; padding: 0 0 5px 0;}
 /*--------------Signout-------------*/
 .signoutBann{ height: 220px;}
+.prof-right-top strong {font-size: 20px; text-align: center; margin: 0 auto; max-width: 200px; padding-right: 0;}
+.profilepage-Bot md-tabs-canvas.md-paginated {margin: 0 10px;}
+.profilepage-Bot .md-tab{ font-size: 12px; padding: 10px 5px;}
+.profilepage-Bot md-next-button md-icon{ right: -25px;}
+.profilepage-Bot md-prev-button md-icon{ left: 5px;}
+.videoBx .col-xs-6 {width: 100%; float: none; padding: 0;}
 }
 @media(max-width: 479px){
 .bannerBg > img {min-height: 180px;}
@@ -417,7 +447,7 @@ h1.heading{ font-size: 25px; padding: 0 0 5px 0;}
 .userBx {margin: 0px 30px 0 0;}
 .logo-info{ display: none;}
 .loginBtnBx a {font-size: 12px; padding: 7px 6px;}
-.loginBtnBx {right: 7px;}
+.loginBtnBx {right: 7px; top: 5px;}
 .accordion .panel-heading a{ padding: 12px 15px;}
 .margin-top20 {margin-top: 15px !important;}
 h1.heading{ font-size: 18px;}
@@ -433,4 +463,24 @@ h1.heading{ font-size: 18px;}
 .signoutInnTxt h2 {font-size: 18px;}
 .logoutBtns{ font-size: 13px; padding: 6px 15px;}
 .sigoutBg {height: 250px;}
+.leftChat .topBtn nav button {width: 100% !important; min-width: 0 !important; font-size: 13px !important;
+  padding: 14px 5px !important;}
+.leftChat .topBtn nav{ padding-right: 35px;}
+.leftChat .topBtn ul li {float: left; width: auto;}
+ h2{font-size: 17px; font-weight: 600 !important; padding-bottom: 5px !important;}
+ .contFrm {padding: 0 0 20px;}
+.contDetBg {margin-left: -15px; margin-right: -15px;}
+.list p{ padding-left: 28px !important;}
+.gallImgBx {height: 130px;}
+.browseBx label { padding: 0 10px !important ; text-overflow: ellipsis; height: 43px !important; overflow: hidden;}
+.blocklistBx > .btn{ padding: 5px 0 !important; min-height: 30px !important;}
+.blocklistBx span{ font-size: 13px !important;}
+.publicHd{ margin-top: 10px; font-size: 20px;}
+.locatTab > ul > li:first-child{ width: 35% !important;}
+.locatTab > ul > li:nth-child(2){ width: 65% !important;}
+.locatTab li md-radio-button .md-label{ margin-left: 24px;}
+.locatTab > ul > li > md-radio-group > ul > li { width: 50% !important;}
+.addnewLoc{ bottom: 62px;}
+.msgBg > form > .srchformBx:last-child{padding-bottom: 0;}
+.msgBg > form > .srchformBx:last-child md-input-container {margin: 0 auto !important;}
 }
