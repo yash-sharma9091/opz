@@ -119,12 +119,21 @@ nav.navbar{ margin-top: 15px !important;}
 .signoutInnTxt{ padding: 20px;}
 .logoutTopHd{ font-size: 18px; line-height: 25px;}
 .logoutMidSec p {min-height: 200px;}
-
+/*----------------07/02/2017----------------*/
+nav .navbar-collapse {margin-right: 0; padding-right: 0;}
+.loginBtnBx {margin: 9px 0 0;}
+.nav > li > a:focus, .nav > li > a:hover{ background: none !important;}
+.testimonial-bg .viewmore{ margin-left: auto !important; margin-right: auto !important;}
+.navbar-nav {float: left; margin: 1px 0;}
+.usermenu {margin-top: -6px;}
+.notification button {top: 5px; position: relative;}
+.topBtn ul li button {font-size: 13px !important; padding: 14px 5px !important; min-width: 0 !important;}
+.usersCon .tabs md-list-item .md-list-item-text{ padding-top: 15px; padding-bottom: 15px;}
 }
 
 @media(max-width: 767px){
 nav {position: absolute !important; right: 10px; top: -10px;width: 45px; min-height: 0 !important;}
-.loginBtnBx {margin: 0 35px; position: absolute; top: 8px; right: 20px;}
+.loginBtnBx {margin: 0 35px; position: absolute; top: 5px; right: 20px;}
 .logo-info{ margin-right: 160px;}
 .navbar-toggle{ border: #000 solid 1px; margin: 0;}
 .navbar-toggle .icon-bar{ background: #000;}
@@ -202,7 +211,7 @@ header{ padding:5px 0;}
 .blogList li i img{width: 100%;}
 .pagerBx {text-align: center;}
 .pagerBx .pager {margin: 0 auto;}
-.pollsHd > span {display: block; float: none; margin-top: 5px;}
+.pollsHd > span {display: block; float: none; position: relative; top: 0; right: auto; left: 0;}
 .aboutList li {background-position:left 11px; display: block; font-size: 15px; padding: 4px 20px; width: 100%;}
 /*-------------12/12/2016---------------*/
 .contFrm .sechInp{ margin-bottom: 10px;}
@@ -252,6 +261,13 @@ button.nav-btn .material-icons{ font-size: 24px;}
 .signoutInnTxt h2 {font-size: 20px; padding-bottom: 10px;}
 .signoutInnTxt {padding: 20px 0;}
 .sigoutBg{ height: 300px;}
+.usermenu {margin-top: 0px;}
+
+.leftChat .topBtn nav { min-height: 0 !important; position: relative!important; right: auto; top: 0;
+  width: auto; left: 0; width: 100% !important; padding-right: 50px;}
+.leftChat .topBtn ul li{ width: 20%; float: left;}
+.leftChat .topBtn nav button{ width: 100% !important;}
+.row.blockList {padding: 10px 15px;}
 }
 
 @media(max-width: 639px){
@@ -307,8 +323,7 @@ form.frmBx{ width: 100%;}
 .profileTopBx {padding-left: 0px !important;}
 .profile-Img{ position: relative !important;}
 .profileTopBx .btn-exp {padding-left: 0; position: absolute; text-align: center; top: -251px; padding: 6px; right: 0;}
-.profileTopBx.exp .btn-exp{ top: -98px;}
-
+.profileTopBx.exp .btn-exp{ top: -115px; right: 0;  margin: 0;}
 .bannerBot{ padding: 10px 0;}
 .countryInp{ font-size: 12px;}
 .loginBtnBx a {font-size: 12px; line-height: 20px; padding: 7px 6px;}
@@ -433,4 +448,12 @@ h1.heading{ font-size: 18px;}
 .signoutInnTxt h2 {font-size: 18px;}
 .logoutBtns{ font-size: 13px; padding: 6px 15px;}
 .sigoutBg {height: 250px;}
+.leftChat .topBtn nav button {width: 100% !important; min-width: 0 !important; font-size: 13px !important;
+  padding: 14px 5px !important;}
+.leftChat .topBtn nav{ padding-right: 35px;}
+.leftChat .topBtn ul li {float: left; width: auto;}
+ h2{font-size: 17px; font-weight: 600 !important; padding-bottom: 5px !important;}
+ .contFrm {padding: 0 0 20px;}
+.contDetBg {margin-left: -15px; margin-right: -15px;}
+.list p{ padding-left: 28px !important;}
 }

@@ -1045,17 +1045,17 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .pointer { cursor: pointer; }
 .listingTop-Right i img{ max-width: 85px; }
 .btn-reset .md-primary md-icon{ color: white !important;  }
-.blogList li i {    height: 100%;
+.blogList li i {
     background-size: cover;}
 
-.blogList li {
+/*.blogList li {
         display: block;
         padding: 0 0 30px 240px;
         min-height: 168px;
         position: relative;
         border-bottom: 1px #d2d2d2 solid;
         margin-bottom: 10px;
-} 
+} */
 /*.reviewList-sm  .image-view{    height: 118px;}
 .reviewList ul li {    min-height: 120px;}
 .reviewList-sm .review-img {    height: 119px;}*/
