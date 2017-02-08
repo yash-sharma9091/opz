@@ -150,6 +150,8 @@ var API_URL=
 	// mailbox
 	"mailbox": api_base_url + 'mail/mailbox',
 	"getUserFolders": api_base_url + 'mail/getUserFolders',
+	"mailConversationsById": api_base_url + 'mailBox/mailConversationsById',
+	"getUsers": api_base_url + 'mailBox/getUsers',
 
 	//add massage
 	"addMassage":api_base_url+"massagenow/addMassageNow",
