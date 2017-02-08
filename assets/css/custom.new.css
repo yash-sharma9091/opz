@@ -638,7 +638,7 @@ span.tags {
     font-size: 18px;
 }
 .img-view {
-    height: 180px;
+    height:100%;
     width: 100%;
     background-size: cover;
 }
@@ -821,12 +821,12 @@ span.tags {
 }
 .referBg .container { min-height: 400px; }
 .remove-btn md-icon{    color: rgb(243, 49, 67)!important;}
-.usercommitBx li {
+/*.usercommitBx li {
     padding: 10px 0 10px 80px;
     position: relative;
     min-height: 77px;
     border-bottom: 1px #ececec solid;
-}
+}*/
 .usercommitBx i{ background-size: cover }
 md-input-container textarea {    border: 1px #cad5dd solid !important;}
 .vote {       
@@ -856,7 +856,7 @@ md-input-container textarea {    border: 1px #cad5dd solid !important;}
     background-size: cover;
 }*/
 
-.gallImgBx {    height: 186px;}
+/*.gallImgBx {    height: 186px;}*/
 .img-view {    position: absolute;}
 .form-sm{ max-width: 400px; }
 .btn-actions .md-button{ color: white !important;    color: white !important;padding: 0 19px;  }
