@@ -123,12 +123,24 @@
 
 					<!-- <a href="/preferences" class="bld blue-b">"Settings"</a> -->
 					<!-- <blue>"Settings"</blue> -->
-					<a  class="bld blue-b">&#34;Settings&#34;</a>
+					<a ng-if="isUserLogin" ng-href="{{userDashboard.setting.href}}" class="bld blue-b">
+					<blue>&#34;Settings&#34;</blue>
+					</a>
+					<a ng-if="!isUserLogin" ng-click="login($event)" class="bld blue-b">
+					<blue>&#34;Settings&#34;</blue>
+					</a>
+					<!-- <a  class="bld blue-b">&#34;Settings&#34;</a> -->
 
      page associated with your account and clicking on the
 
 					<!-- <blue>Preferences</blue> -->
-					<a  class="bld blue-b">Preferences</a>
+					<a ng-if="isUserLogin" ng-href="{{userDashboard.setting.href}}" class="bld blue-b">
+					<blue>Preferences</blue>
+					</a>
+					<a ng-if="!isUserLogin" ng-click="login($event)" class="bld blue-b">
+					<blue>Preferences</blue>
+					</a>
+					<!-- <a  class="bld blue-b">Preferences</a> -->
 					<!-- <a href="/preferences" class="bld blue-b">Preferences</a>  -->
 
      link. At any time you can choose to no longer receive commercial or promotional emails from us by visiting the "Settings" page associated with your account. You also will be given the opportunity, in any commercial email that we send to you, to opt out of receiving such messages in the future. It may take up to 10 days for us to process an opt-out request. We may send you transactional and relationship emails, such as service announcements, administrative notices, and surveys, without offering you the opportunity to opt out of receiving them. Please note that changing information in your account, or otherwise opting out of receipt of promotional email communications, will only affect future activities or communications from us. If we have already provided your information to a third party (such as a service provider) before you have changed your preferences or updated your information, you may have to change you preferences directly with that third party.

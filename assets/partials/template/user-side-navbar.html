@@ -37,7 +37,9 @@
            </md-list-item>
 
             <!--send a photo key-->
-            <md-list-item  class="active" 
+            <md-list-item  class="active"
+            ng-class="{'inactive': !userInfoCount.privatePhotoCount}" 
+              ng-disabled="!userInfoCount.privatePhotoCount"
               ng-if="isUserLogin  &&  isUserId" 
               ng-click="sendPhotoKeySearch($event,isUserId)"> 
                 <md-icon  aria-label="icon" >vpn_key</md-icon>

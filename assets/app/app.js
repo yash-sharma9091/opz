@@ -14,8 +14,13 @@ angular.module('zenbrisa.app')
 
 .config(function($mdDateLocaleProvider) {
   $mdDateLocaleProvider.formatDate = function(date) 
-  {
-    return moment(date).format('YYYY-MM-DD');
+  {	if(date)
+  	{
+    	return moment(date).format('YYYY-MM-DD');
+    }
+    else{
+    	return ' ';
+    }
   }})
 
 //open modal and popupwindow function
@@ -84,6 +89,10 @@ angular.module('zenbrisa.app')
 
 	$rootScope.$on("$routeChangeSuccess", function(event,current ,prev){
 		$rootScope.userInfoCount=false;
+		
+		$rootScope.chatStart=current.access.chat?true:false
+		
+
 		if(current.access.login==true)
 		{
 				
@@ -93,6 +102,7 @@ angular.module('zenbrisa.app')
 				{
 					$rootScope.login();
 					$location.path('/');
+
 				}
 				//check pages
 		}
@@ -151,15 +161,13 @@ $rootScope.closeAlert= function(alert){
 			$location.path('/');
 		});
 
-			
-	
-
-	}
+		}
 
 
 
 	//get user profile
-	$rootScope.getUserProfile= function(data,profile){
+	$rootScope.getUserProfile= function(data,profile)
+	{
 
 			if($rootScope.isUserLogin)
 			{
@@ -249,21 +257,32 @@ $rootScope.closeAlert= function(alert){
 
 	
 //get user details count :: 
-$rootScope.ProfileCount= function(){
+$rootScope.ProfileCount= function(id){
 
-								var promise={};
+							var promise={};
+								if(id){
+										promise={userId: id};
+								}
+								else{
+										promise={userId: $rootScope.isUserLogin.userId};
+								}
+
+							
 								appServices.post(API_URL.getAllCountMyprofile,promise, function(response)
 						    		{						    			
 						    			if( response.data) {
-						    				var data=response.data[0];
+						    				var data=response.data;
 						    				var count={};
+
 						    				count.publicPhotoCount=data.publicPhotoCount;
 						    				count.privatePhotoCount=data.privatePhotoCount;
 						    				count.videoCount=data.videoCount;
 						    				count.reviewReceived=data.reviewsReceivedCount;
 						    				count.reviewPenned=data.reviewsPennedCount;
-						    				count.favouriteCount=data.favouriteCount;
+						    				count.favouriteCount=data.favouritecount;
 						    				count.blockedCount=data.blockedCount;
+						    				count.averagerating= data.averagerating;
+
 						    				$rootScope.userInfoCount=count;
 						    			}
 						    		}); 

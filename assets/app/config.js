@@ -1,5 +1,5 @@
-var api_base_url="http://158.85.67.166:9003/";
-//var api_base_url="http://100.100.7.165:9002/";
+//var api_base_url="http://158.85.67.166:9003/";
+var api_base_url="http://100.100.7.165:9002/";
 var api_image_url="http://zenbrisa.com:9002/";
 //var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
@@ -129,12 +129,13 @@ var API_URL=
 	"getPublicPhoto":api_base_url+'users/getPublicPhotos',
 	"checkPhotoKey":api_base_url+'users/getPrivatePhotos',
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
-	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
+	"getAllCountMyprofile":api_base_url+ 'users/getAllCountProfile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
 	"reportAbuse":api_base_url+'users/addReport',
 	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
 	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
 	"setProfilePic" : api_base_url+'users/cropProfileImage',
+	"checkReviewWrite" :api_base_url+"users/checkReview",
 	
 	//social login/signup
 	"socialLoginUrl": api_base_url+'phase2/socialLoginSignup',

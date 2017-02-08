@@ -93,7 +93,7 @@
                         </ul>
                     </div>
                     <div class="updatebtnBx">
-                        <md-button class="md-raised md-primary viewBtn white" ng-click="updateSearch(searchData)" aria-label="Update Search">Update Search</md-button>
+                        <md-button ng-disabled="znUsers.length==0 || !znUsers" class="md-raised md-primary viewBtn white" ng-click="updateSearch(searchData)" aria-label="Update Search">Update Search</md-button>
                     </div>
                 </div>
             </div>
@@ -108,8 +108,13 @@
                     <ul>
                         <!--class="greenBdr"-->
                         <li  ng-repeat="user in znUsers track by $index" 
-                            ng-init="user.blocked= checkedBlocedUser(user.userId, 'blocked'); user.favUser= checkedBlocedUser(user.userId, 'fav'); user.isLodingFav=false;user.isLodingBlock=false" ng-class="{'greenBdr':user.online == 1, 'redBdr': user.blocked }">
-                            <!--  <pre>{{user | json}}</pre> -->
+                            ng-init="
+                            user.blocked= checkedBlocedUser(user.userId, 'blocked'); 
+                            user.favUser= checkedBlocedUser(user.userId, 'fav'); user.isLodingFav=false;
+                            user.isLodingBlock=false; 
+                            user.writeReviewLoading=false" 
+                            ng-class="{'greenBdr':user.online == 1, 'redBdr': user.blocked }">
+                        
                             <div class="listingTop" 
                                 ng-class="(user.professionalType == 'both' || user.professionalType == 'paid') ? 'lightvolateBg' : (user.lastActive < 30 ? 'lightylbg' : 'whiteBg')">
                                 <div class="profpaidBx">
@@ -158,16 +163,16 @@
                                         </a>| 
                                             <!--if user conversation is null-->
                                             <a 
-                                                ng-if="user.conversation==null || !user.conversation"
                                                 uib-popover-template="'writeWriview.html'"
                                                 popover-trigger="'outsideClick'"
                                                 popover-is-open="user.openPopover"
-                                                popover-placement="top">Write a Review</a>
+                                                popover-placement="top" ng-click="writeReview(user.userId, $index,znUsers)">Write a Review</a>
                                             <!--if user conversation is null-->
 
-                                            <a ng-if="user.conversation"
-                                                ng-href="{{userDashboard.writeReviews.href+'/' +user.userId}}">Write a Review
-                                            </a>
+                                          <!--   <a ng-if="user.conversation"
+                                                ng-href="{{userDashboard.writeReviews.href+'/' +user.userId}}">
+                                                Write a Review
+                                            </a> -->
                                             |
                                             <!--review pinned--> 
                                             <a class="greyClr" 
@@ -295,7 +300,7 @@
                         </li>
                     </ul>
                     <!-- <cl-paging flex cl-pages="paging.pages" cl-steps="paging.steps" cl-page-changed="paging.onPageChanged()" cl-align="start start" cl-current-page="paging.current" ng-if="paging.total > paging.limit"></cl-paging> -->
-                    <ul uib-pagination ng-if="paging.count > paging.limit" previous-text="Prev" force-ellipses="forceEllipses" max-size="maxSize" items-per-page="paging.limit" total-items="paging.count" ng-model="paging.page" class="pagination-sm" boundary-link-numbers="true" rotate="false" ng-change="pageChanged()"></ul>
+                    <ul uib-pagination  ng-if="paging.count > paging.limit" previous-text="Prev" force-ellipses="forceEllipses" max-size="maxSize" items-per-page="paging.limit" total-items="paging.count" ng-model="paging.page" class="pagination-sm" boundary-link-numbers="true" rotate="false" ng-change="pageChanged()"></ul>
                 </div>
             
             <div ng-if="znUsers.length < 1" class='alert alert-info width_100'>No Match Found in your Search Criteria.</div>
@@ -322,10 +327,15 @@
 <!--need to be login template -->
 <script type="text/ng-template" id="writeWriview.html">
     <div class="needlogin text-center">
-          <p> You must recevied (and read) at least one e-mail form  within the past 30days to write a review</p>
-         
-      <md-button class="login-btn btn-sm" ng-click="user.openPopover=false;">  Close</md-button> 
-                
+      
+              <div ng-if="!user.writeReviewLoading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Processing..</span>
+            </div>
+        <small ng-if="user.writeReviewLoading">
+             <p > You must recevied (and read) at least one e-mail form  within the past 30days to write a review</p>
+             <md-button class="login-btn btn-sm" ng-click="user.openPopover=false;">  Close</md-button> 
+        </small>        
           </div>
                
         </div>
