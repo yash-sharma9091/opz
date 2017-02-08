@@ -46,7 +46,6 @@ angular.module('zenbrisa',
 
 angular.module('zenbrisa.userProfile',[]);
 angular.module('zenbrisa.app',[]);
-
 angular.module('zenbrisa.controllers',[]);
 angular.module('zenbrisa.public.Controller',[]);
 angular.module('userDashboardModule',[]);
@@ -67,7 +66,9 @@ var API_URL=
 	"signup":api_base_url+"phase2/quickSignUp",
 	"forgetPassword":api_base_url+'users/forgotPassword',
 	"contactusMail":api_base_url+"users/contactusMail",
-	"search":api_base_url+"search",
+	// "search":api_base_url+"search",
+	"search":api_base_url+"SearchResultsPhase2/countrySearch",
+	"searchCount":api_base_url+"SearchResultsPhase2/countrySearchCount",
 	"userprofileStepNew": api_base_url+ 'users/getUserInfo' ,
 	"getSetting": api_base_url+ 'userSettings/getUserSettings',  
 	"updateSetting":api_base_url+ 'userSettings/updateUserSettings',
@@ -148,5 +149,9 @@ var API_URL=
 
 	// mailbox
 	"mailbox": api_base_url + 'mail/mailbox',
-	"getUserFolders": api_base_url + 'mail/getUserFolders'
+	"getUserFolders": api_base_url + 'mail/getUserFolders',
+
+	//add massage
+	"addMassage":api_base_url+"massagenow/addMassageNow",
+	"getMassage": api_base_url+"massagenow/getMassageNowDetails"
 }
