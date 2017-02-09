@@ -4,6 +4,7 @@ var api_image_url="http://zenbrisa.com:9002/";
 //var api_base_url="http://localhost:9003/";
 var local_api_url="/services/";
 var baseurl='http://localhost:3002/';
+
 angular.module('zenbrisa',
 [
 'ngMaterial',
@@ -41,7 +42,6 @@ angular.module('zenbrisa',
 'ngFileUpload',
 'zenbrisa.mailbox',
 "socialLogin"
-
 ]);
 
 angular.module('zenbrisa.userProfile',[]);
@@ -118,7 +118,9 @@ var API_URL=
 	"checkTravelCityPresent" : api_base_url+"travelLocations/checkTravelCityPresent",
 	"addTravelLocation" : api_base_url+"travelLocations/addTravelLocation",
 
-	"getOtherUserProfile":api_base_url+'users/getOtherUserDetails',
+	"getOtherUserProfile":api_base_url+'users/getUserInfoSelf',
+	
+	// "getOtherUserProfile":api_base_url+'users/getOtherUserDetails',
 	"getReviewsOther":api_base_url+'users/getOtherReceivedReviews',
 	"reviewsPennedOtherprofile":api_base_url+'users/getOtherPennedReviews',
 	"addTofav":api_base_url+'users/addToFavourite',
