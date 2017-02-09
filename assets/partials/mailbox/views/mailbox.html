@@ -12,23 +12,24 @@
 						</div>
 						<md-content class="bgwhite">
 						    <md-list flex>
-						        <md-list-item ng-click="null" class="md-3-line" ng-repeat="message in vm.datalist | filter:q as results">
+						        <md-list-item ng-click="vm.getMailConversation(message.userId, $index)" class="md-3-line" 
+						        ng-repeat="message in vm.datalist">
 						            <img ng-src="{{message.image || 'images/no-image.jpg' || 'images/paitent1.png'}}" class="md-avatar" alt="image">
 						            <div class="md-list-item-text" ng-class="{'unread': message.viewStatus === 'unread'}">
-						              	<h3>{{message.sender}}</h3>
+						              	<h3>{{message.username}}</h3>
 						              	<h4>{{message.subject}}</h4>
 						              	<p> {{message.limitedMsg}} </p>
-						              	<h4>{{message.createdAt | date : 'shortTime'}}</h4>
+						              	<h4>{{message.createdAt | date : 'medium'}}</h4>
 						            </div>
 						            <md-button ng-if="message.attachmentCount > 0" class="md-secondary md-icon-button" aria-label="attachment"><md-icon>attachment</md-icon></md-button>
 						            <md-button class="md-secondary md-icon-button icon-rotate" aria-label="remove"><md-icon>add_circle</md-icon></md-button>
 						            <md-divider ng-if="!$last"></md-divider>
 						        </md-list-item>
-						        <md-list-item ng-if="vm.errormsg || vm.datalist.length === 0 || results.length === 0" class="md-3-line">
+						        <md-list-item ng-if="vm.errormsg || vm.datalist.length === 0" class="md-3-line">
 						        	<div class="md-list-item-text">
 						        		<h3 class="text-center" ng-if="vm.errormsg">{{vm.errormsg}}</h3>
 						        		<h3 class="text-center" ng-if="vm.datalist.length === 0">Your {{vm.currentNavItem}} tab is empty</h3>
-						        		<h3 class="text-center" ng-if="vm.datalist.length !== 0 && results.length === 0">No match found</h3>
+						        		<h3 class="text-center" ng-if="vm.datalist.length !== 0 && vm.searchResults">No match found</h3>
 						        	</div>
 						        </md-list-item>
 						    </md-list>
@@ -37,19 +38,21 @@
 				</div>
 			</div>
 			<div class="rightChat">
-				<div class="userNames">Thomas Brusaile</div>
+				<div class="userNames">{{vm.conversationName}}</div>
 				<div class="userChat">
+
 					<div class="chatCon">
 						<div class="conversionTxt">Conversation started May 06, 2015</div>
-						<div class="otherUser">
-							<img src="images/paitent1.png" alt="" class="otherUserImage">
-							<div class="userInfoBox">
-								<div class="uName">Rony Maria</div>
-								<p>Nunc arcu urna, auctor bibendum interdum vitae Nunc arcu </p>
+						<div class="otherUser" ng-repeat="info in vm.conversations">
+							<img ng-if="vm.checkReceived(info.receiverId)" ng-src="{{info.profilePicUrl || 'images/no-image.jpg'}}" alt="{{info.profilePic}}" class="otherUserImage">
+							<div class="userInfoBox" ng-class="{'otherUserInfo': vm.checkReceived(info.receiverId), 'selfUser': !vm.checkReceived(info.receiverId)}">
+								<div class="uName">{{info.username}}</div>
+								<p ng-bind-html="info.message"></p>
 							</div>
-							<span class="timeBox">12:34pm</span>
+							<span class="timeBox">{{info.createdAt | date : 'shortTime'}}</span>
 						</div>
-						<div class="otherUser">
+						<h4 ng-if="vm.conversations.length === 0" class="text-centerr">No conversations available</h4>
+						<!-- <div class="otherUser">
 							<img src="images/paitent1.png" alt="" class="otherUserImage">
 							<div class="userInfoBox">
 								<div class="uName">Rony Maria</div>
@@ -72,7 +75,7 @@
 								<p>Nunc arcu urna, auctor bibendum interdum vitae Nunc arcu urna, auctor bibendum interdum vitae Nunc arcu urna, auctor bibendum interdum vitae Nunc arcu urna, auctor bibendum interdum vitae</p>
 							</div>
 							<span class="timeBox">12:34pm</span>
-						</div>
+						</div> -->
 						
 					</div>
 				</div>

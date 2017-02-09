@@ -1,19 +1,20 @@
 <div class="mainCont">
 <!--user profile header-->
-<section ng-include="template.userProfileHeader" ></section>
+<section ng-include="template.userProfileHeader"></section>
+
+
 <section class="profilepage-Bot">
   <div class="container">
     <div class="row clearfix">
-      
-    <!--userside navabar-->
+
       <div class="col-sm-3">
-        <div class="profHd clearfix">Profile <span><img src="/images/profile-arrow.png"></span></div>
+        <div class="profHd clearfix">Profile <span><img src="images/profile-arrow.png"></span></div>
         <span ng-include="template.usersideNavbar"> Loading..</span>
-        </div>
-      <!--end user sidenavbar-->
+
+      </div>
       <div class="col-sm-9">
-        <div class="row">
-          <div class="col-sm-5">
+        <div class="row professional-profile">
+       <div class="col-sm-5">
             <div class="profileInfoBx">
               <div class="profInfoHd">Personal Information</div>
               <div class="myProfList">
@@ -60,14 +61,6 @@
           </div>
           <div class="col-sm-7"  >
        
-              <div class="profmapBx" >
-                     <ng-map 
-                        ng-if="getmap(userprofile.latitude,userprofile.longitude)" zoom="11"
-                          center="{{getmap(userprofile.latitude,userprofile.longitude)}}">
-                        <marker position="{{getmap(userprofile.latitude,userprofile.longitude)}}"> </marker>
-                    </ng-map>
-
-                </div>
               <div class="bodyWork">
                 <div class="profInfoHd">Massage Information</div>
                 <div class="typeLabel">
@@ -151,59 +144,125 @@
               </div>
           </div>
         </div>
-        
-  
+        <div class="row profilechangeform">
+           <form novalidate name="account">
 
-      <div class="clearfix"></div>
-        <!--private node-->
-        <div class="profileInfoBx privatenote" ng-if="isUserId" >
-        <form name="private" novalidate>
-            <div class="profInfoHd" 
-              ng-click="privateNote=!privateNote">Private Notes (Visible to me only!)
-                  <md-button class="md-icon-button pull-right"> 
-                        <md-icon>mode_edit</md-icon>
-                   </button>
-            </div>  
-          <div class="privateNoteBody" ng-show="privateNote">
-          <md-input-container class="md-block">
-          <label>Message</label>
-          <textarea 
-              class="textArea"
-              required
-              name="message"
-              ng-model="privateMessage" 
-              rows="5" md-select-on-focus>
-           </textarea>
+          <div class="clearfix">  
+             <div class="col-md-12 steptopBx">
+              <div class="radiotxt">Please Select which acount you entered to keep exiting?</div>
+               <md-radio-group 
+               ng-required=true 
+               ng-model="user.type" 
+               ng-init="user.type='normal'">
+                <md-radio-button value="normal"  class="md-primary">Massage exchange</md-radio-button>
+                <md-radio-button value="professional" class="md-primary"> Paid professional massage </md-radio-button>
+             
+                </md-radio-group>
+            </div>
+          </div> 
+          <!--account form-->
+       
+          <div class="clearfix">  
 
-            <div class="errors" ng-messages="private.message.$error">
-                    <div ng-message="required">Message is required</div>
-                </div>
-          </md-input-container>
+              <div class="col-md-12"><p>Please enter ypur new username and email for professional account!</p></div>
+              <div class="col-md-6">
 
-          <!--button action-->
-          <div layout="row">
-          <span flex>
-          <md-button aria-label="submit" 
-            ng-click="AddPrivateNote(privateMessage, private,isUserId)" 
-            class="md-raised md-primary logpopup-Btn" type="submit"> 
-          <span ng-if="!processing">Save</span>
-          <span ng-if="processing">Processing..</span>
+ <md-input-container class="md-block margin-top25 loaderText">
+        <md-progress-circular  ng-if="checking"
+                   md-mode="indeterminate" 
+                   
+                   md-diameter="15px">
+                   </md-progress-circular>
+            <label>User Name (6 - 10 characters ) </label>
+            <input  name="username" 
+                    required 
+                    type="text"
+                    minlength="6"
+                    md-maxlength="10"
+                    ng-keyup="checkUsrname(user.username,account)"
+                    ng-model="user.username" 
+                   >
+          <div ng-messages="account.username.$error">
+          <div ng-message="required">Username is required.</div>
+          <div ng-message="minlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="md-maxlength">Enter username between 6 to 10 chnarcter.</div>
+          <div ng-message="maxlength">Enter username between 6 to 10 chnarcter.</div>
 
-         </md-button>
-         </span>
-         <div flex>&nbsp;</div>
-         <span  flex >
-          <md-button aria-label="cancle"  ng-click="privateNote=false" 
-          class="md-raised md-primary logpopup-Btn">  Cancel  </md-button>
-          </span>
+          <div ng-message="username">
+           {{user.username}} is already taken, 
+              please choose a different name
           </div>
-          </div> <!--end body private note-->
+         
+            
+      </div>
+  
+        <div class="clearfix"></div>
+  </md-input-container>
+             </div>
+              <div class="col-md-6">
+                 
+<md-input-container class="md-block margin-top25">
+            <label>Email (not revealed to other members)</label>
+            <input  name="email" 
+                    required 
+                    type="text"
+                    ng-model="user.email" 
+                    ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([A-Za-z0-9\-])+\.)+([a-zA-Z]{2,3})+$/">
+            <div ng-messages="account.email.$error">
+            <div ng-message="required">Email is required.</div>
+            <div ng-message="pattern">Enter valid email address</div>
+            </div>
+</md-input-container>
+
+             </div>
+          </div>
+          <div class="clearfix">  
+              <div class="col-md-6">
+               <md-input-container class="md-block">
+            <label>Password</label>
+            <input  
+                    name="password" 
+                    required 
+                    type="password"
+                    ng-model="user.password" 
+            >
+           
+            <div ng-messages="account.password.$error">
+            <div ng-message="required">Password is required.</div>
+            </div>
+      </md-input-container>
+             </div>
+              <div class="col-md-6">
+                  <md-input-container class="md-block">
+              <label>Confirm Password</label>
+              <input  
+                      name="confirmpassword" 
+                      required 
+                      type="password"
+                      ng-model="user.confirmpassword" 
+              >
+              <div ng-messages="account.confirmpassword.$error">
+                <div ng-message="required">Confirm Password is required.</div>
+              </div>
+
+            </md-input-container>
+             </div>
+          </div>
+          <div class="clearfix">  
+             <div class="col-md-12">
+              <md-button class="md-raised md-primary logpopup-Btn" type="submit" style="margin-left:0 !important;">Save</md-button>
+            </div>
+            <div class="col-md-12">
+            <p class="noteitalic">Note*: your new account will be created with the above mentioned information! you can manage your account once it is ready.</p>
+            </div>
+          </div> 
           </form>
+
         </div>
+        
+      </div>
     </div>
   </div>
-
-      </div>
 </section>
 
-</div>	 
+</div>

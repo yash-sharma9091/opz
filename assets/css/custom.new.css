@@ -206,7 +206,7 @@ md-progress-circular {
 }
 .scroll-top {
     position: fixed;
-    right: 15px;
+    right: 5px;
     bottom: 10px;
     background-color: rgba(0, 173, 255, 0.94) !important;
     color: white !important;
@@ -903,7 +903,7 @@ md-option:nth-child(4n),md-option:nth-child(2n) , md-option:first-child
 
 md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea solid;}
 .colorBlue, .colorBlue black {   color: #ec1d1d; }
-.typeLabel li > span { width: 180px; }
+.typeLabel li > span { width: 190px; }
 .typeLabel li,.typeLabel li small, .myProfList li {     font-size: 14px; }
 .listing{ min-height: 400px }
 .large-height { height: 80px; }
@@ -1092,3 +1092,85 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 
 .crop { position: relative;height: 35px; width: 35px; }
 .crop-btn { position: relative ; }
+
+.otherUserInfo { 
+      
+    background: #b9ddf8;
+    
+} 
+
+.otherUserInfo:after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #b9ddf8;
+    top: 11px;
+}
+
+.pagination li 
+{
+    border: 0 !important;
+    display: inline-block !important;
+    margin: auto !important;
+}
+.pagination 
+{
+display: block;
+margin: 20px 0;
+border-radius: 4px;
+margin: auto;
+text-align: center;
+}
+
+.typeLabel text 
+{    
+    display: inline-block;
+    min-width: 85px;
+}
+.locatTabMain {    min-height: 320px;}
+.srchAreaBx  { min-height: 195px; }
+.posRelative { position: relative; min-height: 250px; }
+.datePicker .md-datepicker-button{  position: absolute;    padding: 0;
+    left: -8px;
+    top: 4px; }
+.datePicker  {    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    width: 100%;}
+ .datePicker   .md-datepicker-input-container{    margin: 0 !important;
+    width: 100%;
+    padding: 0;}
+   .datePicker   .md-datepicker-input-container input  {    padding-left: 34px !important;
+    margin: auto !important;
+    width: 100% !important;}
+    .md-datepicker-triangle-button.md-button.md-icon-button{    top: 12px; right: 6px;}
+    .sm{height: 45px;}
+    
+    .inactive{    color: gray !important;   background-color: #cacaca;}
+
+iframe { border: 0; height: 0 !important }
+
+.md-button.md-primary.chat-btn{position: fixed;
+    z-index: 1; font-size: 12px;
+    text-align: center;
+    bottom: 0;
+    margin: 0;
+    border-radius: 3px 3px 0 0;
+    border: 0;
+    right: 67px;
+    background-color: #04a6f4;
+    color: white;
+    text-transform: capitalize;}
+    
+    .md-button.md-primary.chat-btn md-icon { color: white !important }
+    .md-button.md-primary.chat-btn .icon-sm {    
+    font-size: 18px !important;
+    float: right;
+    margin-top: 11px;
+    }
+    .popover-sm .popover-content{ font-size: 11px; padding-top: 5px;  }
+  
+     .popover-sm  .arrow {     display: none !important; }
+     .professional-profile .profileInfoBx {    height: 323px; }

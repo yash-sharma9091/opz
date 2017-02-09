@@ -10,7 +10,14 @@
         <a ng-click="addLocation('addCountry')">Add Country</a>
         <a ng-click="addLocation('addCity')">Add City</a>
       </div>
-      <div class="row">
+
+
+
+<div class="row posRelative">
+       <div class="loading" ng-hide="myLocations">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+            </div>
 
 <div class="col-md-6 col-sm-6" ng-repeat="myLocation in myLocations track by $index" 
           ng-init="myLocation.travelEnd=myLocation.travelEnd?myLocation.travelEnd:''; myLocation.travelStart=myLocation.travelStart?myLocation.travelStart:''">
@@ -21,20 +28,21 @@
             <span><span ng-hide="myLocation.latitude == 0">({{myLocation.latitude}}, {{myLocation.longitude}})</span><span ng-hide="myLocation.latitude != 0">&nbsp;</span></span>
             
           </div>
+
           <div class="locatTabMain">
 
 
-           <div class="locatTab">
-
+         <div class="locatTab">
+         <!--primary location-->
         <ul class="clearfix">
         <li style="width:30%">
+
            <md-radio-group ng-model="myLocation.primaryLocation">
            <md-radio-button  ng-attr-id="{{ myLocation.locationType == 'country' ? 'locationPrimaryCountry' : myLocation.locationType }}" 
                       ng-click="locationPrimaryChange(myLocation.id, myLocation.locationPrimary, $event)"
                       class="md-primary" 
                       value="primary">Primary
             </md-radio-button>
-
            </md-radio-group>
            </li>
 
@@ -58,130 +66,73 @@
                   </md-radio-group>  
                   </li>
                 </ul>
+
             </div>
-             </md-radio-group>
+   
             <div class="srchAreaBx">
               <div class="srchareaFrmbx">
                 <md-input-container>
                   <label>Search Area</label>
                   
                   <md-select placeholder="Search Area" ng-model="myLocation.searchLocation" class="md-no-underline">
-                  <!-- <md-option value="" >Search Area</md-option> -->
+                
                     <md-option ng-repeat="miles in commonMilesArray" value="{{miles.hideValue}}" >{{miles.displayValue}}</md-option>
-                    <!-- ng-selected="(typeof searchLocation != undefined && searchLocation != null && searchLocation !='' && searchLocation == miles.hideValue) ? true : false " -->
+                    
                   </md-select>
                 </md-input-container>
 
               </div>
               
               <div class="srchareaFrmbx" ng-if="myLocation.locationCategory == 'travel'">
-                <!-- <label>Date</label> -->
+              
                 <div class="clearfix">
                   <div class="dateBx-L">
-                    <md-input-container ng-init="open=false">
-                    <label>Start Date</label>
-                    <!-- <input type="text" name="name" ng-model="user.startDate" class=" calIcon"> -->
-                   
+                     <label>Start Date</label>
+                                      <md-input-container ng-click="isOpen1 = true" class="sm">
+                  
+                 <!--   
+                    <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelEnd" is-open="open2" min-date="0" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open2 = !open2;" /> -->
+
+                    <md-datepicker ng-model="myLocation.travelStart"  aria-label="end" 
+                     md-placeholder="Enter date" md-is-open="isOpen1"  class="datePicker"></md-datepicker>
+                    </md-input-container>
+
+                  <!--  
                     <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelStart" is-open="open" min-date="-1"  min="0" ng-required="true" close-text="Close" ng-click="open = !open;" />
-
-
-                    <!-- <pre><em>{{myLocation.travelStart | date:'yyyy-MM-dd' }}</em></pre> -->
-                    <!-- <div uib-datepicker ng-model="myLocation.travelStart" class="well well-sm"></div> -->
-
-
-                    <!-- <md-datepicker ng-model="myLocation.travelStart" md-placeholder="Enter date" class="" value="{{myLocation.travelStart}}"></md-datepicker> -->
+ -->
+             
                     </md-input-container>
                   </div>
-                  <div class="dateBx-M"> - </div>
+                 <!--  <div class="dateBx-M"> - </div> -->
                   <div class="dateBx-R">
-                    <md-input-container ng-init="open2=false">
                     <label>End Date</label>
-                    <!-- <input type="text" name="name" ng-model="user.endDate" class="calIcon"> -->
-                    <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelEnd" is-open="open2" min-date="0" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open2 = !open2;" />
+                    <md-input-container ng-click="isOpen = true" class="sm">
+                  
+                 <!--   
+                    <input type="text" class="form-control calIcon" uib-datepicker-popup="yyyy-MM-dd" ng-model="myLocation.travelEnd" is-open="open2" min-date="0" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-click="open2 = !open2;" /> -->
 
-                    <!-- <md-datepicker ng-model="myLocation.travelEnd" 
-                     md-placeholder="Enter date" ></md-datepicker> -->
+                    <md-datepicker ng-model="myLocation.travelEnd" aria-label="stert"
+                     md-placeholder="Enter date" md-is-open="isOpen" class="datePicker" ></md-datepicker>
                     </md-input-container>
                   </div>
                 </div>
               </div>
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;" ng-click="mylocationsSave($index)" aria-label="Save Location">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;" aria-label="Delete Location" ng-click="deleteLocation(myLocation.id, myLocation.locationNames, myLocation.primaryLocation)">Delete</md-button>
-              </div>
+             
             </div>
 
-            <div class="srchAreaBx" style="display:none;">
-              <div class="srchareaFrmbx">
-                <md-input-container>
-                <label>Search area2</label>
-                  <md-select ng-model="weapon2" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
-                  </md-select>
-              </div>
-              
-              <div class="srchareaFrmbx">
-                <div class="clearfix">
-                  <div class="dateBx-L">
-                    <md-input-container>
-                    <label>Start Date</label>
-                    <input type="text" name="name" ng-model="user.startDate" class="calIcon">
-                    </md-input-container>
-                  </div>
-                  <div class="dateBx-M"> - </div>
-                  <div class="dateBx-R">
-                    <md-input-container>
-                    <label>End Date</label>
-                    <input type="text" name="name" ng-model="user.EndDate" class="calIcon">
-                    </md-input-container>
-                  </div>
-                </div>
-              </div>
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
-              </div>
-            </div>
+             <div class="saveDet clearfix">
+                <md-button class="md-raised md-primary save-Btn" 
+                style="margin-left:0 !important;" 
+                ng-click="mylocationsSave($index)" 
+                aria-label="Save Location">Save
+                </md-button>
 
-            <div class="srchAreaBx" style="display:none;">
-              <div class="srchareaFrmbx">
-                <md-input-container>
-                <label>Search Area3</label>
-                  <md-select ng-model="weapon3" class="md-no-underline">
-                    <md-option value="axe">01</md-option>
-                    <md-option value="sword">02</md-option>
-                    <md-option value="wand">03</md-option>
-                    <md-option value="pen">04</md-option>
-                  </md-select>
+                <md-button class="md-raised md-danger Delete-Btn" 
+                style="margin-left:0 !important;" 
+                aria-label="Delete Location" 
+                ng-click="deleteLocation(myLocation.id, myLocation.locationNames, myLocation.primaryLocation)">
+                Delete</md-button>
               </div>
-              
-              <div class="srchareaFrmbx">
-                <div class="clearfix">
-                  <div class="dateBx-L">
-                    <md-input-container>
-                    <label>Start Date</label>
-                    <input type="text" name="name" ng-model="user.startDate" class="calIcon">
-                    </md-input-container>
-                  </div>
-                  <div class="dateBx-M"> - </div>
-                  <div class="dateBx-R">
-                    <md-input-container>
-                    <label>End Date</label>
-                    <input type="text" name="name" ng-model="user.EndDate" class=" calIcon">
-                    </md-input-container>
-                  </div>
-                </div>
-              </div>
-              <div class="saveDet clearfix">
-                <md-button class="md-raised md-primary save-Btn" style="margin-left:0 !important;">Save</md-button>
-                <md-button class="md-raised md-danger Delete-Btn" style="margin-left:0 !important;">Delete</md-button>
-              </div>
-            </div>
-
-          </div>
         </div>
       
 

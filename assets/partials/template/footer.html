@@ -57,4 +57,23 @@
 </footer>
 <md-button class="md-fab md-mini scroll-top" aria-label="scrollTop" scroll-offset="body" scroll="true">
            <md-icon >expand_less</md-icon>
-       </md-button>
+</md-button>
+
+<!--chat button-->
+
+<md-button class="md-button md-primary chat-btn" aria-label="chatBtn" ng-if="chatStart && isUserLogin"> 
+Massage Messenger
+<super> &trade;</super>
+<md-icon >add</md-icon>
+
+<md-icon  
+  class="icon-sm"
+  popover-class="popover-sm"
+  uib-popover="Using Massage Messenger, you can communicate with any other Zenbrisa online member, however only those members that are within 60 miles / 96 km of your home or travel location will appear in the Massage Messenger online member list." 
+  popover-trigger="'mouseenter'" 
+  popover-placement="'right-top'"
+  popover-append-to-body="'true'"
+  >help
+  </md-icon>
+
+</md-button>

@@ -129,12 +129,13 @@ var API_URL=
 	"getPublicPhoto":api_base_url+'users/getPublicPhotos',
 	"checkPhotoKey":api_base_url+'users/getPrivatePhotos',
 	"requestPhotoKey":api_base_url+'requests/sendRequest',
-	"getAllCountMyprofile":api_base_url+ 'users/getAllCountMyprofile',
+	"getAllCountMyprofile":api_base_url+ 'users/getAllCountProfile',
 	"generateKey":api_base_url+ 'users/generatePhotoKeyMerge',
 	"reportAbuse":api_base_url+'users/addReport',
 	"addPrivateNote":api_base_url+'privateNotes/getPrivateNotes',
 	"writePrivateNote":api_base_url+'privateNotes/writePrivateNotes',
 	"setProfilePic" : api_base_url+'users/cropProfileImage',
+	"checkReviewWrite" :api_base_url+"users/checkReview",
 	
 	//social login/signup
 	"socialLoginUrl": api_base_url+'phase2/socialLoginSignup',
@@ -150,6 +151,8 @@ var API_URL=
 	// mailbox
 	"mailbox": api_base_url + 'mail/mailbox',
 	"getUserFolders": api_base_url + 'mail/getUserFolders',
+	"mailConversationsById": api_base_url + 'mailBox/mailConversationsById',
+	"getUsers": api_base_url + 'mailBox/getUsers',
 
 	//add massage
 	"addMassage":api_base_url+"massagenow/addMassageNow",
