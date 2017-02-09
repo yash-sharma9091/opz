@@ -370,7 +370,7 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false, chat:true
     }
   })
-.when('/professional-pfofile',
+.when('/professional-profile',
   {
     templateUrl:"/partials/dashboard/professional-user-profile/professional-profile.html",
    // controller:"blogCommentCtrl",

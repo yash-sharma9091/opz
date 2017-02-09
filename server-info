@@ -1,3 +1,25 @@
+-live details
+https://zenbrisa.com/cpanel
+UserName: zenbrisa
+Password: Xt7c36gV
+
+Username: root
+
+Password: H7Low3yk
+
+
+ssh -p 2020 root@37.220.88.182
+
+location : cd /home/zenbrisa/nodeserver
+
+pm2 restart all 
+
+./node_modules/sails/bin/sails.js lift app.js
+
+
+
+
+
 
 Documentation for Staging
 ---------------------------
@@ -63,23 +85,6 @@ Email address: TestFlex2@seologistics.com
 Password: 123456
 
 TODO:
-
----on search page---
-
-on search page add new member label 
-and show  result top  listing 
-
-new member -recent active(online) 
-on search button remove (0) and chnage color 
-
---------------------
-
-Static page Text Bold on banner
-
-crop tool 
-
-
-
 
 
 TODO on server

@@ -64,7 +64,7 @@ function userProfileView(e,mdDialog, appServices,localStorageService,rootscope,l
 e.loading=true;
 var id=routeParams._id;
 
-var user={objectUserId:id}
+var user={userId:id}
 
 e.isUserProfile=true;
 e.isUserId=id;
@@ -78,7 +78,7 @@ appServices.post(API_URL.getOtherUserProfile,user, function(response)
      {		
      		if(response.status==1)
      		{
-     			e.userprofile=appServices.removeNull(response.data[0]);
+     			e.userprofile=appServices.removeNull(response.data);
      			rootscope.ProfileCount(e.isUserId);
 
 
