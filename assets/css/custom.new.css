@@ -1174,3 +1174,12 @@ iframe { border: 0; height: 0 !important }
   
      .popover-sm  .arrow {     display: none !important; }
      .professional-profile .profileInfoBx {    height: 323px; }
+
+
+md-checkbox .md-container{ background: url("../images/checkbox-icon.png") 0 0 no-repeat;}
+md-checkbox .md-container::after{ display: none;}
+md-checkbox .md-container::before{ display: none;}
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {background-position: -2px -22px !important; background-image: url(../images/checkbox-icon.png); background-repeat: no-repeat !important; background-color: none !important;}
+md-checkbox.md-checked .md-icon::after {opacity: 0 !important;}
+
+

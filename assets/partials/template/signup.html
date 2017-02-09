@@ -7,8 +7,8 @@
         </md-button>
        <h2 class="LoginHd">Member Signup Form {{isSignupSuccess}}</h2>
        
-      <div class="md-dialog-content" >
-    <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
+      <div class="md-dialog-content">
+      <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p>
         <div class="alert {{alert.type}}" ng-if="alert">
               <p>
                 <md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
@@ -17,7 +17,7 @@
         </div>
 
   <div class="loginFrmTop" ng-if="!isSignupSuccess">
-      <md-input-container class="md-block   loaderText">
+      <md-input-container class="md-block  loaderText">
         <md-progress-circular  ng-if="checking"
                    md-mode="indeterminate" 
                    
@@ -61,9 +61,6 @@
       </div>
 
   </md-input-container>
-
-
-
 <md-input-container class="md-block margin-top25">
             <label>Email (not revealed to other members)</label>
             <input  name="email" 

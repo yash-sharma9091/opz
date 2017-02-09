@@ -170,7 +170,7 @@ form.frmBx{ width: 495px;}
 }
 .textareaInp{ border:#cad5dd solid 1px !important; background: #fff !important; width: 100% !important; font-family: 'uniformregular' !important; height: 160px !important; margin:0 0 10px 0 !important; padding:10px !important;}
 .rembBx{ font-size: 12px; font-style: italic; color: #a4a4a4; padding-bottom: 0px; margin-top: 5px; font-family: 'uniformmedium';}
-.rembBx input[type=checkbox]{ margin: 0;}
+/*.rembBx input[type=checkbox]{ margin: 0;}*/
 .rembBx label{ vertical-align: middle; font-weight: 400; margin: 0;}
 .rembBx i{ display: inline-block; float: right; }
 .rembBx a{ display: inline-block; color: #ff0000;}
@@ -786,7 +786,7 @@ nav .navbar-collapse{ padding-right: 0; margin-right: -15px;}
 .postBlogBx .InpFile{ top: 8px;}
 .srchfrmBx .search-btn{ border: 0 !important;}
 .addnewLoc{ bottom: 40px;}
-md-checkbox .md-container{ background: url("../images/checkbox-icon.png") 0 0 no-repeat;}
-md-checkbox .md-container::after{ display: none;}
-md-checkbox .md-container::before{ display: none;}
-md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {background-position: -2px -22px !important; background-image: url(../images/checkbox-icon.png); background-repeat: no-repeat !important; background-color: none !important;}
+.accordion .panel-heading{ border-radius: 0px !important;}
+.panel-body ul.ng-scope{ padding-bottom: 15px;}
+.panel-body ul.ng-scope li{ padding: 5px 0;}
+.tabs md-list-item .md-button {padding-bottom: 15px !important;}
