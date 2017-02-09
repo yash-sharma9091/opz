@@ -75,7 +75,7 @@ angular.module('zenbrisa.controllers')
   	$scope.seekingItems = [
   		{ value: 'free_exchange', text: 'Free Massage Exchange' },
   		{ value: 'paid_exchange', text: 'Paid Professional Massage' },
-  		{ value: 'both_exchange', text: 'Both' }
+  		// { value: 'both_exchange', text: 'Both' }
   	];
 
   	// Massage Style defauts
