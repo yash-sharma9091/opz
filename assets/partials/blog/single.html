@@ -6,9 +6,20 @@
 		</div>
 		<div class="pollsHd">{{blogData.title}} <span><a ng-href="#/blogs">Back</a></span></div>
 		<div class="pollBx">
+		<div class="row">
+
+		<div class="col-xs-6">
+		<md-icon class="icon-sm">account_circle</md-icon>by {{blogData.username}}
+		</div>
+		<div class="col-xs-6 text-right">
+		<md-icon class="icon-sm">access_time</md-icon> {{blogData.blogDate}}
+		</div>
+		</div>
+		<div class="clearfix"></div>
 			<div class="blogdetail">
-				<i ng-if="(blogData.featuredImage != null && blogData.featuredImage != '')"><img src="http://cdn.zenbrisa.com/blog/{{blogData.featuredImage}}" alt="" class="w100"></i>
-				<span><small class="material-icons">access_time</small> {{blogData.blogDate}} </span>
+				<i ng-if="(blogData.featuredImage != null && blogData.featuredImage != '')"><img src="http://cdn.zenbrisa.com/blog/{{blogData.featuredImage}}" alt="blog" 
+				class="w100"></i>
+				
 				<div ng-bind-html="blogData.description"></div>
 
 			</div>
@@ -32,11 +43,11 @@
 				</md-input-container>
 				<!-- <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp" aria-invalid="false"></textarea> -->
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-sm-6 col-xs-12">
 						<md-button ng-if="!isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left">Submit</md-button>
 						<md-button ng-if="isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left" type="submit">Submit</md-button>
 					</div>	
-					<div class="col-md-10 margin-top10">
+					<div class="col-sm-6 col-xs-12 margin-top10">
 						<p ng-if="!isUserLogin"><a ng-click="signup($event)" class="blueClr">Signup</a> or <a class="blueClr" ng-click="login($event)">login</a> to post a comment</p>
 					</div>
 				<div class="clearfix"></div>

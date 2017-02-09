@@ -909,7 +909,7 @@ md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea soli
 .large-height { height: 80px; }
  md-option .md-text { text-transform: capitalize; }
 
-.md-dialog-content {  padding: 10px 24px !important; }
+.md-dialog-content {  padding: 10px 15px !important; }
 .md-select-value { text-transform: capitalize; }
 
 .multiDropdown md-option .md-text{ color: #5f5f5f; }
@@ -953,7 +953,7 @@ img-crop {  max-width: 400px;height:250px !important ; position: static !importa
     left: 0;
     right: 0;
     opacity: 0;
-    cursor: pointer;}
+    cursor: pointer; width: 100%;}
 .btn-reset .md-button{  text-transform: none !important; }
 .btn-reset .md-primary.md-raised {  color: white !important; }
 
@@ -1045,7 +1045,7 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .pointer { cursor: pointer; }
 .listingTop-Right i img{ max-width: 85px; }
 .btn-reset .md-primary md-icon{ color: white !important;  }
-.blogList li i {
+.blogList li i {    height: 157px;
     background-size: cover;}
 
 /*.blogList li {
@@ -1174,3 +1174,12 @@ iframe { border: 0; height: 0 !important }
   
      .popover-sm  .arrow {     display: none !important; }
      .professional-profile .profileInfoBx {    height: 323px; }
+
+
+md-checkbox .md-container{ background: url("../images/checkbox-icon.png") 0 0 no-repeat;}
+md-checkbox .md-container::after{ display: none;}
+md-checkbox .md-container::before{ display: none;}
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {background-position: -2px -22px !important; background-image: url(../images/checkbox-icon.png); background-repeat: no-repeat !important; background-color: none !important;}
+md-checkbox.md-checked .md-icon::after {opacity: 0 !important;}
+
+

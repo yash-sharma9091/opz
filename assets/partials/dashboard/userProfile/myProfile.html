@@ -151,12 +151,10 @@
               </div>
           </div>
         </div>
-        
-  
 
       <div class="clearfix"></div>
         <!--private node-->
-        <div class="profileInfoBx privatenote" ng-if="isUserId" >
+        <div class="profileInfoBx privatenote" ng-if="isUserId && isUserLogin" >
         <form name="private" novalidate>
             <div class="profInfoHd" 
               ng-click="privateNote=!privateNote">Private Notes (Visible to me only!)

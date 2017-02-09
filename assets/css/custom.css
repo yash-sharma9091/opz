@@ -170,14 +170,13 @@ form.frmBx{ width: 495px;}
 }
 .textareaInp{ border:#cad5dd solid 1px !important; background: #fff !important; width: 100% !important; font-family: 'uniformregular' !important; height: 160px !important; margin:0 0 10px 0 !important; padding:10px !important;}
 .rembBx{ font-size: 12px; font-style: italic; color: #a4a4a4; padding-bottom: 0px; margin-top: 5px; font-family: 'uniformmedium';}
-.rembBx input[type=checkbox]{ margin: 0;}
+/*.rembBx input[type=checkbox]{ margin: 0;}*/
 .rembBx label{ vertical-align: middle; font-weight: 400; margin: 0;}
 .rembBx i{ display: inline-block; float: right; }
 .rembBx a{ display: inline-block; color: #ff0000;}
 .rembBx a:hover{ text-decoration: underline !important;}
 .logpopup-Btn {border-radius: 0; box-shadow: none !important; color: #fff !important; display: block; 
-  font-size: 16px; margin: 0 auto 10px auto !important; padding: 1px 0 !important; width: 160px !important;font-family: 'uniformregular';
-  text-transform: capitalize;}
+  font-size: 16px; margin: 0 auto 10px auto !important; padding: 1px 0 !important; width: 160px !important;font-family: 'uniformregular'; text-transform: capitalize; background:rgb(3, 155, 229) !important;}
 .ordevider {background: #ddd; height: 1px; margin: 30px 0; position: relative;}
   .ordevider > span {background: #c1c1c1;  border-radius: 50%;color: #fff; font-size: 10px; font-weight: 600;
   height: 27px; left: 0; line-height: 27px; margin: 0 auto; position: absolute; right: 0; text-align: center;
@@ -782,8 +781,11 @@ nav .navbar-collapse{ padding-right: 0; margin-right: -15px;}
 .srchformBx md-select{margin-bottom: 12px !important;}
 .stepFrmBx .md-required {top: -26px !important; font-size: 17px !important;}
 .fullAdd {margin-top: -7px !important;}
-p.infoAlert{ padding-bottom: 0;}
 .postBlogBx .fileButton{ top: 8px;}
 .postBlogBx .InpFile{ top: 8px;}
 .srchfrmBx .search-btn{ border: 0 !important;}
 .addnewLoc{ bottom: 40px;}
+.accordion .panel-heading{ border-radius: 0px !important;}
+.panel-body ul.ng-scope{ padding-bottom: 15px;}
+.panel-body ul.ng-scope li{ padding: 5px 0;}
+.tabs md-list-item .md-button {padding-bottom: 15px !important;}

@@ -1,6 +1,6 @@
 /*
 	name : public controller
-	function : login, signup, modal , contact us ,composeEmailPublic, logout
+	function : login, signup, modal , contact us ,composeEmailPublic, logout, packages
 
 */
 
@@ -9,7 +9,9 @@ angular.module('zenbrisa.public.Controller',['service'])
 .controller('contactus', contactus)
 .controller('profileStepCtrl', profileStepCtrl)
 .controller('composeEmailPublic', composeEmailPublic)
-.controller('logout', logout);
+.controller('logout', logout)
+.controller('packages', packages);
+
 
 
 
@@ -656,5 +658,22 @@ logout.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootS
 
 function logout(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
 { 
+
+}
+
+//packages 
+packages.$inject=['$scope','$mdDialog','appServices','localStorageService','$rootScope','$location','$timeout'];
+
+
+function packages(e,mdDialog, appServices,localStorageService,rootScope,$location,timeout)
+{ 
+ var user={};
+e.loading=true;
+e.loading=false;
+
+ // appServices.post(API_URL.saveMail,user, function(response)
+ //  {
+
+ //  });
 
 }

@@ -129,11 +129,12 @@ nav .navbar-collapse {margin-right: 0; padding-right: 0;}
 .navbar-nav {float: left; margin: 1px 0;}
 .usermenu {margin-top: -6px;}
 .notification button {top: 5px; position: relative;}
-.topBtn ul li button {font-size: 13px !important; padding: 14px 5px !important; min-width: 0 !important;}
+.topBtn ul li button {font-size: 13px !important; padding: 14px 10px !important; min-width: 0 !important;}
 .usersCon .tabs md-list-item .md-list-item-text{ padding-top: 15px; padding-bottom: 15px;}
 .gallMain {margin: 10px 0 15px;}
 .gallImgBx{ width: 100%; height: 160px;}
 .col-sm-9 .row.blockList{ margin-right: 0;}
+.suggpollFrm md-input-container .btn-right{ right: 3px; top: 3px;}
 }
 
 @media(max-width: 767px){
@@ -145,7 +146,7 @@ nav {position: absolute !important; right: 10px; top: -10px;width: 45px; min-hei
 .navbar-collapse {background: #f5f5f5 none repeat scroll 0 0; border: 1px solid #eee; border-radius: 5px; display: block; position: absolute;
   right: 0; width: 200px; z-index: 99; height: auto !important;}
 .navbar-collapse.in{ display: none;}
-.nav > li:last-child a {padding: 7px 15px !important;}
+.nav > li:last-child a {padding: 7px 8px !important;}
 .nav > li > a{ text-align: left;}
 .logoBx img {height: 45px;}
 header{ padding:5px 0;}
@@ -155,7 +156,7 @@ header{ padding:5px 0;}
 .locationBx i{ top: 5px;}
 .searchwithin{ padding-top: 3px;}
 .selectmrgn{ margin: 7px 0 !important;}
-.srchfrmBx button{ height: 45px;}
+.srchfrmBx button{ height: 44px;}
 .welhd{ font-size: 26px; font-weight: 700;}
 .welcomeBx{ padding: 30px 0;}
 .welcontent p {font-size: 16px; line-height: 24px;}
@@ -277,6 +278,12 @@ button.nav-btn .material-icons{ font-size: 24px;}
 .gallImgBx{ height: 200px;}
 .profileInfoBx{ margin-top: 10px;}
 .locatTabMain{ height: auto; min-height: 0;}
+.tabs md-list-item .md-button {padding-bottom: 0px !important;}
+
+.fullAdd{ height: auto !important;}
+.fullAdd .col-sm-4 {float: none !important; padding: 0 0 10px;}
+.locatTabMain {min-height: 0px;}
+.srchAreaBx {min-height: 0px;}
 }
 
 @media(max-width: 639px){
@@ -368,7 +375,7 @@ h1.heading{ font-size: 25px; padding: 0 0 5px 0;}
 .composeBtn .mail-closeBtn{ width: 100px !important; font-size: 14px; min-height: 30px; line-height: 30px;}
 .composeBtn .logpopup-Btn{ width: 100px !important; font-size: 14px; min-height: 30px; line-height: 30px;}
 .attachfile > span {display: block; padding-bottom: 10px;}
-.attachfile > span > md-checkbox{ margin-bottom: 5px;}
+/*.attachfile > span > md-checkbox{ margin-bottom: 5px;}*/
 
 /*--------------25/11/2016--------------*/
 .referfrdHd {font-size: 20px; padding-bottom: 12px;}
@@ -463,8 +470,7 @@ h1.heading{ font-size: 18px;}
 .signoutInnTxt h2 {font-size: 18px;}
 .logoutBtns{ font-size: 13px; padding: 6px 15px;}
 .sigoutBg {height: 250px;}
-.leftChat .topBtn nav button {width: 100% !important; min-width: 0 !important; font-size: 13px !important;
-  padding: 14px 5px !important;}
+.leftChat .topBtn nav button {width: 100% !important; min-width: 0 !important; font-size: 13px !important; padding: 14px 10px !important;}
 .leftChat .topBtn nav{ padding-right: 35px;}
 .leftChat .topBtn ul li {float: left; width: auto;}
  h2{font-size: 17px; font-weight: 600 !important; padding-bottom: 5px !important;}
@@ -483,4 +489,8 @@ h1.heading{ font-size: 18px;}
 .addnewLoc{ bottom: 62px;}
 .msgBg > form > .srchformBx:last-child{padding-bottom: 0;}
 .msgBg > form > .srchformBx:last-child md-input-container {margin: 0 auto !important;}
+.md-dialog-content {padding: 10px 10px !important;}
+md-dialog{ max-width: 95% !important;}
+.md-button.md-primary.chat-btn .icon-sm{ float: none !important;}
+md-checkbox .md-label{ margin-left: 22px;}
 }
