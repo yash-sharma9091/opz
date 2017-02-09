@@ -789,3 +789,4 @@ nav .navbar-collapse{ padding-right: 0; margin-right: -15px;}
 md-checkbox .md-container{ background: url("../images/checkbox-icon.png") 0 0 no-repeat;}
 md-checkbox .md-container::after{ display: none;}
 md-checkbox .md-container::before{ display: none;}
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {background-position: -2px -22px !important; background-image: url(../images/checkbox-icon.png); background-repeat: no-repeat !important; background-color: none !important;}
