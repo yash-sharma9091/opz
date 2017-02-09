@@ -1,0 +1,86 @@
+<md-dialog aria-label="camposemail">
+	<form name="userEmail" novalidate>
+		<md-dialog-content>
+			<md-button ng-hide="send" class="md-icon-button  closeIcon" ng-click="cancel()">
+				<md-icon  aria-label="Close">close</md-icon>
+			</md-button>
+			<h2 class="LoginHd">Compose E-mail</h2>
+			<div class="md-dialog-content" ng-if="send">
+				<div class="alert alert-success">
+					<p> <span> Your email  has been send to {{user.username}} </span></p>
+				</div>
+
+				<md-button  aria-label="finish"  ng-click="cancel()" class="md-raised md-primary logpopup-Btn">OK </md-button>
+			</div>
+			<div class="md-dialog-content" ng-if="!send">
+				<!-- <p class="infoAlert"> All Fields marked with <red>*</red> are mandatory.</p> -->
+				<div class="alert {{alert.type}}" ng-if="alert">
+					<p>
+						<md-icon ng-if="alert.type=='alert-danger'">error_outline</md-icon>
+						<span ng-bind-html="alert.message"> </span>
+					</p>
+				</div>
+
+				<div class="loginFrmTop" >
+					<md-input-container class="md-block">
+						<!-- <label>To</label> -->
+						<!-- <input required md-no-asterisk name="to" ng-model="email.to"> -->
+						<md-autocomplete
+							  md-input-name="to"
+							  md-autofocus="true"
+							  md-selected-item="email.selectedUser"
+					          md-search-text="email.to"
+					          md-items="item in querySearch(email.to)"
+					          md-selected-item-change="selectedItemChange(item)"
+					          md-item-text="item.username"
+					          md-min-length="3"
+					          placeholder="To (Type atleast 3 characters)"
+					          ng-required="true">
+					        <md-item-template>
+					          <span md-highlight-text="email.to" md-highlight-flags="^i">{{item.username}}</span>
+					        </md-item-template>
+					        <md-not-found> No match found for "{{email.to}}" </md-not-found>
+				      	</md-autocomplete>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Subject</label>
+						<input ng-blur="saveToDraft(email)" required md-no-asterisk name="composeSubject" ng-model="email.composeSubject">
+						<div ng-messages="userEmail.composeSubject.$error">
+							<div ng-message="required">Enter your subject.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Type your message here</label>
+						<textarea ng-blur="saveToDraft(email)" name="composeMessage" 
+						ng-model="email.composeMessage" required 
+						ng-bind-html="email.composeMessage"
+						class="textareaInp"></textarea>
+						<div ng-messages="userEmail.composeMessage.$error">
+							<div ng-message="required">Enter your Message.</div>
+						</div>
+					</md-input-container>
+					<p ng-if="email.photokey">Your photo key is - {{email.photokey}}</p>
+					<div class="composeBtn clearfix">
+						<div class="attachfile">
+							<!-- <span><i class="material-icons">attachment</i> Attach Files
+							  <input type="file" ngf-select="onAttachmentSelected($file, email)" ng-model="email.attachments" name="attachments" class="attachfileInp" value="Browse">
+							</span> -->
+							<span>
+								<md-checkbox  ng-change="generateKey(user.photoKey, email.selectedUser.id)" 
+								ng-model="user.photoKey" 
+								ng-disabled="!email.selectedUser"
+								aria-label="sendkey"> {{ generatingKey ? 'Processing ...' : 'Send Photo Key'}}
+								</md-checkbox>
+							</span>
+						</div>
+
+						<md-button ng-disabled="generatingKey || saving" type="submit" aria-label="send" ng-click="shootMail(userEmail.$valid, email)" class="md-raised md-primary logpopup-Btn">
+						<span ng-if="!isProcessing">{{saving || 'Send'}}</span>
+						<span ng-if="isProcessing">Sending..</span>
+						</md-button>
+					</div>
+				</div>
+			</div>
+		</md-dialog-content>
+	</form>
+</md-dialog>

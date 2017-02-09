@@ -14,7 +14,7 @@
 						    <md-list flex>
 						        <md-list-item ng-click="vm.getMailConversation(message.userId, $index)" class="md-3-line" 
 						        ng-repeat="message in vm.datalist">
-						            <img ng-src="{{message.image || 'images/no-image.jpg' || 'images/paitent1.png'}}" class="md-avatar" alt="image">
+						            <img ng-src="{{message.image || 'images/male.png' || 'images/paitent1.png'}}" class="md-avatar" alt="image">
 						            <div class="md-list-item-text" ng-class="{'unread': message.viewStatus === 'unread'}">
 						              	<h3>{{message.username}}</h3>
 						              	<h4>{{message.subject}}</h4>
@@ -38,13 +38,12 @@
 				</div>
 			</div>
 			<div class="rightChat">
-				<div class="userNames">{{vm.conversationName}}</div>
+				<div class="userNames">{{vm.conversationName || 'Loading ...'}}</div>
 				<div class="userChat">
-
 					<div class="chatCon">
 						<div class="conversionTxt">Conversation started May 06, 2015</div>
-						<div class="otherUser" ng-repeat="info in vm.conversations">
-							<img ng-if="vm.checkReceived(info.receiverId)" ng-src="{{info.profilePicUrl || 'images/no-image.jpg'}}" alt="{{info.profilePic}}" class="otherUserImage">
+						<div class="otherUser" ng-repeat="info in vm.conversations | orderBy:createdAt:true">
+							<img ng-if="vm.checkReceived(info.receiverId)" ng-src="{{info.profilePicUrl || 'images/male.png'}}" alt="{{info.profilePic}}" class="otherUserImage">
 							<div class="userInfoBox" ng-class="{'otherUserInfo': vm.checkReceived(info.receiverId), 'selfUser': !vm.checkReceived(info.receiverId)}">
 								<div class="uName">{{info.username}}</div>
 								<p ng-bind-html="info.message"></p>
@@ -87,7 +86,8 @@
 					<span class="sendPhoto"><md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
 						Send Photo Key
 					</md-checkbox></span>
-					<a href="javascript:void(0)" class="replyBtn">Reply</a>
+					<!-- <a href="javascript:void(0)" class="replyBtn">Reply</a> -->
+					<md-button aria-label="send" ng-click="shootMail(userEmail.$valid, email)" class="btn-sm md-sm md-raised md-primary replyBtn">Reply</md-button>
 				</div>
 			</div>
 		</div>

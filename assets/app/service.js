@@ -1344,6 +1344,34 @@ service.modal=function(template, controller,ev,data)
 
 
 	};
+	service.search=function(url,data, callback)
+	{	
+		
+		var $request={
+			method:'POST',
+			url:url,
+			data:data
+		};
+
+		var token;
+		
+		if(sessionStorage['ls.user'])
+		{
+			token=JSON.parse(sessionStorage['ls.user']).token;
+		}
+		if(localStorage['ls.user'])
+		{
+			token=JSON.parse(localStorage['ls.user']).token;
+		}
+		if(token)
+		{
+		    $http.defaults.headers.common['user-token'] = token;
+	        $http.defaults.headers.common['user-role'] = "user";
+        }
+        
+		return $http($request);
+
+	};
 	service.checkStorage= function(key){
 		if (localStorageService.get(key,"sessionStorage")){
 			return localStorageService.get(key,"sessionStorage");

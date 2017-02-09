@@ -43,7 +43,7 @@ angular.module('zenbrisa.mailbox')
 		};
 
 		vm.checkReceived = function (receiverId) {
-			return $rootScope.isUserLogin.userId != receiverId;
+			return $rootScope.isUserLogin.userId === receiverId;
 		};
 
 		vm.searchUser = function (query) {

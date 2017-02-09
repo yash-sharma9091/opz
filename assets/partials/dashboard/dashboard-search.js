@@ -27,12 +27,12 @@ function userDashboardSearch(e, rootscope, appServices, $location, $filter,local
 		     					var data=appServices.removeNull(response.data);	
 		     					if(data)
 		     					{
-
+		     						if(data.currentPhoneNo)
+		     					{
 		     					var phone=data.currentPhoneNo.split('|');
 		     					e.available["currentPhoneNo"]=phone[1];
 		     					
-		     					if(phone)
-		     					{
+		     					
 		     					angular.forEach(e.countryCode, function(value, key){
 		     						
 		     						if(phone[0]==value.dial_code)

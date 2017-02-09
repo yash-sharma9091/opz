@@ -629,7 +629,7 @@ e.sendEmail= function(email, form){
             e.alert={'message':"Processing..",'type':'alert-success'}
             e.isProcessing=true;
             
-            appServices.post(API_URL.saveMail,email, function(response)
+            appServices.post(API_URL.saveMail,fd, function(response)
             {
               e.isProcessing=false;
               
