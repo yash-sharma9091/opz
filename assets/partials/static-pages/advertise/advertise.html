@@ -23,7 +23,14 @@
 
 <section class="adverplanBx">
   <div class="container">
-      <div class="advertble">
+
+  <div class="loading" ng-show="loading">
+               <md-progress-circular class="md-primary" md-diameter="30"></md-progress-circular>
+               <span>Loading..</span>
+  </div>
+
+
+  <div class="advertble" ng-show="!loading">
     <table cellpadding="0" cellspecing="0" border="0">
       <tbody><tr>
         <td width="40%" class="basicfirst">&nbsp;</td>

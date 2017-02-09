@@ -75,13 +75,15 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false, chat:false
     }
   })
-  .when('/advertise',{
-    controller:"homepage",
-    templateUrl:"/partials/static-pages/advertise/advertise.html",
-    access:
+  .when('/advertise',
     {
-          login:false, chat:false
-    }
+      //public controller app
+      controller:'packages',
+      templateUrl:"/partials/static-pages/advertise/advertise.html",
+      access:
+      {
+            login:false, chat:false
+      }
   })
   .when('/contactus',{
     templateUrl:"/partials/static-pages/contactus/contactus.html",
@@ -101,16 +103,7 @@ angular.module('app.ngRoute',['ngRoute'])
           login:true, chat:true
     }
   })
-  .when('/profile',
-    {
-    templateUrl:"/partials/dashboard/userProfile/myProfile.html",
-    //path:-- assets/app.js 
-    controller:'profileview',
-    access:
-    {
-          login:false, chat:true
-    },
-  })
+ 
   .when('/profile/:_id',
     {
     templateUrl:"/partials/dashboard/userProfile/myProfile.html",
@@ -120,7 +113,16 @@ angular.module('app.ngRoute',['ngRoute'])
           login:false, chat:true
     }
   })
-
+ .when('/profile',
+    {
+    templateUrl:"/partials/dashboard/userProfile/myProfile.html",
+    //path:-- assets/app.js 
+    controller:'profileview',
+    access:
+    {
+          login:false, chat:true
+    },
+  })
   .when('/my-locations',
     {
     templateUrl:"/partials/dashboard/locations/my-locations.html",
@@ -319,16 +321,16 @@ angular.module('app.ngRoute',['ngRoute'])
     }
   })
   
-.when('/advertise',
-  {
-    templateUrl:"/partials/dashboard/refer/refer.html",
-    controller:"refer",
-    //controller path file path : assest/dashboard/user-poll.js
-    access:
-    { 
-          login:true, chat:false
-    }
-  })
+// .when('/advertise',
+//   {
+//     templateUrl:"/partials/dashboard/refer/refer.html",
+//     controller:"refer",
+//     //controller path file path : assest/dashboard/user-poll.js
+//     access:
+//     { 
+//           login:true, chat:false
+//     }
+//   })
     
 .when('/refer-friend',
   {
