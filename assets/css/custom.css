@@ -782,8 +782,10 @@ nav .navbar-collapse{ padding-right: 0; margin-right: -15px;}
 .srchformBx md-select{margin-bottom: 12px !important;}
 .stepFrmBx .md-required {top: -26px !important; font-size: 17px !important;}
 .fullAdd {margin-top: -7px !important;}
-p.infoAlert{ padding-bottom: 0;}
 .postBlogBx .fileButton{ top: 8px;}
 .postBlogBx .InpFile{ top: 8px;}
 .srchfrmBx .search-btn{ border: 0 !important;}
 .addnewLoc{ bottom: 40px;}
+md-checkbox .md-container{ background: url("../images/checkbox-icon.png") 0 0 no-repeat;}
+md-checkbox .md-container::after{ display: none;}
+md-checkbox .md-container::before{ display: none;}
