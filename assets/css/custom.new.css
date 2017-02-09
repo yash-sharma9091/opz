@@ -909,7 +909,7 @@ md-option {    font-size: inherit !important;    border-bottom: 1px #eaeaea soli
 .large-height { height: 80px; }
  md-option .md-text { text-transform: capitalize; }
 
-.md-dialog-content {  padding: 10px 24px !important; }
+.md-dialog-content {  padding: 10px 15px !important; }
 .md-select-value { text-transform: capitalize; }
 
 .multiDropdown md-option .md-text{ color: #5f5f5f; }
@@ -953,7 +953,7 @@ img-crop {  max-width: 400px;height:250px !important ; position: static !importa
     left: 0;
     right: 0;
     opacity: 0;
-    cursor: pointer;}
+    cursor: pointer; width: 100%;}
 .btn-reset .md-button{  text-transform: none !important; }
 .btn-reset .md-primary.md-raised {  color: white !important; }
 

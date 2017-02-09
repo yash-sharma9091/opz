@@ -43,11 +43,11 @@
 				</md-input-container>
 				<!-- <textarea name="textarea" ng-model="user.message" placeholder="Description*" class="textareaInp" aria-invalid="false"></textarea> -->
 				<div class="row">
-					<div class="col-md-2">
+					<div class="col-sm-6 col-xs-12">
 						<md-button ng-if="!isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left">Submit</md-button>
 						<md-button ng-if="isUserLogin" class="md-raised md-primary logpopup-Btn md-button pull-left" type="submit">Submit</md-button>
 					</div>	
-					<div class="col-md-10 margin-top10">
+					<div class="col-sm-6 col-xs-12 margin-top10">
 						<p ng-if="!isUserLogin"><a ng-click="signup($event)" class="blueClr">Signup</a> or <a class="blueClr" ng-click="login($event)">login</a> to post a comment</p>
 					</div>
 				<div class="clearfix"></div>
