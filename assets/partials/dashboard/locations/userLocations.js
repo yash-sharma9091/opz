@@ -20,7 +20,7 @@ function userLocations(e, rootscope, appServices, $location,$mdDialog)
 	     	if(response.status == 1){
 	     		/*If Response is not empty*/
           var data=response.data;
-          data.filter(function(value,key){
+         angular.forEach(data,function(value,key){
               if(value.travelStart)
                     {
                      value.travelStart=new Date(value.travelStart)             

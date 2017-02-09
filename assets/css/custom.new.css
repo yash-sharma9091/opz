@@ -1045,7 +1045,7 @@ md-option[value='editList']   .md-text{  text-transform: uppercase; color: #00aa
 .pointer { cursor: pointer; }
 .listingTop-Right i img{ max-width: 85px; }
 .btn-reset .md-primary md-icon{ color: white !important;  }
-.blogList li i {
+.blogList li i {    height: 157px;
     background-size: cover;}
 
 /*.blogList li {
